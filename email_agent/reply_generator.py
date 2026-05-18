@@ -24,7 +24,8 @@ Respond ONLY with valid JSON in this exact shape:
   "category": "<one of: personal, work, newsletter, promotional, automated notification, spam, out-of-office, support-request, meeting-request, question, other>",
   "needs_reply": <true|false>,
   "reason": "<one sentence explanation>",
-  "urgency": "<low|medium|high>"
+  "urgency": "<low|medium|high>",
+  "language": "<ISO 639-1 language code of the latest message, e.g. en, fr, de, es, ar, zh>"
 }
 """
 
@@ -32,10 +33,12 @@ REPLY_SYSTEM_TEMPLATE = """\
 You are acting as {name}, {role}. Your writing tone is {tone}.
 
 Rules:
+- Detect the language of the latest message in the thread and reply in that exact same language.
+- If the latest message is in French, reply in French. If Spanish, reply in Spanish. And so on.
 - Write a complete, ready-to-send email reply — no placeholders.
 - Do NOT include a subject line.
 - Do NOT include "Subject:" anywhere.
-- Sign off with the provided signature.
+- Sign off with the provided signature (keep the signature in its original form, do not translate it).
 - {extra_instructions}
 
 Signature to use:
@@ -49,6 +52,7 @@ class Classification:
     needs_reply: bool
     reason: str
     urgency: str
+    language: str = "en"
 
 
 @dataclass
@@ -93,6 +97,7 @@ class ReplyGenerator:
             needs_reply=data.get("needs_reply", True),
             reason=data.get("reason", ""),
             urgency=data.get("urgency", "medium"),
+            language=data.get("language", "en"),
         )
 
     # ------------------------------------------------------------------
@@ -131,10 +136,11 @@ class ReplyGenerator:
         log.info("Classifying thread '%s' (id=%s)", thread.subject, thread.thread_id)
         classification = self.classify(thread)
         log.info(
-            "  → category=%s needs_reply=%s urgency=%s reason=%s",
+            "  -> category=%s needs_reply=%s urgency=%s language=%s reason=%s",
             classification.category,
             classification.needs_reply,
             classification.urgency,
+            classification.language,
             classification.reason,
         )
 

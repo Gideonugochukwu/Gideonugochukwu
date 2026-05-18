@@ -23,6 +23,7 @@ sys.path.insert(0, os.path.dirname(__file__))
 
 from email_agent import CONFIG, EmailAgent
 from email_agent.gmail_api_client import GmailAPIClient
+from email_agent.notifier import Notifier
 
 
 def main() -> None:
@@ -59,13 +60,23 @@ def main() -> None:
     if args.interval:
         CONFIG.poll_interval_seconds = args.interval
 
-    log.info("Initialising Gmail API client…")
+    log.info("Initialising Gmail API client...")
     gmail_client = GmailAPIClient(
         credentials_file=args.credentials,
         token_file=args.token,
     )
 
-    agent = EmailAgent(CONFIG, gmail_client)
+    # Build notifier from optional env vars
+    notifier = Notifier(
+        gmail_client=gmail_client,
+        notify_email=os.environ.get("NOTIFY_EMAIL", ""),
+        whatsapp_phone=os.environ.get("CALLMEBOT_PHONE", ""),
+        whatsapp_apikey=os.environ.get("CALLMEBOT_APIKEY", ""),
+    )
+    if notifier.enabled:
+        log.info("Notifications enabled.")
+
+    agent = EmailAgent(CONFIG, gmail_client, notifier=notifier)
 
     if not args.loop:
         summary = agent.run_once()

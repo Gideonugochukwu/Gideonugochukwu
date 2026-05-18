@@ -14,6 +14,10 @@ jobs:
       ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
       GMAIL_CREDENTIALS: ${{ secrets.GMAIL_CREDENTIALS }}
       GMAIL_TOKEN: ${{ secrets.GMAIL_TOKEN }}
+      # Optional — leave blank to disable notifications
+      NOTIFY_EMAIL: ${{ secrets.NOTIFY_EMAIL }}
+      CALLMEBOT_PHONE: ${{ secrets.CALLMEBOT_PHONE }}
+      CALLMEBOT_APIKEY: ${{ secrets.CALLMEBOT_APIKEY }}
 
     steps:
       - name: Checkout repository

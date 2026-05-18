@@ -9,24 +9,21 @@ from typing import Callable
 
 from .config import AgentConfig
 from .gmail_client import GmailClient, EmailThread
+from .notifier import Notifier, NotificationEvent
 from .reply_generator import ReplyGenerator
 
 log = logging.getLogger(__name__)
 
 
 class EmailAgent:
-    def __init__(self, config: AgentConfig, gmail_or_caller):
-        """
-        gmail_or_caller can be:
-          - a callable (MCP caller) — wrapped in GmailClient
-          - a pre-built client instance (GmailAPIClient) — used directly
-        """
+    def __init__(self, config: AgentConfig, gmail_or_caller, notifier: Notifier = None):
         self._config = config
         if callable(gmail_or_caller) and not hasattr(gmail_or_caller, "search_threads"):
             self._gmail = GmailClient(gmail_or_caller)
         else:
             self._gmail = gmail_or_caller
         self._generator = ReplyGenerator(config)
+        self._notifier = notifier or Notifier()
 
         # Resolve / create labels once at startup
         self._processed_label_id = self._gmail.get_or_create_label(
@@ -104,6 +101,7 @@ class EmailAgent:
                 reply_to_message_id=latest.message_id if latest else None,
             )
             log.info("Reply sent (id=%s) for thread '%s'", msg_id, subject)
+            action = "sent"
         else:
             if self._config.reply_mode == "auto":
                 log.warning("auto mode requires GmailAPIClient; falling back to draft")
@@ -114,12 +112,18 @@ class EmailAgent:
                 reply_to_message_id=latest.message_id if latest else None,
             )
             log.info("Draft %s created for thread '%s'", draft_id, subject)
+            action = "drafted"
 
-        # Mark the thread as processed (removes UNREAD + adds our label)
-        self._gmail.label_thread(
-            thread_id,
-            [self._processed_label_id],
-        )
+        self._notifier.notify(NotificationEvent(
+            subject=subject,
+            sender=latest.sender if latest else "",
+            action=action,
+            category=result.classification.category,
+            urgency=result.classification.urgency,
+            reply_preview=result.body[:120],
+        ))
+
+        self._gmail.label_thread(thread_id, [self._processed_label_id])
         summary["replied"] += 1
 
     # ------------------------------------------------------------------
