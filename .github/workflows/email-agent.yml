@@ -2,15 +2,18 @@ name: Email Agent
 
 on:
   schedule:
-    # Runs every 10 minutes, 24/7
     - cron: "*/10 * * * *"
-  # Also allows manual trigger from GitHub Actions tab
   workflow_dispatch:
 
 jobs:
   run-agent:
     runs-on: ubuntu-latest
-    timeout-minutes: 8   # safety — kill if stuck before next cycle
+    timeout-minutes: 8
+
+    env:
+      ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+      GMAIL_CREDENTIALS: ${{ secrets.GMAIL_CREDENTIALS }}
+      GMAIL_TOKEN: ${{ secrets.GMAIL_TOKEN }}
 
     steps:
       - name: Checkout repository
@@ -25,17 +28,39 @@ jobs:
       - name: Install dependencies
         run: pip install -r requirements.txt
 
-      - name: Write Gmail credentials from secrets
-        env:
-          GMAIL_CREDENTIALS: ${{ secrets.GMAIL_CREDENTIALS }}
-          GMAIL_TOKEN: ${{ secrets.GMAIL_TOKEN }}
+      - name: Verify secrets are present
         run: |
-          echo "$GMAIL_CREDENTIALS" > credentials.json
-          echo "$GMAIL_TOKEN"       > token.json
+          if [ -z "$ANTHROPIC_API_KEY" ]; then
+            echo "ERROR: ANTHROPIC_API_KEY secret is empty or not set"
+            exit 1
+          fi
+          if [ -z "$GMAIL_CREDENTIALS" ]; then
+            echo "ERROR: GMAIL_CREDENTIALS secret is empty or not set"
+            exit 1
+          fi
+          if [ -z "$GMAIL_TOKEN" ]; then
+            echo "ERROR: GMAIL_TOKEN secret is empty or not set"
+            exit 1
+          fi
+          echo "All secrets present."
+          echo "ANTHROPIC_API_KEY length: ${#ANTHROPIC_API_KEY}"
 
-      - name: Run email agent (one cycle)
-        env:
-          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+      - name: Write Gmail credentials from secrets
+        run: |
+          python3 -c "
+          import os, sys
+          creds = os.environ.get('GMAIL_CREDENTIALS', '')
+          token = os.environ.get('GMAIL_TOKEN', '')
+          if not creds:
+              print('ERROR: GMAIL_CREDENTIALS is empty'); sys.exit(1)
+          if not token:
+              print('ERROR: GMAIL_TOKEN is empty'); sys.exit(1)
+          open('credentials.json', 'w').write(creds)
+          open('token.json', 'w').write(token)
+          print('Credentials written successfully.')
+          "
+
+      - name: Run email agent
         run: python standalone_runner.py
 
       - name: Clean up credential files
