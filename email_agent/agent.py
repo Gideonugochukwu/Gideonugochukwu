@@ -15,9 +15,17 @@ log = logging.getLogger(__name__)
 
 
 class EmailAgent:
-    def __init__(self, config: AgentConfig, mcp_caller: Callable):
+    def __init__(self, config: AgentConfig, gmail_or_caller):
+        """
+        gmail_or_caller can be:
+          - a callable (MCP caller) — wrapped in GmailClient
+          - a pre-built client instance (GmailAPIClient) — used directly
+        """
         self._config = config
-        self._gmail = GmailClient(mcp_caller)
+        if callable(gmail_or_caller) and not hasattr(gmail_or_caller, "search_threads"):
+            self._gmail = GmailClient(gmail_or_caller)
+        else:
+            self._gmail = gmail_or_caller
         self._generator = ReplyGenerator(config)
 
         # Resolve / create labels once at startup
@@ -87,18 +95,25 @@ class EmailAgent:
         reply_to = [latest.sender] if latest else []
         subject = thread.subject
 
-        if self._config.reply_mode == "auto":
-            # TODO: wire up a send_message MCP tool when available
-            # For now fall back to draft even in auto mode
-            log.warning("auto send not yet supported; falling back to draft mode")
-
-        draft_id = self._gmail.create_draft_reply(
-            to=reply_to,
-            subject=subject,
-            body=result.body,
-            reply_to_message_id=latest.message_id if latest else None,
-        )
-        log.info("Draft %s created for thread '%s'", draft_id, subject)
+        if self._config.reply_mode == "auto" and hasattr(self._gmail, "send_reply"):
+            msg_id = self._gmail.send_reply(
+                to=reply_to,
+                subject=subject,
+                body=result.body,
+                thread_id=thread_id,
+                reply_to_message_id=latest.message_id if latest else None,
+            )
+            log.info("Reply sent (id=%s) for thread '%s'", msg_id, subject)
+        else:
+            if self._config.reply_mode == "auto":
+                log.warning("auto mode requires GmailAPIClient; falling back to draft")
+            draft_id = self._gmail.create_draft_reply(
+                to=reply_to,
+                subject=subject,
+                body=result.body,
+                reply_to_message_id=latest.message_id if latest else None,
+            )
+            log.info("Draft %s created for thread '%s'", draft_id, subject)
 
         # Mark the thread as processed (removes UNREAD + adds our label)
         self._gmail.label_thread(
