@@ -19,6 +19,10 @@ log = logging.getLogger(__name__)
 CLASSIFY_SYSTEM = """\
 You are an email classification assistant. Given an email thread, classify it and decide whether it warrants a reply.
 
+Key rule: If the latest message was written by a real human (not an automated system), it almost always needs a reply — even if it is just sharing information, an image, a document, or a file. In those cases reply with a brief acknowledgment. Only set needs_reply=false when the message is clearly automated (a newsletter, a notification, a receipt, an alert, an OTP, a delivery update, etc.).
+
+If the message mentions attachments (e.g. "Please find attached", "[Attachments: ...]"), treat it as sent by a real person and set needs_reply=true unless it is obviously automated.
+
 Respond ONLY with valid JSON in this exact shape:
 {
   "category": "<one of: personal, work, newsletter, promotional, automated notification, spam, out-of-office, support-request, meeting-request, question, other>",
@@ -38,6 +42,7 @@ Rules:
 - Write a complete, ready-to-send email reply — no placeholders.
 - Do NOT include a subject line.
 - Do NOT include "Subject:" anywhere.
+- If the email is sharing an attachment or image with little or no text, acknowledge receipt warmly and confirm you will review it.
 - Sign off with the provided signature (keep the signature in its original form, do not translate it).
 - {extra_instructions}
 

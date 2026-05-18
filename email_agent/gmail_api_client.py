@@ -141,6 +141,7 @@ class GmailAPIClient:
             for h in payload.get("headers", [])
         }
         body = self._extract_plain_text(payload) or raw.get("snippet", "")
+        attachments = self._extract_attachments(payload)
         return EmailMessage(
             message_id=raw.get("id", ""),
             thread_id=raw.get("threadId", ""),
@@ -151,7 +152,26 @@ class GmailAPIClient:
             body=body,
             date=headers.get("date", ""),
             labels=raw.get("labelIds", []),
+            attachments=attachments,
         )
+
+    def _extract_attachments(self, payload: dict) -> list[str]:
+        """Recursively collect attachment filenames from MIME parts."""
+        attachments = []
+        mime_type = payload.get("mimeType", "")
+        filename = payload.get("filename", "")
+        body_size = payload.get("body", {}).get("size", 0)
+
+        # A part with a filename and non-text MIME type is an attachment
+        if filename and not mime_type.startswith("text/"):
+            attachments.append(filename or mime_type)
+        elif not filename and mime_type not in ("", "text/plain", "text/html") \
+                and not mime_type.startswith("multipart/") and body_size > 0:
+            attachments.append(mime_type)
+
+        for part in payload.get("parts", []):
+            attachments.extend(self._extract_attachments(part))
+        return attachments
 
     def _extract_plain_text(self, payload: dict) -> str:
         """Recursively walk MIME parts to find the text/plain body."""

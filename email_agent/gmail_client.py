@@ -23,6 +23,11 @@ class EmailMessage:
     body: str
     date: str
     labels: list[str]
+    attachments: list[str] = None   # list of attachment filenames/types
+
+    def __post_init__(self):
+        if self.attachments is None:
+            self.attachments = []
 
 
 @dataclass
@@ -42,12 +47,15 @@ class EmailThread:
     def as_conversation_text(self) -> str:
         parts = []
         for i, msg in enumerate(self.messages):
+            attachment_note = ""
+            if msg.attachments:
+                attachment_note = f"\n[Attachments: {', '.join(msg.attachments)}]"
             parts.append(
                 f"--- Message {i + 1} ---\n"
                 f"From: {msg.sender}\n"
                 f"To: {', '.join(msg.recipients)}\n"
                 f"Date: {msg.date}\n"
-                f"Subject: {msg.subject}\n\n"
+                f"Subject: {msg.subject}{attachment_note}\n\n"
                 f"{msg.body.strip()}"
             )
         return "\n\n".join(parts)
@@ -107,6 +115,12 @@ class GmailClient:
 
     def _parse_message(self, raw: dict) -> EmailMessage:
         headers = {h["name"].lower(): h["value"] for h in raw.get("headers", [])}
+        # MCP tool returns attachment_ids list; use it to flag attachments
+        attachment_ids = raw.get("attachmentIds") or raw.get("attachment_ids") or []
+        attachments = [a.get("filename") or a.get("mimeType") or "attachment"
+                       for a in attachment_ids] if isinstance(attachment_ids, list) and \
+                      attachment_ids and isinstance(attachment_ids[0], dict) \
+                      else [str(a) for a in attachment_ids if a]
         return EmailMessage(
             message_id=raw.get("id", ""),
             thread_id=raw.get("threadId", ""),
@@ -117,6 +131,7 @@ class GmailClient:
             body=raw.get("plaintextBody") or raw.get("body", raw.get("snippet", "")),
             date=headers.get("date", ""),
             labels=raw.get("labelIds", []),
+            attachments=attachments,
         )
 
     @staticmethod
