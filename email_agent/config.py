@@ -8,10 +8,17 @@ from typing import Optional
 
 @dataclass
 class AgentPersona:
-    name: str = "Gideon"
-    role: str = "Professional assistant"
-    tone: str = "professional yet friendly"
-    signature: str = "Best regards,\nGideon"
+    name: str = "Gideon Ugochukwu"
+    role: str = "Freelancer – Translator | Social Media Manager | Social Media Marketer | PPC & Ads Expert"
+    tone: str = "professional"
+    signature: str = (
+        "Best regards,\n\n"
+        "Gideon Ugochukwu\n"
+        "Translator | Social Media Manager | Social Media Marketer\n"
+        "PPC & Facebook | Google | LinkedIn | Ads Expert | Pixel & GTM Pro\n"
+        "📞 70-1883-1023\n"
+        "🌐 en.malt.fr/profile/gideonugochukwu"
+    )
     extra_instructions: str = (
         "Keep replies concise and to the point. "
         "If an email requires information you don't have, politely acknowledge receipt "
@@ -28,7 +35,7 @@ class AgentConfig:
     # Behaviour
     # 'draft'  → save reply as Gmail draft (safe default)
     # 'auto'   → send reply immediately (use with caution)
-    reply_mode: str = "draft"
+    reply_mode: str = "auto"
 
     # How often to check for new mail (seconds)
     poll_interval_seconds: int = 120
