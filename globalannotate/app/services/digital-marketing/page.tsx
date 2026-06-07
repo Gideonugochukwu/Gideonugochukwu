@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import ServicePage from "@/components/ServicePage";
+import { img, unsplash } from "@/lib/images";
 
 export const metadata: Metadata = {
   title: "Digital Marketing",
@@ -12,37 +13,39 @@ export default function Page() {
     <ServicePage
       eyebrow="Digital Marketing"
       title="Audiences into customers. Customers into growth."
-      intro="We run lean, data-led growth programs across Meta, content, and organic social — built to drive measurable revenue, not vanity metrics."
+      intro="Lean, data-led growth across Meta, content, and organic social — built to drive revenue, not vanity metrics."
+      heroImage={unsplash(img.services.digitalMarketing.id, 2400)}
+      heroImageAlt={img.services.digitalMarketing.alt}
       included={[
         {
           title: "Facebook & Instagram ads",
-          body: "Full-funnel paid social — strategy, creative, media buying, and weekly optimization.",
+          body: "Full-funnel paid social — strategy, creative, media buying, weekly optimization.",
         },
         {
           title: "Creative production",
-          body: "Static, motion, and UGC-style creative built for the platform, not retrofitted from TV.",
+          body: "Static, motion, and UGC-style creative built for the platform.",
         },
         {
           title: "Social media management",
-          body: "Editorial planning, publishing, community management, and brand voice care.",
+          body: "Editorial planning, publishing, community management, brand voice.",
         },
         {
           title: "Content strategy",
-          body: "Pillar themes, content calendars, and SEO-aware briefs that compound over time.",
+          body: "Pillar themes, calendars, and SEO-aware briefs that compound over time.",
         },
         {
           title: "Landing pages & CRO",
-          body: "Conversion-tuned landing pages and experiments to lift ROAS without raising spend.",
+          body: "Conversion-tuned pages and experiments to lift ROAS without raising spend.",
         },
         {
           title: "Reporting & insights",
-          body: "Clear weekly dashboards in plain English — and a senior strategist who reads them with you.",
+          body: "Clear weekly dashboards. A senior strategist who reads them with you.",
         },
       ]}
       useCases={[
         {
           title: "DTC & e-commerce",
-          body: "Scale paid social profitably with creative testing systems and full-funnel measurement.",
+          body: "Scale paid social profitably with creative testing and full-funnel measurement.",
         },
         {
           title: "B2B & SaaS",
@@ -50,11 +53,11 @@ export default function Page() {
         },
         {
           title: "Local & service businesses",
-          body: "Lead-gen funnels, geo-targeted ads, and reputation-first social presence.",
+          body: "Lead-gen funnels, geo-targeted ads, and reputation-first social.",
         },
         {
           title: "Launches & campaigns",
-          body: "End-to-end campaign sprints — from concept to creative to media plan.",
+          body: "End-to-end campaign sprints — concept to creative to media plan.",
         },
       ]}
       tiers={[
@@ -104,7 +107,7 @@ export default function Page() {
         },
         {
           q: "What's the minimum ad spend?",
-          a: "We recommend at least $1,500/month in media to learn quickly. Anything less and Meta's algorithms don't have enough signal.",
+          a: "We recommend at least $1,500/month in media. Less and Meta doesn't have enough signal to learn quickly.",
         },
         {
           q: "How long until I see results?",
@@ -112,11 +115,11 @@ export default function Page() {
         },
         {
           q: "Do you create the ad creative?",
-          a: "Yes — static, motion, and UGC-style assets are included in every plan. We script, shoot/source, and edit.",
+          a: "Yes — static, motion, and UGC-style assets are included. We script, shoot/source, and edit.",
         },
         {
           q: "Can I pause or cancel?",
-          a: "Plans are month-to-month after a 60-day setup period. We earn the partnership every month.",
+          a: "Plans are month-to-month after a 60-day setup period.",
         },
       ]}
     />

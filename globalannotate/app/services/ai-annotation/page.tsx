@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import ServicePage from "@/components/ServicePage";
+import { img, unsplash } from "@/lib/images";
 
 export const metadata: Metadata = {
   title: "AI Annotation & Data Labeling",
@@ -11,28 +12,30 @@ export default function Page() {
   return (
     <ServicePage
       eyebrow="AI Annotation & Data Labeling"
-      title="Training data your models can actually trust."
-      intro="From bounding boxes and polygons to LLM preference data and audio transcription, our specialist annotators produce the clean, consistent, well-documented data that turns good models into great ones."
+      title="Training data your models can trust."
+      intro="Clean, consistent, well-documented labels for computer vision, NLP, and LLM teams — from pilot to production scale."
+      heroImage={unsplash(img.services.aiAnnotation.id, 2400)}
+      heroImageAlt={img.services.aiAnnotation.alt}
       included={[
         {
           title: "Image annotation",
-          body: "Bounding boxes, polygons, keypoints, 3D cuboids — at any volume, with class-level QA.",
+          body: "Bounding boxes, polygons, keypoints, 3D cuboids — any volume, with class-level QA.",
         },
         {
           title: "Semantic & instance segmentation",
-          body: "Pixel-precise masks for autonomous driving, medical imaging, agriculture, and retail.",
+          body: "Pixel-precise masks for autonomous driving, medical imaging, and retail.",
         },
         {
           title: "NLP & LLM data",
-          body: "Intent labels, entity extraction, summarization references, preference and RLHF data.",
+          body: "Intent labels, entity extraction, preference data, RLHF, and evals.",
         },
         {
           title: "Audio annotation",
-          body: "Transcription, speaker diarization, emotion and event tagging across 50+ languages.",
+          body: "Transcription, speaker diarization, emotion and event tagging in 50+ languages.",
         },
         {
           title: "Video annotation",
-          body: "Frame-by-frame object tracking, action classification, and temporal segmentation.",
+          body: "Frame-by-frame object tracking, action classification, temporal segmentation.",
         },
         {
           title: "QA & calibration",
@@ -42,19 +45,19 @@ export default function Page() {
       useCases={[
         {
           title: "Computer vision teams",
-          body: "Production-grade datasets for detection, segmentation, OCR, and pose estimation — delivered in your schema.",
+          body: "Production-grade datasets for detection, segmentation, OCR, and pose estimation.",
         },
         {
           title: "LLM & RAG teams",
-          body: "Preference pairs, evals, red-team prompts, and domain-specific instruction datasets.",
+          body: "Preference pairs, evals, red-team prompts, and domain-specific instructions.",
         },
         {
           title: "Voice & speech AI",
-          body: "Multi-language transcription, accent-balanced datasets, and audio event labeling at scale.",
+          body: "Multi-language transcription, accent-balanced datasets, and audio event labels.",
         },
         {
           title: "Robotics & autonomy",
-          body: "3D cuboids, point cloud annotation, and sensor-fusion labels with strict consistency.",
+          body: "3D cuboids, point cloud annotation, and sensor-fusion labels at scale.",
         },
       ]}
       tiers={[
@@ -89,7 +92,7 @@ export default function Page() {
           price: "Custom",
           description: "Regulated, sensitive, or massive-scale programs.",
           features: [
-            "On-premise / VPC delivery available",
+            "On-premise / VPC delivery",
             "SOC2-aligned controls",
             "Regional data residency",
             "24/7 program management",
@@ -100,11 +103,11 @@ export default function Page() {
       faq={[
         {
           q: "What tooling do you use?",
-          a: "We work in your tooling (Labelbox, CVAT, Scale, V7, Roboflow, Encord, Label Studio) or stand up our own pipelines when needed.",
+          a: "We work in your tooling (Labelbox, CVAT, Scale, V7, Roboflow, Encord, Label Studio) or stand up our own pipelines.",
         },
         {
           q: "How do you guarantee quality?",
-          a: "Every program runs gold-set calibration, multi-pass review, and inter-annotator agreement tracking. You get a QA report with every batch.",
+          a: "Every program runs gold-set calibration, multi-pass review, and inter-annotator agreement tracking with a QA report per batch.",
         },
         {
           q: "How quickly can you scale?",
@@ -112,11 +115,11 @@ export default function Page() {
         },
         {
           q: "Can you handle sensitive data?",
-          a: "Yes — NDAs, role-based access, audit logs, and regional data handling. Talk to us about your compliance needs.",
+          a: "Yes — NDAs, role-based access, audit logs, and regional data handling.",
         },
         {
           q: "Do you do RLHF / LLM preference data?",
-          a: "Yes. Instruction following, harmlessness reviews, ranking, red-teaming, and domain-specific evaluation sets are core specialties.",
+          a: "Yes. Instruction following, harmlessness reviews, ranking, red-teaming, and domain evals are core specialties.",
         },
       ]}
     />
