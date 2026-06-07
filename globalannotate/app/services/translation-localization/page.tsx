@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import ServicePage from "@/components/ServicePage";
+import { img, unsplash } from "@/lib/images";
 
 export const metadata: Metadata = {
   title: "Translation & Localization",
@@ -12,15 +13,17 @@ export default function Page() {
     <ServicePage
       eyebrow="Translation & Localization"
       title="Speak to every market — like you live there."
-      intro="From product UI to legal contracts, marketing campaigns to subtitles, our native linguists translate and localize your content so it reads as if it were written for each audience from day one."
+      intro="Native linguists translate and localize your content so it reads as if it were written for each audience from day one."
+      heroImage={unsplash(img.services.translation.id, 2400)}
+      heroImageAlt={img.services.translation.alt}
       included={[
         {
           title: "Website & app localization",
-          body: "Strings, content, layouts, RTL support, and on-device QA across iOS, Android, and the web.",
+          body: "Strings, content, layouts, RTL support, and on-device QA across iOS, Android, and web.",
         },
         {
           title: "Document translation",
-          body: "Legal, medical, technical, financial — certified translation with formatting preserved.",
+          body: "Legal, medical, technical, financial — certified, with formatting preserved.",
         },
         {
           title: "Multimedia & subtitles",
@@ -28,33 +31,33 @@ export default function Page() {
         },
         {
           title: "Transcreation",
-          body: "Marketing copy adapted — not just translated — so the message lands in every market.",
+          body: "Marketing copy adapted, not just translated. Same message, new market.",
         },
         {
           title: "Glossaries & TM",
-          body: "We build and maintain translation memories and terminology bases that compound value over time.",
+          body: "Translation memories and terminology bases that compound value over time.",
         },
         {
           title: "Linguistic QA",
-          body: "Second linguist review, automated checks, and in-context proofing before delivery.",
+          body: "Second linguist review, automated checks, and in-context proofing.",
         },
       ]}
       useCases={[
         {
           title: "SaaS going multi-region",
-          body: "Localize your product, marketing site, and support content into priority markets without slowing down your engineering team.",
+          body: "Localize product, marketing, and support content without slowing engineering.",
         },
         {
           title: "Health & legal documents",
-          body: "Certified, audit-ready translation of patient materials, contracts, and compliance documents.",
+          body: "Certified, audit-ready translation for patient materials and compliance.",
         },
         {
           title: "Media & entertainment",
-          body: "Subtitle and dub video at scale with consistent voice across episodes, courses, and campaigns.",
+          body: "Subtitle and dub at scale with a consistent voice across every episode.",
         },
         {
           title: "E-commerce expansion",
-          body: "Localize product catalogs, ad creative, and customer journeys for higher conversion in each market.",
+          body: "Localized catalogs, ads, and journeys for higher conversion in every market.",
         },
       ]}
       tiers={[
@@ -62,7 +65,7 @@ export default function Page() {
           name: "Starter",
           price: "From $0.09",
           cadence: "/ word",
-          description: "Small documents, single-language pairs, fast turnaround.",
+          description: "Small documents, single language pairs, fast turnaround.",
           features: [
             "Up to 5,000 words",
             "Single linguist translation",
@@ -74,7 +77,7 @@ export default function Page() {
           name: "Growth",
           price: "From $0.12",
           cadence: "/ word",
-          description: "Most teams pick this. Multi-language, ongoing projects.",
+          description: "Most teams pick this. Multi-language, ongoing programs.",
           features: [
             "Unlimited volume",
             "Linguist + reviewer (two-step QA)",
@@ -104,7 +107,7 @@ export default function Page() {
         },
         {
           q: "How fast can you deliver?",
-          a: "Short documents in 24–72 hours. For larger or ongoing programs we agree on SLAs up front and report delivery weekly.",
+          a: "Short documents in 24–72 hours. For larger programs we agree SLAs up front and report delivery weekly.",
         },
         {
           q: "Can you work inside our tools?",
@@ -112,11 +115,11 @@ export default function Page() {
         },
         {
           q: "Do you offer certified translations?",
-          a: "Yes, for legal, medical, immigration, and academic documents in most jurisdictions. Ask us about your specific use case.",
+          a: "Yes, for legal, medical, immigration, and academic documents in most jurisdictions.",
         },
         {
           q: "What about confidentiality?",
-          a: "We sign NDAs, use access-controlled workflows, and route sensitive work only to vetted in-house specialists.",
+          a: "We sign NDAs, use access-controlled workflows, and route sensitive work to vetted in-house specialists.",
         },
       ]}
     />

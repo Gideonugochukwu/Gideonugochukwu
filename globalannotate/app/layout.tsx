@@ -1,19 +1,19 @@
 import type { Metadata, Viewport } from "next";
-import { Inter, Sora } from "next/font/google";
+import { Bricolage_Grotesque, Plus_Jakarta_Sans } from "next/font/google";
 import "./globals.css";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import { ToastProvider } from "@/components/Toast";
 import { site } from "@/lib/site";
 
-const inter = Inter({
-  variable: "--font-inter",
+const body = Plus_Jakarta_Sans({
+  variable: "--font-body",
   subsets: ["latin"],
   display: "swap",
 });
 
-const sora = Sora({
-  variable: "--font-sora",
+const display = Bricolage_Grotesque({
+  variable: "--font-display",
   subsets: ["latin"],
   weight: ["400", "500", "600", "700", "800"],
   display: "swap",
@@ -66,7 +66,7 @@ export default function RootLayout({
   children,
 }: Readonly<{ children: React.ReactNode }>) {
   return (
-    <html lang="en" className={`${inter.variable} ${sora.variable}`}>
+    <html lang="en" className={`${body.variable} ${display.variable}`}>
       <body className="min-h-screen flex flex-col bg-white text-ink-900">
         <ToastProvider>
           <Navbar />

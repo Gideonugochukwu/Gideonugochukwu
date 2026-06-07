@@ -20,14 +20,14 @@ export default function CTABand() {
               "radial-gradient(60% 80% at 80% 0%, rgba(255,255,255,0.18), transparent 60%)",
           }}
         />
+        <div aria-hidden className="absolute inset-0 hero-grid opacity-40" />
         <div className="relative grid md:grid-cols-[1.5fr_1fr] gap-8 items-end">
           <div>
-            <h3 className="font-display text-3xl md:text-4xl font-semibold tracking-tight">
-              Ready to scale globally — without the chaos?
+            <h3 className="font-display text-3xl md:text-5xl font-semibold tracking-tight leading-tight">
+              Ready to grow globally?
             </h3>
-            <p className="mt-4 text-white/80 max-w-xl leading-relaxed">
-              Tell us about your project. You&apos;ll hear back within one
-              business day with a tailored proposal and a clear next step.
+            <p className="mt-4 text-white/80 max-w-xl leading-relaxed text-lg">
+              Tell us about your project. We&apos;ll reply within one business day.
             </p>
           </div>
           <div className="flex flex-col sm:flex-row md:flex-col gap-3 md:items-end">

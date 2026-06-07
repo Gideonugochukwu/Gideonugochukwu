@@ -12,10 +12,15 @@ services.
 
 - **Next.js** (App Router) + **TypeScript**
 - **Tailwind CSS v4**
-- **Framer Motion** for animation
+- **Framer Motion** for animation (multilingual greeting cycler, word-by-word
+  headline reveal, scroll-reveal, animated stat count-up)
 - **lucide-react** icons
 - **react-hook-form** + **zod** for forms
-- Custom display + body font pairing via `next/font` (Sora + Inter)
+- Custom display + body font pairing via `next/font`
+  (Bricolage Grotesque + Plus Jakarta Sans)
+- Imagery via **next/image** hotlinked from Unsplash
+  (royalty-free, commercial use, no attribution required).
+  All image IDs live in `lib/images.ts` — swap any entry to change the visual.
 - Deployable to Vercel with zero config
 
 ## Pages

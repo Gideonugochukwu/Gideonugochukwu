@@ -1,3 +1,4 @@
+import Image from "next/image";
 import Link from "next/link";
 import Section from "./Section";
 import FAQ, { FAQItem } from "./FAQ";
@@ -18,6 +19,8 @@ export default function ServicePage({
   eyebrow,
   title,
   intro,
+  heroImage,
+  heroImageAlt,
   included,
   useCases,
   tiers,
@@ -26,6 +29,8 @@ export default function ServicePage({
   eyebrow: string;
   title: string;
   intro: string;
+  heroImage: string;
+  heroImageAlt: string;
   included: { title: string; body: string }[];
   useCases: { title: string; body: string }[];
   tiers: Tier[];
@@ -33,22 +38,41 @@ export default function ServicePage({
 }) {
   return (
     <>
-      <section className="relative overflow-hidden">
-        <div aria-hidden className="absolute inset-0 hero-glow" />
-        <div aria-hidden className="absolute inset-0 hero-grid" />
-        <div className="container-wide relative pt-20 pb-16">
-          <span className="badge">{eyebrow}</span>
-          <h1 className="mt-4 max-w-4xl text-4xl md:text-5xl lg:text-6xl font-semibold tracking-tight leading-tight">
+      <section className="relative isolate overflow-hidden bg-ink-950 text-white">
+        <Image
+          src={heroImage}
+          alt={heroImageAlt}
+          fill
+          priority
+          sizes="100vw"
+          className="object-cover opacity-45"
+        />
+        <div
+          aria-hidden
+          className="absolute inset-0"
+          style={{
+            background:
+              "linear-gradient(180deg, rgba(2,6,23,0.80) 0%, rgba(2,6,23,0.65) 50%, rgba(2,6,23,0.92) 100%), radial-gradient(50% 50% at 50% 0%, rgba(16,185,129,0.25), transparent 65%)",
+          }}
+        />
+        <div aria-hidden className="absolute inset-0 hero-grid opacity-40" />
+
+        <div className="container-wide relative pt-20 pb-24">
+          <span className="badge-light">{eyebrow}</span>
+          <h1 className="display-hero mt-5 max-w-4xl text-4xl md:text-6xl lg:text-7xl text-white">
             {title}
           </h1>
-          <p className="mt-5 max-w-2xl text-lg text-ink-600 leading-relaxed">
+          <p className="mt-6 max-w-2xl text-lg md:text-xl text-white/80 leading-relaxed">
             {intro}
           </p>
           <div className="mt-8 flex flex-col sm:flex-row gap-3">
-            <Link href="/contact" className="btn-primary">
+            <Link
+              href="/contact"
+              className="inline-flex items-center justify-center gap-2 rounded-xl bg-white text-ink-900 px-5 py-3.5 font-semibold hover:bg-brand-50 transition"
+            >
               Request a quote <ArrowRight className="h-4 w-4" />
             </Link>
-            <Link href="/services" className="btn-secondary">
+            <Link href="/services" className="btn-ghost-light">
               All services
             </Link>
           </div>
@@ -58,7 +82,7 @@ export default function ServicePage({
       <Section>
         <div className="max-w-2xl">
           <span className="badge">What&apos;s included</span>
-          <h2 className="mt-4 text-3xl md:text-4xl font-semibold tracking-tight">
+          <h2 className="mt-4 text-3xl md:text-5xl font-semibold tracking-tight">
             Everything you need, end to end.
           </h2>
         </div>
@@ -75,17 +99,17 @@ export default function ServicePage({
         </div>
       </Section>
 
-      <Section className="bg-ink-50/40 border-y border-ink-200/60">
+      <Section className="bg-ink-50/60 border-y border-ink-200/60">
         <div className="max-w-2xl">
           <span className="badge">Use cases</span>
-          <h2 className="mt-4 text-3xl md:text-4xl font-semibold tracking-tight">
+          <h2 className="mt-4 text-3xl md:text-5xl font-semibold tracking-tight">
             Built for the work you actually do.
           </h2>
         </div>
         <div className="mt-10 grid gap-5 md:grid-cols-2">
           {useCases.map((u, i) => (
             <Reveal key={u.title} delay={i * 0.04}>
-              <div className="card p-6 h-full">
+              <div className="card p-6 h-full bg-white">
                 <h3 className="font-semibold">{u.title}</h3>
                 <p className="mt-2 text-sm text-ink-600 leading-relaxed">{u.body}</p>
               </div>
@@ -97,12 +121,11 @@ export default function ServicePage({
       <Section>
         <div className="max-w-2xl">
           <span className="badge">Pricing</span>
-          <h2 className="mt-4 text-3xl md:text-4xl font-semibold tracking-tight">
+          <h2 className="mt-4 text-3xl md:text-5xl font-semibold tracking-tight">
             Simple tiers. Custom quotes always available.
           </h2>
           <p className="mt-3 text-ink-600">
-            Pricing depends on scope, volume, and language pairs — these are
-            indicative starting points.
+            Pricing depends on scope, volume, and language pairs.
           </p>
         </div>
         <div className="mt-10 grid gap-5 md:grid-cols-3">
@@ -149,10 +172,10 @@ export default function ServicePage({
         </div>
       </Section>
 
-      <Section className="bg-ink-50/40 border-y border-ink-200/60">
+      <Section className="bg-ink-50/60 border-y border-ink-200/60">
         <div className="max-w-2xl">
           <span className="badge">FAQ</span>
-          <h2 className="mt-4 text-3xl md:text-4xl font-semibold tracking-tight">
+          <h2 className="mt-4 text-3xl md:text-5xl font-semibold tracking-tight">
             Questions, answered.
           </h2>
         </div>

@@ -5,22 +5,22 @@ const steps = [
   {
     icon: Compass,
     title: "Discovery call",
-    body: "We learn your goals, audience, formats and constraints — then map the right service mix.",
+    body: "We learn your goals, audience, and constraints.",
   },
   {
     icon: Workflow,
     title: "Tailored proposal",
-    body: "You receive a clear scope, timeline, and transparent pricing within 24–48 hours.",
+    body: "Clear scope, timeline, and pricing within 24–48 hours.",
   },
   {
     icon: FileCheck2,
     title: "Production & QA",
-    body: "Specialists execute while our quality team reviews every deliverable for accuracy.",
+    body: "Specialists execute. Our quality team reviews every deliverable.",
   },
   {
     icon: Rocket,
     title: "Delivery & growth",
-    body: "We hand off polished output and iterate with you as your needs evolve.",
+    body: "Polished output, with iteration as you scale.",
   },
 ];
 
@@ -29,12 +29,11 @@ export default function HowItWorks() {
     <div className="container-wide">
       <div className="max-w-2xl">
         <span className="badge">How it works</span>
-        <h2 className="mt-4 text-3xl md:text-4xl font-semibold tracking-tight">
-          A simple, transparent process — from first message to final delivery.
+        <h2 className="mt-4 text-3xl md:text-5xl font-semibold tracking-tight">
+          From first message to final delivery.
         </h2>
-        <p className="mt-4 text-ink-600 leading-relaxed">
-          We&apos;ve refined a workflow built for global teams who need
-          quality, speed, and accountability — without the agency overhead.
+        <p className="mt-5 text-ink-600 leading-relaxed">
+          A simple, transparent process built for global teams that need quality, speed, and accountability.
         </p>
       </div>
 
