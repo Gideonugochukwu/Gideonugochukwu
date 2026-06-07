@@ -5,50 +5,65 @@ import StatStrip from "@/components/StatStrip";
 import HowItWorks from "@/components/HowItWorks";
 import Testimonials from "@/components/Testimonials";
 import CTABand from "@/components/CTABand";
+import Industries from "@/components/Industries";
 import Reveal from "@/components/Reveal";
 import { services } from "@/lib/site";
+import { img, unsplash } from "@/lib/images";
 import { ShieldCheck, Globe2, Sparkles, Users } from "lucide-react";
+
+const SERVICE_IMAGES = {
+  "translation-localization": img.services.translation,
+  "ai-annotation": img.services.aiAnnotation,
+  "digital-marketing": img.services.digitalMarketing,
+} as const;
 
 export default function HomePage() {
   return (
     <>
       <Hero />
 
-      <Section id="services" className="pt-0 md:pt-0">
+      <Section id="services">
         <SectionHeading
           eyebrow="What we do"
-          title="One partner. Three high-impact services."
-          description="Translation that respects culture, annotation that fuels smarter AI, and marketing that actually moves the needle — backed by a single accountable team."
+          title="Three services. One accountable team."
+          description="Translation, AI training data, and marketing — in 100+ languages."
         />
         <div className="mt-12 grid gap-6 md:grid-cols-3">
-          {services.map((s, i) => (
-            <Reveal key={s.slug} delay={i * 0.06}>
-              <ServiceCard
-                slug={s.slug}
-                title={s.title}
-                summary={s.summary}
-                icon={s.icon as "Brain" | "Languages" | "Megaphone"}
-              />
-            </Reveal>
-          ))}
+          {services.map((s, i) => {
+            const image = SERVICE_IMAGES[s.slug as keyof typeof SERVICE_IMAGES];
+            return (
+              <Reveal key={s.slug} delay={i * 0.06}>
+                <ServiceCard
+                  slug={s.slug}
+                  title={s.title}
+                  summary={s.summary}
+                  icon={s.icon as "Brain" | "Languages" | "Megaphone"}
+                  image={unsplash(image.id, 1200)}
+                  alt={image.alt}
+                />
+              </Reveal>
+            );
+          })}
         </div>
       </Section>
 
-      <Section className="pt-0 md:pt-0" bleed>
+      <Section className="pt-0" bleed>
         <StatStrip />
       </Section>
 
       <Section>
+        <Industries />
+      </Section>
+
+      <Section className="bg-ink-50/60 border-y border-ink-200/60">
         <div className="grid lg:grid-cols-2 gap-12 items-start">
           <div className="max-w-xl">
             <span className="badge">Why choose us</span>
-            <h2 className="mt-4 text-3xl md:text-4xl font-semibold tracking-tight">
-              Built for teams that can&apos;t afford to be lost in translation.
+            <h2 className="mt-4 text-3xl md:text-5xl font-semibold tracking-tight">
+              Quality you can audit. Speed you can plan around.
             </h2>
-            <p className="mt-4 text-ink-600 leading-relaxed">
-              We combine native linguists, specialist annotators, and growth
-              marketers under one quality system — so every output is on-brand,
-              on-spec, and on-time.
+            <p className="mt-5 text-ink-600 leading-relaxed">
+              Native linguists, specialist annotators, and growth marketers — under one quality system.
             </p>
           </div>
 
@@ -57,22 +72,22 @@ export default function HomePage() {
               {
                 icon: ShieldCheck,
                 title: "Quality you can audit",
-                body: "Every project ships with a QA report and revision window. No black boxes.",
+                body: "Every project ships with a QA report and revision window.",
               },
               {
                 icon: Globe2,
                 title: "Truly global coverage",
-                body: "Native specialists in 100+ languages and 30+ markets, vetted and managed.",
+                body: "Native specialists across 100+ languages and 30+ markets.",
               },
               {
                 icon: Sparkles,
                 title: "AI-aware, human-led",
-                body: "We blend smart automation with expert oversight — speed without sacrifice.",
+                body: "Smart automation, expert oversight. Speed without sacrifice.",
               },
               {
                 icon: Users,
                 title: "Senior, not just sales",
-                body: "You work directly with a senior project lead from day one — no handoffs.",
+                body: "A senior project lead from day one. No handoffs.",
               },
             ].map((f, i) => (
               <Reveal key={f.title} delay={i * 0.05}>
@@ -89,11 +104,11 @@ export default function HomePage() {
         </div>
       </Section>
 
-      <Section className="bg-ink-50/40 border-y border-ink-200/60">
+      <Section>
         <HowItWorks />
       </Section>
 
-      <Section>
+      <Section className="bg-ink-50/60 border-y border-ink-200/60">
         <Testimonials />
       </Section>
 

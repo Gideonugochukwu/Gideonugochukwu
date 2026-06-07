@@ -8,21 +8,21 @@ const featured = [
     role: "Head of Localization, Beam Health",
     country: "Nigeria → Global",
     rating: 5,
-    body: "GlobalAnnotate localized our patient app into 14 languages in under three weeks. The cultural nuance was spot on — we felt understood, not just translated.",
+    body: "Localized our patient app into 14 languages in under three weeks. Cultural nuance was spot on.",
   },
   {
     name: "Daniel Park",
     role: "ML Lead, Northwind AI",
     country: "South Korea",
     rating: 5,
-    body: "We benchmarked four annotation vendors. GlobalAnnotate delivered the cleanest data with the fastest turnaround, and their QA reports are best-in-class.",
+    body: "Cleanest data, fastest turnaround. Their QA reports are best-in-class.",
   },
   {
     name: "Sophie Martin",
     role: "Founder, Maison Verte",
     country: "France",
     rating: 5,
-    body: "Their Meta ads strategy quadrupled our return on ad spend in the first quarter. Transparent reporting, real strategy, real growth.",
+    body: "Quadrupled our ROAS in the first quarter. Transparent reporting. Real growth.",
   },
 ];
 
@@ -32,13 +32,13 @@ export default function Testimonials() {
       <div className="flex items-end justify-between flex-wrap gap-4">
         <div className="max-w-xl">
           <span className="badge">What clients say</span>
-          <h2 className="mt-4 text-3xl md:text-4xl font-semibold tracking-tight">
+          <h2 className="mt-4 text-3xl md:text-5xl font-semibold tracking-tight">
             Loved by teams shipping across borders.
           </h2>
         </div>
         <a
           href="/reviews"
-          className="text-sm font-medium text-brand-700 hover:text-brand-900"
+          className="text-sm font-semibold text-brand-700 hover:text-brand-900"
         >
           Read all reviews →
         </a>
@@ -47,9 +47,9 @@ export default function Testimonials() {
       <div className="mt-10 grid gap-6 md:grid-cols-3">
         {featured.map((t, i) => (
           <Reveal key={t.name} delay={i * 0.06}>
-            <div className="card p-7 h-full flex flex-col">
+            <div className="card p-7 h-full flex flex-col bg-white">
               <Quote className="h-7 w-7 text-brand-300" aria-hidden />
-              <p className="mt-4 text-ink-800 leading-relaxed">
+              <p className="mt-4 text-ink-800 leading-relaxed text-lg">
                 &ldquo;{t.body}&rdquo;
               </p>
               <div className="mt-6">
