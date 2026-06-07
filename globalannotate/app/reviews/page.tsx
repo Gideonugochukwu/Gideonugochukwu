@@ -24,12 +24,11 @@ export default function ReviewsPage() {
       <Section className="pt-16">
         <div className="max-w-3xl">
           <span className="badge">Client Reviews</span>
-          <h1 className="mt-4 text-4xl md:text-5xl font-semibold tracking-tight">
+          <h1 className="display-hero mt-5 text-4xl md:text-6xl lg:text-7xl">
             Trusted by global teams.
           </h1>
-          <p className="mt-5 text-lg text-ink-600 leading-relaxed">
-            We&apos;re proud of the partnerships behind our work. Here&apos;s
-            what teams say after working with us.
+          <p className="mt-6 text-lg md:text-xl text-ink-600 leading-relaxed">
+            What clients say after working with us.
           </p>
 
           <div className="mt-7 inline-flex items-center gap-4 rounded-xl border border-ink-200 bg-white px-5 py-3">
@@ -71,17 +70,15 @@ export default function ReviewsPage() {
         </div>
       </Section>
 
-      <Section className="bg-ink-50/40 border-y border-ink-200/60 pb-24">
+      <Section className="bg-ink-50/60 border-y border-ink-200/60 pb-24">
         <div className="grid lg:grid-cols-2 gap-12 items-start">
           <div>
             <span className="badge">Leave a review</span>
-            <h2 className="mt-4 text-3xl md:text-4xl font-semibold tracking-tight">
+            <h2 className="mt-4 text-3xl md:text-5xl font-semibold tracking-tight">
               Worked with us? We&apos;d love to hear from you.
             </h2>
             <p className="mt-4 text-ink-600 leading-relaxed">
-              Reviews help future clients understand what working with
-              GlobalAnnotate is really like. Every submission is reviewed by
-              our team before it appears on this page.
+              Honest feedback helps future clients. Every submission is moderated before it appears here.
             </p>
             <ul className="mt-6 space-y-3 text-sm text-ink-700">
               <li className="flex items-start gap-2">

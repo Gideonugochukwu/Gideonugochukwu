@@ -5,7 +5,7 @@ export default function NotFound() {
   return (
     <section className="relative overflow-hidden">
       <div aria-hidden className="absolute inset-0 hero-glow" />
-      <div aria-hidden className="absolute inset-0 hero-grid" />
+      <div aria-hidden className="absolute inset-0 hero-grid-dark" />
       <div className="container-wide relative py-28 md:py-36 text-center">
         <div className="inline-flex h-14 w-14 items-center justify-center rounded-2xl bg-brand-50 text-brand-700 border border-brand-200">
           <Compass className="h-7 w-7" />
