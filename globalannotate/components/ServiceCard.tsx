@@ -1,6 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { ArrowUpRight, Brain, Languages, Megaphone } from "lucide-react";
+import { imageBg } from "@/lib/images";
 
 const ICONS = { Brain, Languages, Megaphone } as const;
 
@@ -25,7 +26,7 @@ export default function ServiceCard({
       href={`/services/${slug}`}
       className="card group overflow-hidden flex flex-col h-full"
     >
-      <div className="relative aspect-[16/10] overflow-hidden bg-ink-900">
+      <div className={`relative aspect-[16/10] overflow-hidden ${imageBg}`}>
         <Image
           src={image}
           alt={alt}

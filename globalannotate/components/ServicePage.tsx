@@ -38,7 +38,7 @@ export default function ServicePage({
 }) {
   return (
     <>
-      <section className="relative isolate overflow-hidden bg-ink-950 text-white">
+      <section className="relative isolate overflow-hidden bg-gradient-to-br from-ink-950 via-ink-900 to-brand-900 text-white">
         <Image
           src={heroImage}
           alt={heroImageAlt}

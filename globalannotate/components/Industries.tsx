@@ -2,7 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { ArrowUpRight } from "lucide-react";
 import Reveal from "./Reveal";
-import { img, unsplash } from "@/lib/images";
+import { img, imageBg, unsplash } from "@/lib/images";
 
 const INDUSTRIES = [
   {
@@ -86,7 +86,7 @@ export default function Industries() {
           <Reveal key={item.key} delay={(i % 4) * 0.05}>
             <Link
               href={item.href}
-              className="group relative block aspect-[4/5] overflow-hidden rounded-2xl bg-ink-900 isolate"
+              className={`group relative block aspect-[4/5] overflow-hidden rounded-2xl isolate ${imageBg}`}
             >
               <Image
                 src={unsplash(item.image.id, 800)}

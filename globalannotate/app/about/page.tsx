@@ -4,7 +4,7 @@ import Section from "@/components/Section";
 import CTABand from "@/components/CTABand";
 import Reveal from "@/components/Reveal";
 import { Compass, HeartHandshake, Sparkles, Globe2 } from "lucide-react";
-import { img, unsplash } from "@/lib/images";
+import { img, imageBg, unsplash } from "@/lib/images";
 
 export const metadata: Metadata = {
   title: "About",
@@ -38,7 +38,7 @@ const values = [
 export default function AboutPage() {
   return (
     <>
-      <section className="relative isolate overflow-hidden bg-ink-950 text-white">
+      <section className="relative isolate overflow-hidden bg-gradient-to-br from-ink-950 via-ink-900 to-brand-900 text-white">
         <Image
           src={unsplash(img.about.team.id, 2400)}
           alt={img.about.team.alt}
@@ -80,7 +80,7 @@ export default function AboutPage() {
               Excellent localization and reliable training data shouldn&apos;t be reserved for trillion-dollar companies. They should be available, at fair prices and at any scale, to anyone building something worth shipping.
             </p>
           </div>
-          <div className="relative aspect-[4/3] rounded-2xl overflow-hidden bg-ink-900">
+          <div className={`relative aspect-[4/3] rounded-2xl overflow-hidden ${imageBg}`}>
             <Image
               src={unsplash(img.about.office.id, 1600)}
               alt={img.about.office.alt}
@@ -94,7 +94,7 @@ export default function AboutPage() {
 
       <Section className="bg-ink-50/60 border-y border-ink-200/60">
         <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-start">
-          <figure className="relative aspect-[4/3] rounded-2xl overflow-hidden bg-ink-900 lg:order-1">
+          <figure className={`relative aspect-[4/3] rounded-2xl overflow-hidden lg:order-1 ${imageBg}`}>
             <Image
               src="/gideon.jpeg"
               alt="Gideon Ugochukwu, Founder & Lead Linguist"
