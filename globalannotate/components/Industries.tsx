@@ -100,14 +100,17 @@ export default function Industries() {
                 className="absolute inset-0"
                 style={{
                   background:
-                    "linear-gradient(180deg, rgba(15,23,42,0.10) 0%, rgba(15,23,42,0.55) 55%, rgba(15,23,42,0.92) 100%)",
+                    "linear-gradient(180deg, rgba(15,23,42,0.25) 0%, rgba(15,23,42,0.55) 40%, rgba(15,23,42,0.92) 80%, rgba(2,6,23,0.98) 100%)",
                 }}
               />
-              <div className="absolute inset-0 p-5 flex flex-col justify-end text-white">
-                <h3 className="font-display text-xl font-semibold tracking-tight leading-tight">
+              <div
+                className="absolute inset-0 p-5 flex flex-col justify-end text-white"
+                style={{ textShadow: "0 1px 2px rgba(0,0,0,0.45)" }}
+              >
+                <h3 className="font-display text-xl font-semibold tracking-tight leading-tight text-white">
                   {item.name}
                 </h3>
-                <p className="mt-1.5 text-sm text-white/80 leading-snug">
+                <p className="mt-1.5 text-sm text-white/90 leading-snug">
                   {item.line}
                 </p>
                 <span className="mt-3 inline-flex items-center gap-1.5 text-xs font-semibold text-brand-300 group-hover:gap-2.5 transition-all">
