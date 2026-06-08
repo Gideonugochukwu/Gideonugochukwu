@@ -4,7 +4,7 @@ import Link from "next/link";
 import Section from "@/components/Section";
 import CTABand from "@/components/CTABand";
 import Reveal from "@/components/Reveal";
-import { img, unsplash } from "@/lib/images";
+import { img, imageBg, unsplash } from "@/lib/images";
 import { ArrowUpRight } from "lucide-react";
 
 export const metadata: Metadata = {
@@ -128,7 +128,7 @@ export default function PortfolioPage() {
           {cases.map((c, i) => (
             <Reveal key={c.title} delay={i * 0.04}>
               <article className="card overflow-hidden h-full flex flex-col">
-                <div className="relative aspect-[16/9] overflow-hidden bg-ink-900">
+                <div className={`relative aspect-[16/9] overflow-hidden ${imageBg}`}>
                   <Image
                     src={unsplash(c.image.id, 1400)}
                     alt={c.image.alt}
