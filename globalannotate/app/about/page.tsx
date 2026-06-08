@@ -94,15 +94,31 @@ export default function AboutPage() {
 
       <Section className="bg-ink-50/60 border-y border-ink-200/60">
         <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-start">
-          <div className="relative aspect-[4/3] rounded-2xl overflow-hidden bg-ink-900 lg:order-1">
+          <figure className="relative aspect-[4/3] rounded-2xl overflow-hidden bg-ink-900 lg:order-1">
             <Image
-              src={unsplash(img.about.collaboration.id, 1600)}
-              alt={img.about.collaboration.alt}
+              src="/gideon.jpeg"
+              alt="Gideon Ugochukwu, Founder & Lead Linguist"
               fill
               sizes="(max-width: 1024px) 100vw, 600px"
-              className="object-cover"
+              className="object-cover object-top"
             />
-          </div>
+            <div
+              aria-hidden
+              className="absolute inset-0"
+              style={{
+                background:
+                  "linear-gradient(180deg, rgba(15,23,42,0) 45%, rgba(15,23,42,0.75) 100%)",
+              }}
+            />
+            <figcaption className="absolute bottom-0 left-0 right-0 p-5 md:p-6 text-white">
+              <div className="font-display text-xl md:text-2xl font-semibold tracking-tight leading-tight">
+                Gideon Ugochukwu
+              </div>
+              <div className="mt-1 text-sm text-white/75">
+                Founder &amp; Lead Linguist
+              </div>
+            </figcaption>
+          </figure>
           <div className="lg:order-0">
             <h2 className="text-3xl md:text-5xl font-semibold tracking-tight">
               How we started
