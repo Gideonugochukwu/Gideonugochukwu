@@ -23,7 +23,7 @@ export default function CTABand() {
         <div aria-hidden className="absolute inset-0 hero-grid opacity-40" />
         <div className="relative grid md:grid-cols-[1.5fr_1fr] gap-8 items-end">
           <div>
-            <h3 className="font-display text-3xl md:text-5xl font-semibold tracking-tight leading-tight">
+            <h3 className="font-display text-3xl md:text-5xl font-semibold tracking-tight leading-tight text-white">
               Ready to grow globally?
             </h3>
             <p className="mt-4 text-white/80 max-w-xl leading-relaxed text-lg">
