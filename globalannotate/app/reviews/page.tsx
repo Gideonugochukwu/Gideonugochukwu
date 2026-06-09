@@ -3,12 +3,26 @@ import Section from "@/components/Section";
 import Stars from "@/components/Stars";
 import ReviewForm from "@/components/ReviewForm";
 import Reveal from "@/components/Reveal";
+import JsonLd from "@/components/JsonLd";
 import { reviews } from "@/data/reviews";
+import { site } from "@/lib/site";
+import { breadcrumbSchema, reviewListingSchema } from "@/lib/schema";
+
+const TITLE = "Client Reviews";
+const DESCRIPTION =
+  "Hear from teams who partner with GlobalAnnotate for translation, AI annotation, multilingual SEO, and digital marketing.";
 
 export const metadata: Metadata = {
-  title: "Reviews",
-  description:
-    "Hear from teams who partner with GlobalAnnotate for translation, AI annotation, and digital marketing.",
+  title: TITLE,
+  description: DESCRIPTION,
+  alternates: { canonical: `${site.url}/reviews` },
+  openGraph: {
+    title: TITLE,
+    description: DESCRIPTION,
+    url: `${site.url}/reviews`,
+    type: "website",
+  },
+  twitter: { card: "summary_large_image", title: TITLE, description: DESCRIPTION },
 };
 
 function average(arr: { rating: number }[]) {
@@ -21,6 +35,15 @@ export default function ReviewsPage() {
 
   return (
     <>
+      <JsonLd
+        data={[
+          reviewListingSchema({ itemName: site.name, reviews }),
+          breadcrumbSchema([
+            { name: "Home", url: site.url },
+            { name: "Reviews", url: `${site.url}/reviews` },
+          ]),
+        ]}
+      />
       <Section className="pt-16">
         <div className="max-w-3xl">
           <span className="badge">Client Reviews</span>

@@ -22,6 +22,10 @@ const GREETINGS = [
   { word: "Sawubona", lang: "Zulu" },
 ];
 
+// Renders exactly one greeting word in the server-side HTML (no sr-only twin
+// and no duplicate text) and then cycles through languages once mounted.
+// aria-label on the wrapper carries the language context for screen readers,
+// so the inner span can stay aria-hidden without losing accessibility.
 export default function MultilingualGreeting() {
   const reduce = useReducedMotion();
   const [i, setI] = useState(0);
@@ -38,13 +42,13 @@ export default function MultilingualGreeting() {
 
   return (
     <span
-      className="inline-flex items-baseline relative"
+      className="inline-block relative align-baseline"
       aria-live="polite"
+      aria-atomic="true"
       aria-label={`Hello in ${current.lang}: ${current.word}`}
     >
-      <span className="sr-only">Hello in many languages, including {current.lang}: {current.word}</span>
       <span aria-hidden className="relative inline-block min-w-[6ch]">
-        <AnimatePresence mode="wait">
+        <AnimatePresence mode="wait" initial={false}>
           <motion.span
             key={current.word + i}
             initial={reduce ? false : { opacity: 0, y: 20, filter: "blur(6px)" }}

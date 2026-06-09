@@ -4,13 +4,27 @@ import Link from "next/link";
 import Section from "@/components/Section";
 import CTABand from "@/components/CTABand";
 import Reveal from "@/components/Reveal";
+import JsonLd from "@/components/JsonLd";
 import { img, imageBg, unsplash } from "@/lib/images";
+import { site } from "@/lib/site";
+import { breadcrumbSchema } from "@/lib/schema";
 import { ArrowUpRight } from "lucide-react";
 
+const TITLE = "Portfolio — Case Studies & Results";
+const DESCRIPTION =
+  "Selected case studies across translation, AI annotation, SEO, and digital marketing — real outcomes for real teams.";
+
 export const metadata: Metadata = {
-  title: "Portfolio",
-  description:
-    "Selected case studies across translation, AI annotation, and digital marketing — real outcomes for real teams.",
+  title: TITLE,
+  description: DESCRIPTION,
+  alternates: { canonical: `${site.url}/portfolio` },
+  openGraph: {
+    title: TITLE,
+    description: DESCRIPTION,
+    url: `${site.url}/portfolio`,
+    type: "website",
+  },
+  twitter: { card: "summary_large_image", title: TITLE, description: DESCRIPTION },
 };
 
 type Case = {
@@ -113,6 +127,12 @@ const cases: Case[] = [
 export default function PortfolioPage() {
   return (
     <>
+      <JsonLd
+        data={breadcrumbSchema([
+          { name: "Home", url: site.url },
+          { name: "Portfolio", url: `${site.url}/portfolio` },
+        ])}
+      />
       <Section className="pt-16">
         <div className="max-w-3xl">
           <span className="badge">Portfolio</span>

@@ -4,7 +4,10 @@ import "./globals.css";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import { ToastProvider } from "@/components/Toast";
+import JsonLd from "@/components/JsonLd";
+import WhatsAppFloating from "@/components/WhatsAppFloating";
 import { site } from "@/lib/site";
+import { organizationSchema, websiteSchema } from "@/lib/schema";
 
 const body = Plus_Jakarta_Sans({
   variable: "--font-body",
@@ -19,18 +22,24 @@ const display = Bricolage_Grotesque({
   display: "swap",
 });
 
+const DEFAULT_TITLE = `${site.name} — Translation, AI Annotation, SEO & Digital Marketing`;
+
 export const metadata: Metadata = {
   metadataBase: new URL(site.url),
   title: {
-    default: `${site.name} — AI Annotation, Translation & Localization, Digital Marketing`,
+    default: DEFAULT_TITLE,
     template: `%s · ${site.name}`,
   },
   description: site.description,
+  alternates: { canonical: site.url },
   keywords: [
     "AI annotation",
     "data labeling",
     "translation",
     "localization",
+    "multilingual SEO",
+    "international SEO",
+    "SEO services",
     "digital marketing",
     "Facebook ads",
     "Instagram ads",
@@ -39,7 +48,7 @@ export const metadata: Metadata = {
     "globalannotate",
   ],
   openGraph: {
-    title: `${site.name} — AI Annotation, Translation & Localization, Digital Marketing`,
+    title: DEFAULT_TITLE,
     description: site.description,
     url: site.url,
     siteName: site.name,
@@ -48,12 +57,11 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: `${site.name} — Precision Across Languages. Intelligence Across Data.`,
+    title: `${site.name} — Translation, AI Annotation, SEO & Digital Marketing`,
     description: site.description,
   },
-  icons: {
-    icon: "/favicon.svg",
-  },
+  icons: { icon: "/favicon.svg" },
+  robots: { index: true, follow: true },
 };
 
 export const viewport: Viewport = {
@@ -68,10 +76,12 @@ export default function RootLayout({
   return (
     <html lang="en" className={`${body.variable} ${display.variable}`}>
       <body className="min-h-screen flex flex-col bg-white text-ink-900">
+        <JsonLd data={[organizationSchema(), websiteSchema()]} />
         <ToastProvider>
           <Navbar />
           <main className="flex-1">{children}</main>
           <Footer />
+          <WhatsAppFloating />
         </ToastProvider>
       </body>
     </html>

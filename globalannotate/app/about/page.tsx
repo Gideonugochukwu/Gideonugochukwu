@@ -5,11 +5,25 @@ import CTABand from "@/components/CTABand";
 import Reveal from "@/components/Reveal";
 import { Compass, HeartHandshake, Sparkles, Globe2 } from "lucide-react";
 import { img, imageBg, unsplash } from "@/lib/images";
+import JsonLd from "@/components/JsonLd";
+import { site } from "@/lib/site";
+import { breadcrumbSchema } from "@/lib/schema";
+
+const TITLE = "About GlobalAnnotate";
+const DESCRIPTION =
+  "GlobalAnnotate is a global team of linguists, annotators, SEO strategists, and marketers building the connective tissue for international growth.";
 
 export const metadata: Metadata = {
-  title: "About",
-  description:
-    "GlobalAnnotate is a global team of linguists, annotators, and marketers building the connective tissue for international growth.",
+  title: TITLE,
+  description: DESCRIPTION,
+  alternates: { canonical: `${site.url}/about` },
+  openGraph: {
+    title: TITLE,
+    description: DESCRIPTION,
+    url: `${site.url}/about`,
+    type: "website",
+  },
+  twitter: { card: "summary_large_image", title: TITLE, description: DESCRIPTION },
 };
 
 const values = [
@@ -38,6 +52,12 @@ const values = [
 export default function AboutPage() {
   return (
     <>
+      <JsonLd
+        data={breadcrumbSchema([
+          { name: "Home", url: site.url },
+          { name: "About", url: `${site.url}/about` },
+        ])}
+      />
       <section className="relative isolate overflow-hidden bg-gradient-to-br from-ink-950 via-ink-900 to-brand-900 text-white">
         <Image
           src={unsplash(img.about.team.id, 2400)}
@@ -62,7 +82,7 @@ export default function AboutPage() {
             The connective tissue for international growth.
           </h1>
           <p className="mt-6 max-w-2xl text-lg md:text-xl text-white/80 leading-relaxed">
-            One team for translation, AI training data, and marketing — with the rigor of a product company.
+            One team for translation, AI training data, multilingual SEO, and marketing — with the rigor of a product company.
           </p>
         </div>
       </section>

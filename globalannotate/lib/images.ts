@@ -48,6 +48,12 @@ export const img = {
       id: "1460925895917-afdab827c52f",
       alt: "Analytics dashboard with growth charts on a laptop screen",
     },
+    // Myriam Jessier — laptop showing search analytics / ranking data. Reads
+    // unambiguously as "SEO / search visibility / growth".
+    seo: {
+      id: "1551288049-bebda4e38f71",
+      alt: "Laptop showing search analytics and keyword ranking data",
+    },
   },
   industries: {
     // freestocks shopping bags — instantly reads as e-commerce.
