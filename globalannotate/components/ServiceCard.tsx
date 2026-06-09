@@ -1,9 +1,11 @@
 import Image from "next/image";
 import Link from "next/link";
-import { ArrowUpRight, Brain, Languages, Megaphone } from "lucide-react";
+import { ArrowUpRight, Brain, Languages, Megaphone, Search } from "lucide-react";
 import { imageBg } from "@/lib/images";
 
-const ICONS = { Brain, Languages, Megaphone } as const;
+const ICONS = { Brain, Languages, Megaphone, Search } as const;
+
+export type ServiceIcon = keyof typeof ICONS;
 
 export default function ServiceCard({
   slug,
@@ -16,7 +18,7 @@ export default function ServiceCard({
   slug: string;
   title: string;
   summary: string;
-  icon: keyof typeof ICONS;
+  icon: ServiceIcon;
   image: string;
   alt: string;
 }) {

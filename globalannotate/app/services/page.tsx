@@ -1,28 +1,48 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import Section from "@/components/Section";
-import ServiceCard from "@/components/ServiceCard";
+import ServiceCard, { ServiceIcon } from "@/components/ServiceCard";
 import CTABand from "@/components/CTABand";
 import Reveal from "@/components/Reveal";
-import { services } from "@/lib/site";
+import JsonLd from "@/components/JsonLd";
+import { services, site } from "@/lib/site";
 import { img, unsplash } from "@/lib/images";
+import { breadcrumbSchema } from "@/lib/schema";
 import { ArrowRight } from "lucide-react";
 
+const TITLE = "Services — Translation, AI Annotation, SEO & Digital Marketing";
+const DESCRIPTION =
+  "Four integrated services to help you grow globally: translation & localization, AI annotation, multilingual SEO, and performance digital marketing.";
+
 export const metadata: Metadata = {
-  title: "Services",
-  description:
-    "Translation & localization, AI annotation, and digital marketing — three integrated services to help you grow globally.",
+  title: TITLE,
+  description: DESCRIPTION,
+  alternates: { canonical: `${site.url}/services` },
+  openGraph: {
+    title: TITLE,
+    description: DESCRIPTION,
+    url: `${site.url}/services`,
+    type: "website",
+  },
+  twitter: { card: "summary_large_image", title: TITLE, description: DESCRIPTION },
 };
 
 const SERVICE_IMAGES = {
   "translation-localization": img.services.translation,
   "ai-annotation": img.services.aiAnnotation,
   "digital-marketing": img.services.digitalMarketing,
+  seo: img.services.seo,
 } as const;
 
 export default function ServicesPage() {
   return (
     <>
+      <JsonLd
+        data={breadcrumbSchema([
+          { name: "Home", url: site.url },
+          { name: "Services", url: `${site.url}/services` },
+        ])}
+      />
       <Section className="pt-16">
         <div className="max-w-3xl">
           <span className="badge">Services</span>
@@ -30,11 +50,11 @@ export default function ServicesPage() {
             One toolkit. Every market.
           </h1>
           <p className="mt-6 text-lg md:text-xl text-ink-600 leading-relaxed">
-            Three core services that work together — or independently — to help your team move faster across markets.
+            Four core services that work together — or independently — to help your team move faster across markets.
           </p>
         </div>
 
-        <div className="mt-14 grid gap-6 md:grid-cols-3">
+        <div className="mt-14 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
           {services.map((s, i) => {
             const image = SERVICE_IMAGES[s.slug as keyof typeof SERVICE_IMAGES];
             return (
@@ -43,7 +63,7 @@ export default function ServicesPage() {
                   slug={s.slug}
                   title={s.title}
                   summary={s.summary}
-                  icon={s.icon as "Brain" | "Languages" | "Megaphone"}
+                  icon={s.icon as ServiceIcon}
                   image={unsplash(image.id, 1200)}
                   alt={image.alt}
                 />
