@@ -1,32 +1,26 @@
 import { Quote } from "lucide-react";
 import Stars from "./Stars";
 import Reveal from "./Reveal";
+import ReviewAuthor from "./ReviewAuthor";
+import { reviews } from "@/data/reviews";
 
-const featured = [
-  {
-    name: "Amara Okafor",
-    role: "Head of Localization, Beam Health",
-    country: "Nigeria → Global",
-    rating: 5,
-    body: "Localized our patient app into 14 languages in under three weeks. Cultural nuance was spot on.",
-  },
-  {
-    name: "Daniel Park",
-    role: "ML Lead, Northwind AI",
-    country: "South Korea",
-    rating: 5,
-    body: "Cleanest data, fastest turnaround. Their QA reports are best-in-class.",
-  },
-  {
-    name: "Sophie Martin",
-    role: "Founder, Maison Verte",
-    country: "France",
-    rating: 5,
-    body: "Quadrupled our ROAS in the first quarter. Transparent reporting. Real growth.",
-  },
-];
+// Picks three reviews for the homepage: highest-rated first, then verified
+// reviews. Keeps the homepage and /reviews page driven by the same source
+// so they can never drift apart.
+function featuredReviews() {
+  return [...reviews]
+    .sort((a, b) => {
+      if (b.rating !== a.rating) return b.rating - a.rating;
+      if (Number(b.verified) !== Number(a.verified)) {
+        return Number(b.verified) - Number(a.verified);
+      }
+      return a.date < b.date ? 1 : -1;
+    })
+    .slice(0, 3);
+}
 
 export default function Testimonials() {
+  const featured = featuredReviews();
   return (
     <div className="container-wide">
       <div className="flex items-end justify-between flex-wrap gap-4">
@@ -46,21 +40,19 @@ export default function Testimonials() {
 
       <div className="mt-10 grid gap-6 md:grid-cols-3">
         {featured.map((t, i) => (
-          <Reveal key={t.name} delay={i * 0.06}>
-            <div className="card p-7 h-full flex flex-col bg-white">
+          <Reveal key={`${t.name}-${i}`} delay={i * 0.06}>
+            <article className="card p-7 h-full flex flex-col bg-white">
               <Quote className="h-7 w-7 text-brand-300" aria-hidden />
-              <p className="mt-4 text-ink-800 leading-relaxed text-lg">
-                &ldquo;{t.body}&rdquo;
+              <p className="mt-4 text-ink-800 leading-relaxed text-lg flex-1">
+                &ldquo;{t.quote}&rdquo;
               </p>
               <div className="mt-6">
                 <Stars value={t.rating} />
                 <div className="mt-3">
-                  <div className="font-semibold text-ink-900">{t.name}</div>
-                  <div className="text-sm text-ink-500">{t.role}</div>
-                  <div className="text-xs text-ink-400 mt-0.5">{t.country}</div>
+                  <ReviewAuthor review={t} />
                 </div>
               </div>
-            </div>
+            </article>
           </Reveal>
         ))}
       </div>
