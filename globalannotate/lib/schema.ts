@@ -116,18 +116,22 @@ export function articleSchema({
   };
 }
 
+// Generic review shape accepted by reviewListingSchema. Mirrors the public
+// display: schemaAuthor follows the review's displayMode so JSON-LD never
+// leaks a name the visible page is hiding.
+type SchemaReview = {
+  schemaAuthor: string;
+  rating: number;
+  quote: string;
+  date: string;
+};
+
 export function reviewListingSchema({
   itemName,
   reviews,
 }: {
   itemName: string;
-  reviews: {
-    name: string;
-    rating: number;
-    comment: string;
-    date: string;
-    company?: string;
-  }[];
+  reviews: SchemaReview[];
 }) {
   const avg =
     reviews.reduce((sum, r) => sum + r.rating, 0) / Math.max(reviews.length, 1);
@@ -145,9 +149,9 @@ export function reviewListingSchema({
     },
     review: reviews.map((r) => ({
       "@type": "Review",
-      author: { "@type": "Person", name: r.name },
+      author: { "@type": "Person", name: r.schemaAuthor },
       datePublished: r.date,
-      reviewBody: r.comment,
+      reviewBody: r.quote,
       itemReviewed: { "@type": "Organization", name: itemName },
       reviewRating: {
         "@type": "Rating",

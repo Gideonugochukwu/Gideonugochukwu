@@ -8,11 +8,20 @@ import { Loader2, Send, CheckCircle2, Star } from "lucide-react";
 import { useToast } from "./Toast";
 import { cn } from "@/lib/utils";
 
+const DISPLAY_MODE_OPTIONS = [
+  { value: "named", label: "Full name + company" },
+  { value: "initial", label: "First name + last initial + role" },
+  { value: "role", label: "Role only — no name" },
+  { value: "verified", label: "Anonymous (Verified client)" },
+] as const;
+
 const schema = z.object({
   name: z.string().min(2, "Please enter your name"),
+  role: z.string().optional(),
   company: z.string().optional(),
   rating: z.number().min(1, "Please choose a rating").max(5),
   comment: z.string().min(15, "Please share at least a sentence about your experience"),
+  displayMode: z.enum(["named", "initial", "role", "verified"]),
 });
 
 type FormData = z.infer<typeof schema>;
@@ -31,7 +40,7 @@ export default function ReviewForm() {
     formState: { errors, isSubmitting },
   } = useForm<FormData>({
     resolver: zodResolver(schema),
-    defaultValues: { rating: 0 },
+    defaultValues: { rating: 0, displayMode: "named" },
   });
 
   const rating = watch("rating");
@@ -100,9 +109,40 @@ export default function ReviewForm() {
           )}
         </label>
         <label className="block">
-          <span className="block text-sm font-medium text-ink-800 mb-1.5">Company (optional)</span>
-          <input {...register("company")} className="input" placeholder="Acme Inc." />
+          <span className="block text-sm font-medium text-ink-800 mb-1.5">Role (optional)</span>
+          <input {...register("role")} className="input" placeholder="Head of Localization" />
         </label>
+      </div>
+
+      <label className="block">
+        <span className="block text-sm font-medium text-ink-800 mb-1.5">Company (optional)</span>
+        <input {...register("company")} className="input" placeholder="Acme Inc." />
+      </label>
+
+      <div>
+        <span className="block text-sm font-medium text-ink-800 mb-2">
+          How should we credit you?
+        </span>
+        <div className="grid sm:grid-cols-2 gap-2">
+          {DISPLAY_MODE_OPTIONS.map((opt) => (
+            <label
+              key={opt.value}
+              className="flex items-center gap-2.5 rounded-lg border border-ink-200 bg-white px-3 py-2.5 text-sm text-ink-800 hover:border-brand-300 has-[:checked]:border-brand-500 has-[:checked]:bg-brand-50 cursor-pointer transition"
+            >
+              <input
+                type="radio"
+                value={opt.value}
+                {...register("displayMode")}
+                className="accent-brand-600"
+              />
+              <span>{opt.label}</span>
+            </label>
+          ))}
+        </div>
+        <p className="mt-2 text-xs text-ink-500">
+          You stay in control. Pick the option that feels right — we&apos;ll display the review
+          that way once it&apos;s moderated.
+        </p>
       </div>
 
       <div>

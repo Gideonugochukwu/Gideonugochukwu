@@ -4,7 +4,8 @@ import Stars from "@/components/Stars";
 import ReviewForm from "@/components/ReviewForm";
 import Reveal from "@/components/Reveal";
 import JsonLd from "@/components/JsonLd";
-import { reviews } from "@/data/reviews";
+import ReviewAuthor from "@/components/ReviewAuthor";
+import { reviews, authorDisplay } from "@/data/reviews";
 import { site } from "@/lib/site";
 import { breadcrumbSchema, reviewListingSchema } from "@/lib/schema";
 
@@ -32,12 +33,18 @@ function average(arr: { rating: number }[]) {
 
 export default function ReviewsPage() {
   const avg = average(reviews);
+  const schemaReviews = reviews.map((r) => ({
+    schemaAuthor: authorDisplay(r).schemaAuthor,
+    rating: r.rating,
+    quote: r.quote,
+    date: r.date,
+  }));
 
   return (
     <>
       <JsonLd
         data={[
-          reviewListingSchema({ itemName: site.name, reviews }),
+          reviewListingSchema({ itemName: site.name, reviews: schemaReviews }),
           breadcrumbSchema([
             { name: "Home", url: site.url },
             { name: "Reviews", url: `${site.url}/reviews` },
@@ -68,7 +75,7 @@ export default function ReviewsPage() {
             <div className="text-sm text-ink-600">
               Based on{" "}
               <span className="font-semibold text-ink-900">{reviews.length}</span>{" "}
-              verified reviews.
+              client reviews.
             </div>
           </div>
         </div>
@@ -76,18 +83,15 @@ export default function ReviewsPage() {
         <div className="mt-12 grid gap-5 md:grid-cols-2 lg:grid-cols-3">
           {reviews.map((r, i) => (
             <Reveal key={`${r.name}-${i}`} delay={i * 0.04}>
-              <div className="card p-6 h-full flex flex-col">
+              <article className="card p-6 h-full flex flex-col">
                 <Stars value={r.rating} />
                 <p className="mt-4 text-ink-800 leading-relaxed flex-1">
-                  &ldquo;{r.comment}&rdquo;
+                  &ldquo;{r.quote}&rdquo;
                 </p>
                 <div className="mt-5 pt-4 border-t border-ink-100">
-                  <div className="font-semibold text-ink-900">{r.name}</div>
-                  <div className="text-sm text-ink-500">
-                    {r.company} · {r.country}
-                  </div>
+                  <ReviewAuthor review={r} />
                 </div>
-              </div>
+              </article>
             </Reveal>
           ))}
         </div>
@@ -114,7 +118,7 @@ export default function ReviewsPage() {
               </li>
               <li className="flex items-start gap-2">
                 <span className="mt-1.5 h-1.5 w-1.5 rounded-full bg-brand-500" />
-                Your review reaches us by email for moderation first.
+                You choose how your name appears — full name, initial, role only, or fully anonymous.
               </li>
             </ul>
           </div>
