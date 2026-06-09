@@ -1,32 +1,42 @@
 import Link from "next/link";
 import { Mail } from "lucide-react";
 import Logo from "./Logo";
-import { services, site } from "@/lib/site";
-import {
-  LinkedInIcon,
-  TwitterIcon,
-  InstagramIcon,
-  FacebookIcon,
-} from "./SocialIcons";
+import { services, site, activeSocialLinks, whatsappUrl } from "@/lib/site";
+import { SOCIAL_META, WhatsAppIcon } from "./SocialIcons";
 
 export default function Footer() {
   const year = new Date().getFullYear();
+  const socials = activeSocialLinks();
+  const waHref = whatsappUrl("Hi GlobalAnnotate — I'd like to chat about a project.");
 
   return (
     <footer className="relative mt-24 border-t border-ink-200 bg-ink-50/50">
       <div className="container-wide py-14 grid gap-10 md:grid-cols-12">
-        <div className="md:col-span-5">
+        <div className="md:col-span-4">
           <Logo />
           <p className="mt-4 text-sm text-ink-600 max-w-sm leading-relaxed">
             {site.tagline}
           </p>
-          <a
-            href={`mailto:${site.email}`}
-            className="mt-5 inline-flex items-center gap-2 text-sm font-medium text-ink-900 hover:text-brand-700 transition"
-          >
-            <Mail className="h-4 w-4" />
-            {site.email}
-          </a>
+          <div className="mt-5 flex flex-col gap-2">
+            <a
+              href={`mailto:${site.email}`}
+              className="inline-flex items-center gap-2 text-sm font-medium text-ink-900 hover:text-brand-700 transition"
+            >
+              <Mail className="h-4 w-4" />
+              {site.email}
+            </a>
+            {waHref && (
+              <a
+                href={waHref}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-2 text-sm font-medium text-ink-900 hover:text-brand-700 transition"
+              >
+                <WhatsAppIcon className="h-4 w-4" />
+                Chat on WhatsApp
+              </a>
+            )}
+          </div>
         </div>
 
         <div className="md:col-span-3">
@@ -48,37 +58,47 @@ export default function Footer() {
         <div className="md:col-span-2">
           <h4 className="text-sm font-semibold text-ink-900">Company</h4>
           <ul className="mt-4 space-y-2.5">
-            <li>
-              <Link href="/about" className="text-sm text-ink-600 hover:text-brand-700 transition">About</Link>
-            </li>
-            <li>
-              <Link href="/portfolio" className="text-sm text-ink-600 hover:text-brand-700 transition">Portfolio</Link>
-            </li>
-            <li>
-              <Link href="/reviews" className="text-sm text-ink-600 hover:text-brand-700 transition">Reviews</Link>
-            </li>
-            <li>
-              <Link href="/contact" className="text-sm text-ink-600 hover:text-brand-700 transition">Contact</Link>
-            </li>
+            <li><Link href="/about" className="text-sm text-ink-600 hover:text-brand-700 transition">About</Link></li>
+            <li><Link href="/portfolio" className="text-sm text-ink-600 hover:text-brand-700 transition">Portfolio</Link></li>
+            <li><Link href="/reviews" className="text-sm text-ink-600 hover:text-brand-700 transition">Reviews</Link></li>
+            <li><Link href="/blog" className="text-sm text-ink-600 hover:text-brand-700 transition">Blog</Link></li>
+            <li><Link href="/contact" className="text-sm text-ink-600 hover:text-brand-700 transition">Contact</Link></li>
           </ul>
         </div>
 
-        <div className="md:col-span-2">
+        <div className="md:col-span-3">
           <h4 className="text-sm font-semibold text-ink-900">Follow</h4>
-          <div className="mt-4 flex items-center gap-2">
-            <SocialIcon href={site.social.linkedin} label="LinkedIn">
-              <LinkedInIcon className="h-4 w-4" />
-            </SocialIcon>
-            <SocialIcon href={site.social.twitter} label="Twitter / X">
-              <TwitterIcon className="h-4 w-4" />
-            </SocialIcon>
-            <SocialIcon href={site.social.instagram} label="Instagram">
-              <InstagramIcon className="h-4 w-4" />
-            </SocialIcon>
-            <SocialIcon href={site.social.facebook} label="Facebook">
-              <FacebookIcon className="h-4 w-4" />
-            </SocialIcon>
-          </div>
+          {socials.length > 0 ? (
+            <div className="mt-4 flex items-center gap-2 flex-wrap">
+              {socials.map(({ key, href }) => {
+                const meta = SOCIAL_META[key];
+                if (!meta) return null;
+                const Icon = meta.Icon;
+                return (
+                  <a
+                    key={key}
+                    href={href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label={meta.label}
+                    className="inline-flex h-9 w-9 items-center justify-center rounded-lg border border-ink-200 bg-white text-ink-600 hover:text-brand-700 hover:border-brand-300 transition"
+                  >
+                    <Icon className="h-4 w-4" />
+                  </a>
+                );
+              })}
+            </div>
+          ) : (
+            <p className="mt-4 text-xs text-ink-500 max-w-[14rem] leading-relaxed">
+              Social profiles coming soon. Replace the placeholder URLs in{" "}
+              <code className="text-ink-700">lib/site.ts</code> to enable.
+            </p>
+          )}
+          <h4 className="mt-6 text-sm font-semibold text-ink-900">Legal</h4>
+          <ul className="mt-4 space-y-2.5">
+            <li><Link href="/privacy" className="text-sm text-ink-600 hover:text-brand-700 transition">Privacy Policy</Link></li>
+            <li><Link href="/terms" className="text-sm text-ink-600 hover:text-brand-700 transition">Terms of Service</Link></li>
+          </ul>
         </div>
       </div>
 
@@ -93,25 +113,5 @@ export default function Footer() {
         </div>
       </div>
     </footer>
-  );
-}
-
-function SocialIcon({
-  href,
-  label,
-  children,
-}: {
-  href: string;
-  label: string;
-  children: React.ReactNode;
-}) {
-  return (
-    <a
-      href={href}
-      aria-label={label}
-      className="inline-flex h-9 w-9 items-center justify-center rounded-lg border border-ink-200 bg-white text-ink-600 hover:text-brand-700 hover:border-brand-300 transition"
-    >
-      {children}
-    </a>
   );
 }
