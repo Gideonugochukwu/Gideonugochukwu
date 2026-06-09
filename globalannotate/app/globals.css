@@ -309,4 +309,79 @@
     background: linear-gradient(180deg, rgba(15,23,42,0) 50%, rgba(15,23,42,0.55) 100%);
     pointer-events: none;
   }
+
+  /* Aurora mesh — soft blurred radial blobs drifting in the background.
+     Uses transform only (GPU-friendly, no layout thrash). Each blob lives
+     inside a parent with position:absolute inset-0. */
+  .aurora-blob {
+    position: absolute;
+    width: 55vmax;
+    height: 55vmax;
+    filter: blur(60px);
+    border-radius: 50%;
+    opacity: 0.95;
+    will-change: transform;
+    transform: translate3d(0, 0, 0);
+  }
+  .aurora-drift-1 {
+    top: -20%;
+    left: -10%;
+    animation: aurora-drift-a 22s ease-in-out infinite alternate;
+  }
+  .aurora-drift-2 {
+    top: -10%;
+    right: -15%;
+    animation: aurora-drift-b 26s ease-in-out infinite alternate;
+  }
+  .aurora-drift-3 {
+    bottom: -25%;
+    left: 5%;
+    animation: aurora-drift-c 28s ease-in-out infinite alternate;
+  }
+  .aurora-drift-4 {
+    bottom: -15%;
+    right: 10%;
+    animation: aurora-drift-d 30s ease-in-out infinite alternate;
+  }
+
+  /* Static placement for users who prefer reduced motion. The blobs still
+     render so the section keeps its alive, colored feel — they just don't move. */
+  @media (prefers-reduced-motion: reduce) {
+    .aurora-drift-1,
+    .aurora-drift-2,
+    .aurora-drift-3,
+    .aurora-drift-4 {
+      animation: none !important;
+    }
+  }
+
+  /* Editorial number — large gradient digit used in the redesigned stats band
+     and How-it-works section. */
+  .display-num {
+    font-family: var(--font-display);
+    font-weight: 700;
+    letter-spacing: -0.04em;
+    line-height: 0.95;
+    background: linear-gradient(135deg, #0f172a 0%, #064e3b 60%, #10b981 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+}
+
+@keyframes aurora-drift-a {
+  0% { transform: translate3d(0, 0, 0) scale(1); }
+  100% { transform: translate3d(8vw, 6vh, 0) scale(1.08); }
+}
+@keyframes aurora-drift-b {
+  0% { transform: translate3d(0, 0, 0) scale(1); }
+  100% { transform: translate3d(-10vw, 8vh, 0) scale(1.1); }
+}
+@keyframes aurora-drift-c {
+  0% { transform: translate3d(0, 0, 0) scale(1); }
+  100% { transform: translate3d(6vw, -6vh, 0) scale(1.06); }
+}
+@keyframes aurora-drift-d {
+  0% { transform: translate3d(0, 0, 0) scale(1); }
+  100% { transform: translate3d(-8vw, -4vh, 0) scale(1.12); }
 }

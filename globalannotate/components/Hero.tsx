@@ -6,32 +6,34 @@ import { motion, useReducedMotion } from "framer-motion";
 import { ArrowRight, Globe2 } from "lucide-react";
 import MultilingualGreeting from "./MultilingualGreeting";
 import AnimatedHeadline from "./AnimatedHeadline";
+import AnimatedBackground from "./AnimatedBackground";
 import { img, unsplash } from "@/lib/images";
 
 export default function Hero() {
   const reduce = useReducedMotion();
 
   return (
-    <section className="relative isolate overflow-hidden bg-gradient-to-br from-ink-950 via-ink-900 to-brand-900 text-white">
+    <section className="relative isolate overflow-hidden bg-ink-950 text-white">
       <Image
         src={unsplash(img.hero.id, 2400)}
         alt={img.hero.alt}
         fill
         priority
         sizes="100vw"
-        className="object-cover opacity-55"
+        className="object-cover opacity-30"
       />
       <div
         aria-hidden
         className="absolute inset-0"
         style={{
           background:
-            "linear-gradient(180deg, rgba(2,6,23,0.75) 0%, rgba(2,6,23,0.65) 35%, rgba(2,6,23,0.85) 100%), radial-gradient(60% 55% at 50% 0%, rgba(16,185,129,0.30), transparent 65%)",
+            "linear-gradient(180deg, rgba(2,6,23,0.55) 0%, rgba(2,6,23,0.50) 35%, rgba(2,6,23,0.85) 100%)",
         }}
       />
-      <div aria-hidden className="absolute inset-0 hero-grid opacity-50" />
+      <AnimatedBackground variant="dark" />
+      <div aria-hidden className="absolute inset-0 hero-grid opacity-30" />
 
-      <div className="container-wide relative pt-20 md:pt-28 pb-24 md:pb-32">
+      <div className="container-wide relative pt-24 md:pt-32 pb-28 md:pb-36">
         <motion.div
           initial={reduce ? false : { opacity: 0, y: 8 }}
           animate={{ opacity: 1, y: 0 }}
