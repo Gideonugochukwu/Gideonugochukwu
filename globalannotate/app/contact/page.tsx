@@ -1,18 +1,39 @@
 import type { Metadata } from "next";
 import Section from "@/components/Section";
 import QuoteForm from "@/components/QuoteForm";
+import JsonLd from "@/components/JsonLd";
 import { Mail, Globe2, Clock4 } from "lucide-react";
-import { site } from "@/lib/site";
+import { site, whatsappUrl } from "@/lib/site";
+import { breadcrumbSchema } from "@/lib/schema";
+import { WhatsAppIcon } from "@/components/SocialIcons";
+
+const TITLE = "Contact — Get a Quote";
+const DESCRIPTION =
+  "Tell us about your project. We'll reply within one business day with a tailored proposal.";
 
 export const metadata: Metadata = {
-  title: "Contact",
-  description:
-    "Tell us about your project. We'll reply within one business day.",
+  title: TITLE,
+  description: DESCRIPTION,
+  alternates: { canonical: `${site.url}/contact` },
+  openGraph: {
+    title: TITLE,
+    description: DESCRIPTION,
+    url: `${site.url}/contact`,
+    type: "website",
+  },
+  twitter: { card: "summary_large_image", title: TITLE, description: DESCRIPTION },
 };
 
 export default function ContactPage() {
+  const wa = whatsappUrl("Hi GlobalAnnotate — I'd like to chat about a project.");
   return (
     <>
+      <JsonLd
+        data={breadcrumbSchema([
+          { name: "Home", url: site.url },
+          { name: "Contact", url: `${site.url}/contact` },
+        ])}
+      />
       <section className="relative overflow-hidden">
         <div aria-hidden className="absolute inset-0 hero-glow" />
         <div className="container-wide relative pt-20 pb-12">
@@ -58,6 +79,24 @@ export default function ContactPage() {
                 Native specialists across 30+ countries. Aligned to your time zone.
               </p>
             </div>
+
+            {wa && (
+              <div className="card p-6">
+                <WhatsAppIcon className="h-5 w-5 text-brand-600" />
+                <h3 className="mt-3 font-semibold">Chat on WhatsApp</h3>
+                <p className="mt-1 text-sm text-ink-600">
+                  Prefer to message? Reach us directly on WhatsApp.
+                </p>
+                <a
+                  href={wa}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="mt-3 inline-flex items-center gap-2 font-medium text-ink-900 hover:text-brand-700 transition"
+                >
+                  Open WhatsApp chat
+                </a>
+              </div>
+            )}
           </div>
 
           <div>
