@@ -66,22 +66,24 @@ const INDUSTRIES = [
 export default function Industries() {
   return (
     <div className="container-wide">
-      <div className="flex items-end justify-between flex-wrap gap-4">
+      <div className="flex items-end justify-between flex-wrap gap-6">
         <div className="max-w-xl">
-          <span className="badge">Industries we serve</span>
-          <h2 className="mt-4 text-3xl md:text-5xl font-semibold tracking-tight">
+          <p className="text-sm font-medium uppercase tracking-[0.18em] text-brand-700">
+            Industries we serve
+          </p>
+          <h2 className="mt-4 display-hero text-4xl md:text-5xl lg:text-6xl text-ink-900">
             Built for global teams in every industry.
           </h2>
         </div>
         <Link
           href="/contact"
-          className="text-sm font-semibold text-brand-700 hover:text-brand-900"
+          className="inline-flex items-center gap-2 text-sm font-semibold text-ink-900 hover:text-brand-700 transition"
         >
-          Don&apos;t see yours? Talk to us →
+          Don&apos;t see yours? Talk to us <ArrowUpRight className="h-4 w-4" />
         </Link>
       </div>
 
-      <div className="mt-12 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+      <div className="mt-14 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
         {INDUSTRIES.map((item, i) => (
           <Reveal key={item.key} delay={(i % 4) * 0.05}>
             <Link
@@ -93,14 +95,14 @@ export default function Industries() {
                 alt={item.image.alt}
                 fill
                 sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 300px"
-                className="object-cover transition-transform duration-700 group-hover:scale-110"
+                className="object-cover transition-transform duration-[1200ms] ease-out group-hover:scale-110"
               />
               <div
                 aria-hidden
                 className="absolute inset-0"
                 style={{
                   background:
-                    "linear-gradient(180deg, rgba(15,23,42,0.25) 0%, rgba(15,23,42,0.55) 40%, rgba(15,23,42,0.92) 80%, rgba(2,6,23,0.98) 100%)",
+                    "linear-gradient(180deg, rgba(15,23,42,0.05) 0%, rgba(15,23,42,0.40) 45%, rgba(15,23,42,0.90) 85%, rgba(2,6,23,0.98) 100%)",
                 }}
               />
               <div
@@ -110,7 +112,7 @@ export default function Industries() {
                 <h3 className="font-display text-xl font-semibold tracking-tight leading-tight text-white">
                   {item.name}
                 </h3>
-                <p className="mt-1.5 text-sm text-white/90 leading-snug">
+                <p className="mt-1.5 text-sm text-white/85 leading-snug">
                   {item.line}
                 </p>
                 <span className="mt-3 inline-flex items-center gap-1.5 text-xs font-semibold text-brand-300 group-hover:gap-2.5 transition-all">

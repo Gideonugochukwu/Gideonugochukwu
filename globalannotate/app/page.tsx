@@ -1,25 +1,15 @@
 import Hero from "@/components/Hero";
-import Section, { SectionHeading } from "@/components/Section";
-import ServiceCard, { ServiceIcon } from "@/components/ServiceCard";
 import StatStrip from "@/components/StatStrip";
 import HowItWorks from "@/components/HowItWorks";
 import Testimonials from "@/components/Testimonials";
 import CTABand from "@/components/CTABand";
 import Industries from "@/components/Industries";
-import Reveal from "@/components/Reveal";
-import FAQ from "@/components/FAQ";
 import JsonLd from "@/components/JsonLd";
-import { services } from "@/lib/site";
-import { img, unsplash } from "@/lib/images";
+import AnimatedBackground from "@/components/AnimatedBackground";
+import HomeServices from "@/components/home/HomeServices";
+import HomeWhyUs from "@/components/home/HomeWhyUs";
+import HomeFAQ from "@/components/home/HomeFAQ";
 import { faqSchema } from "@/lib/schema";
-import { ShieldCheck, Globe2, Sparkles, Users } from "lucide-react";
-
-const SERVICE_IMAGES = {
-  "translation-localization": img.services.translation,
-  "ai-annotation": img.services.aiAnnotation,
-  "digital-marketing": img.services.digitalMarketing,
-  seo: img.services.seo,
-} as const;
 
 const HOME_FAQ = [
   {
@@ -54,110 +44,60 @@ export default function HomePage() {
       <JsonLd data={faqSchema(HOME_FAQ)} />
       <Hero />
 
-      <Section id="services">
-        <SectionHeading
-          eyebrow="What we do"
-          title="Four services. One accountable team."
-          description="Translation, AI training data, multilingual SEO, and marketing — in 100+ languages."
-        />
-        <div className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
-          {services.map((s, i) => {
-            const image = SERVICE_IMAGES[s.slug as keyof typeof SERVICE_IMAGES];
-            return (
-              <Reveal key={s.slug} delay={i * 0.06}>
-                <ServiceCard
-                  slug={s.slug}
-                  title={s.title}
-                  summary={s.summary}
-                  icon={s.icon as ServiceIcon}
-                  image={unsplash(image.id, 1200)}
-                  alt={image.alt}
-                />
-              </Reveal>
-            );
-          })}
-        </div>
-      </Section>
+      {/* Services — editorial 2x2 with offset rows */}
+      <section className="relative isolate overflow-hidden py-24 md:py-36">
+        <AnimatedBackground variant="tint" className="opacity-70" />
+        <HomeServices />
+      </section>
 
-      <Section className="pt-0" bleed>
+      {/* Stats — borderless horizontal band */}
+      <section className="relative py-16 md:py-24">
         <StatStrip />
-      </Section>
+      </section>
 
-      <Section>
+      {/* Industries — bleeds straight into the next section, no card walls */}
+      <section className="relative py-16 md:py-24">
         <Industries />
-      </Section>
+      </section>
 
-      <Section className="bg-ink-50/60 border-y border-ink-200/60">
-        <div className="grid lg:grid-cols-2 gap-12 items-start">
-          <div className="max-w-xl">
-            <span className="badge">Why choose us</span>
-            <h2 className="mt-4 text-3xl md:text-5xl font-semibold tracking-tight">
-              Quality you can audit. Speed you can plan around.
+      {/* Why us — left headline / right divided list */}
+      <section className="relative isolate overflow-hidden py-24 md:py-36">
+        <AnimatedBackground variant="tint" className="opacity-60" />
+        <HomeWhyUs />
+      </section>
+
+      {/* How it works — numbered editorial steps */}
+      <section className="relative py-24 md:py-36">
+        <HowItWorks />
+      </section>
+
+      {/* Testimonials — large editorial quotes, no borders */}
+      <section className="relative isolate overflow-hidden py-24 md:py-36 bg-ink-50/40">
+        <AnimatedBackground variant="tint" className="opacity-80" />
+        <Testimonials />
+      </section>
+
+      {/* FAQ — divided rows, no outer card */}
+      <section className="relative py-24 md:py-36">
+        <div className="container-wide grid lg:grid-cols-[1fr_1.4fr] gap-12 lg:gap-20 items-start">
+          <div className="max-w-md">
+            <p className="text-sm font-medium uppercase tracking-[0.18em] text-brand-700">
+              FAQ
+            </p>
+            <h2 className="mt-4 display-hero text-4xl md:text-5xl lg:text-6xl text-ink-900">
+              Common questions.
             </h2>
-            <p className="mt-5 text-ink-600 leading-relaxed">
-              Native linguists, specialist annotators, SEO strategists, and growth marketers — under one quality system.
+            <p className="mt-5 text-lg text-ink-600 leading-relaxed">
+              The things teams ask us before getting started.
             </p>
           </div>
-
-          <div className="grid sm:grid-cols-2 gap-4">
-            {[
-              {
-                icon: ShieldCheck,
-                title: "Quality you can audit",
-                body: "Every project ships with a QA report and revision window.",
-              },
-              {
-                icon: Globe2,
-                title: "Truly global coverage",
-                body: "Native specialists across 100+ languages and 30+ markets.",
-              },
-              {
-                icon: Sparkles,
-                title: "AI-aware, human-led",
-                body: "Smart automation, expert oversight. Speed without sacrifice.",
-              },
-              {
-                icon: Users,
-                title: "Senior, not just sales",
-                body: "A senior project lead from day one. No handoffs.",
-              },
-            ].map((f, i) => (
-              <Reveal key={f.title} delay={i * 0.05}>
-                <div className="card p-6 h-full">
-                  <f.icon className="h-6 w-6 text-brand-600" />
-                  <h3 className="mt-4 text-lg font-semibold">{f.title}</h3>
-                  <p className="mt-2 text-sm text-ink-600 leading-relaxed">
-                    {f.body}
-                  </p>
-                </div>
-              </Reveal>
-            ))}
-          </div>
+          <HomeFAQ items={HOME_FAQ} />
         </div>
-      </Section>
+      </section>
 
-      <Section>
-        <HowItWorks />
-      </Section>
-
-      <Section className="bg-ink-50/60 border-y border-ink-200/60">
-        <Testimonials />
-      </Section>
-
-      <Section>
-        <SectionHeading
-          eyebrow="FAQ"
-          title="Common questions"
-          description="The things teams ask us before getting started."
-        />
-        <div className="mt-10 max-w-3xl">
-          <FAQ items={HOME_FAQ} />
-        </div>
-      </Section>
-
-      <Section className="pb-24">
+      <section className="relative pb-28">
         <CTABand />
-      </Section>
+      </section>
     </>
   );
 }
