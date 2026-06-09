@@ -28,32 +28,49 @@ export default function HowItWorks() {
   return (
     <div className="container-wide">
       <div className="max-w-2xl">
-        <span className="badge">How it works</span>
-        <h2 className="mt-4 text-3xl md:text-5xl font-semibold tracking-tight">
-          From first message to final delivery.
+        <p className="text-sm font-medium uppercase tracking-[0.18em] text-brand-700">
+          How it works
+        </p>
+        <h2 className="mt-4 display-hero text-4xl md:text-5xl lg:text-6xl text-ink-900">
+          From first message
+          <br />
+          to final delivery.
         </h2>
-        <p className="mt-5 text-ink-600 leading-relaxed">
+        <p className="mt-5 text-lg text-ink-600 leading-relaxed">
           A simple, transparent process built for global teams that need quality, speed, and accountability.
         </p>
       </div>
 
-      <div className="mt-12 grid gap-6 md:grid-cols-2 lg:grid-cols-4">
-        {steps.map((s, i) => (
-          <Reveal key={s.title} delay={i * 0.06}>
-            <div className="relative card p-6 h-full">
-              <div className="absolute -top-3 left-6 inline-flex h-7 px-2.5 items-center justify-center rounded-full bg-brand-500 text-white text-xs font-semibold">
-                Step {i + 1}
+      <div className="relative mt-16">
+        <div
+          aria-hidden
+          className="hidden lg:block absolute left-0 right-0 top-7 h-px"
+          style={{
+            background:
+              "linear-gradient(90deg, transparent 0%, rgba(15,23,42,0.10) 12%, rgba(15,23,42,0.10) 88%, transparent 100%)",
+          }}
+        />
+        <div className="relative grid gap-12 md:gap-10 md:grid-cols-2 lg:grid-cols-4">
+          {steps.map((s, i) => (
+            <Reveal key={s.title} delay={i * 0.06}>
+              <div className="relative">
+                <div className="flex items-center gap-3">
+                  <span className="display-num text-4xl" aria-hidden>
+                    0{i + 1}
+                  </span>
+                  <span className="h-px flex-1 bg-ink-200" aria-hidden />
+                  <s.icon className="h-5 w-5 text-brand-600" aria-hidden />
+                </div>
+                <h3 className="mt-5 text-xl font-semibold tracking-tight text-ink-900">
+                  {s.title}
+                </h3>
+                <p className="mt-2 text-ink-600 leading-relaxed">
+                  {s.body}
+                </p>
               </div>
-              <s.icon className="h-6 w-6 text-brand-600" />
-              <h3 className="mt-4 text-lg font-semibold tracking-tight">
-                {s.title}
-              </h3>
-              <p className="mt-2 text-sm text-ink-600 leading-relaxed">
-                {s.body}
-              </p>
-            </div>
-          </Reveal>
-        ))}
+            </Reveal>
+          ))}
+        </div>
       </div>
     </div>
   );

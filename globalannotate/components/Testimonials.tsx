@@ -1,4 +1,5 @@
-import { Quote } from "lucide-react";
+import Link from "next/link";
+import { ArrowUpRight } from "lucide-react";
 import Stars from "./Stars";
 import Reveal from "./Reveal";
 import ReviewAuthor from "./ReviewAuthor";
@@ -23,36 +24,44 @@ export default function Testimonials() {
   const featured = featuredReviews();
   return (
     <div className="container-wide">
-      <div className="flex items-end justify-between flex-wrap gap-4">
-        <div className="max-w-xl">
-          <span className="badge">What clients say</span>
-          <h2 className="mt-4 text-3xl md:text-5xl font-semibold tracking-tight">
-            Loved by teams shipping across borders.
+      <div className="flex items-end justify-between flex-wrap gap-6">
+        <div className="max-w-2xl">
+          <p className="text-sm font-medium uppercase tracking-[0.18em] text-brand-700">
+            What clients say
+          </p>
+          <h2 className="mt-4 display-hero text-4xl md:text-5xl lg:text-6xl text-ink-900">
+            Loved by teams shipping
+            <br />
+            <span className="text-gradient">across borders.</span>
           </h2>
         </div>
-        <a
+        <Link
           href="/reviews"
-          className="text-sm font-semibold text-brand-700 hover:text-brand-900"
+          className="inline-flex items-center gap-2 text-sm font-semibold text-ink-900 hover:text-brand-700 transition"
         >
-          Read all reviews →
-        </a>
+          Read all reviews <ArrowUpRight className="h-4 w-4" />
+        </Link>
       </div>
 
-      <div className="mt-10 grid gap-6 md:grid-cols-3">
+      <div className="mt-16 grid gap-x-12 gap-y-16 md:grid-cols-3">
         {featured.map((t, i) => (
           <Reveal key={`${t.name}-${i}`} delay={i * 0.06}>
-            <article className="card p-7 h-full flex flex-col bg-white">
-              <Quote className="h-7 w-7 text-brand-300" aria-hidden />
-              <p className="mt-4 text-ink-800 leading-relaxed text-lg flex-1">
-                &ldquo;{t.quote}&rdquo;
-              </p>
-              <div className="mt-6">
-                <Stars value={t.rating} />
-                <div className="mt-3">
-                  <ReviewAuthor review={t} />
-                </div>
-              </div>
-            </article>
+            <figure className="flex flex-col h-full">
+              <span
+                aria-hidden
+                className="font-display text-7xl md:text-8xl leading-none text-brand-200/80 select-none"
+              >
+                &ldquo;
+              </span>
+              <blockquote className="-mt-6 font-display text-xl md:text-2xl leading-snug tracking-tight text-ink-900">
+                {t.quote}
+              </blockquote>
+              <div className="mt-6 flex-1" />
+              <Stars value={t.rating} />
+              <figcaption className="mt-4">
+                <ReviewAuthor review={t} />
+              </figcaption>
+            </figure>
           </Reveal>
         ))}
       </div>
