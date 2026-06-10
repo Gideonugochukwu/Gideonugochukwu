@@ -132,6 +132,24 @@ export const img = {
       id: "1509062522246-3755977927d7",
       alt: "Multilingual classroom representing Indian language NLP datasets",
     },
+    // National Cancer Institute clinical setting — clinicians + tablet. Widely
+    // used, definitively professional, perfect for a telehealth app case study.
+    telehealthApp: {
+      id: "1505751172876-fa1923c5c528",
+      alt: "Clinical team reviewing patient data on a tablet for a telehealth application",
+    },
+    // Lauren Fleischmann clothing rack — one of Unsplash's best-known DTC /
+    // boutique fashion images. Reads instantly as e-commerce / fashion brand.
+    dtcEcommerce: {
+      id: "1441986300917-64674bd600d8",
+      alt: "Boutique clothing rack representing a direct-to-consumer fashion brand",
+    },
+    // Nick Morrison desktop with laptop, glasses and notebook — the classic
+    // Unsplash "online learning / studying" still life. Clean, real, on-brief.
+    eLearning: {
+      id: "1456406644174-8ddd4cd52a06",
+      alt: "Laptop, notebook and glasses on a desk representing an online learning platform",
+    },
   },
   about: {
     // Brooke Cagle team meeting — diverse modern workplace.
