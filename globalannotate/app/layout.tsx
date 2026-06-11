@@ -5,7 +5,6 @@ import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import { ToastProvider } from "@/components/Toast";
 import JsonLd from "@/components/JsonLd";
-import WhatsAppFloating from "@/components/WhatsAppFloating";
 import { site } from "@/lib/site";
 import { organizationSchema, websiteSchema } from "@/lib/schema";
 
@@ -81,7 +80,6 @@ export default function RootLayout({
           <Navbar />
           <main className="flex-1">{children}</main>
           <Footer />
-          <WhatsAppFloating />
         </ToastProvider>
       </body>
     </html>

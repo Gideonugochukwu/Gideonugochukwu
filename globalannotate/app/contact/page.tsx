@@ -3,9 +3,8 @@ import Section from "@/components/Section";
 import QuoteForm from "@/components/QuoteForm";
 import JsonLd from "@/components/JsonLd";
 import { Mail, Globe2, Clock4 } from "lucide-react";
-import { site, whatsappUrl } from "@/lib/site";
+import { site } from "@/lib/site";
 import { breadcrumbSchema } from "@/lib/schema";
-import { WhatsAppIcon } from "@/components/SocialIcons";
 
 const TITLE = "Contact — Get a Quote";
 const DESCRIPTION =
@@ -25,7 +24,6 @@ export const metadata: Metadata = {
 };
 
 export default function ContactPage() {
-  const wa = whatsappUrl("Hi GlobalAnnotate — I'd like to chat about a project.");
   return (
     <>
       <JsonLd
@@ -79,24 +77,6 @@ export default function ContactPage() {
                 Native specialists across 30+ countries. Aligned to your time zone.
               </p>
             </div>
-
-            {wa && (
-              <div className="card p-6">
-                <WhatsAppIcon className="h-5 w-5 text-brand-600" />
-                <h3 className="mt-3 font-semibold">Chat on WhatsApp</h3>
-                <p className="mt-1 text-sm text-ink-600">
-                  Prefer to message? Reach us directly on WhatsApp.
-                </p>
-                <a
-                  href={wa}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="mt-3 inline-flex items-center gap-2 font-medium text-ink-900 hover:text-brand-700 transition"
-                >
-                  Open WhatsApp chat
-                </a>
-              </div>
-            )}
           </div>
 
           <div>

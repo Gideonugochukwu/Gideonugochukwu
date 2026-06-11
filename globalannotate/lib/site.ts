@@ -9,21 +9,13 @@ export const site = {
   description:
     "GlobalAnnotate delivers AI annotation & data labeling, translation & localization in 100+ languages, multilingual SEO, and performance digital marketing to help global teams ship faster and grow farther.",
   email: "info@globalannotate.com",
-  // Social and contact URLs. Replace any value containing REPLACE_ME with a
-  // real URL/phone before going live. Empty strings and REPLACE_ME placeholders
-  // are filtered out of the footer icon row, the Organization sameAs schema,
-  // and the floating WhatsApp button automatically.
+  // The only social profiles we maintain. These render in the footer and
+  // populate the Organization JSON-LD sameAs. Add more keys here only when
+  // a real account exists — the footer and schema both iterate this object.
   social: {
-    linkedin: "https://www.linkedin.com/company/REPLACE_ME",
-    twitter: "https://x.com/REPLACE_ME",
-    instagram: "https://instagram.com/REPLACE_ME",
-    facebook: "https://facebook.com/REPLACE_ME",
-    tiktok: "https://www.tiktok.com/@REPLACE_ME",
-    youtube: "https://www.youtube.com/@REPLACE_ME",
+    instagram: "https://www.instagram.com/global_annotate/",
+    linkedin: "https://linkedin.com/company/globalannotate",
   },
-  // International phone number in E.164 format without the leading + (wa.me format).
-  // e.g. "14155552671" for +1 415 555 2671.
-  whatsappNumber: "REPLACE_PHONE_NUMBER",
 };
 
 export const nav = [
@@ -73,18 +65,10 @@ export const services = [
 
 export type ServiceSlug = (typeof services)[number]["slug"];
 
-// Returns the URLs from site.social that are real (non-empty, no REPLACE_ME).
-// Used for footer icons and Organization JSON-LD sameAs.
+// Returns the real social profile URLs in a stable order. Used by the
+// footer icon row and the Organization JSON-LD sameAs.
 export function activeSocialLinks(): { key: keyof typeof site.social; href: string }[] {
   return (Object.entries(site.social) as [keyof typeof site.social, string][])
-    .filter(([, href]) => href && !href.includes("REPLACE_ME"))
+    .filter(([, href]) => Boolean(href))
     .map(([key, href]) => ({ key, href }));
-}
-
-// Returns a wa.me click-to-chat URL, or null if the number is still a placeholder.
-export function whatsappUrl(message?: string): string | null {
-  const n = site.whatsappNumber;
-  if (!n || n.includes("REPLACE")) return null;
-  const base = `https://wa.me/${n.replace(/[^0-9]/g, "")}`;
-  return message ? `${base}?text=${encodeURIComponent(message)}` : base;
 }

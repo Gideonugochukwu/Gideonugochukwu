@@ -1,13 +1,12 @@
 import Link from "next/link";
 import { Mail } from "lucide-react";
 import Logo from "./Logo";
-import { services, site, activeSocialLinks, whatsappUrl } from "@/lib/site";
-import { SOCIAL_META, WhatsAppIcon } from "./SocialIcons";
+import { services, site, activeSocialLinks } from "@/lib/site";
+import { SOCIAL_META } from "./SocialIcons";
 
 export default function Footer() {
   const year = new Date().getFullYear();
   const socials = activeSocialLinks();
-  const waHref = whatsappUrl("Hi GlobalAnnotate — I'd like to chat about a project.");
 
   return (
     <footer className="relative mt-24 border-t border-ink-200 bg-ink-50/50">
@@ -25,17 +24,6 @@ export default function Footer() {
               <Mail className="h-4 w-4" />
               {site.email}
             </a>
-            {waHref && (
-              <a
-                href={waHref}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 text-sm font-medium text-ink-900 hover:text-brand-700 transition"
-              >
-                <WhatsAppIcon className="h-4 w-4" />
-                Chat on WhatsApp
-              </a>
-            )}
           </div>
         </div>
 
@@ -68,32 +56,25 @@ export default function Footer() {
 
         <div className="md:col-span-3">
           <h4 className="text-sm font-semibold text-ink-900">Follow</h4>
-          {socials.length > 0 ? (
-            <div className="mt-4 flex items-center gap-2 flex-wrap">
-              {socials.map(({ key, href }) => {
-                const meta = SOCIAL_META[key];
-                if (!meta) return null;
-                const Icon = meta.Icon;
-                return (
-                  <a
-                    key={key}
-                    href={href}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    aria-label={meta.label}
-                    className="inline-flex h-9 w-9 items-center justify-center rounded-lg border border-ink-200 bg-white text-ink-600 hover:text-brand-700 hover:border-brand-300 transition"
-                  >
-                    <Icon className="h-4 w-4" />
-                  </a>
-                );
-              })}
-            </div>
-          ) : (
-            <p className="mt-4 text-xs text-ink-500 max-w-[14rem] leading-relaxed">
-              Social profiles coming soon. Replace the placeholder URLs in{" "}
-              <code className="text-ink-700">lib/site.ts</code> to enable.
-            </p>
-          )}
+          <div className="mt-4 flex items-center gap-2 flex-wrap">
+            {socials.map(({ key, href }) => {
+              const meta = SOCIAL_META[key];
+              if (!meta) return null;
+              const Icon = meta.Icon;
+              return (
+                <a
+                  key={key}
+                  href={href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label={meta.label}
+                  className="inline-flex h-9 w-9 items-center justify-center rounded-lg border border-ink-200 bg-white text-ink-600 hover:text-brand-700 hover:border-brand-300 transition"
+                >
+                  <Icon className="h-4 w-4" />
+                </a>
+              );
+            })}
+          </div>
           <h4 className="mt-6 text-sm font-semibold text-ink-900">Legal</h4>
           <ul className="mt-4 space-y-2.5">
             <li><Link href="/privacy" className="text-sm text-ink-600 hover:text-brand-700 transition">Privacy Policy</Link></li>
