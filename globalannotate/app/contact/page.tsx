@@ -6,9 +6,9 @@ import { Mail, Globe2, Clock4 } from "lucide-react";
 import { site } from "@/lib/site";
 import { breadcrumbSchema } from "@/lib/schema";
 
-const TITLE = "Contact — Get a Quote";
+const TITLE = "Contact — Talk to an Expert";
 const DESCRIPTION =
-  "Tell us about your project. We'll reply within one business day with a tailored proposal.";
+  "Tell us about your project and we'll get back to you within one business day with a tailored proposal.";
 
 export const metadata: Metadata = {
   title: TITLE,
@@ -37,10 +37,10 @@ export default function ContactPage() {
         <div className="container-wide relative pt-20 pb-12">
           <span className="badge">Get in touch</span>
           <h1 className="display-hero mt-5 max-w-3xl text-4xl md:text-6xl lg:text-7xl">
-            Tell us about your project.
+            Talk to an expert.
           </h1>
           <p className="mt-6 max-w-2xl text-lg md:text-xl text-ink-600 leading-relaxed">
-            We&apos;ll reply within one business day with a tailored proposal.
+            Tell us about your project and we&apos;ll get back to you within one business day.
           </p>
         </div>
       </section>
@@ -81,10 +81,10 @@ export default function ContactPage() {
 
           <div>
             <h2 className="text-2xl md:text-4xl font-semibold tracking-tight">
-              Get a quote or order a service
+              Tell us about your project
             </h2>
             <p className="mt-3 text-ink-600">
-              The more context you share, the sharper our proposal.
+              The more context you share, the sharper our proposal. A senior project lead will reply within one business day.
             </p>
             <div className="mt-6">
               <QuoteForm />

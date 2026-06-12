@@ -80,7 +80,7 @@ export default function Hero() {
               href="/contact"
               className="inline-flex items-center justify-center gap-2 rounded-xl bg-white text-ink-900 px-5 py-3.5 font-semibold hover:bg-brand-50 transition"
             >
-              Get a Free Quote <ArrowRight className="h-4 w-4" />
+              Talk to an expert <ArrowRight className="h-4 w-4" />
             </Link>
             <Link href="/services" className="btn-ghost-light">
               Explore Services

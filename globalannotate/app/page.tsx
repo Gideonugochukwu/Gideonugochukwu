@@ -3,6 +3,7 @@ import StatStrip from "@/components/StatStrip";
 import HowItWorks from "@/components/HowItWorks";
 import Testimonials from "@/components/Testimonials";
 import CTABand from "@/components/CTABand";
+import ServiceCTAGrid from "@/components/ServiceCTAGrid";
 import Industries from "@/components/Industries";
 import JsonLd from "@/components/JsonLd";
 import AnimatedBackground from "@/components/AnimatedBackground";
@@ -93,6 +94,10 @@ export default function HomePage() {
           </div>
           <HomeFAQ items={HOME_FAQ} />
         </div>
+      </section>
+
+      <section className="relative py-16 md:py-24">
+        <ServiceCTAGrid />
       </section>
 
       <section className="relative pb-28">

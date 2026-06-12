@@ -1,14 +1,14 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 import Link from "next/link";
 import Section from "@/components/Section";
-import ServiceCard, { ServiceIcon } from "@/components/ServiceCard";
-import CTABand from "@/components/CTABand";
 import Reveal from "@/components/Reveal";
 import JsonLd from "@/components/JsonLd";
+import ServiceCTAGrid from "@/components/ServiceCTAGrid";
 import { services, site } from "@/lib/site";
-import { img, unsplash } from "@/lib/images";
+import { img, imageBg, unsplash } from "@/lib/images";
 import { breadcrumbSchema } from "@/lib/schema";
-import { ArrowRight } from "lucide-react";
+import { ArrowRight, Brain, Languages, Megaphone, Search } from "lucide-react";
 
 const TITLE = "Services — Translation, AI Annotation, SEO & Digital Marketing";
 const DESCRIPTION =
@@ -34,6 +34,8 @@ const SERVICE_IMAGES = {
   seo: img.services.seo,
 } as const;
 
+const ICONS = { Brain, Languages, Megaphone, Search } as const;
+
 export default function ServicesPage() {
   return (
     <>
@@ -43,62 +45,119 @@ export default function ServicesPage() {
           { name: "Services", url: `${site.url}/services` },
         ])}
       />
-      <Section className="pt-16">
-        <div className="max-w-3xl">
-          <span className="badge">Services</span>
-          <h1 className="display-hero mt-5 text-4xl md:text-6xl lg:text-7xl">
-            One toolkit. Every market.
-          </h1>
-          <p className="mt-6 text-lg md:text-xl text-ink-600 leading-relaxed">
-            Four core services that work together — or independently — to help your team move faster across markets.
-          </p>
-        </div>
 
-        <div className="mt-14 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+      {/* Hero — light, spacious, no decoration */}
+      <Section className="pt-20 md:pt-28">
+        <div className="grid lg:grid-cols-[1.2fr_1fr] gap-12 lg:gap-20 items-end">
+          <div className="max-w-2xl">
+            <p className="text-xs font-medium uppercase tracking-[0.20em] text-brand-700">
+              Services
+            </p>
+            <h1 className="display-hero mt-5 text-4xl md:text-6xl lg:text-7xl text-ink-900">
+              One toolkit.
+              <br />
+              <span className="text-gradient">Every market.</span>
+            </h1>
+            <p className="mt-6 text-lg md:text-xl text-ink-600 leading-relaxed">
+              Four core services that work together — or independently — to help your team move faster across markets.
+            </p>
+            <div className="mt-9 flex flex-wrap items-center gap-x-6 gap-y-3">
+              <Link
+                href="/contact"
+                className="inline-flex items-center gap-2 rounded-xl bg-ink-900 px-5 py-3 text-sm font-semibold text-white hover:bg-brand-700 transition"
+              >
+                Talk to an expert <ArrowRight className="h-4 w-4" />
+              </Link>
+              <Link
+                href="/portfolio"
+                className="inline-flex items-center gap-1.5 text-sm font-semibold text-ink-900 hover:text-brand-700 transition"
+              >
+                See case studies <ArrowRight className="h-4 w-4" />
+              </Link>
+            </div>
+          </div>
+          <ul className="grid gap-3 text-sm">
+            {services.map((s) => (
+              <li key={s.slug}>
+                <a
+                  href={`#${s.slug}`}
+                  className="group flex items-center justify-between rounded-xl border border-ink-200/80 bg-white px-4 py-3 hover:border-brand-300 transition"
+                >
+                  <span className="font-medium text-ink-900">{s.short}</span>
+                  <ArrowRight className="h-4 w-4 text-ink-400 group-hover:text-brand-700 transition" />
+                </a>
+              </li>
+            ))}
+          </ul>
+        </div>
+      </Section>
+
+      {/* Service detail rows — alternating editorial image + copy. No card walls. */}
+      <Section className="pt-8 md:pt-12">
+        <div className="space-y-24 md:space-y-32">
           {services.map((s, i) => {
             const image = SERVICE_IMAGES[s.slug as keyof typeof SERVICE_IMAGES];
+            const Icon = ICONS[s.icon as keyof typeof ICONS];
+            const reverse = i % 2 === 1;
             return (
-              <Reveal key={s.slug} delay={i * 0.05}>
-                <ServiceCard
-                  slug={s.slug}
-                  title={s.title}
-                  summary={s.summary}
-                  icon={s.icon as ServiceIcon}
-                  image={unsplash(image.id, 1200)}
-                  alt={image.alt}
-                />
+              <Reveal key={s.slug} delay={0}>
+                <article
+                  id={s.slug}
+                  className="grid items-center gap-10 lg:gap-16 md:grid-cols-2 scroll-mt-24"
+                >
+                  <div className={reverse ? "md:order-2" : ""}>
+                    <div
+                      className={`relative aspect-[5/4] overflow-hidden rounded-2xl ${imageBg}`}
+                    >
+                      <Image
+                        src={unsplash(image.id, 1400)}
+                        alt={image.alt}
+                        fill
+                        sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 600px"
+                        className="object-cover"
+                      />
+                    </div>
+                  </div>
+                  <div className={reverse ? "md:order-1" : ""}>
+                    <span
+                      aria-hidden
+                      className="inline-flex h-10 w-10 items-center justify-center rounded-lg border border-ink-200 text-brand-700"
+                    >
+                      <Icon className="h-5 w-5" strokeWidth={1.5} />
+                    </span>
+                    <p className="mt-5 text-xs font-medium uppercase tracking-[0.20em] text-brand-700">
+                      0{i + 1} · Service
+                    </p>
+                    <h2 className="mt-3 font-display text-3xl md:text-4xl lg:text-5xl font-semibold tracking-tight text-ink-900 leading-tight">
+                      {s.title}
+                    </h2>
+                    <p className="mt-5 text-lg text-ink-600 leading-relaxed">
+                      {s.summary}
+                    </p>
+                    <div className="mt-7 flex flex-wrap items-center gap-x-6 gap-y-3">
+                      <Link
+                        href={`/services/${s.slug}`}
+                        className="inline-flex items-center gap-2 rounded-xl bg-ink-900 px-5 py-3 text-sm font-semibold text-white hover:bg-brand-700 transition"
+                      >
+                        Explore service <ArrowRight className="h-4 w-4" />
+                      </Link>
+                      <Link
+                        href="/contact"
+                        className="inline-flex items-center gap-1.5 text-sm font-semibold text-ink-900 hover:text-brand-700 transition"
+                      >
+                        Talk to an expert <ArrowRight className="h-4 w-4" />
+                      </Link>
+                    </div>
+                  </div>
+                </article>
               </Reveal>
             );
           })}
         </div>
       </Section>
 
-      <Section className="pt-0">
-        <div className="space-y-6">
-          {services.map((s, i) => (
-            <Reveal key={s.slug} delay={i * 0.04}>
-              <Link
-                href={`/services/${s.slug}`}
-                id={s.slug}
-                className="card p-7 md:p-9 flex flex-col md:flex-row md:items-center justify-between gap-6 group"
-              >
-                <div className="max-w-2xl">
-                  <h2 className="text-2xl md:text-3xl font-semibold tracking-tight">
-                    {s.title}
-                  </h2>
-                  <p className="mt-2 text-ink-600 leading-relaxed">{s.summary}</p>
-                </div>
-                <span className="inline-flex items-center gap-2 font-semibold text-brand-700 group-hover:gap-3 transition-all whitespace-nowrap">
-                  View details <ArrowRight className="h-4 w-4" />
-                </span>
-              </Link>
-            </Reveal>
-          ))}
-        </div>
-      </Section>
-
-      <Section className="pb-24">
-        <CTABand />
+      <Section className="pb-28">
+        <ServiceCTAGrid />
       </Section>
     </>
   );
