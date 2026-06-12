@@ -66,7 +66,7 @@ export default function Navbar() {
 
         <div className="hidden md:flex items-center gap-2">
           <Link href="/contact" className="btn-primary text-sm">
-            Get a Quote <ArrowRight className="h-4 w-4" />
+            Talk to an expert <ArrowRight className="h-4 w-4" />
           </Link>
         </div>
 
@@ -104,7 +104,7 @@ export default function Navbar() {
               );
             })}
             <Link href="/contact" className="btn-primary mt-2 text-sm">
-              Get a Quote <ArrowRight className="h-4 w-4" />
+              Talk to an expert <ArrowRight className="h-4 w-4" />
             </Link>
           </div>
         </div>

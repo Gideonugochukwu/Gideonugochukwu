@@ -27,7 +27,7 @@ export default function CTABand() {
               Ready to grow globally?
             </h3>
             <p className="mt-4 text-white/80 max-w-xl leading-relaxed text-lg">
-              Tell us about your project. We&apos;ll reply within one business day.
+              Tell us about your project and we&apos;ll get back to you within one business day.
             </p>
           </div>
           <div className="flex flex-col sm:flex-row md:flex-col gap-3 md:items-end">
@@ -35,7 +35,7 @@ export default function CTABand() {
               href="/contact"
               className="inline-flex items-center justify-center gap-2 rounded-xl bg-white text-ink-900 px-5 py-3 font-semibold hover:bg-brand-50 transition"
             >
-              Get a Free Quote <ArrowRight className="h-4 w-4" />
+              Talk to an expert <ArrowRight className="h-4 w-4" />
             </Link>
             <a
               href={`mailto:${site.email}`}
