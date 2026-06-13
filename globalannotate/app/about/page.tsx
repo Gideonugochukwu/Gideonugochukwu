@@ -65,7 +65,7 @@ export default function AboutPage() {
           fill
           priority
           sizes="100vw"
-          className="object-cover opacity-45"
+          className="object-cover photo-treat-dark opacity-45"
         />
         <div
           aria-hidden
@@ -106,7 +106,7 @@ export default function AboutPage() {
               alt={img.about.office.alt}
               fill
               sizes="(max-width: 1024px) 100vw, 600px"
-              className="object-cover"
+              className="object-cover photo-treat"
             />
           </div>
         </div>

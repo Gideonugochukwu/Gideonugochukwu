@@ -1,14 +1,12 @@
 import Hero from "@/components/Hero";
 import StatStrip from "@/components/StatStrip";
-import HowItWorks from "@/components/HowItWorks";
 import Testimonials from "@/components/Testimonials";
-import CTABand from "@/components/CTABand";
 import ServiceCTAGrid from "@/components/ServiceCTAGrid";
 import Industries from "@/components/Industries";
 import JsonLd from "@/components/JsonLd";
 import AnimatedBackground from "@/components/AnimatedBackground";
 import HomeServices from "@/components/home/HomeServices";
-import HomeWhyUs from "@/components/home/HomeWhyUs";
+import HomeMethod from "@/components/home/HomeMethod";
 import HomeFAQ from "@/components/home/HomeFAQ";
 import { faqSchema } from "@/lib/schema";
 
@@ -46,49 +44,43 @@ export default function HomePage() {
       <Hero />
 
       {/* Services — editorial 2x2 with offset rows */}
-      <section className="relative isolate overflow-hidden py-24 md:py-36">
+      <section className="relative isolate overflow-hidden py-20 sm:py-24 md:py-32">
         <AnimatedBackground variant="tint" className="opacity-70" />
         <HomeServices />
       </section>
 
-      {/* Stats — borderless horizontal band */}
-      <section className="relative py-16 md:py-24">
+      {/* Stats — borderless horizontal band, sits in the rhythm break */}
+      <section className="relative py-12 sm:py-16 md:py-20">
         <StatStrip />
       </section>
 
-      {/* Industries — bleeds straight into the next section, no card walls */}
-      <section className="relative py-16 md:py-24">
+      {/* Industries — trimmed to 5, asymmetric lead-tile grid */}
+      <section className="relative py-16 sm:py-20 md:py-28">
         <Industries />
       </section>
 
-      {/* Why us — left headline / right divided list */}
-      <section className="relative isolate overflow-hidden py-24 md:py-36">
+      {/* The GlobalAnnotate method — merged Why + How, one section */}
+      <section className="relative isolate overflow-hidden py-20 sm:py-24 md:py-32 bg-ink-50/40">
         <AnimatedBackground variant="tint" className="opacity-60" />
-        <HomeWhyUs />
+        <HomeMethod />
       </section>
 
-      {/* How it works — numbered editorial steps */}
-      <section className="relative py-24 md:py-36">
-        <HowItWorks />
-      </section>
-
-      {/* Testimonials — large editorial quotes, no borders */}
-      <section className="relative isolate overflow-hidden py-24 md:py-36 bg-ink-50/40">
-        <AnimatedBackground variant="tint" className="opacity-80" />
+      {/* Testimonials — large editorial quotes */}
+      <section className="relative py-20 sm:py-24 md:py-32">
         <Testimonials />
       </section>
 
       {/* FAQ — divided rows, no outer card */}
-      <section className="relative py-24 md:py-36">
+      <section className="relative py-20 sm:py-24 md:py-32 bg-ink-50/40">
         <div className="container-wide grid lg:grid-cols-[1fr_1.4fr] gap-12 lg:gap-20 items-start">
           <div className="max-w-md">
             <p className="text-sm font-medium uppercase tracking-[0.18em] text-brand-700">
               FAQ
             </p>
-            <h2 className="mt-4 display-hero text-4xl md:text-5xl lg:text-6xl text-ink-900">
+            <h2 className="mt-4 display-hero text-3xl sm:text-4xl md:text-5xl lg:text-6xl text-ink-900">
               Common questions.
             </h2>
-            <p className="mt-5 text-lg text-ink-600 leading-relaxed">
+            <p className="mt-5 text-base sm:text-lg text-ink-600 leading-relaxed">
               The things teams ask us before getting started.
             </p>
           </div>
@@ -96,12 +88,9 @@ export default function HomePage() {
         </div>
       </section>
 
-      <section className="relative py-16 md:py-24">
+      {/* One strong closing CTA. */}
+      <section className="relative py-16 sm:py-20 md:py-28">
         <ServiceCTAGrid />
-      </section>
-
-      <section className="relative pb-28">
-        <CTABand />
       </section>
     </>
   );

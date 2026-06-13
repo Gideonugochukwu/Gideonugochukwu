@@ -34,7 +34,7 @@ export default function ServiceCard({
           alt={alt}
           fill
           sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 400px"
-          className="object-cover transition-transform duration-700 group-hover:scale-105"
+          className="object-cover photo-treat transition-transform duration-700 group-hover:scale-105"
         />
         <div
           aria-hidden

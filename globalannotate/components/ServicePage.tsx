@@ -46,7 +46,7 @@ export default function ServicePage({
           fill
           priority
           sizes="100vw"
-          className="object-cover opacity-35"
+          className="object-cover photo-treat-dark opacity-35"
         />
         <div
           aria-hidden

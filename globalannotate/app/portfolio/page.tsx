@@ -72,7 +72,7 @@ export default function PortfolioPage() {
                       alt={c.image.alt}
                       fill
                       sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 600px"
-                      className="object-cover transition-transform duration-[900ms] ease-out group-hover:scale-[1.04]"
+                      className="object-cover photo-treat transition-transform duration-[900ms] ease-out group-hover:scale-[1.04]"
                     />
                     <div
                       aria-hidden
