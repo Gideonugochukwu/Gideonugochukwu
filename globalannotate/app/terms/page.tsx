@@ -34,7 +34,7 @@ export default function TermsPage() {
       <Section className="pt-16 pb-24">
         <div className="max-w-3xl">
           <span className="badge">Legal</span>
-          <h1 className="display-hero mt-5 text-4xl md:text-6xl">Terms of Service</h1>
+          <h1 className="page-h1 mt-5">Terms of Service</h1>
           <p className="mt-4 text-sm text-ink-500">Last updated: January 2026</p>
 
           <div className="mt-4 rounded-xl border border-amber-200 bg-amber-50 p-4 text-sm text-amber-900">

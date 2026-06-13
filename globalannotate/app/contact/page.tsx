@@ -5,6 +5,8 @@ import JsonLd from "@/components/JsonLd";
 import { Mail, Globe2, Clock4 } from "lucide-react";
 import { site } from "@/lib/site";
 import { breadcrumbSchema } from "@/lib/schema";
+import PageHero from "@/components/PageHero";
+import { aboutHeroSlides } from "@/lib/images";
 
 const TITLE = "Contact — Talk to an Expert";
 const DESCRIPTION =
@@ -32,20 +34,15 @@ export default function ContactPage() {
           { name: "Contact", url: `${site.url}/contact` },
         ])}
       />
-      <section className="relative overflow-hidden">
-        <div aria-hidden className="absolute inset-0 hero-glow" />
-        <div className="container-wide relative pt-20 pb-12">
-          <span className="badge">Get in touch</span>
-          <h1 className="display-hero mt-5 max-w-3xl text-4xl md:text-6xl lg:text-7xl">
-            Talk to an expert.
-          </h1>
-          <p className="mt-6 max-w-2xl text-lg md:text-xl text-ink-600 leading-relaxed">
-            Tell us about your project and we&apos;ll get back to you within one business day.
-          </p>
-        </div>
-      </section>
+      <PageHero
+        eyebrow="Get in touch"
+        title="Talk to an expert."
+        subtitle="Tell us about your project and we'll get back to you within one business day."
+        slides={aboutHeroSlides}
+        size="compact"
+      />
 
-      <Section className="pt-4 pb-24">
+      <Section className="pt-12 md:pt-16 pb-24">
         <div className="grid lg:grid-cols-[1fr_1.4fr] gap-10">
           <div className="space-y-6">
             <div className="card p-6">
@@ -80,7 +77,7 @@ export default function ContactPage() {
           </div>
 
           <div>
-            <h2 className="text-2xl md:text-4xl font-semibold tracking-tight">
+            <h2 className="section-h2 text-ink-900">
               Tell us about your project
             </h2>
             <p className="mt-3 text-ink-600">

@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import ServicePage from "@/components/ServicePage";
 import JsonLd from "@/components/JsonLd";
-import { img, unsplash } from "@/lib/images";
+import { img } from "@/lib/images";
 import { site } from "@/lib/site";
 import { breadcrumbSchema, faqSchema, serviceSchema } from "@/lib/schema";
 
@@ -68,8 +68,8 @@ export default function Page() {
         eyebrow="Digital Marketing"
         title="Audiences into customers. Customers into growth."
         intro="Lean, data-led growth across Meta, content, and organic social — built to drive revenue, not vanity metrics."
-        heroImage={unsplash(img.services.digitalMarketing.id, 2400)}
-        heroImageAlt={img.services.digitalMarketing.alt}
+        heroSlideId={img.services.digitalMarketing.id}
+        heroSlideAlt={img.services.digitalMarketing.alt}
         included={[
           {
             title: "Facebook & Instagram ads",

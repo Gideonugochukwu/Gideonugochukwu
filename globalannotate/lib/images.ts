@@ -176,11 +176,12 @@ export const img = {
   },
 } satisfies Record<string, ImageRef | Record<string, ImageRef>>;
 
-// Hero slideshow — six stable, professional Unsplash photos that rotate
-// behind the homepage hero. Mix of multicultural teams, global business,
-// technology / data, and a world view. The brand gradient fallback
+// Per-page hero slideshow sets. Each is 4–6 stable, professional Unsplash
+// photos that rotate behind that page's hero. The brand gradient fallback
 // (lib/imageBg) covers any image that fails to load.
-export const heroSlides: ImageRef[] = [
+
+// Home — global business / multicultural teams / technology / world.
+export const homeHeroSlides: ImageRef[] = [
   {
     id: "1521737711867-e3b97375f902",
     alt: "Diverse team collaborating around a laptop in a bright modern workspace",
@@ -204,5 +205,80 @@ export const heroSlides: ImageRef[] = [
   {
     id: "1451187580459-43490279c0fa",
     alt: "Planet Earth seen from space at night with global city lights",
+  },
+];
+
+// Backwards-compatible alias for any imports that still reach for heroSlides.
+export const heroSlides = homeHeroSlides;
+
+// Services — teams at work / technology / data.
+export const servicesHeroSlides: ImageRef[] = [
+  {
+    id: "1521737711867-e3b97375f902",
+    alt: "Diverse team collaborating around a laptop in a bright workspace",
+  },
+  {
+    id: "1573164713988-8665fc963095",
+    alt: "Engineer reviewing data on a modern workstation",
+  },
+  {
+    id: "1518770660439-4636190af475",
+    alt: "Macro photograph of a green circuit board representing technology",
+  },
+  {
+    id: "1551288049-bebda4e38f71",
+    alt: "Laptop showing search analytics and keyword ranking data",
+  },
+  {
+    id: "1460925895917-afdab827c52f",
+    alt: "Analytics dashboard with growth charts on a laptop screen",
+  },
+];
+
+// Portfolio — results / analytics / global work.
+export const portfolioHeroSlides: ImageRef[] = [
+  {
+    id: "1460925895917-afdab827c52f",
+    alt: "Analytics dashboard with growth charts on a laptop screen",
+  },
+  {
+    id: "1551288049-bebda4e38f71",
+    alt: "Laptop showing search analytics and keyword ranking data",
+  },
+  {
+    id: "1512453979798-5ea266f8880c",
+    alt: "Modern Dubai skyline at dusk representing a global market launch",
+  },
+  {
+    id: "1522071820081-009f0129c71c",
+    alt: "Multicultural team in a focused working meeting",
+  },
+  {
+    id: "1451187580459-43490279c0fa",
+    alt: "Planet Earth seen from space at night with global city lights",
+  },
+];
+
+// About — workspace / collaboration.
+export const aboutHeroSlides: ImageRef[] = [
+  {
+    id: "1522071820081-009f0129c71c",
+    alt: "Diverse team meeting in a modern office",
+  },
+  {
+    id: "1497366216548-37526070297c",
+    alt: "Bright modern office with collaborative desks",
+  },
+  {
+    id: "1573497019940-1c28c88b4f3e",
+    alt: "Two colleagues collaborating on a laptop",
+  },
+  {
+    id: "1521737711867-e3b97375f902",
+    alt: "Diverse team collaborating around a laptop in a bright workspace",
+  },
+  {
+    id: "1521791136064-7986c2920216",
+    alt: "Hands of people from many backgrounds joining together over a table",
   },
 ];

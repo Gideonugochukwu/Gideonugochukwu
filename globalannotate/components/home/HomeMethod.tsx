@@ -72,7 +72,7 @@ export default function HomeMethod() {
         <p className="text-sm font-medium uppercase tracking-[0.18em] text-brand-700">
           The GlobalAnnotate method
         </p>
-        <h2 className="mt-4 display-hero text-3xl sm:text-4xl md:text-5xl lg:text-[3.5rem] text-ink-900 leading-[1.02]">
+        <h2 className="section-h2 mt-4 text-ink-900">
           Quality you can audit.
           <br />
           <span className="text-gradient">Speed you can plan around.</span>

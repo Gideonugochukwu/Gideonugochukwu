@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import ServicePage from "@/components/ServicePage";
 import JsonLd from "@/components/JsonLd";
-import { img, unsplash } from "@/lib/images";
+import { img } from "@/lib/images";
 import { site } from "@/lib/site";
 import { serviceSchema, faqSchema, breadcrumbSchema } from "@/lib/schema";
 
@@ -172,8 +172,8 @@ export default function Page() {
         eyebrow="SEO & Search Visibility"
         title="Rank everywhere you sell — in every language."
         intro="Multilingual and international SEO is our edge. We pair native-language keyword research, hreflang and technical fixes, on-page content, and digital PR to grow organic revenue in every market you care about."
-        heroImage={unsplash(img.services.seo.id, 2400)}
-        heroImageAlt={img.services.seo.alt}
+        heroSlideId={img.services.seo.id}
+        heroSlideAlt={img.services.seo.alt}
         included={INCLUDED}
         useCases={USE_CASES}
         tiers={TIERS}

@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import ServicePage from "@/components/ServicePage";
 import JsonLd from "@/components/JsonLd";
-import { img, unsplash } from "@/lib/images";
+import { img } from "@/lib/images";
 import { site } from "@/lib/site";
 import { breadcrumbSchema, faqSchema, serviceSchema } from "@/lib/schema";
 
@@ -68,8 +68,8 @@ export default function Page() {
         eyebrow="AI Annotation & Data Labeling"
         title="Training data your models can trust."
         intro="Clean, consistent, well-documented labels for computer vision, NLP, and LLM teams — from pilot to production scale."
-        heroImage={unsplash(img.services.aiAnnotation.id, 2400)}
-        heroImageAlt={img.services.aiAnnotation.alt}
+        heroSlideId={img.services.aiAnnotation.id}
+        heroSlideAlt={img.services.aiAnnotation.alt}
         included={[
           {
             title: "Image annotation",

@@ -5,7 +5,8 @@ import Section from "@/components/Section";
 import CTABand from "@/components/CTABand";
 import Reveal from "@/components/Reveal";
 import JsonLd from "@/components/JsonLd";
-import { imageBg, unsplash } from "@/lib/images";
+import { imageBg, unsplash, portfolioHeroSlides } from "@/lib/images";
+import PageHero from "@/components/PageHero";
 import { site } from "@/lib/site";
 import { breadcrumbSchema } from "@/lib/schema";
 import { cases } from "@/data/portfolio";
@@ -38,23 +39,23 @@ export default function PortfolioPage() {
         ])}
       />
 
-      <Section className="pt-20 md:pt-28">
-        <div className="max-w-3xl">
-          <p className="text-xs font-medium uppercase tracking-[0.20em] text-brand-700">
-            Portfolio
-          </p>
-          <h1 className="display-hero mt-5 text-4xl md:text-6xl lg:text-7xl text-ink-900">
-            Real teams.
-            <br />
-            <span className="text-gradient">Real outcomes.</span>
-          </h1>
-          <p className="mt-6 text-lg md:text-xl text-ink-600 leading-relaxed">
-            A selection of recent engagements. Names redacted under NDA. Results verified.
-          </p>
-        </div>
-      </Section>
+      <PageHero
+        eyebrow="Portfolio"
+        title={
+          <>
+            Real teams.{" "}
+            <span className="text-gradient-light">Real outcomes.</span>
+          </>
+        }
+        subtitle="A selection of recent engagements. Names redacted under NDA. Results verified."
+        ctas={[
+          { label: "Talk to an expert", href: "/contact" },
+          { label: "All services", href: "/services", variant: "ghost" },
+        ]}
+        slides={portfolioHeroSlides}
+      />
 
-      <Section className="pt-4 md:pt-8">
+      <Section className="pt-12 md:pt-16">
         <div className="grid gap-x-8 gap-y-14 md:gap-y-20 md:grid-cols-2">
           {cases.map((c, i) => (
             <Reveal key={c.slug} delay={(i % 2) * 0.05}>

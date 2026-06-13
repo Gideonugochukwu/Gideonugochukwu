@@ -35,7 +35,7 @@ export default function HomeWhyUs() {
         <p className="text-sm font-medium uppercase tracking-[0.18em] text-brand-700">
           Why choose us
         </p>
-        <h2 className="mt-4 display-hero text-4xl md:text-5xl lg:text-6xl text-ink-900">
+        <h2 className="section-h2 mt-4 text-ink-900">
           Quality you can audit.
           <br />
           <span className="text-gradient">Speed you can plan around.</span>

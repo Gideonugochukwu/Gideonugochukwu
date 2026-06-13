@@ -7,7 +7,8 @@ import Reveal from "@/components/Reveal";
 import JsonLd from "@/components/JsonLd";
 import ServiceCTAGrid from "@/components/ServiceCTAGrid";
 import { cases, getCase, allCaseSlugs } from "@/data/portfolio";
-import { imageBg, unsplash } from "@/lib/images";
+import { imageBg, unsplash, portfolioHeroSlides } from "@/lib/images";
+import HeroSlideshow from "@/components/HeroSlideshow";
 import { site } from "@/lib/site";
 import { breadcrumbSchema } from "@/lib/schema";
 import { ArrowLeft, ArrowRight, ArrowUpRight, Check } from "lucide-react";
@@ -56,7 +57,10 @@ export default async function CaseStudyPage({
   if (!c) notFound();
 
   const url = `${site.url}/portfolio/${c.slug}`;
-  const heroSrc = unsplash(c.image.id, 2000);
+  const heroSlides = [
+    { id: c.image.id, alt: c.image.alt },
+    ...portfolioHeroSlides.filter((s) => s.id !== c.image.id),
+  ];
   const related = cases.filter((other) => other.slug !== c.slug).slice(0, 3);
 
   return (
@@ -69,26 +73,22 @@ export default async function CaseStudyPage({
         ])}
       />
 
-      {/* Hero — full-width image with editorial overlay copy */}
+      {/* Hero — same rotating-slideshow treatment as the main pages, plus
+          the service/industry/duration chips + client one-liner this page
+          needs. Refined .page-h1 typography. */}
       <section className="relative isolate overflow-hidden bg-ink-950 text-white">
-        <Image
-          src={heroSrc}
-          alt={c.image.alt}
-          fill
-          priority
-          sizes="100vw"
-          className="object-cover photo-treat-dark opacity-50"
-        />
+        <HeroSlideshow slides={heroSlides} />
         <div
           aria-hidden
           className="absolute inset-0"
           style={{
             background:
-              "linear-gradient(180deg, rgba(2,6,23,0.55) 0%, rgba(2,6,23,0.55) 40%, rgba(2,6,23,0.92) 100%)",
+              "linear-gradient(180deg, rgba(2,6,23,0.70) 0%, rgba(2,6,23,0.55) 40%, rgba(2,6,23,0.92) 100%)",
           }}
         />
+        <div aria-hidden className="absolute inset-0 hero-grid opacity-20" />
 
-        <div className="container-wide relative pt-24 pb-24">
+        <div className="container-wide relative pt-16 sm:pt-20 md:pt-24 pb-20 sm:pb-24 md:pb-28">
           <Link
             href="/portfolio"
             className="inline-flex items-center gap-1.5 text-sm font-semibold text-white/85 hover:text-white transition"
@@ -96,7 +96,7 @@ export default async function CaseStudyPage({
             <ArrowLeft className="h-4 w-4" /> All case studies
           </Link>
 
-          <div className="mt-8 flex flex-wrap items-center gap-2 text-xs">
+          <div className="mt-6 flex flex-wrap items-center gap-2 text-xs">
             <span className="inline-flex items-center rounded-full bg-white/10 px-2.5 py-1 font-medium text-white/90 ring-1 ring-white/20">
               {c.service}
             </span>
@@ -108,13 +108,11 @@ export default async function CaseStudyPage({
             </span>
           </div>
 
-          <h1 className="display-hero mt-6 max-w-4xl text-4xl md:text-6xl lg:text-7xl text-white">
-            {c.title}
-          </h1>
-          <p className="mt-5 max-w-3xl text-sm md:text-base text-white/70">
+          <h1 className="page-h1 mt-5 max-w-3xl text-white">{c.title}</h1>
+          <p className="mt-4 max-w-2xl text-sm md:text-base text-white/70">
             {c.client}
           </p>
-          <p className="mt-5 max-w-3xl text-lg md:text-xl text-white/85 leading-relaxed">
+          <p className="mt-4 max-w-2xl text-base sm:text-lg text-white/85 leading-relaxed">
             {c.summary}
           </p>
         </div>
@@ -145,7 +143,7 @@ export default async function CaseStudyPage({
             <p className="text-xs font-medium uppercase tracking-[0.20em] text-brand-700">
               Challenge
             </p>
-            <h2 className="mt-4 font-display text-3xl md:text-4xl lg:text-5xl font-semibold tracking-tight text-ink-900 leading-tight">
+            <h2 className="section-h2 mt-4 text-ink-900">
               What we walked into.
             </h2>
           </div>
@@ -162,7 +160,7 @@ export default async function CaseStudyPage({
             <p className="text-xs font-medium uppercase tracking-[0.20em] text-brand-700">
               What we did
             </p>
-            <h2 className="mt-4 font-display text-3xl md:text-4xl lg:text-5xl font-semibold tracking-tight text-ink-900 leading-tight">
+            <h2 className="section-h2 mt-4 text-ink-900">
               The work, step by step.
             </h2>
           </div>
@@ -193,7 +191,7 @@ export default async function CaseStudyPage({
             <p className="text-xs font-medium uppercase tracking-[0.20em] text-brand-700">
               Results
             </p>
-            <h2 className="mt-4 font-display text-3xl md:text-4xl lg:text-5xl font-semibold tracking-tight text-ink-900 leading-tight">
+            <h2 className="section-h2 mt-4 text-ink-900">
               What it shipped.
             </h2>
             <p className="mt-5 text-ink-600 leading-relaxed">
@@ -224,7 +222,7 @@ export default async function CaseStudyPage({
       {/* Related case studies */}
       <Section>
         <div className="flex flex-wrap items-end justify-between gap-6">
-          <h2 className="font-display text-2xl md:text-3xl font-semibold tracking-tight text-ink-900">
+          <h2 className="section-h2 text-ink-900">
             More case studies
           </h2>
           <Link

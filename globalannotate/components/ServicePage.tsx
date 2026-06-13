@@ -1,10 +1,11 @@
-import Image from "next/image";
 import Link from "next/link";
 import Section from "./Section";
 import FAQ, { FAQItem } from "./FAQ";
 import ServiceCTAGrid from "./ServiceCTAGrid";
+import PageHero from "./PageHero";
 import Reveal from "./Reveal";
 import { ArrowRight, Check } from "lucide-react";
+import { servicesHeroSlides } from "@/lib/images";
 
 export type Tier = {
   name: string;
@@ -19,8 +20,8 @@ export default function ServicePage({
   eyebrow,
   title,
   intro,
-  heroImage,
-  heroImageAlt,
+  heroSlideId,
+  heroSlideAlt,
   included,
   useCases,
   tiers,
@@ -29,58 +30,33 @@ export default function ServicePage({
   eyebrow: string;
   title: string;
   intro: string;
-  heroImage: string;
-  heroImageAlt: string;
+  // The service's own hero image — used as the FIRST slide of the rotation,
+  // so the page lands on its on-brand photo. The remaining services slides
+  // follow for variety.
+  heroSlideId: string;
+  heroSlideAlt: string;
   included: { title: string; body: string }[];
   useCases: { title: string; body: string }[];
   tiers: Tier[];
   faq: FAQItem[];
 }) {
+  const slides = [
+    { id: heroSlideId, alt: heroSlideAlt },
+    ...servicesHeroSlides.filter((s) => s.id !== heroSlideId),
+  ];
+
   return (
     <>
-      {/* Hero — quieter dark band with soft photo + emerald accent eyebrow */}
-      <section className="relative isolate overflow-hidden bg-gradient-to-br from-ink-950 via-ink-900 to-brand-900 text-white">
-        <Image
-          src={heroImage}
-          alt={heroImageAlt}
-          fill
-          priority
-          sizes="100vw"
-          className="object-cover photo-treat-dark opacity-35"
-        />
-        <div
-          aria-hidden
-          className="absolute inset-0"
-          style={{
-            background:
-              "linear-gradient(180deg, rgba(2,6,23,0.75) 0%, rgba(2,6,23,0.55) 50%, rgba(2,6,23,0.92) 100%), radial-gradient(50% 50% at 50% 0%, rgba(16,185,129,0.20), transparent 65%)",
-          }}
-        />
-        <div aria-hidden className="absolute inset-0 hero-grid opacity-25" />
-
-        <div className="container-wide relative pt-24 pb-28">
-          <p className="text-xs font-medium uppercase tracking-[0.20em] text-brand-300">
-            {eyebrow}
-          </p>
-          <h1 className="display-hero mt-5 max-w-4xl text-4xl md:text-6xl lg:text-7xl text-white">
-            {title}
-          </h1>
-          <p className="mt-6 max-w-2xl text-lg md:text-xl text-white/80 leading-relaxed">
-            {intro}
-          </p>
-          <div className="mt-9 flex flex-col sm:flex-row gap-3">
-            <Link
-              href="/contact"
-              className="inline-flex items-center justify-center gap-2 rounded-xl bg-white text-ink-900 px-5 py-3.5 font-semibold hover:bg-brand-50 transition"
-            >
-              Talk to an expert <ArrowRight className="h-4 w-4" />
-            </Link>
-            <Link href="/services" className="btn-ghost-light">
-              All services
-            </Link>
-          </div>
-        </div>
-      </section>
+      <PageHero
+        eyebrow={eyebrow}
+        title={title}
+        subtitle={intro}
+        ctas={[
+          { label: "Talk to an expert", href: "/contact" },
+          { label: "All services", href: "/services", variant: "ghost" },
+        ]}
+        slides={slides}
+      />
 
       {/* What's included — editorial 3-column with inline check icons; no boxes */}
       <Section className="pt-24 md:pt-32">
@@ -89,7 +65,7 @@ export default function ServicePage({
             <p className="text-xs font-medium uppercase tracking-[0.20em] text-brand-700">
               What&apos;s included
             </p>
-            <h2 className="mt-4 font-display text-3xl md:text-4xl lg:text-5xl font-semibold tracking-tight text-ink-900 leading-tight">
+            <h2 className="section-h2 mt-4 text-ink-900">
               Everything you need,
               <br />
               end to end.
@@ -126,7 +102,7 @@ export default function ServicePage({
           <p className="text-xs font-medium uppercase tracking-[0.20em] text-brand-700">
             Use cases
           </p>
-          <h2 className="mt-4 font-display text-3xl md:text-4xl lg:text-5xl font-semibold tracking-tight text-ink-900 leading-tight">
+          <h2 className="section-h2 mt-4 text-ink-900">
             Built for the work you actually do.
           </h2>
         </div>
@@ -150,7 +126,7 @@ export default function ServicePage({
           <p className="text-xs font-medium uppercase tracking-[0.20em] text-brand-700">
             Pricing
           </p>
-          <h2 className="mt-4 font-display text-3xl md:text-4xl lg:text-5xl font-semibold tracking-tight text-ink-900 leading-tight">
+          <h2 className="section-h2 mt-4 text-ink-900">
             Simple tiers. Tailored proposals.
           </h2>
           <p className="mt-4 text-ink-600 text-lg leading-relaxed">
@@ -218,7 +194,7 @@ export default function ServicePage({
           <p className="text-xs font-medium uppercase tracking-[0.20em] text-brand-700">
             FAQ
           </p>
-          <h2 className="mt-4 font-display text-3xl md:text-4xl lg:text-5xl font-semibold tracking-tight text-ink-900 leading-tight">
+          <h2 className="section-h2 mt-4 text-ink-900">
             Questions, answered.
           </h2>
         </div>
