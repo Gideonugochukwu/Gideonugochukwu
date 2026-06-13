@@ -1,5 +1,5 @@
 import type { Metadata, Viewport } from "next";
-import { Bricolage_Grotesque, Plus_Jakarta_Sans } from "next/font/google";
+import { Bricolage_Grotesque, Plus_Jakarta_Sans, Poppins } from "next/font/google";
 import "./globals.css";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
@@ -18,6 +18,16 @@ const display = Bricolage_Grotesque({
   variable: "--font-display",
   subsets: ["latin"],
   weight: ["400", "500", "600", "700", "800"],
+  display: "swap",
+});
+
+// Brand-only font for the "GlobalAnnotate" wordmark beside the GA monogram
+// in the header and footer. Scoped via the .brand-wordmark utility — body
+// stays Plus Jakarta Sans, headings stay Bricolage Grotesque.
+const brand = Poppins({
+  variable: "--font-brand",
+  subsets: ["latin"],
+  weight: ["700"],
   display: "swap",
 });
 
@@ -73,7 +83,10 @@ export default function RootLayout({
   children,
 }: Readonly<{ children: React.ReactNode }>) {
   return (
-    <html lang="en" className={`${body.variable} ${display.variable}`}>
+    <html
+      lang="en"
+      className={`${body.variable} ${display.variable} ${brand.variable}`}
+    >
       <body className="min-h-screen flex flex-col bg-white text-ink-900">
         <JsonLd data={[organizationSchema(), websiteSchema()]} />
         <ToastProvider>

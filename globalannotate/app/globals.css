@@ -89,6 +89,16 @@
     line-height: 0.98;
   }
 
+  /* Logo-style wordmark — Poppins 700, slightly tightened, used only beside
+     the GA monogram in the Navbar and Footer. Do NOT apply this anywhere
+     else; body and heading fonts stay unchanged. */
+  .brand-wordmark {
+    font-family: var(--font-brand), var(--font-body), ui-sans-serif, system-ui, sans-serif;
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    line-height: 1;
+  }
+
   .text-gradient {
     background: linear-gradient(135deg, #0f172a 0%, #064e3b 55%, #10b981 100%);
     -webkit-background-clip: text;
