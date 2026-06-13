@@ -4,8 +4,9 @@ import Section from "@/components/Section";
 import CTABand from "@/components/CTABand";
 import Reveal from "@/components/Reveal";
 import { Compass, HeartHandshake, Sparkles, Globe2 } from "lucide-react";
-import { img, imageBg, unsplash } from "@/lib/images";
+import { img, imageBg, unsplash, aboutHeroSlides } from "@/lib/images";
 import JsonLd from "@/components/JsonLd";
+import PageHero from "@/components/PageHero";
 import { site } from "@/lib/site";
 import { breadcrumbSchema } from "@/lib/schema";
 
@@ -58,39 +59,17 @@ export default function AboutPage() {
           { name: "About", url: `${site.url}/about` },
         ])}
       />
-      <section className="relative isolate overflow-hidden bg-gradient-to-br from-ink-950 via-ink-900 to-brand-900 text-white">
-        <Image
-          src={unsplash(img.about.team.id, 2400)}
-          alt={img.about.team.alt}
-          fill
-          priority
-          sizes="100vw"
-          className="object-cover photo-treat-dark opacity-45"
-        />
-        <div
-          aria-hidden
-          className="absolute inset-0"
-          style={{
-            background:
-              "linear-gradient(180deg, rgba(2,6,23,0.80) 0%, rgba(2,6,23,0.60) 50%, rgba(2,6,23,0.92) 100%), radial-gradient(50% 50% at 50% 0%, rgba(16,185,129,0.25), transparent 65%)",
-          }}
-        />
-        <div aria-hidden className="absolute inset-0 hero-grid opacity-40" />
-        <div className="container-wide relative pt-20 pb-24">
-          <span className="badge-light">About GlobalAnnotate</span>
-          <h1 className="display-hero mt-5 max-w-4xl text-4xl md:text-6xl lg:text-7xl text-white">
-            The connective tissue for international growth.
-          </h1>
-          <p className="mt-6 max-w-2xl text-lg md:text-xl text-white/80 leading-relaxed">
-            One team for translation, AI training data, multilingual SEO, and marketing — with the rigor of a product company.
-          </p>
-        </div>
-      </section>
+      <PageHero
+        eyebrow="About GlobalAnnotate"
+        title="The connective tissue for international growth."
+        subtitle="One team for translation, AI training data, multilingual SEO, and marketing — with the rigor of a product company."
+        slides={aboutHeroSlides}
+      />
 
       <Section>
         <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-start">
           <div>
-            <h2 className="text-3xl md:text-5xl font-semibold tracking-tight">
+            <h2 className="section-h2 text-ink-900">
               Our mission
             </h2>
             <p className="mt-5 text-lg text-ink-600 leading-relaxed">
@@ -140,7 +119,7 @@ export default function AboutPage() {
             </figcaption>
           </figure>
           <div className="lg:order-0">
-            <h2 className="text-3xl md:text-5xl font-semibold tracking-tight">
+            <h2 className="section-h2 text-ink-900">
               How we started
             </h2>
             <p className="mt-5 text-ink-600 leading-relaxed">
@@ -156,7 +135,7 @@ export default function AboutPage() {
       <Section>
         <div className="max-w-2xl">
           <span className="badge">Our values</span>
-          <h2 className="mt-4 text-3xl md:text-5xl font-semibold tracking-tight">
+          <h2 className="section-h2 mt-4 text-ink-900">
             How we show up — for clients and each other.
           </h2>
         </div>

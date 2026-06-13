@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import ServicePage from "@/components/ServicePage";
 import JsonLd from "@/components/JsonLd";
-import { img, unsplash } from "@/lib/images";
+import { img } from "@/lib/images";
 import { site } from "@/lib/site";
 import { breadcrumbSchema, faqSchema, serviceSchema } from "@/lib/schema";
 
@@ -68,8 +68,8 @@ export default function Page() {
         eyebrow="Translation & Localization"
         title="Speak to every market — like you live there."
         intro="Native linguists translate and localize your content so it reads as if it were written for each audience from day one."
-        heroImage={unsplash(img.services.translation.id, 2400)}
-        heroImageAlt={img.services.translation.alt}
+        heroSlideId={img.services.translation.id}
+        heroSlideAlt={img.services.translation.alt}
         included={[
           {
             title: "Website & app localization",

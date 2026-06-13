@@ -5,8 +5,9 @@ import Section from "@/components/Section";
 import Reveal from "@/components/Reveal";
 import JsonLd from "@/components/JsonLd";
 import ServiceCTAGrid from "@/components/ServiceCTAGrid";
+import PageHero from "@/components/PageHero";
 import { services, site } from "@/lib/site";
-import { img, imageBg, unsplash } from "@/lib/images";
+import { img, imageBg, unsplash, servicesHeroSlides } from "@/lib/images";
 import { breadcrumbSchema } from "@/lib/schema";
 import { ArrowRight, Brain, Languages, Megaphone, Search } from "lucide-react";
 
@@ -46,50 +47,36 @@ export default function ServicesPage() {
         ])}
       />
 
-      {/* Hero — light, spacious, no decoration */}
-      <Section className="pt-20 md:pt-28">
-        <div className="grid lg:grid-cols-[1.2fr_1fr] gap-12 lg:gap-20 items-end">
-          <div className="max-w-2xl">
-            <p className="text-xs font-medium uppercase tracking-[0.20em] text-brand-700">
-              Services
-            </p>
-            <h1 className="display-hero mt-5 text-4xl md:text-6xl lg:text-7xl text-ink-900">
-              One toolkit.
-              <br />
-              <span className="text-gradient">Every market.</span>
-            </h1>
-            <p className="mt-6 text-lg md:text-xl text-ink-600 leading-relaxed">
-              Four core services that work together — or independently — to help your team move faster across markets.
-            </p>
-            <div className="mt-9 flex flex-wrap items-center gap-x-6 gap-y-3">
-              <Link
-                href="/contact"
-                className="inline-flex items-center gap-2 rounded-xl bg-ink-900 px-5 py-3 text-sm font-semibold text-white hover:bg-brand-700 transition"
+      <PageHero
+        eyebrow="Services"
+        title={
+          <>
+            One toolkit. <span className="text-gradient-light">Every market.</span>
+          </>
+        }
+        subtitle="Four core services that work together — or independently — to help your team move faster across markets."
+        ctas={[
+          { label: "Talk to an expert", href: "/contact" },
+          { label: "See case studies", href: "/portfolio", variant: "ghost" },
+        ]}
+        slides={servicesHeroSlides}
+      />
+
+      {/* Quick-jump service list below the hero */}
+      <Section className="pt-12 md:pt-16">
+        <ul className="grid gap-3 text-sm sm:grid-cols-2 lg:grid-cols-4">
+          {services.map((s) => (
+            <li key={s.slug}>
+              <a
+                href={`#${s.slug}`}
+                className="group flex items-center justify-between rounded-xl border border-ink-200/80 bg-white px-4 py-3 hover:border-brand-300 transition"
               >
-                Talk to an expert <ArrowRight className="h-4 w-4" />
-              </Link>
-              <Link
-                href="/portfolio"
-                className="inline-flex items-center gap-1.5 text-sm font-semibold text-ink-900 hover:text-brand-700 transition"
-              >
-                See case studies <ArrowRight className="h-4 w-4" />
-              </Link>
-            </div>
-          </div>
-          <ul className="grid gap-3 text-sm">
-            {services.map((s) => (
-              <li key={s.slug}>
-                <a
-                  href={`#${s.slug}`}
-                  className="group flex items-center justify-between rounded-xl border border-ink-200/80 bg-white px-4 py-3 hover:border-brand-300 transition"
-                >
-                  <span className="font-medium text-ink-900">{s.short}</span>
-                  <ArrowRight className="h-4 w-4 text-ink-400 group-hover:text-brand-700 transition" />
-                </a>
-              </li>
-            ))}
-          </ul>
-        </div>
+                <span className="font-medium text-ink-900">{s.short}</span>
+                <ArrowRight className="h-4 w-4 text-ink-400 group-hover:text-brand-700 transition" />
+              </a>
+            </li>
+          ))}
+        </ul>
       </Section>
 
       {/* Service detail rows — alternating editorial image + copy. No card walls. */}
@@ -128,9 +115,7 @@ export default function ServicesPage() {
                     <p className="mt-5 text-xs font-medium uppercase tracking-[0.20em] text-brand-700">
                       0{i + 1} · Service
                     </p>
-                    <h2 className="mt-3 font-display text-3xl md:text-4xl lg:text-5xl font-semibold tracking-tight text-ink-900 leading-tight">
-                      {s.title}
-                    </h2>
+                    <h2 className="section-h2 mt-3 text-ink-900">{s.title}</h2>
                     <p className="mt-5 text-lg text-ink-600 leading-relaxed">
                       {s.summary}
                     </p>

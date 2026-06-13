@@ -89,6 +89,31 @@
     line-height: 0.98;
   }
 
+  /* Unified, restrained type scale used site-wide so no page has oversized
+     headings. .page-h1 is the only H1 size; .section-h2 is the only big
+     section heading. Body type stays as the global default. */
+  .page-h1 {
+    font-family: var(--font-display);
+    font-weight: 700;
+    font-size: clamp(2.25rem, 3.2vw + 1rem, 3.5rem);
+    line-height: 1.1;
+    letter-spacing: -0.025em;
+  }
+  .section-h2 {
+    font-family: var(--font-display);
+    font-weight: 600;
+    font-size: clamp(1.625rem, 1.8vw + 0.75rem, 2.25rem);
+    line-height: 1.15;
+    letter-spacing: -0.02em;
+  }
+  .section-h3 {
+    font-family: var(--font-display);
+    font-weight: 600;
+    font-size: clamp(1.125rem, 0.6vw + 0.85rem, 1.375rem);
+    line-height: 1.25;
+    letter-spacing: -0.015em;
+  }
+
   /* Logo-style wordmark — Poppins 700, slightly tightened, used only beside
      the GA monogram in the Navbar and Footer. Do NOT apply this anywhere
      else; body and heading fonts stay unchanged. */

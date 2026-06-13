@@ -8,6 +8,8 @@ import ReviewAuthor from "@/components/ReviewAuthor";
 import { reviews, authorDisplay } from "@/data/reviews";
 import { site } from "@/lib/site";
 import { breadcrumbSchema, reviewListingSchema } from "@/lib/schema";
+import PageHero from "@/components/PageHero";
+import { portfolioHeroSlides } from "@/lib/images";
 
 const TITLE = "Client Reviews";
 const DESCRIPTION =
@@ -51,17 +53,17 @@ export default function ReviewsPage() {
           ]),
         ]}
       />
-      <Section className="pt-16">
-        <div className="max-w-3xl">
-          <span className="badge">Client Reviews</span>
-          <h1 className="display-hero mt-5 text-4xl md:text-6xl lg:text-7xl">
-            Trusted by global teams.
-          </h1>
-          <p className="mt-6 text-lg md:text-xl text-ink-600 leading-relaxed">
-            What clients say after working with us.
-          </p>
+      <PageHero
+        eyebrow="Client Reviews"
+        title="Trusted by global teams."
+        subtitle="What clients say after working with us."
+        slides={portfolioHeroSlides}
+        size="compact"
+      />
 
-          <div className="mt-7 inline-flex items-center gap-4 rounded-xl border border-ink-200 bg-white px-5 py-3">
+      <Section className="pt-12 md:pt-16">
+        <div className="max-w-3xl">
+          <div className="inline-flex items-center gap-4 rounded-xl border border-ink-200 bg-white px-5 py-3">
             <div>
               <div className="font-display text-2xl font-semibold leading-none">
                 {avg.toFixed(1)}
@@ -101,7 +103,7 @@ export default function ReviewsPage() {
         <div className="grid lg:grid-cols-2 gap-12 items-start">
           <div>
             <span className="badge">Leave a review</span>
-            <h2 className="mt-4 text-3xl md:text-5xl font-semibold tracking-tight">
+            <h2 className="section-h2 mt-4 text-ink-900">
               Worked with us? We&apos;d love to hear from you.
             </h2>
             <p className="mt-4 text-ink-600 leading-relaxed">

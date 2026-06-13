@@ -1,0 +1,143 @@
+"use client";
+
+import Link from "next/link";
+import { motion, useReducedMotion } from "framer-motion";
+import { ArrowRight } from "lucide-react";
+import HeroSlideshow from "./HeroSlideshow";
+
+type Slide = { id: string; alt: string };
+
+export type PageHeroCta = {
+  label: string;
+  href: string;
+  variant?: "primary" | "ghost";
+};
+
+// One reusable hero used on every main page: Home, Services, Portfolio,
+// About. Always renders the same look — dark gradient over a rotating
+// background slideshow, optional eyebrow, a normal-sized headline
+// (page-h1 clamp), an optional pre-slot (used for the multilingual
+// greeting on Home), an optional subtitle, and up to two CTAs.
+export default function PageHero({
+  eyebrow,
+  pre,
+  title,
+  subtitle,
+  ctas,
+  slides,
+  size = "default",
+}: {
+  eyebrow?: string;
+  pre?: React.ReactNode;
+  title: React.ReactNode;
+  subtitle?: React.ReactNode;
+  ctas?: PageHeroCta[];
+  slides: Slide[];
+  // "default" = standard hero used by main pages; "compact" = shallower
+  // hero used by section pages like Reviews / Blog / Contact / Legal.
+  size?: "default" | "compact";
+}) {
+  const reduce = useReducedMotion();
+
+  const paddingY =
+    size === "compact"
+      ? "pt-16 sm:pt-20 md:pt-24 pb-16 sm:pb-20 md:pb-24"
+      : "pt-16 sm:pt-20 md:pt-24 pb-20 sm:pb-24 md:pb-28";
+
+  return (
+    <section className="relative isolate overflow-hidden bg-ink-950 text-white">
+      <HeroSlideshow slides={slides} />
+
+      <div
+        aria-hidden
+        className="absolute inset-0"
+        style={{
+          background:
+            "linear-gradient(180deg, rgba(2,6,23,0.70) 0%, rgba(2,6,23,0.55) 40%, rgba(2,6,23,0.92) 100%)",
+        }}
+      />
+      <div aria-hidden className="absolute inset-0 hero-grid opacity-20" />
+
+      <div className={`container-wide relative ${paddingY}`}>
+        <div className="max-w-3xl">
+          {eyebrow && (
+            <motion.p
+              initial={reduce ? false : { opacity: 0, y: 8 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: 0.05 }}
+              className="text-xs font-medium uppercase tracking-[0.20em] text-brand-300"
+            >
+              {eyebrow}
+            </motion.p>
+          )}
+
+          {pre && (
+            <motion.div
+              initial={reduce ? false : { opacity: 0, y: 8 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.05 }}
+              className="mt-2"
+            >
+              {pre}
+            </motion.div>
+          )}
+
+          <motion.h1
+            initial={reduce ? false : { opacity: 0, y: 14 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.7, delay: 0.2, ease: [0.22, 1, 0.36, 1] }}
+            className="page-h1 mt-4 sm:mt-5 text-white max-w-3xl"
+          >
+            {title}
+          </motion.h1>
+
+          {subtitle && (
+            <motion.p
+              initial={reduce ? false : { opacity: 0, y: 10 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.45 }}
+              className="mt-5 text-base sm:text-lg text-white/75 max-w-xl leading-relaxed"
+            >
+              {subtitle}
+            </motion.p>
+          )}
+
+          {ctas && ctas.length > 0 && (
+            <motion.div
+              initial={reduce ? false : { opacity: 0, y: 10 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.6 }}
+              className="mt-7 flex flex-col sm:flex-row items-stretch sm:items-center gap-3"
+            >
+              {ctas.map((c) =>
+                c.variant === "ghost" ? (
+                  <Link key={c.href + c.label} href={c.href} className="btn-ghost-light">
+                    {c.label}
+                  </Link>
+                ) : (
+                  <Link
+                    key={c.href + c.label}
+                    href={c.href}
+                    className="inline-flex items-center justify-center gap-2 rounded-xl bg-white text-ink-900 px-5 py-3 font-semibold hover:bg-brand-50 transition shadow-sm"
+                  >
+                    {c.label} <ArrowRight className="h-4 w-4" />
+                  </Link>
+                )
+              )}
+            </motion.div>
+          )}
+        </div>
+      </div>
+
+      {/* Soft fade into the next white section. */}
+      <div
+        aria-hidden
+        className="absolute inset-x-0 bottom-0 h-20"
+        style={{
+          background:
+            "linear-gradient(180deg, transparent 0%, rgba(255,255,255,0.55) 70%, #ffffff 100%)",
+        }}
+      />
+    </section>
+  );
+}

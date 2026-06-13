@@ -6,7 +6,8 @@ import CTABand from "@/components/CTABand";
 import Reveal from "@/components/Reveal";
 import JsonLd from "@/components/JsonLd";
 import { posts } from "@/data/blog";
-import { imageBg, unsplash } from "@/lib/images";
+import { imageBg, unsplash, servicesHeroSlides } from "@/lib/images";
+import PageHero from "@/components/PageHero";
 import { site } from "@/lib/site";
 import { breadcrumbSchema } from "@/lib/schema";
 import { ArrowUpRight } from "lucide-react";
@@ -46,18 +47,16 @@ export default function BlogIndex() {
           { name: "Blog", url: `${site.url}/blog` },
         ])}
       />
-      <Section className="pt-16">
-        <div className="max-w-3xl">
-          <span className="badge">Insights</span>
-          <h1 className="display-hero mt-5 text-4xl md:text-6xl lg:text-7xl">
-            Field notes from the global team.
-          </h1>
-          <p className="mt-6 text-lg md:text-xl text-ink-600 leading-relaxed">
-            Practical guides on AI data, localization, and international SEO — written by the people doing the work.
-          </p>
-        </div>
+      <PageHero
+        eyebrow="Insights"
+        title="Field notes from the global team."
+        subtitle="Practical guides on AI data, localization, and international SEO — written by the people doing the work."
+        slides={servicesHeroSlides}
+        size="compact"
+      />
 
-        <div className="mt-14 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+      <Section className="pt-12 md:pt-16">
+        <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
           {sorted.map((p, i) => (
             <Reveal key={p.slug} delay={i * 0.04}>
               <Link
@@ -87,7 +86,7 @@ export default function BlogIndex() {
                     <span aria-hidden>·</span>
                     <span>{p.readMinutes} min read</span>
                   </div>
-                  <h2 className="mt-3 text-lg md:text-xl font-semibold tracking-tight">
+                  <h2 className="section-h3 mt-3 text-ink-900">
                     {p.title}
                   </h2>
                   <p className="mt-3 text-sm text-ink-600 leading-relaxed flex-1">

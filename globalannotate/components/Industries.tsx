@@ -53,7 +53,7 @@ export default function Industries() {
           <p className="text-sm font-medium uppercase tracking-[0.18em] text-brand-700">
             Industries we serve
           </p>
-          <h2 className="mt-4 display-hero text-3xl sm:text-4xl md:text-5xl lg:text-6xl text-ink-900 leading-[1.02]">
+          <h2 className="section-h2 mt-4 text-ink-900">
             Built for global teams in every industry.
           </h2>
         </div>
