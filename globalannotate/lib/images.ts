@@ -150,6 +150,12 @@ export const img = {
       id: "1456406644174-8ddd4cd52a06",
       alt: "Laptop, notebook and glasses on a desk representing an online learning platform",
     },
+    // Adem AY phone showing Instagram feed — one of the most-used "social
+    // media" stock photos on Unsplash. Reads instantly as content / social.
+    socialMedia: {
+      id: "1611162617213-7d7a39e9b1d7",
+      alt: "Smartphone showing a social-media feed, representing content and community management",
+    },
   },
   about: {
     // Brooke Cagle team meeting — diverse modern workplace.
