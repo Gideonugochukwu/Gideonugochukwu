@@ -22,7 +22,7 @@ export default function Logo({ withWordmark = true }: { withWordmark?: boolean }
         />
       </span>
       {withWordmark && (
-        <span className="font-display font-semibold text-ink-900 tracking-tight">
+        <span className="brand-wordmark text-ink-900">
           GlobalAnnotate
         </span>
       )}
