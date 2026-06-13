@@ -1,0 +1,275 @@
+import type { Metadata } from "next";
+import Image from "next/image";
+import Link from "next/link";
+import { notFound } from "next/navigation";
+import Section from "@/components/Section";
+import Reveal from "@/components/Reveal";
+import JsonLd from "@/components/JsonLd";
+import ServiceCTAGrid from "@/components/ServiceCTAGrid";
+import { cases, getCase, allCaseSlugs } from "@/data/portfolio";
+import { imageBg, unsplash } from "@/lib/images";
+import { site } from "@/lib/site";
+import { breadcrumbSchema } from "@/lib/schema";
+import { ArrowLeft, ArrowRight, ArrowUpRight, Check } from "lucide-react";
+
+export function generateStaticParams() {
+  return allCaseSlugs().map((slug) => ({ slug }));
+}
+
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ slug: string }>;
+}): Promise<Metadata> {
+  const { slug } = await params;
+  const c = getCase(slug);
+  if (!c) return { title: "Case study not found" };
+  const url = `${site.url}/portfolio/${c.slug}`;
+  const image = unsplash(c.image.id, 1600);
+  return {
+    title: `${c.title} — Case Study`,
+    description: c.summary,
+    alternates: { canonical: url },
+    openGraph: {
+      title: c.title,
+      description: c.summary,
+      url,
+      type: "article",
+      images: [{ url: image, alt: c.image.alt }],
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: c.title,
+      description: c.summary,
+      images: [image],
+    },
+  };
+}
+
+export default async function CaseStudyPage({
+  params,
+}: {
+  params: Promise<{ slug: string }>;
+}) {
+  const { slug } = await params;
+  const c = getCase(slug);
+  if (!c) notFound();
+
+  const url = `${site.url}/portfolio/${c.slug}`;
+  const heroSrc = unsplash(c.image.id, 2000);
+  const related = cases.filter((other) => other.slug !== c.slug).slice(0, 3);
+
+  return (
+    <>
+      <JsonLd
+        data={breadcrumbSchema([
+          { name: "Home", url: site.url },
+          { name: "Portfolio", url: `${site.url}/portfolio` },
+          { name: c.title, url },
+        ])}
+      />
+
+      {/* Hero — full-width image with editorial overlay copy */}
+      <section className="relative isolate overflow-hidden bg-ink-950 text-white">
+        <Image
+          src={heroSrc}
+          alt={c.image.alt}
+          fill
+          priority
+          sizes="100vw"
+          className="object-cover opacity-50"
+        />
+        <div
+          aria-hidden
+          className="absolute inset-0"
+          style={{
+            background:
+              "linear-gradient(180deg, rgba(2,6,23,0.55) 0%, rgba(2,6,23,0.55) 40%, rgba(2,6,23,0.92) 100%)",
+          }}
+        />
+
+        <div className="container-wide relative pt-24 pb-24">
+          <Link
+            href="/portfolio"
+            className="inline-flex items-center gap-1.5 text-sm font-semibold text-white/85 hover:text-white transition"
+          >
+            <ArrowLeft className="h-4 w-4" /> All case studies
+          </Link>
+
+          <div className="mt-8 flex flex-wrap items-center gap-2 text-xs">
+            <span className="inline-flex items-center rounded-full bg-white/10 px-2.5 py-1 font-medium text-white/90 ring-1 ring-white/20">
+              {c.service}
+            </span>
+            <span className="inline-flex items-center rounded-full bg-white/10 px-2.5 py-1 font-medium text-white/90 ring-1 ring-white/20">
+              {c.industry}
+            </span>
+            <span className="inline-flex items-center rounded-full bg-white/10 px-2.5 py-1 font-medium text-white/90 ring-1 ring-white/20">
+              {c.duration}
+            </span>
+          </div>
+
+          <h1 className="display-hero mt-6 max-w-4xl text-4xl md:text-6xl lg:text-7xl text-white">
+            {c.title}
+          </h1>
+          <p className="mt-5 max-w-3xl text-sm md:text-base text-white/70">
+            {c.client}
+          </p>
+          <p className="mt-5 max-w-3xl text-lg md:text-xl text-white/85 leading-relaxed">
+            {c.summary}
+          </p>
+        </div>
+      </section>
+
+      {/* Outcomes strip — the full set, large editorial numbers, no boxes */}
+      <Section className="pt-16 md:pt-20">
+        <div className="grid grid-cols-2 gap-y-10 gap-x-8 md:grid-cols-3 lg:grid-cols-6">
+          {c.outcomes.map((o, i) => (
+            <Reveal key={o.label} delay={i * 0.04}>
+              <div>
+                <div className="display-num text-3xl md:text-4xl lg:text-5xl">
+                  {o.value}
+                </div>
+                <div className="mt-2 text-xs md:text-sm text-ink-500 tracking-wide">
+                  {o.label}
+                </div>
+              </div>
+            </Reveal>
+          ))}
+        </div>
+      </Section>
+
+      {/* Challenge — large editorial paragraph */}
+      <Section className="bg-ink-50/40">
+        <div className="grid lg:grid-cols-[1fr_2fr] gap-12 lg:gap-20">
+          <div>
+            <p className="text-xs font-medium uppercase tracking-[0.20em] text-brand-700">
+              Challenge
+            </p>
+            <h2 className="mt-4 font-display text-3xl md:text-4xl lg:text-5xl font-semibold tracking-tight text-ink-900 leading-tight">
+              What we walked into.
+            </h2>
+          </div>
+          <p className="text-lg md:text-xl text-ink-700 leading-relaxed">
+            {c.challenge}
+          </p>
+        </div>
+      </Section>
+
+      {/* Approach — full "What we did" list with check chips */}
+      <Section>
+        <div className="grid lg:grid-cols-[1fr_2fr] gap-12 lg:gap-20">
+          <div>
+            <p className="text-xs font-medium uppercase tracking-[0.20em] text-brand-700">
+              What we did
+            </p>
+            <h2 className="mt-4 font-display text-3xl md:text-4xl lg:text-5xl font-semibold tracking-tight text-ink-900 leading-tight">
+              The work, step by step.
+            </h2>
+          </div>
+          <ol className="space-y-6">
+            {c.approach.map((step, i) => (
+              <Reveal key={step} delay={i * 0.04}>
+                <li className="flex items-start gap-5">
+                  <span
+                    aria-hidden
+                    className="display-num shrink-0 text-2xl md:text-3xl pt-1 w-10 md:w-12"
+                  >
+                    {String(i + 1).padStart(2, "0")}
+                  </span>
+                  <p className="text-base md:text-lg text-ink-700 leading-relaxed border-l border-ink-200/80 pl-5">
+                    {step}
+                  </p>
+                </li>
+              </Reveal>
+            ))}
+          </ol>
+        </div>
+      </Section>
+
+      {/* Results — outcomes a second time, this time as a labelled grid */}
+      <Section className="bg-ink-50/40">
+        <div className="grid lg:grid-cols-[1fr_2fr] gap-12 lg:gap-20">
+          <div>
+            <p className="text-xs font-medium uppercase tracking-[0.20em] text-brand-700">
+              Results
+            </p>
+            <h2 className="mt-4 font-display text-3xl md:text-4xl lg:text-5xl font-semibold tracking-tight text-ink-900 leading-tight">
+              What it shipped.
+            </h2>
+            <p className="mt-5 text-ink-600 leading-relaxed">
+              Outcomes measured against the brief we agreed up front, not vanity metrics.
+            </p>
+          </div>
+          <ul className="grid gap-x-8 gap-y-6 sm:grid-cols-2">
+            {c.outcomes.map((o) => (
+              <li key={o.label} className="flex items-start gap-4">
+                <span
+                  aria-hidden
+                  className="mt-1 inline-flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-brand-50 text-brand-700"
+                >
+                  <Check className="h-4 w-4" strokeWidth={2.2} />
+                </span>
+                <div>
+                  <div className="text-sm text-ink-500">{o.label}</div>
+                  <div className="mt-0.5 font-display text-2xl font-semibold text-ink-900 tracking-tight">
+                    {o.value}
+                  </div>
+                </div>
+              </li>
+            ))}
+          </ul>
+        </div>
+      </Section>
+
+      {/* Related case studies */}
+      <Section>
+        <div className="flex flex-wrap items-end justify-between gap-6">
+          <h2 className="font-display text-2xl md:text-3xl font-semibold tracking-tight text-ink-900">
+            More case studies
+          </h2>
+          <Link
+            href="/portfolio"
+            className="inline-flex items-center gap-1.5 text-sm font-semibold text-ink-900 hover:text-brand-700 transition"
+          >
+            See all <ArrowRight className="h-4 w-4" />
+          </Link>
+        </div>
+        <div className="mt-10 grid gap-x-8 gap-y-10 md:grid-cols-3">
+          {related.map((r) => (
+            <Link
+              key={r.slug}
+              href={`/portfolio/${r.slug}`}
+              className="group block"
+            >
+              <div className={`relative aspect-[16/10] overflow-hidden rounded-2xl ${imageBg}`}>
+                <Image
+                  src={unsplash(r.image.id, 1000)}
+                  alt={r.image.alt}
+                  fill
+                  sizes="(max-width: 768px) 100vw, 400px"
+                  className="object-cover transition-transform duration-[900ms] ease-out group-hover:scale-[1.04]"
+                />
+                <span className="absolute top-3 left-3 inline-flex items-center rounded-full bg-white/95 px-2.5 py-1 text-xs font-medium text-brand-700">
+                  {r.service}
+                </span>
+              </div>
+              <h3 className="mt-4 font-display text-lg font-semibold tracking-tight text-ink-900 group-hover:text-brand-700 transition">
+                {r.title}
+              </h3>
+              <p className="mt-2 text-sm text-ink-600 leading-relaxed">
+                {r.summary}
+              </p>
+              <span className="mt-3 inline-flex items-center gap-1.5 text-sm font-semibold text-brand-700 group-hover:gap-2.5 transition-all">
+                Read case study <ArrowUpRight className="h-4 w-4" />
+              </span>
+            </Link>
+          ))}
+        </div>
+      </Section>
+
+      <Section className="pb-24">
+        <ServiceCTAGrid />
+      </Section>
+    </>
+  );
+}

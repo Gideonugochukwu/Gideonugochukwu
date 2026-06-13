@@ -1,6 +1,7 @@
 import type { MetadataRoute } from "next";
 import { site, services } from "@/lib/site";
 import { posts } from "@/data/blog";
+import { cases } from "@/data/portfolio";
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const now = new Date();
@@ -30,7 +31,18 @@ export default function sitemap(): MetadataRoute.Sitemap {
     lastModified: new Date(p.date),
   }));
 
-  return [...staticRoutes, ...serviceRoutes, ...blogRoutes].map((r) => {
+  const portfolioRoutes = cases.map((c) => ({
+    path: `/portfolio/${c.slug}`,
+    priority: 0.75,
+    changeFrequency: "monthly" as const,
+  }));
+
+  return [
+    ...staticRoutes,
+    ...serviceRoutes,
+    ...blogRoutes,
+    ...portfolioRoutes,
+  ].map((r) => {
     const lastModified =
       "lastModified" in r && r.lastModified instanceof Date ? r.lastModified : now;
     return {
