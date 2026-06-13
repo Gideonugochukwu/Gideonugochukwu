@@ -77,7 +77,7 @@ export default async function CaseStudyPage({
           fill
           priority
           sizes="100vw"
-          className="object-cover opacity-50"
+          className="object-cover photo-treat-dark opacity-50"
         />
         <div
           aria-hidden
@@ -247,7 +247,7 @@ export default async function CaseStudyPage({
                   alt={r.image.alt}
                   fill
                   sizes="(max-width: 768px) 100vw, 400px"
-                  className="object-cover transition-transform duration-[900ms] ease-out group-hover:scale-[1.04]"
+                  className="object-cover photo-treat transition-transform duration-[900ms] ease-out group-hover:scale-[1.04]"
                 />
                 <span className="absolute top-3 left-3 inline-flex items-center rounded-full bg-white/95 px-2.5 py-1 text-xs font-medium text-brand-700">
                   {r.service}

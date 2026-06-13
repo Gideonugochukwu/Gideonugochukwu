@@ -63,7 +63,7 @@ export default function HomeServices() {
                     alt={image.alt}
                     fill
                     sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 560px"
-                    className="object-cover transition-transform duration-700 group-hover:scale-105"
+                    className="object-cover photo-treat transition-transform duration-700 group-hover:scale-105"
                   />
                   <div
                     aria-hidden

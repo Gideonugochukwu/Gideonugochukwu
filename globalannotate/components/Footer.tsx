@@ -56,25 +56,28 @@ export default function Footer() {
 
         <div className="md:col-span-3">
           <h4 className="text-sm font-semibold text-ink-900">Follow</h4>
-          <div className="mt-4 flex items-center gap-2 flex-wrap">
+          <ul className="mt-4 flex flex-col gap-2.5">
             {socials.map(({ key, href }) => {
               const meta = SOCIAL_META[key];
               if (!meta) return null;
               const Icon = meta.Icon;
               return (
-                <a
-                  key={key}
-                  href={href}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  aria-label={meta.label}
-                  className="inline-flex h-9 w-9 items-center justify-center rounded-lg border border-ink-200 bg-white text-ink-600 hover:text-brand-700 hover:border-brand-300 transition"
-                >
-                  <Icon className="h-4 w-4" />
-                </a>
+                <li key={key}>
+                  <a
+                    href={href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="group inline-flex items-center gap-2.5 text-sm text-ink-600 hover:text-brand-700 transition"
+                  >
+                    <span className="inline-flex h-7 w-7 items-center justify-center rounded-md bg-white ring-1 ring-ink-200 text-ink-700 group-hover:ring-brand-300 group-hover:text-brand-700 transition">
+                      <Icon className="h-3.5 w-3.5" />
+                    </span>
+                    <span className="font-medium">{meta.label}</span>
+                  </a>
+                </li>
               );
             })}
-          </div>
+          </ul>
           <h4 className="mt-6 text-sm font-semibold text-ink-900">Legal</h4>
           <ul className="mt-4 space-y-2.5">
             <li><Link href="/privacy" className="text-sm text-ink-600 hover:text-brand-700 transition">Privacy Policy</Link></li>

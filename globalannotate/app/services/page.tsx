@@ -114,7 +114,7 @@ export default function ServicesPage() {
                         alt={image.alt}
                         fill
                         sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 600px"
-                        className="object-cover"
+                        className="object-cover photo-treat"
                       />
                     </div>
                   </div>

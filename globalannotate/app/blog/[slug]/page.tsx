@@ -124,7 +124,7 @@ export default async function BlogPostPage({
             fill
             priority
             sizes="(max-width: 1240px) 100vw, 1240px"
-            className="object-cover"
+            className="object-cover photo-treat"
           />
         </figure>
 
