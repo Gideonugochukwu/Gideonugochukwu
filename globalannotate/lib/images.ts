@@ -175,3 +175,34 @@ export const img = {
     },
   },
 } satisfies Record<string, ImageRef | Record<string, ImageRef>>;
+
+// Hero slideshow — six stable, professional Unsplash photos that rotate
+// behind the homepage hero. Mix of multicultural teams, global business,
+// technology / data, and a world view. The brand gradient fallback
+// (lib/imageBg) covers any image that fails to load.
+export const heroSlides: ImageRef[] = [
+  {
+    id: "1521737711867-e3b97375f902",
+    alt: "Diverse team collaborating around a laptop in a bright modern workspace",
+  },
+  {
+    id: "1522071820081-009f0129c71c",
+    alt: "Multicultural team in a focused working meeting",
+  },
+  {
+    id: "1521791136064-7986c2920216",
+    alt: "Hands of people from many backgrounds joining together over a table",
+  },
+  {
+    id: "1573164713988-8665fc963095",
+    alt: "Engineer reviewing data on a modern workstation",
+  },
+  {
+    id: "1518770660439-4636190af475",
+    alt: "Macro photograph of a green circuit board, representing technology and data",
+  },
+  {
+    id: "1451187580459-43490279c0fa",
+    alt: "Planet Earth seen from space at night with global city lights",
+  },
+];
