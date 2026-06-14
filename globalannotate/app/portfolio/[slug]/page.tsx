@@ -137,7 +137,7 @@ export default async function CaseStudyPage({
       </Section>
 
       {/* Challenge — large editorial paragraph */}
-      <Section className="bg-ink-50/40">
+      <Section className="bg-brand-50/40">
         <div className="grid lg:grid-cols-[1fr_2fr] gap-12 lg:gap-20">
           <div>
             <p className="text-xs font-medium uppercase tracking-[0.20em] text-brand-700">
@@ -185,7 +185,7 @@ export default async function CaseStudyPage({
       </Section>
 
       {/* Results — outcomes a second time, this time as a labelled grid */}
-      <Section className="bg-ink-50/40">
+      <Section className="bg-brand-50/40">
         <div className="grid lg:grid-cols-[1fr_2fr] gap-12 lg:gap-20">
           <div>
             <p className="text-xs font-medium uppercase tracking-[0.20em] text-brand-700">

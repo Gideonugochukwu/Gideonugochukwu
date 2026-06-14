@@ -2,9 +2,9 @@ import MultilingualGreeting from "./MultilingualGreeting";
 import PageHero from "./PageHero";
 import { homeHeroSlides } from "@/lib/images";
 
-// Home hero uses the shared PageHero — same slideshow + dark overlay + type
-// scale as every other page. The only extra is the animated multilingual
-// greeting before the headline.
+// Home hero — same shared PageHero everywhere else uses. The three statements
+// now stack on their own lines on every screen size, with "Growth across
+// markets." sitting in its own paragraph so it reads as a clear close.
 export default function Hero() {
   return (
     <PageHero
@@ -16,11 +16,13 @@ export default function Hero() {
         </div>
       }
       title={
-        <>
-          Precision across languages.{" "}
-          <span className="text-gradient-light">Intelligence across data.</span>{" "}
-          Growth across markets.
-        </>
+        <span className="block">
+          <span className="block">Precision across languages.</span>
+          <span className="block text-gradient-light">
+            Intelligence across data.
+          </span>
+          <span className="mt-2 sm:mt-3 block">Growth across markets.</span>
+        </span>
       }
       subtitle="One partner for localization, AI training data, multilingual SEO, and growth marketing."
       ctas={[

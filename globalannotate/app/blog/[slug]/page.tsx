@@ -134,7 +134,7 @@ export default async function BlogPostPage({
       </Section>
 
       {related.length > 0 && (
-        <Section className="bg-ink-50/60 border-y border-ink-200/60">
+        <Section className="bg-brand-50/40 border-y border-brand-100/70">
           <h2 className="text-2xl md:text-3xl font-semibold tracking-tight">
             Keep reading
           </h2>

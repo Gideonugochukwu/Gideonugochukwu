@@ -60,7 +60,7 @@ export default function HomePage() {
       </section>
 
       {/* The GlobalAnnotate method — merged Why + How, one section */}
-      <section className="relative isolate overflow-hidden py-20 sm:py-24 md:py-32 bg-ink-50/40">
+      <section className="relative isolate overflow-hidden py-20 sm:py-24 md:py-32 bg-brand-50/40">
         <AnimatedBackground variant="tint" className="opacity-60" />
         <HomeMethod />
       </section>
@@ -71,7 +71,7 @@ export default function HomePage() {
       </section>
 
       {/* FAQ — divided rows, no outer card */}
-      <section className="relative py-20 sm:py-24 md:py-32 bg-ink-50/40">
+      <section className="relative py-20 sm:py-24 md:py-32 bg-brand-50/40">
         <div className="container-wide grid lg:grid-cols-[1fr_1.4fr] gap-12 lg:gap-20 items-start">
           <div className="max-w-md">
             <p className="text-sm font-medium uppercase tracking-[0.18em] text-brand-700">

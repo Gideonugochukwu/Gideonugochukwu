@@ -23,29 +23,32 @@ export default function AnimatedBackground({
 }) {
   const reduce = useReducedMotion();
 
+  // Palette pushed toward the brand colours (emerald + teal + a hint of
+  // mint) — the previous mix leaned blue/indigo. This reads as the "white
+  // and green" brand without becoming loud.
   const palette =
     variant === "dark"
       ? {
           base: "transparent",
-          a: "rgba(16,185,129,0.35)", // emerald-500
-          b: "rgba(56,189,248,0.25)", // sky-400
-          c: "rgba(20,184,166,0.28)", // teal-500
-          d: "rgba(99,102,241,0.18)", // indigo-500
+          a: "rgba(16,185,129,0.45)", // emerald-500
+          b: "rgba(52,211,153,0.32)", // emerald-400
+          c: "rgba(20,184,166,0.34)", // teal-500
+          d: "rgba(110,231,183,0.22)", // emerald-300 highlight
         }
       : variant === "tint"
         ? {
             base: "transparent",
-            a: "rgba(16,185,129,0.18)",
-            b: "rgba(56,189,248,0.14)",
-            c: "rgba(20,184,166,0.16)",
-            d: "rgba(99,102,241,0.10)",
+            a: "rgba(16,185,129,0.28)",
+            b: "rgba(52,211,153,0.20)",
+            c: "rgba(20,184,166,0.22)",
+            d: "rgba(110,231,183,0.16)",
           }
         : {
             base: "transparent",
-            a: "rgba(16,185,129,0.28)",
-            b: "rgba(56,189,248,0.22)",
-            c: "rgba(20,184,166,0.24)",
-            d: "rgba(99,102,241,0.16)",
+            a: "rgba(16,185,129,0.38)",
+            b: "rgba(52,211,153,0.28)",
+            c: "rgba(20,184,166,0.30)",
+            d: "rgba(110,231,183,0.20)",
           };
 
   return (

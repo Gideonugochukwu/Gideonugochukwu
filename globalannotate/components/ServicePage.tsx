@@ -97,7 +97,7 @@ export default function ServicePage({
       </Section>
 
       {/* Use cases — light surface, soft outlined panels (not cards) */}
-      <Section className="bg-ink-50/40">
+      <Section className="bg-brand-50/40">
         <div className="max-w-3xl">
           <p className="text-xs font-medium uppercase tracking-[0.20em] text-brand-700">
             Use cases
@@ -189,7 +189,7 @@ export default function ServicePage({
       </Section>
 
       {/* FAQ — light surface, the shared FAQ component stays */}
-      <Section className="bg-ink-50/40">
+      <Section className="bg-brand-50/40">
         <div className="max-w-3xl">
           <p className="text-xs font-medium uppercase tracking-[0.20em] text-brand-700">
             FAQ
