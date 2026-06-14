@@ -71,6 +71,12 @@ export const metadata: Metadata = {
   },
   icons: { icon: "/favicon.svg" },
   robots: { index: true, follow: true },
+  // Google Search Console site verification — emitted as
+  // <meta name="google-site-verification" content="..."> on every page
+  // by Next's root-layout metadata.
+  verification: {
+    google: "google6092810f1a80faed",
+  },
 };
 
 export const viewport: Viewport = {
