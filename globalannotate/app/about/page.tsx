@@ -91,7 +91,7 @@ export default function AboutPage() {
         </div>
       </Section>
 
-      <Section className="bg-ink-50/60 border-y border-ink-200/60">
+      <Section className="bg-brand-50/40 border-y border-brand-100/70">
         <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-start">
           <figure className={`relative aspect-[4/3] rounded-2xl overflow-hidden lg:order-1 ${imageBg}`}>
             <Image
