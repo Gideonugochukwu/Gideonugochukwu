@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { Mail } from "lucide-react";
 import Logo from "./Logo";
-import { services, site, activeSocialLinks } from "@/lib/site";
+import { services, site, activeSocialLinks, founder } from "@/lib/site";
 import { SOCIAL_META } from "./SocialIcons";
 
 export default function Footer() {
@@ -87,13 +87,19 @@ export default function Footer() {
       </div>
 
       <div className="border-t border-ink-200">
-        <div className="container-wide py-5 flex flex-col md:flex-row items-center justify-between gap-3">
-          <p className="text-xs text-ink-500">
-            © {year} {site.name}. All rights reserved.
+        <div className="container-wide py-5 flex flex-col md:flex-row items-center justify-between gap-3 text-xs text-ink-500">
+          <p>© {year} {site.name}. All rights reserved.</p>
+          <p>
+            Founded by{" "}
+            <Link
+              href="/about#founder"
+              className="font-medium text-ink-700 hover:text-brand-700 transition"
+            >
+              {founder.name}
+            </Link>
+            .
           </p>
-          <p className="text-xs text-ink-500">
-            Precision Across Languages. Intelligence Across Data. Growth Across Markets.
-          </p>
+          <p>Precision Across Languages. Intelligence Across Data. Growth Across Markets.</p>
         </div>
       </div>
     </footer>

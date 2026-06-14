@@ -25,7 +25,7 @@ export const posts: BlogPost[] = [
     description:
       "A clear, practical guide to AI data annotation for ML teams — what it is, how it works, the main annotation types, quality controls, and how to scale without breaking your budget.",
     date: "2026-01-12",
-    author: "GlobalAnnotate Team",
+    author: "Gideon Ugochukwu",
     readMinutes: 8,
     tags: ["AI", "Annotation", "Machine Learning"],
     heroImage: img.services.aiAnnotation,
@@ -88,7 +88,7 @@ export const posts: BlogPost[] = [
     description:
       "A practical playbook for localizing an app or website into 100+ markets — architecture, workflow, QA, and the gotchas that quietly break user experience in new languages.",
     date: "2026-01-26",
-    author: "GlobalAnnotate Team",
+    author: "Gideon Ugochukwu",
     readMinutes: 9,
     tags: ["Localization", "i18n", "Product"],
     heroImage: img.services.translation,
@@ -166,7 +166,7 @@ export const posts: BlogPost[] = [
     description:
       "A practical guide to international SEO — hreflang, URL strategy, localized keyword research, content, and link building that actually move rankings in every market.",
     date: "2026-02-09",
-    author: "GlobalAnnotate Team",
+    author: "Gideon Ugochukwu",
     readMinutes: 9,
     tags: ["SEO", "International", "Growth"],
     heroImage: img.services.seo,

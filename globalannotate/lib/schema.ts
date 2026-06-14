@@ -1,6 +1,37 @@
-import { site, activeSocialLinks } from "./site";
+import { site, activeSocialLinks, founder } from "./site";
 
 type Crumb = { name: string; url: string };
+
+// Person schema for the founder. Used standalone on /about and inlined
+// (via personSchemaShort) as the Organization's "founder" and every blog
+// post's "author".
+export function personSchema() {
+  return {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    name: founder.name,
+    jobTitle: founder.role,
+    worksFor: {
+      "@type": "Organization",
+      name: site.name,
+      url: site.url,
+    },
+    url: founder.profileUrl,
+    image: founder.image,
+    sameAs: founder.sameAs,
+    description: founder.description,
+  };
+}
+
+function personSchemaShort() {
+  return {
+    "@type": "Person",
+    name: founder.name,
+    url: founder.profileUrl,
+    jobTitle: founder.role,
+    image: founder.image,
+  };
+}
 
 export function organizationSchema() {
   return {
@@ -11,6 +42,7 @@ export function organizationSchema() {
     logo: site.logo,
     email: site.email,
     description: site.description,
+    founder: personSchemaShort(),
     sameAs: activeSocialLinks().map((s) => s.href),
   };
 }
@@ -85,7 +117,6 @@ export function articleSchema({
   url,
   datePublished,
   dateModified,
-  authorName,
   image,
 }: {
   title: string;
@@ -93,7 +124,6 @@ export function articleSchema({
   url: string;
   datePublished: string;
   dateModified?: string;
-  authorName: string;
   image?: string;
 }) {
   return {
@@ -105,7 +135,14 @@ export function articleSchema({
     url,
     datePublished,
     dateModified: dateModified ?? datePublished,
-    author: { "@type": "Person", name: authorName },
+    author: {
+      "@type": "Person",
+      name: founder.name,
+      url: founder.profileUrl,
+      jobTitle: founder.role,
+      image: founder.image,
+      sameAs: founder.sameAs,
+    },
     publisher: {
       "@type": "Organization",
       name: site.name,

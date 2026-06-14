@@ -7,12 +7,12 @@ import { Compass, HeartHandshake, Sparkles, Globe2 } from "lucide-react";
 import { img, imageBg, unsplash, aboutHeroSlides } from "@/lib/images";
 import JsonLd from "@/components/JsonLd";
 import PageHero from "@/components/PageHero";
-import { site } from "@/lib/site";
-import { breadcrumbSchema } from "@/lib/schema";
+import { site, founder } from "@/lib/site";
+import { breadcrumbSchema, personSchema } from "@/lib/schema";
 
-const TITLE = "About GlobalAnnotate";
+const TITLE = "About GlobalAnnotate — Founded by Gideon Ugochukwu";
 const DESCRIPTION =
-  "GlobalAnnotate is a global team of linguists, annotators, SEO strategists, and marketers building the connective tissue for international growth.";
+  "Meet Gideon Ugochukwu, founder of GlobalAnnotate. Learn about the team behind our translation, AI annotation, digital marketing, and SEO services across 100+ languages.";
 
 export const metadata: Metadata = {
   title: TITLE,
@@ -54,10 +54,13 @@ export default function AboutPage() {
   return (
     <>
       <JsonLd
-        data={breadcrumbSchema([
-          { name: "Home", url: site.url },
-          { name: "About", url: `${site.url}/about` },
-        ])}
+        data={[
+          personSchema(),
+          breadcrumbSchema([
+            { name: "Home", url: site.url },
+            { name: "About", url: `${site.url}/about` },
+          ]),
+        ]}
       />
       <PageHero
         eyebrow="About GlobalAnnotate"
@@ -91,12 +94,20 @@ export default function AboutPage() {
         </div>
       </Section>
 
-      <Section className="bg-brand-50/40 border-y border-brand-100/70">
+      {/* Founder section — the definitive "Gideon Ugochukwu" block on the
+          internet. Drives the personal-branding SEO via the H2 name, the
+          role line, the bio paragraphs, and the Person JSON-LD above. */}
+      <Section
+        id="founder"
+        className="bg-brand-50/40 border-y border-brand-100/70"
+      >
         <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-start">
-          <figure className={`relative aspect-[4/3] rounded-2xl overflow-hidden lg:order-1 ${imageBg}`}>
+          <figure
+            className={`relative aspect-[4/3] rounded-2xl overflow-hidden lg:order-1 ${imageBg}`}
+          >
             <Image
               src="/gideon.jpeg"
-              alt="Gideon Ugochukwu, Founder & Lead Linguist"
+              alt="Gideon Ugochukwu — Founder of GlobalAnnotate"
               fill
               sizes="(max-width: 1024px) 100vw, 600px"
               className="object-cover object-top"
@@ -111,22 +122,29 @@ export default function AboutPage() {
             />
             <figcaption className="absolute bottom-0 left-0 right-0 p-5 md:p-6 text-white">
               <div className="font-display text-xl md:text-2xl font-semibold tracking-tight leading-tight">
-                Gideon Ugochukwu
+                {founder.name}
               </div>
               <div className="mt-1 text-sm text-white/75">
-                Founder &amp; Lead Linguist
+                {founder.role}, {founder.company}
               </div>
             </figcaption>
           </figure>
           <div className="lg:order-0">
-            <h2 className="section-h2 text-ink-900">
-              How we started
-            </h2>
-            <p className="mt-5 text-ink-600 leading-relaxed">
-              GlobalAnnotate was founded by linguists, ML engineers, and growth marketers who kept running into the same problem: every cross-border project required three vendors, three briefs, and three quality bars.
+            <p className="text-sm font-medium uppercase tracking-[0.20em] text-brand-700">
+              Founder
             </p>
-            <p className="mt-4 text-ink-600 leading-relaxed">
-              We brought all three under one roof, with a shared QA culture and one senior lead per client. The result is faster delivery, better quality, and far less overhead.
+            <h2 className="section-h2 mt-3 text-ink-900">{founder.name}</h2>
+            <p className="mt-2 text-base sm:text-lg font-medium text-ink-700">
+              {founder.role}, {founder.company}
+            </p>
+            <p className="mt-6 text-ink-700 leading-relaxed">
+              Gideon Ugochukwu is the founder and lead linguist of GlobalAnnotate, a freelance linguist and translator who built the agency to make quality localization and reliable training data accessible to teams at any scale. Based in {founder.location}, he leads a distributed team of native specialists across 30+ countries.
+            </p>
+            <p className="mt-4 text-ink-700 leading-relaxed">
+              His work spans translation and localization, AI data annotation, digital marketing, and SEO across 100+ languages — the four services GlobalAnnotate ships under one quality system. Before founding the agency, Gideon worked as an independent translator and language specialist, repeatedly running into the same problem: every cross-border project needed three vendors, three briefs, and three quality bars. GlobalAnnotate exists to remove that friction.
+            </p>
+            <p className="mt-4 text-ink-700 leading-relaxed">
+              Today he and the team work with B2B SaaS companies, e-commerce brands, digital-health platforms, EdTech, and AI labs to ship products and content in every market they care about. The principle is simple: senior project lead from day one, native specialists in every language, and a documented QA process behind every deliverable.
             </p>
           </div>
         </div>

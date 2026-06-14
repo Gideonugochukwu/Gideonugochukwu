@@ -77,7 +77,6 @@ export default async function BlogPostPage({
             description: post.description,
             url,
             datePublished: post.date,
-            authorName: post.author,
             image: heroSrc,
           }),
           breadcrumbSchema([
@@ -112,6 +111,20 @@ export default async function BlogPostPage({
           <h1 className="page-h1 mt-5 text-ink-900">{post.title}</h1>
           <p className="mt-5 text-lg text-ink-600 leading-relaxed">
             {post.description}
+          </p>
+
+          {/* Author byline — links to the founder section on /about so the
+              attribution flows into the Person SEO graph for Gideon. */}
+          <p className="mt-6 text-sm text-ink-600">
+            By{" "}
+            <Link
+              href="/about#founder"
+              className="font-semibold text-ink-900 hover:text-brand-700 transition"
+              rel="author"
+            >
+              Gideon Ugochukwu
+            </Link>
+            , Founder of GlobalAnnotate
           </p>
         </div>
 

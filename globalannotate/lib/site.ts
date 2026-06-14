@@ -18,6 +18,26 @@ export const site = {
   },
 };
 
+// Founder of GlobalAnnotate. Used by:
+//   - the About page founder section + Person JSON-LD
+//   - the Organization JSON-LD's "founder" field
+//   - every blog post's author byline + author Person schema
+//   - the "Founded by Gideon Ugochukwu" footer line
+export const founder = {
+  name: "Gideon Ugochukwu",
+  role: "Founder & Lead Linguist",
+  company: "GlobalAnnotate",
+  profileUrl: "https://globalannotate.com/about",
+  image: "https://globalannotate.com/gideon.jpeg",
+  location: "Nigeria",
+  description:
+    "Gideon Ugochukwu is the founder and lead linguist of GlobalAnnotate, offering translation, AI annotation, digital marketing, and SEO services across 100+ languages.",
+  sameAs: [
+    "https://linkedin.com/company/globalannotate",
+    "https://www.instagram.com/global_annotate/",
+  ],
+};
+
 export const nav = [
   { href: "/", label: "Home" },
   { href: "/services", label: "Services" },
