@@ -260,25 +260,28 @@ export const portfolioHeroSlides: ImageRef[] = [
 ];
 
 // About — workspace / collaboration.
+// About — neutral, professional imagery for a company/about page. Mix of
+// workspace, multi-person team scene, abstract collaboration, global view,
+// and a technology-data macro. Deliberately no single-person portraits.
 export const aboutHeroSlides: ImageRef[] = [
-  {
-    id: "1522071820081-009f0129c71c",
-    alt: "Diverse team meeting in a modern office",
-  },
   {
     id: "1497366216548-37526070297c",
     alt: "Bright modern office with collaborative desks",
   },
   {
-    id: "1573497019940-1c28c88b4f3e",
-    alt: "Two colleagues collaborating on a laptop",
-  },
-  {
-    id: "1521737711867-e3b97375f902",
-    alt: "Diverse team collaborating around a laptop in a bright workspace",
+    id: "1522071820081-009f0129c71c",
+    alt: "Diverse team meeting in a modern office",
   },
   {
     id: "1521791136064-7986c2920216",
     alt: "Hands of people from many backgrounds joining together over a table",
+  },
+  {
+    id: "1451187580459-43490279c0fa",
+    alt: "Planet Earth seen from space at night with global city lights",
+  },
+  {
+    id: "1518770660439-4636190af475",
+    alt: "Macro photograph of a green circuit board representing technology and data",
   },
 ];
