@@ -32,7 +32,7 @@ export default function HomeServices() {
             <br />
             <span className="text-gradient">One accountable team.</span>
           </h2>
-          <p className="mt-5 text-lg text-ink-600 leading-relaxed">
+          <p className="mt-4 text-base sm:text-lg text-ink-600 leading-relaxed">
             Translation, AI training data, multilingual SEO, and marketing — in 100+ languages.
           </p>
         </div>
@@ -44,25 +44,21 @@ export default function HomeServices() {
         </Link>
       </div>
 
-      <div className="mt-16 grid gap-x-10 gap-y-16 md:grid-cols-2">
+      {/* Uniform 2x2 grid — no vertical offset, moderate card height,
+          consistent title size that matches the industries cards. */}
+      <div className="mt-12 sm:mt-14 grid gap-5 sm:gap-6 sm:grid-cols-2">
         {services.map((s, i) => {
           const image = SERVICE_IMAGES[s.slug as keyof typeof SERVICE_IMAGES];
           const Icon = ICONS[s.icon as keyof typeof ICONS];
-          // Visually offset every other feature vertically so the grid
-          // breathes and stops looking like a uniform 2x2.
-          const offset = i % 2 === 1 ? "md:mt-16" : "";
           return (
             <Reveal key={s.slug} delay={i * 0.06}>
-              <Link
-                href={`/services/${s.slug}`}
-                className={`group block ${offset}`}
-              >
-                <div className={`relative aspect-[4/5] overflow-hidden rounded-3xl ${imageBg}`}>
+              <Link href={`/services/${s.slug}`} className="group block">
+                <div className={`relative aspect-[4/3] overflow-hidden rounded-2xl ${imageBg}`}>
                   <Image
-                    src={unsplash(image.id, 1200)}
+                    src={unsplash(image.id, 1000)}
                     alt={image.alt}
                     fill
-                    sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 560px"
+                    sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 480px"
                     className="object-cover photo-treat transition-transform duration-700 group-hover:scale-105"
                   />
                   <div
@@ -70,25 +66,25 @@ export default function HomeServices() {
                     className="absolute inset-0"
                     style={{
                       background:
-                        "linear-gradient(180deg, rgba(2,6,23,0.05) 0%, rgba(2,6,23,0.35) 55%, rgba(2,6,23,0.85) 100%)",
+                        "linear-gradient(180deg, rgba(2,6,23,0.10) 0%, rgba(2,6,23,0.35) 55%, rgba(2,6,23,0.88) 100%)",
                     }}
                   />
-                  <div className="absolute top-5 left-5 inline-flex items-center gap-2 text-xs font-medium text-white/85">
-                    <span className="inline-flex h-7 w-7 items-center justify-center rounded-full bg-white/15 backdrop-blur-md ring-1 ring-white/25">
-                      <Icon className="h-3.5 w-3.5" />
+                  <div className="absolute top-4 left-4 inline-flex items-center gap-2 text-xs font-medium text-white/85">
+                    <span className="inline-flex h-6 w-6 items-center justify-center rounded-full bg-white/15 backdrop-blur-md ring-1 ring-white/25">
+                      <Icon className="h-3 w-3" />
                     </span>
                     <span className="uppercase tracking-[0.16em]">
                       0{i + 1} / Service
                     </span>
                   </div>
-                  <div className="absolute inset-x-0 bottom-0 p-6 md:p-8 text-white">
-                    <h3 className="font-display text-2xl md:text-3xl font-semibold tracking-tight leading-tight">
+                  <div className="absolute inset-x-0 bottom-0 p-5 sm:p-6 text-white">
+                    <h3 className="font-display text-lg sm:text-xl font-semibold tracking-tight leading-snug">
                       {s.title}
                     </h3>
-                    <p className="mt-2 text-sm md:text-base text-white/80 leading-relaxed max-w-md">
+                    <p className="mt-1.5 text-xs sm:text-sm text-white/80 leading-relaxed max-w-md">
                       {s.summary}
                     </p>
-                    <span className="mt-5 inline-flex items-center gap-1.5 text-sm font-semibold text-brand-200 group-hover:gap-2.5 transition-all">
+                    <span className="mt-4 inline-flex items-center gap-1.5 text-xs sm:text-sm font-semibold text-brand-200 group-hover:gap-2.5 transition-all">
                       Explore service <ArrowUpRight className="h-4 w-4" />
                     </span>
                   </div>

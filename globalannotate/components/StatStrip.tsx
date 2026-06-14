@@ -15,10 +15,10 @@ export default function StatStrip() {
         {stats.map((s, i) => (
           <Reveal key={s.label} delay={i * 0.05}>
             <div className="flex flex-col">
-              <div className="display-num text-5xl md:text-6xl lg:text-7xl">
+              <div className="display-num text-3xl sm:text-4xl">
                 <CountUp value={s.value} suffix={s.suffix} />
               </div>
-              <div className="mt-3 text-sm md:text-base text-ink-500 tracking-wide">
+              <div className="mt-2 text-xs sm:text-sm text-ink-500 tracking-wide">
                 {s.label}
               </div>
             </div>
