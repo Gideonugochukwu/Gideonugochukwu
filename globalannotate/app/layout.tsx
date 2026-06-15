@@ -69,7 +69,12 @@ export const metadata: Metadata = {
     title: `${site.name} — Translation, AI Annotation, SEO & Digital Marketing`,
     description: site.description,
   },
-  icons: { icon: "/favicon.svg" },
+  icons: {
+    icon: [
+      { url: "/favicon.ico", sizes: "any" },
+    ],
+    apple: "/apple-touch-icon.png",
+  },
   robots: { index: true, follow: true },
   // Google Search Console site verification — emitted as
   // <meta name="google-site-verification" content="..."> on every page
