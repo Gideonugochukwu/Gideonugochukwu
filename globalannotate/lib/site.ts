@@ -3,7 +3,7 @@ export const site = {
   shortName: "GlobalAnnotate",
   domain: "globalannotate.com",
   url: "https://globalannotate.com",
-  logo: "https://globalannotate.com/favicon.svg",
+  logo: "https://globalannotate.com/globalannotate-logo.png",
   tagline:
     "Precision Across Languages. Intelligence Across Data. Growth Across Markets.",
   description:
