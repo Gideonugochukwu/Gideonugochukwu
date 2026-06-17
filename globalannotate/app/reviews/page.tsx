@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Link from "next/link";
 import Section from "@/components/Section";
 import Stars from "@/components/Stars";
 import ReviewForm from "@/components/ReviewForm";
@@ -107,7 +108,28 @@ export default function ReviewsPage() {
               Worked with us? We&apos;d love to hear from you.
             </h2>
             <p className="mt-4 text-ink-600 leading-relaxed">
-              Honest feedback helps future clients. Every submission is moderated before it appears here.
+              Honest feedback helps future clients. Every submission is moderated before it appears here. New here? Browse our{" "}
+              <Link
+                href="/services"
+                className="font-semibold text-brand-700 hover:text-brand-900 underline-offset-4 hover:underline"
+              >
+                services
+              </Link>
+              ,{" "}
+              <Link
+                href="/portfolio"
+                className="font-semibold text-brand-700 hover:text-brand-900 underline-offset-4 hover:underline"
+              >
+                case studies
+              </Link>
+              , or{" "}
+              <Link
+                href="/about"
+                className="font-semibold text-brand-700 hover:text-brand-900 underline-offset-4 hover:underline"
+              >
+                meet the team
+              </Link>
+              .
             </p>
             <ul className="mt-6 space-y-3 text-sm text-ink-700">
               <li className="flex items-start gap-2">

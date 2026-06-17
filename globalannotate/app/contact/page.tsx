@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Link from "next/link";
 import Section from "@/components/Section";
 import QuoteForm from "@/components/QuoteForm";
 import JsonLd from "@/components/JsonLd";
@@ -81,7 +82,21 @@ export default function ContactPage() {
               Tell us about your project
             </h2>
             <p className="mt-3 text-ink-600">
-              The more context you share, the sharper our proposal. A senior project lead will reply within one business day.
+              The more context you share, the sharper our proposal. A senior project lead will reply within one business day. Not sure where to start? Skim our{" "}
+              <Link
+                href="/services"
+                className="font-semibold text-brand-700 hover:text-brand-900 underline-offset-4 hover:underline"
+              >
+                services
+              </Link>{" "}
+              or recent{" "}
+              <Link
+                href="/portfolio"
+                className="font-semibold text-brand-700 hover:text-brand-900 underline-offset-4 hover:underline"
+              >
+                case studies
+              </Link>{" "}
+              first.
             </p>
             <div className="mt-6">
               <QuoteForm />

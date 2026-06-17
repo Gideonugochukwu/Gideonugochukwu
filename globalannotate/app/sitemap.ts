@@ -3,38 +3,53 @@ import { site, services } from "@/lib/site";
 import { posts } from "@/data/blog";
 import { cases } from "@/data/portfolio";
 
-export default function sitemap(): MetadataRoute.Sitemap {
-  const now = new Date();
+// Stable site-wide "last meaningfully updated" date. Used as a sensible
+// fallback for static pages and service detail pages where there isn't a
+// per-record date in the data. Bump this when copy/structure changes site
+// wide rather than letting the sitemap thrash on every deploy.
+const SITE_LAST_UPDATED = "2026-06-16";
 
-  const staticRoutes = [
-    { path: "", priority: 1.0, changeFrequency: "weekly" as const },
-    { path: "/services", priority: 0.9, changeFrequency: "monthly" as const },
-    { path: "/portfolio", priority: 0.8, changeFrequency: "monthly" as const },
-    { path: "/reviews", priority: 0.7, changeFrequency: "monthly" as const },
-    { path: "/about", priority: 0.6, changeFrequency: "monthly" as const },
-    { path: "/contact", priority: 0.7, changeFrequency: "monthly" as const },
-    { path: "/blog", priority: 0.8, changeFrequency: "weekly" as const },
-    { path: "/privacy", priority: 0.3, changeFrequency: "yearly" as const },
-    { path: "/terms", priority: 0.3, changeFrequency: "yearly" as const },
+export default function sitemap(): MetadataRoute.Sitemap {
+  const fallback = new Date(SITE_LAST_UPDATED);
+
+  // Static / landing routes. Every public page is listed; legal pages
+  // change rarely and carry a yearly changeFrequency hint.
+  const staticRoutes: {
+    path: string;
+    priority: number;
+    changeFrequency: MetadataRoute.Sitemap[number]["changeFrequency"];
+    lastModified: Date;
+  }[] = [
+    { path: "", priority: 1.0, changeFrequency: "weekly", lastModified: fallback },
+    { path: "/services", priority: 0.9, changeFrequency: "monthly", lastModified: fallback },
+    { path: "/portfolio", priority: 0.85, changeFrequency: "monthly", lastModified: fallback },
+    { path: "/reviews", priority: 0.7, changeFrequency: "monthly", lastModified: fallback },
+    { path: "/about", priority: 0.7, changeFrequency: "monthly", lastModified: fallback },
+    { path: "/contact", priority: 0.7, changeFrequency: "monthly", lastModified: fallback },
+    { path: "/blog", priority: 0.8, changeFrequency: "weekly", lastModified: fallback },
+    { path: "/privacy", priority: 0.3, changeFrequency: "yearly", lastModified: fallback },
+    { path: "/terms", priority: 0.3, changeFrequency: "yearly", lastModified: fallback },
   ];
 
   const serviceRoutes = services.map((s) => ({
     path: `/services/${s.slug}`,
-    priority: 0.85,
+    priority: 0.9,
     changeFrequency: "monthly" as const,
+    lastModified: fallback,
   }));
 
   const blogRoutes = posts.map((p) => ({
     path: `/blog/${p.slug}`,
-    priority: 0.7,
+    priority: 0.75,
     changeFrequency: "monthly" as const,
     lastModified: new Date(p.date),
   }));
 
   const portfolioRoutes = cases.map((c) => ({
     path: `/portfolio/${c.slug}`,
-    priority: 0.75,
+    priority: 0.8,
     changeFrequency: "monthly" as const,
+    lastModified: new Date(c.lastUpdated),
   }));
 
   return [
@@ -42,14 +57,10 @@ export default function sitemap(): MetadataRoute.Sitemap {
     ...serviceRoutes,
     ...blogRoutes,
     ...portfolioRoutes,
-  ].map((r) => {
-    const lastModified =
-      "lastModified" in r && r.lastModified instanceof Date ? r.lastModified : now;
-    return {
-      url: `${site.url}${r.path}`,
-      lastModified,
-      changeFrequency: r.changeFrequency,
-      priority: r.priority,
-    };
-  });
+  ].map((r) => ({
+    url: `${site.url}${r.path}`,
+    lastModified: r.lastModified,
+    changeFrequency: r.changeFrequency,
+    priority: r.priority,
+  }));
 }

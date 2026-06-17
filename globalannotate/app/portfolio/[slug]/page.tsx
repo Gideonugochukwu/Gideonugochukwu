@@ -63,6 +63,24 @@ export default async function CaseStudyPage({
   ];
   const related = cases.filter((other) => other.slug !== c.slug).slice(0, 3);
 
+  // Map the case's service string to a /services/[slug] when the match is
+  // clear. Powers the linkable service chip in the hero and the
+  // "Learn about this service" line below the outcomes strip.
+  const serviceLookup: { keywords: string[]; slug: string; label: string }[] = [
+    {
+      keywords: ["Translation", "Localization"],
+      slug: "translation-localization",
+      label: "Translation & Localization",
+    },
+    { keywords: ["AI Annotation"], slug: "ai-annotation", label: "AI Annotation" },
+    { keywords: ["SEO"], slug: "seo", label: "SEO & Search Visibility" },
+    { keywords: ["Digital Marketing"], slug: "digital-marketing", label: "Digital Marketing" },
+    { keywords: ["Marketing"], slug: "digital-marketing", label: "Digital Marketing" },
+  ];
+  const serviceMatch = serviceLookup.find((s) =>
+    s.keywords.some((k) => c.service.includes(k))
+  );
+
   return (
     <>
       <JsonLd
@@ -97,9 +115,19 @@ export default async function CaseStudyPage({
           </Link>
 
           <div className="mt-6 flex flex-wrap items-center gap-2 text-xs">
-            <span className="inline-flex items-center rounded-full bg-white/10 px-2.5 py-1 font-medium text-white/90 ring-1 ring-white/20">
-              {c.service}
-            </span>
+            {serviceMatch ? (
+              <Link
+                href={`/services/${serviceMatch.slug}`}
+                className="inline-flex items-center gap-1 rounded-full bg-white/15 px-2.5 py-1 font-medium text-white ring-1 ring-white/25 hover:bg-white/25 hover:ring-white/40 transition"
+              >
+                {c.service}
+                <ArrowUpRight className="h-3 w-3" />
+              </Link>
+            ) : (
+              <span className="inline-flex items-center rounded-full bg-white/10 px-2.5 py-1 font-medium text-white/90 ring-1 ring-white/20">
+                {c.service}
+              </span>
+            )}
             <span className="inline-flex items-center rounded-full bg-white/10 px-2.5 py-1 font-medium text-white/90 ring-1 ring-white/20">
               {c.industry}
             </span>
@@ -134,6 +162,25 @@ export default async function CaseStudyPage({
             </Reveal>
           ))}
         </div>
+        {serviceMatch && (
+          <p className="mt-10 text-sm md:text-base text-ink-600">
+            This case study is part of our{" "}
+            <Link
+              href={`/services/${serviceMatch.slug}`}
+              className="font-semibold text-brand-700 hover:text-brand-900 underline-offset-4 hover:underline"
+            >
+              {serviceMatch.label}
+            </Link>{" "}
+            work — see how the same approach scales for other teams in{" "}
+            <Link
+              href="/portfolio"
+              className="font-semibold text-brand-700 hover:text-brand-900 underline-offset-4 hover:underline"
+            >
+              our portfolio
+            </Link>
+            .
+          </p>
+        )}
       </Section>
 
       {/* Challenge — large editorial paragraph */}

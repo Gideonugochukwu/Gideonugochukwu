@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Image from "next/image";
+import Link from "next/link";
 import Section from "@/components/Section";
 import CTABand from "@/components/CTABand";
 import Reveal from "@/components/Reveal";
@@ -76,10 +77,38 @@ export default function AboutPage() {
               Our mission
             </h2>
             <p className="mt-5 text-lg text-ink-600 leading-relaxed">
-              Help ambitious teams reach every market they care about — with content that resonates, data that performs, and growth that compounds.
+              Help ambitious teams reach every market they care about — with content that resonates, data that performs, and growth that compounds. Explore the{" "}
+              <Link
+                href="/services"
+                className="font-semibold text-brand-700 hover:text-brand-900 underline-offset-4 hover:underline"
+              >
+                four services
+              </Link>{" "}
+              we ship under one quality system.
             </p>
             <p className="mt-4 text-ink-600 leading-relaxed">
-              Excellent localization and reliable training data shouldn&apos;t be reserved for trillion-dollar companies. They should be available, at fair prices and at any scale, to anyone building something worth shipping.
+              Excellent{" "}
+              <Link
+                href="/services/translation-localization"
+                className="font-semibold text-brand-700 hover:text-brand-900 underline-offset-4 hover:underline"
+              >
+                localization
+              </Link>{" "}
+              and reliable{" "}
+              <Link
+                href="/services/ai-annotation"
+                className="font-semibold text-brand-700 hover:text-brand-900 underline-offset-4 hover:underline"
+              >
+                AI training data
+              </Link>{" "}
+              shouldn&apos;t be reserved for trillion-dollar companies. They should be available, at fair prices and at any scale, to anyone building something worth shipping. See the{" "}
+              <Link
+                href="/portfolio"
+                className="font-semibold text-brand-700 hover:text-brand-900 underline-offset-4 hover:underline"
+              >
+                work we&apos;ve delivered
+              </Link>{" "}
+              for teams across HealthTech, e-commerce, EdTech, and AI labs.
             </p>
           </div>
           <div className={`relative aspect-[4/3] rounded-2xl overflow-hidden ${imageBg}`}>
@@ -141,10 +170,52 @@ export default function AboutPage() {
               Gideon Ugochukwu is the founder and lead linguist of GlobalAnnotate, a freelance linguist and translator who built the agency to make quality localization and reliable training data accessible to teams at any scale. Based in {founder.location}, he leads a distributed team of native specialists across 30+ countries.
             </p>
             <p className="mt-4 text-ink-700 leading-relaxed">
-              His work spans translation and localization, AI data annotation, digital marketing, and SEO across 100+ languages — the four services GlobalAnnotate ships under one quality system. Before founding the agency, Gideon worked as an independent translator and language specialist, repeatedly running into the same problem: every cross-border project needed three vendors, three briefs, and three quality bars. GlobalAnnotate exists to remove that friction.
+              His work spans{" "}
+              <Link
+                href="/services/translation-localization"
+                className="font-semibold text-brand-700 hover:text-brand-900 underline-offset-4 hover:underline"
+              >
+                translation and localization
+              </Link>
+              ,{" "}
+              <Link
+                href="/services/ai-annotation"
+                className="font-semibold text-brand-700 hover:text-brand-900 underline-offset-4 hover:underline"
+              >
+                AI data annotation
+              </Link>
+              ,{" "}
+              <Link
+                href="/services/digital-marketing"
+                className="font-semibold text-brand-700 hover:text-brand-900 underline-offset-4 hover:underline"
+              >
+                digital marketing
+              </Link>
+              , and{" "}
+              <Link
+                href="/services/seo"
+                className="font-semibold text-brand-700 hover:text-brand-900 underline-offset-4 hover:underline"
+              >
+                multilingual SEO
+              </Link>{" "}
+              across 100+ languages — the four services GlobalAnnotate ships under one quality system. Before founding the agency, Gideon worked as an independent translator and language specialist, repeatedly running into the same problem: every cross-border project needed three vendors, three briefs, and three quality bars. GlobalAnnotate exists to remove that friction.
             </p>
             <p className="mt-4 text-ink-700 leading-relaxed">
-              Today he and the team work with B2B SaaS companies, e-commerce brands, digital-health platforms, EdTech, and AI labs to ship products and content in every market they care about. The principle is simple: senior project lead from day one, native specialists in every language, and a documented QA process behind every deliverable.
+              Today he and the team work with B2B SaaS companies, e-commerce brands, digital-health platforms, EdTech, and AI labs to ship products and content in every market they care about. The principle is simple: senior project lead from day one, native specialists in every language, and a documented QA process behind every deliverable. Read{" "}
+              <Link
+                href="/reviews"
+                className="font-semibold text-brand-700 hover:text-brand-900 underline-offset-4 hover:underline"
+              >
+                what clients say
+              </Link>{" "}
+              or{" "}
+              <Link
+                href="/contact"
+                className="font-semibold text-brand-700 hover:text-brand-900 underline-offset-4 hover:underline"
+              >
+                start a project
+              </Link>
+              .
             </p>
           </div>
         </div>

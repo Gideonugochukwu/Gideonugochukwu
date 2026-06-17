@@ -169,6 +169,7 @@ export default function Page() {
         ]}
       />
       <ServicePage
+        serviceSlug="seo"
         eyebrow="SEO & Search Visibility"
         title="Rank everywhere you sell — in every language."
         intro="Multilingual and international SEO is our edge. We pair native-language keyword research, hreflang and technical fixes, on-page content, and digital PR to grow organic revenue in every market you care about."

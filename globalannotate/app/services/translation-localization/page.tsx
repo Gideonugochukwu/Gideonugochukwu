@@ -65,6 +65,7 @@ export default function Page() {
         ]}
       />
       <ServicePage
+        serviceSlug="translation-localization"
         eyebrow="Translation & Localization"
         title="Speak to every market — like you live there."
         intro="Native linguists translate and localize your content so it reads as if it were written for each audience from day one."
