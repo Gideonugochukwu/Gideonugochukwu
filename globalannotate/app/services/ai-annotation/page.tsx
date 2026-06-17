@@ -65,6 +65,7 @@ export default function Page() {
         ]}
       />
       <ServicePage
+        serviceSlug="ai-annotation"
         eyebrow="AI Annotation & Data Labeling"
         title="Training data your models can trust."
         intro="Clean, consistent, well-documented labels for computer vision, NLP, and LLM teams — from pilot to production scale."

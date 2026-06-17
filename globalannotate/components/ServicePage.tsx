@@ -1,11 +1,13 @@
+import Image from "next/image";
 import Link from "next/link";
 import Section from "./Section";
 import FAQ, { FAQItem } from "./FAQ";
 import ServiceCTAGrid from "./ServiceCTAGrid";
 import PageHero from "./PageHero";
 import Reveal from "./Reveal";
-import { ArrowRight, Check } from "lucide-react";
-import { servicesHeroSlides } from "@/lib/images";
+import { ArrowRight, ArrowUpRight, Check } from "lucide-react";
+import { servicesHeroSlides, imageBg, unsplash } from "@/lib/images";
+import { relatedCasesForService } from "@/data/portfolio";
 
 export type Tier = {
   name: string;
@@ -17,6 +19,7 @@ export type Tier = {
 };
 
 export default function ServicePage({
+  serviceSlug,
   eyebrow,
   title,
   intro,
@@ -27,6 +30,9 @@ export default function ServicePage({
   tiers,
   faq,
 }: {
+  // The /services/[slug] this page belongs to. Used to surface related
+  // case studies and to drive the internal-linking graph.
+  serviceSlug: string;
   eyebrow: string;
   title: string;
   intro: string;
@@ -44,6 +50,7 @@ export default function ServicePage({
     { id: heroSlideId, alt: heroSlideAlt },
     ...servicesHeroSlides.filter((s) => s.id !== heroSlideId),
   ];
+  const relatedCases = relatedCasesForService(serviceSlug, 3);
 
   return (
     <>
@@ -202,6 +209,64 @@ export default function ServicePage({
           <FAQ items={faq} />
         </div>
       </Section>
+
+      {/* Related case studies — surfaces real portfolio work for this
+          service. Drives internal linking from /services/[slug] into the
+          /portfolio/[slug] graph. */}
+      {relatedCases.length > 0 && (
+        <Section>
+          <div className="flex flex-wrap items-end justify-between gap-6">
+            <div className="max-w-xl">
+              <p className="text-xs font-medium uppercase tracking-[0.20em] text-brand-700">
+                Related work
+              </p>
+              <h2 className="section-h2 mt-4 text-ink-900">
+                Recent case studies in this service.
+              </h2>
+            </div>
+            <Link
+              href="/portfolio"
+              className="inline-flex items-center gap-1.5 text-sm font-semibold text-ink-900 hover:text-brand-700 transition"
+            >
+              See all case studies <ArrowRight className="h-4 w-4" />
+            </Link>
+          </div>
+          <div className="mt-10 grid gap-x-8 gap-y-10 md:grid-cols-3">
+            {relatedCases.map((c) => (
+              <Reveal key={c.slug}>
+                <Link
+                  href={`/portfolio/${c.slug}`}
+                  className="group block"
+                >
+                  <div
+                    className={`relative aspect-[16/10] overflow-hidden rounded-2xl ${imageBg}`}
+                  >
+                    <Image
+                      src={unsplash(c.image.id, 1000)}
+                      alt={c.image.alt}
+                      fill
+                      sizes="(max-width: 768px) 100vw, 400px"
+                      className="object-cover photo-treat transition-transform duration-[900ms] ease-out group-hover:scale-[1.04]"
+                    />
+                    <span className="absolute top-3 left-3 inline-flex items-center rounded-full bg-white/95 px-2.5 py-1 text-xs font-medium text-brand-700">
+                      {c.service}
+                    </span>
+                  </div>
+                  <h3 className="mt-4 font-display text-lg font-semibold tracking-tight text-ink-900 group-hover:text-brand-700 transition">
+                    {c.title}
+                  </h3>
+                  <p className="mt-2 text-sm text-ink-600 leading-relaxed">
+                    {c.summary}
+                  </p>
+                  <span className="mt-3 inline-flex items-center gap-1.5 text-sm font-semibold text-brand-700 group-hover:gap-2.5 transition-all">
+                    Read case study <ArrowUpRight className="h-4 w-4" />
+                  </span>
+                </Link>
+              </Reveal>
+            ))}
+          </div>
+        </Section>
+      )}
 
       {/* Tri-column CTA — modelled on languagewire.com/services */}
       <Section className="pb-24">

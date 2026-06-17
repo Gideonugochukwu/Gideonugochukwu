@@ -13,6 +13,8 @@ export type CaseStudy = {
   industry: string;
   service: string;
   duration: string;
+  // ISO yyyy-mm-dd. Used as <lastmod> in the sitemap for /portfolio/[slug].
+  lastUpdated: string;
   // 1–2 sentence summary used on both the card and the detail page intro.
   summary: string;
   // Full Challenge paragraph and "What we did" steps — detail page only.
@@ -33,6 +35,7 @@ export const cases: CaseStudy[] = [
     industry: "HealthTech",
     service: "Translation & Localization",
     duration: "19-day launch + ongoing",
+    lastUpdated: "2026-05-12",
     summary:
       "We took a patient telehealth app from one English locale to fourteen in nineteen days — strict medical accuracy, full RTL support for Arabic, localized app-store listings, and a continuous-localization pipeline tied to the weekly release.",
     challenge:
@@ -67,6 +70,7 @@ export const cases: CaseStudy[] = [
     industry: "E-commerce",
     service: "Translation & Localization",
     duration: "10-week launch + ongoing",
+    lastUpdated: "2026-04-18",
     summary:
       "We localized 20k SKUs, the brand voice, the checkout, and every legal page across eight European markets — wiring transcreated campaign copy and a managed termbase into the same release as international SEO and paid marketing.",
     challenge:
@@ -101,6 +105,7 @@ export const cases: CaseStudy[] = [
     industry: "EdTech",
     service: "Translation & Localization",
     duration: "16-week programme",
+    lastUpdated: "2026-03-22",
     summary:
       "Hundreds of hours of course video subtitled and dubbed, the full product UI localized, and a terminology pipeline that holds technical accuracy across twelve languages — shipped to a strict course-launch schedule.",
     challenge:
@@ -135,6 +140,7 @@ export const cases: CaseStudy[] = [
     industry: "B2B SaaS",
     service: "Social Media Management",
     duration: "6-month programme",
+    lastUpdated: "2026-06-10",
     summary:
       "We took a quiet, inconsistent social presence and built it into a real demand channel — strategy, calendar, on-brand templates, daily community management, light paid boost, and monthly reporting. LinkedIn followers grew 6× and social started feeding the pipeline.",
     challenge:
@@ -169,6 +175,7 @@ export const cases: CaseStudy[] = [
     industry: "Healthcare",
     service: "Translation & Localization",
     duration: "18-day first locale + ongoing",
+    lastUpdated: "2025-09-08",
     summary:
       "Migrated 60k product strings and patient-education materials into 14 languages with culturally adapted UX, shipped on the engineering release cycle with a 99.4% linguist QA pass rate.",
     challenge:
@@ -199,6 +206,7 @@ export const cases: CaseStudy[] = [
     industry: "Robotics",
     service: "AI Annotation",
     duration: "Continuous programme",
+    lastUpdated: "2025-10-15",
     summary:
       "A continuous semantic-segmentation pipeline at 1.2M-image scale with weekly delivery, gold-set calibration, and inter-annotator agreement tracking — production-grade training data on a release cadence.",
     challenge:
@@ -228,6 +236,7 @@ export const cases: CaseStudy[] = [
     industry: "E-commerce",
     service: "Digital Marketing",
     duration: "12-week sprint + ongoing",
+    lastUpdated: "2025-11-04",
     summary:
       "Rebuilt the Meta funnel from creative to landing pages — 40+ creative variants, restructured audiences, and post-purchase retention flows that quadrupled blended ROAS in one quarter.",
     challenge:
@@ -258,6 +267,7 @@ export const cases: CaseStudy[] = [
     industry: "AI / LLM",
     service: "AI Annotation",
     duration: "10-week programme",
+    lastUpdated: "2025-12-02",
     summary:
       "An 80k-prompt preference dataset across 8 languages — including red-team adversarial prompts and instruction-following evals — that lifted the model's downstream evals by 11.6%.",
     challenge:
@@ -287,6 +297,7 @@ export const cases: CaseStudy[] = [
     industry: "Beauty",
     service: "Marketing + Localization",
     duration: "8-week launch + ongoing",
+    lastUpdated: "2026-01-20",
     summary:
       "Arabic transcreation, influencer-led UGC creative, and a Meta growth programme tuned for Gen-Z buyers — a region-specific brand voice that doubled followers and broke even inside two months.",
     challenge:
@@ -316,6 +327,7 @@ export const cases: CaseStudy[] = [
     industry: "Education",
     service: "AI Annotation",
     duration: "9-week programme",
+    lastUpdated: "2026-02-14",
     summary:
       "A balanced intent-and-entity dataset across 8 Indian languages — including code-mixed utterances common in real users — that delivered a 9.2% model F1 lift in production.",
     challenge:
@@ -346,4 +358,41 @@ export function getCase(slug: string): CaseStudy | undefined {
 
 export function allCaseSlugs(): string[] {
   return cases.map((c) => c.slug);
+}
+
+// Maps each /services/[slug] page to the substrings in CaseStudy.service that
+// count as "related". Powers the "Related case studies" section we render at
+// the bottom of every service page.
+const SERVICE_KEYWORDS: Record<string, string[]> = {
+  "translation-localization": ["Translation", "Localization"],
+  "ai-annotation": ["AI Annotation", "Annotation"],
+  "digital-marketing": ["Digital Marketing", "Marketing"],
+  seo: ["SEO"],
+};
+
+export function relatedCasesForService(
+  serviceSlug: string,
+  limit = 3
+): CaseStudy[] {
+  const keywords = SERVICE_KEYWORDS[serviceSlug] ?? [];
+  if (keywords.length === 0) return [];
+
+  // First pass: exact match on CaseStudy.service.
+  const direct = cases.filter((c) =>
+    keywords.some((k) => c.service.includes(k))
+  );
+  if (direct.length >= limit) return direct.slice(0, limit);
+
+  // Fallback: search the summary / challenge / approach text. Useful for
+  // services like SEO where the work shows up inside multilingual /
+  // localization engagements but the case study is tagged Translation.
+  const lowerKeywords = keywords.map((k) => k.toLowerCase());
+  const indirect = cases.filter((c) => {
+    if (direct.includes(c)) return false;
+    const haystack = [c.summary, c.challenge, c.approach.join(" ")]
+      .join(" ")
+      .toLowerCase();
+    return lowerKeywords.some((k) => haystack.includes(k));
+  });
+  return [...direct, ...indirect].slice(0, limit);
 }

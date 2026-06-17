@@ -6,10 +6,29 @@ import Section from "@/components/Section";
 import CTABand from "@/components/CTABand";
 import JsonLd from "@/components/JsonLd";
 import { posts, getPost, allSlugs } from "@/data/blog";
+import { relatedCasesForService } from "@/data/portfolio";
 import { imageBg, unsplash } from "@/lib/images";
 import { site } from "@/lib/site";
 import { articleSchema, breadcrumbSchema } from "@/lib/schema";
-import { ArrowLeft, ArrowUpRight } from "lucide-react";
+import { ArrowLeft, ArrowRight, ArrowUpRight } from "lucide-react";
+
+// Maps a blog post's tag set to the primary /services/[slug] it talks about.
+// Used to add a "Related services and case studies" block at the bottom of
+// each article that links into the rest of the site.
+const TAG_TO_SERVICE: Record<string, { slug: string; label: string }> = {
+  Annotation: { slug: "ai-annotation", label: "AI Annotation & Data Labeling" },
+  AI: { slug: "ai-annotation", label: "AI Annotation & Data Labeling" },
+  Localization: {
+    slug: "translation-localization",
+    label: "Translation & Localization",
+  },
+  i18n: {
+    slug: "translation-localization",
+    label: "Translation & Localization",
+  },
+  SEO: { slug: "seo", label: "SEO & Search Visibility" },
+  International: { slug: "seo", label: "SEO & Search Visibility" },
+};
 
 export function generateStaticParams() {
   return allSlugs().map((slug) => ({ slug }));
@@ -67,6 +86,14 @@ export default async function BlogPostPage({
   const url = `${site.url}/blog/${post.slug}`;
   const heroSrc = unsplash(post.heroImage.id, 2000);
   const related = posts.filter((p) => p.slug !== post.slug).slice(0, 2);
+
+  // Pick the primary service this post discusses by walking its tags.
+  const primaryService = post.tags
+    .map((t) => TAG_TO_SERVICE[t])
+    .find((s): s is { slug: string; label: string } => Boolean(s));
+  const relatedCases = primaryService
+    ? relatedCasesForService(primaryService.slug, 2)
+    : [];
 
   return (
     <>
@@ -144,6 +171,74 @@ export default async function BlogPostPage({
         <article className="prose-section max-w-3xl">
           <div dangerouslySetInnerHTML={{ __html: post.body }} />
         </article>
+
+        {primaryService && (
+          <aside className="max-w-3xl mt-12 pt-8 border-t border-ink-200/70">
+            <p className="text-xs font-medium uppercase tracking-[0.20em] text-brand-700">
+              Related services and work
+            </p>
+            <h2 className="section-h3 mt-3 text-ink-900">
+              Need this done? Here&apos;s where to look next.
+            </h2>
+            <p className="mt-4 text-ink-700 leading-relaxed">
+              This article connects to our{" "}
+              <Link
+                href={`/services/${primaryService.slug}`}
+                className="font-semibold text-brand-700 hover:text-brand-900 underline-offset-4 hover:underline"
+              >
+                {primaryService.label}
+              </Link>{" "}
+              service. See live results in our{" "}
+              <Link
+                href="/portfolio"
+                className="font-semibold text-brand-700 hover:text-brand-900 underline-offset-4 hover:underline"
+              >
+                portfolio
+              </Link>
+              , or{" "}
+              <Link
+                href="/contact"
+                className="font-semibold text-brand-700 hover:text-brand-900 underline-offset-4 hover:underline"
+              >
+                talk to an expert
+              </Link>{" "}
+              about your project.
+            </p>
+
+            {relatedCases.length > 0 && (
+              <ul className="mt-6 grid gap-4 sm:grid-cols-2">
+                {relatedCases.map((c) => (
+                  <li key={c.slug}>
+                    <Link
+                      href={`/portfolio/${c.slug}`}
+                      className="group flex items-start justify-between gap-3 rounded-xl border border-ink-200/70 bg-white p-4 hover:border-brand-300 transition"
+                    >
+                      <span>
+                        <span className="block text-xs font-medium uppercase tracking-wide text-brand-700">
+                          Case study
+                        </span>
+                        <span className="mt-1.5 block text-sm font-semibold text-ink-900 group-hover:text-brand-700 transition">
+                          {c.title}
+                        </span>
+                      </span>
+                      <ArrowUpRight className="mt-1 h-4 w-4 shrink-0 text-ink-400 group-hover:text-brand-700 transition" />
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+            )}
+
+            <p className="mt-6 text-sm text-ink-600">
+              More from the blog —{" "}
+              <Link
+                href="/blog"
+                className="font-semibold text-ink-900 hover:text-brand-700 inline-flex items-center gap-1"
+              >
+                see all articles <ArrowRight className="h-3.5 w-3.5" />
+              </Link>
+            </p>
+          </aside>
+        )}
       </Section>
 
       {related.length > 0 && (

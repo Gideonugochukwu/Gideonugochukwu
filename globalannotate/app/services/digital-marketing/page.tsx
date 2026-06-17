@@ -65,6 +65,7 @@ export default function Page() {
         ]}
       />
       <ServicePage
+        serviceSlug="digital-marketing"
         eyebrow="Digital Marketing"
         title="Audiences into customers. Customers into growth."
         intro="Lean, data-led growth across Meta, content, and organic social — built to drive revenue, not vanity metrics."
