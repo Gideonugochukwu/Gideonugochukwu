@@ -4,7 +4,7 @@ import { ArrowUpRight } from "lucide-react";
 import Reveal from "./Reveal";
 import { img, imageBg, unsplash } from "@/lib/images";
 
-// Five industries, uniform cards. No "lead tile" — every card shares the
+// Six industries, uniform cards. No "lead tile" — every card shares the
 // same aspect ratio, padding, and title size so nothing reads larger or
 // gets clipped.
 const INDUSTRIES = [
@@ -37,6 +37,13 @@ const INDUSTRIES = [
     href: "/services/ai-annotation",
   },
   {
+    key: "gaming",
+    name: "Gaming & Interactive",
+    line: "UI, dialogue, VO scripts, and LQA — for studios going global.",
+    image: img.industries.gaming,
+    href: "/services/game-localization",
+  },
+  {
     key: "media",
     name: "Media & Entertainment",
     line: "Subtitling, dubbing, and metadata at streaming scale.",
@@ -67,7 +74,7 @@ export default function Industries() {
 
       {/* Uniform grid: every card shares the same aspect ratio, padding, and
           title size. No lead tile — nothing reads larger than its neighbour. */}
-      <div className="mt-12 sm:mt-16 grid gap-4 sm:gap-5 sm:grid-cols-2 lg:grid-cols-5">
+      <div className="mt-12 sm:mt-16 grid gap-4 sm:gap-5 sm:grid-cols-2 lg:grid-cols-3">
         {INDUSTRIES.map((item, i) => (
           <Reveal key={item.key} delay={(i % 5) * 0.05}>
             <Link

@@ -54,7 +54,7 @@ export default function HomePage() {
         <StatStrip />
       </section>
 
-      {/* Industries — trimmed to 5, asymmetric lead-tile grid */}
+      {/* Industries — 6 uniform cards including Gaming, balanced 3-column grid on lg */}
       <section className="relative py-16 sm:py-20 md:py-28">
         <Industries />
       </section>
