@@ -82,7 +82,7 @@ export default function AboutPage() {
                 href="/services"
                 className="font-semibold text-brand-700 hover:text-brand-900 underline-offset-4 hover:underline"
               >
-                four services
+                five services
               </Link>{" "}
               we ship under one quality system.
             </p>
@@ -198,7 +198,12 @@ export default function AboutPage() {
               >
                 multilingual SEO
               </Link>{" "}
-              across 100+ languages — the four services GlobalAnnotate ships under one quality system. Before founding the agency, Gideon worked as an independent translator and language specialist, repeatedly running into the same problem: every cross-border project needed three vendors, three briefs, and three quality bars. GlobalAnnotate exists to remove that friction.
+              across 100+ languages, plus <Link
+                href="/services/game-localization"
+                className="font-semibold text-brand-700 hover:text-brand-900 underline-offset-4 hover:underline"
+              >
+                game localization
+              </Link> — the five services GlobalAnnotate ships under one quality system. Before founding the agency, Gideon worked as an independent translator and language specialist, repeatedly running into the same problem: every cross-border project needed three vendors, three briefs, and three quality bars. GlobalAnnotate exists to remove that friction.
             </p>
             <p className="mt-4 text-ink-700 leading-relaxed">
               Today he and the team work with B2B SaaS companies, e-commerce brands, digital-health platforms, EdTech, and AI labs to ship products and content in every market they care about. The principle is simple: senior project lead from day one, native specialists in every language, and a documented QA process behind every deliverable. Read{" "}

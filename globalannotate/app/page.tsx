@@ -13,7 +13,7 @@ import { faqSchema } from "@/lib/schema";
 const HOME_FAQ = [
   {
     q: "What services does GlobalAnnotate offer?",
-    a: "Four integrated services: translation & localization in 100+ languages, AI annotation & data labeling, multilingual SEO & search visibility, and performance digital marketing.",
+    a: "Five integrated services: translation & localization in 100+ languages, AI annotation & data labeling, multilingual SEO & search visibility, performance digital marketing, and game localization & translation for studios going global.",
   },
   {
     q: "How many languages do you support?",

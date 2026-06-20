@@ -1,9 +1,9 @@
 import Image from "next/image";
 import Link from "next/link";
-import { ArrowUpRight, Brain, Languages, Megaphone, Search } from "lucide-react";
+import { ArrowUpRight, Brain, Gamepad2, Languages, Megaphone, Search } from "lucide-react";
 import { imageBg } from "@/lib/images";
 
-const ICONS = { Brain, Languages, Megaphone, Search } as const;
+const ICONS = { Brain, Gamepad2, Languages, Megaphone, Search } as const;
 
 export type ServiceIcon = keyof typeof ICONS;
 

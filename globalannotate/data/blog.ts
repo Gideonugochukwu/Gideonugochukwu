@@ -239,6 +239,120 @@ export const posts: BlogPost[] = [
 <p>International SEO is a coordination problem as much as a technical one — translators, engineers, marketers, and SEOs all have to ship in the same direction. We built our <a href="/services/seo">SEO service</a> exactly around this coordination, leaning on our translation and localization team for native-quality content in every market. If you're trying to rank in more than one language, talk to us.</p>
 `,
   },
+  {
+    slug: "game-localization-guide",
+    title: "Game Localization: The Complete Guide for Studios Going Global (2026)",
+    description:
+      "A practical 2026 guide to game localization — what it really is vs translation, what to localize, the biggest mistakes studios make, how to prepare your game, the modern workflow, and where AI fits in.",
+    date: "2026-06-18",
+    author: "Gideon Ugochukwu",
+    readMinutes: 11,
+    tags: ["Games", "Localization", "i18n", "Global Launch"],
+    heroImage: img.services.gameLocalization,
+    body: `
+<p>Most studios discover game localization the hard way: somewhere between a soft launch in Japan that gets review-bombed for broken Kanji, an indie hit whose German players can't read half the menu because the strings overflow the buttons, and a Steam page in Brazilian Portuguese that quietly converts at a third of the English one. None of those are translation problems. They're <em>localization</em> problems — and they're entirely fixable if you plan for them before the build is locked.</p>
+
+<p>This guide is the playbook we wish more studios had on day one. It covers what game localization actually is, what needs to be localized, where studios consistently get it wrong, how to prepare your game so localization isn't painful, and how AI and human linguists sit together in a modern workflow in 2026.</p>
+
+<h2>What game localization actually is — vs translation</h2>
+<p>Translation converts words from one language to another. Localization adapts your <strong>entire game experience</strong> for a new market — language, culture, UI, audio, store page, and rating compliance — so a player in Tokyo, São Paulo, or Riyadh feels the game was made for them.</p>
+<p>It helps to separate the four layers explicitly:</p>
+<ul>
+<li><strong>Translation</strong> — turning English source strings into another language at a sentence level.</li>
+<li><strong>Localization</strong> — adapting UI, formatting, voice, references, names, currency, units, and pacing so the game reads naturally in the target locale.</li>
+<li><strong>Culturalization</strong> — reviewing content for cultural, religious, political, or regulatory issues that could get the game blocked, edited, or backlash-reviewed in a given market.</li>
+<li><strong>LQA (Linguistic Quality Assurance)</strong> — native gamer-linguists actually playing the build in each locale and filing bugs against UI truncation, broken variables, mistimed subtitles, and tone issues.</li>
+</ul>
+<p>Cut any one of those four and you'll see it in your reviews.</p>
+
+<h2>What actually needs localizing in a modern game</h2>
+<p>It's a longer list than most teams plan for:</p>
+<ul>
+<li><strong>In-game text</strong> — UI, HUD, tooltips, settings, error states, tutorials, system messages.</li>
+<li><strong>Narrative and dialogue</strong> — story beats, character voice, branching choices, barks.</li>
+<li><strong>Subtitles and closed captions</strong> — timed correctly, with speaker labels and sound cues.</li>
+<li><strong>Voiceover scripts</strong> — written for performance, with lip-sync notes and emotional direction.</li>
+<li><strong>Store and ASO copy</strong> — Steam, App Store, Google Play, Epic, console listings. Title, description, keywords, screenshot text.</li>
+<li><strong>Marketing assets</strong> — trailers, social, key art copy, press releases, community posts.</li>
+<li><strong>Legal and compliance</strong> — EULA, privacy policy, age-rating-driven content warnings.</li>
+<li><strong>Live-ops content</strong> — patch notes, season passes, event banners, push notifications.</li>
+</ul>
+
+<h2>The biggest mistakes studios make</h2>
+<p>Across hundreds of localization projects, the same five mistakes show up over and over:</p>
+<h3>1. String concatenation</h3>
+<p>Code like <code>"You killed " + count + " enemies"</code> looks fine in English and falls apart everywhere else. Word order, plural rules, and grammatical gender don't translate piece by piece. Use a real string-formatting standard (ICU MessageFormat is the right answer) and pass variables as named placeholders the linguist can move.</p>
+<h3>2. Hard-coded text</h3>
+<p>Strings baked into textures, prefabs, source code, or art assets are the single most expensive localization bug to fix. Externalize every user-facing string — including UI text inside images — before content lock.</p>
+<h3>3. No character limits and no context</h3>
+<p>"Start" is four characters in English and ten in German ("Starten"… or more). Buttons truncate, dialogue overlaps portraits, subtitles run off the screen. Ship linguists the character limit per string and a screenshot of where it appears, or they're guessing.</p>
+<h3>4. Ignoring culturalization</h3>
+<p>A red cross on a health pack, a gesture that's friendly in one country and offensive in another, a religious symbol on a faction banner, alcohol or gore where the local rating board doesn't allow it — these don't get caught by translation, they get caught by a culturalization review. Run that review <em>before</em> the build is locked, not after submission.</p>
+<h3>5. Skipping LQA</h3>
+<p>Every spreadsheet of strings looks fine in a spreadsheet. The bugs only appear in the build: text behind UI, wrong gender for the player character, untranslated strings the linguists never saw, audio playing over subtitles. Budget for in-context LQA on the real build in every locale — it's the single highest-ROI line item in a localization budget.</p>
+
+<h2>Preparing your game so localization is painless</h2>
+<p>The studios who launch globally without drama all do roughly the same things during development:</p>
+<ul>
+<li><strong>Externalize every user-facing string</strong> into a single localization table (JSON, XML, .po, .resx, .strings, Unity Localization, Unreal StringTables, Godot CSV — pick one and stick with it).</li>
+<li><strong>Leave UI text-expansion room.</strong> Plan for at least 30% growth from English. Some languages need more.</li>
+<li><strong>Use a real i18n formatter</strong> for plurals, genders, dates, numbers, and currencies.</li>
+<li><strong>Tag every string with context</strong> — what screen, what character, what tone, what character limit, and which variables it accepts.</li>
+<li><strong>Provide screenshots</strong> for the in-game UI. Linguists translating a 4-character button with no screenshot will produce a 12-character word every time.</li>
+<li><strong>Maintain a glossary and style guide</strong> for your world: character names, faction names, item names, lore terms. Lock these once, change them rarely.</li>
+<li><strong>Wire your localization pipeline into version control.</strong> Strings flow out on every merge, come back reviewed, and never block a build.</li>
+</ul>
+
+<h2>Choosing which languages to launch in</h2>
+<p>You don't have to ship all 100+ languages on day one. We usually recommend a two-track approach.</p>
+<p><strong>High-ROI launch set</strong> — Japanese, Korean, Simplified Chinese, German, French, European Spanish, Brazilian Portuguese, Italian, Russian. These markets are large, monetise well, and players actively penalise English-only releases in store reviews.</p>
+<p><strong>Underserved-but-loyal markets</strong> — Latin American Spanish (different from European), Polish, Turkish, Arabic, Vietnamese, Indonesian, and major African languages like Swahili, Hausa, and Yoruba. Localization here is cheap relative to the audience reach, and players in these markets are vocally grateful when a studio shows up properly.</p>
+<p>Pair the launch set with a content tier strategy: full localization (text + VO) for hero markets, text-only with subtitled cinematics for the next tier, and store-page-only for markets you want to test conversion in before committing further.</p>
+
+<h2>The workflow, step by step</h2>
+<ol>
+<li><strong>Scope and quote.</strong> Word count by content type (UI, narrative, marketing, legal), language list, VO needs, LQA hours per locale.</li>
+<li><strong>Glossary and style guide.</strong> Lock character names, world terms, tone, formality (T-V distinction matters in French, German, Spanish, and many other languages).</li>
+<li><strong>Native gamer-linguists.</strong> Real players of your genre in every target language, calibrated on a sample before the main programme starts.</li>
+<li><strong>Translation with context.</strong> In a TMS connected to your engine. Linguists see character limits, placeholders, and screenshots; translation memory reuses prior decisions automatically.</li>
+<li><strong>Senior review.</strong> A second native linguist reviews every customer-facing string. Edge cases get adjudicated with the studio.</li>
+<li><strong>In-context LQA.</strong> Linguists play the actual build per locale, logging bugs in your tracker. UI truncation, broken variables, wrong tone, mistimed subs — all caught before launch.</li>
+<li><strong>Final QA report and sign-off.</strong> Per-language bug status, fixes verified, ready-to-ship sign-off.</li>
+<li><strong>Live-ops loop.</strong> New strings flow from every patch into the same pipeline, ship in every language on the same release as English.</li>
+</ol>
+
+<h2>AI and humans in game localization, in 2026</h2>
+<p>Machine translation and multilingual TTS have both gotten genuinely good. They are <strong>tools</strong> that change the economics of localization — they don't replace native gamer-linguists or LQA, and any studio that thinks they do learns the hard way at launch.</p>
+<p>What actually works in 2026:</p>
+<ul>
+<li><strong>AI for speed at scale.</strong> Use modern MT to pre-translate large volumes of low-risk text (system messages, repetitive UI, patch notes) so human linguists focus their attention on narrative, hero copy, and marketing.</li>
+<li><strong>Human for judgment.</strong> Tone, humour, lore, character voice, branching choices, and anything emotional needs a native linguist. No exceptions.</li>
+<li><strong>TTS for prototypes and procedural lines.</strong> Multilingual TTS is excellent for placeholder VO and large-scale NPC barks — under human direction with native-speaker review on the final audio.</li>
+<li><strong>Human VO for hero characters and cinematics.</strong> Performance still belongs to actors. Always will.</li>
+<li><strong>LQA is non-negotiable.</strong> AI doesn't know your build is shipping a truncated button. A linguist playing the game in their language does.</li>
+</ul>
+
+<h2>A pre-launch localization checklist</h2>
+<ul>
+<li>All user-facing strings externalized to a localization table.</li>
+<li>ICU MessageFormat (or equivalent) for plurals, gender, dates, currency.</li>
+<li>Character limits documented per string. UI tested at +30% expansion.</li>
+<li>Screenshots and context attached to every string in the TMS.</li>
+<li>Glossary, style guide, and tone notes signed off per language.</li>
+<li>Native gamer-linguists calibrated on a sample chapter.</li>
+<li>Culturalization review completed before content lock.</li>
+<li>Subtitles timed, hearing-impaired captions if applicable.</li>
+<li>VO scripts with lip-sync notes for dub markets; talent cast and directed.</li>
+<li>Store-page copy localized per market, not just translated.</li>
+<li>In-context LQA on the real build in every locale. Bugs filed, fixed, verified.</li>
+<li>Continuous-localization pipeline wired up for post-launch patches.</li>
+</ul>
+
+<h2>Where to go next</h2>
+<p>If you're a studio planning a global launch, the cheapest mistake is the one you don't ship. Get the architecture right, hire native gamer-linguists, run real LQA, and treat localization as a first-class part of the build — not a step you bolt on at the end. That is the difference between a launch and a relaunch.</p>
+<p>Our <a href="/services/game-localization">Game Localization & Translation service</a> exists exactly for this — UI and dialogue, subtitles and VO scripts, store and ASO copy, culturalization, and in-context LQA in 100+ languages. See how it played out for a <a href="/portfolio/game-localization-rpg">narrative RPG that launched into 12 languages in 10 weeks</a>, or <a href="/contact">talk to an expert</a> about your title.</p>
+`,
+  },
 ];
 
 export function getPost(slug: string): BlogPost | undefined {

@@ -16,6 +16,14 @@ import { ArrowLeft, ArrowRight, ArrowUpRight } from "lucide-react";
 // Used to add a "Related services and case studies" block at the bottom of
 // each article that links into the rest of the site.
 const TAG_TO_SERVICE: Record<string, { slug: string; label: string }> = {
+  // "Games" comes first because the primary-service lookup walks the post's
+  // tag array in order — a game-localization post tagged ["Games",
+  // "Localization", ...] should resolve to the game service, not the
+  // general translation one.
+  Games: {
+    slug: "game-localization",
+    label: "Game Localization & Translation",
+  },
   Annotation: { slug: "ai-annotation", label: "AI Annotation & Data Labeling" },
   AI: { slug: "ai-annotation", label: "AI Annotation & Data Labeling" },
   Localization: {

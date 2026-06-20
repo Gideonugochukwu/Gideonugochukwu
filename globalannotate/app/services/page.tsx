@@ -9,11 +9,11 @@ import PageHero from "@/components/PageHero";
 import { services, site } from "@/lib/site";
 import { img, imageBg, unsplash, servicesHeroSlides } from "@/lib/images";
 import { breadcrumbSchema } from "@/lib/schema";
-import { ArrowRight, Brain, Languages, Megaphone, Search } from "lucide-react";
+import { ArrowRight, Brain, Gamepad2, Languages, Megaphone, Search } from "lucide-react";
 
-const TITLE = "Services — Translation, AI Annotation, SEO & Digital Marketing";
+const TITLE = "Services — Translation, AI Annotation, SEO, Marketing & Game Localization";
 const DESCRIPTION =
-  "Four integrated services to help you grow globally: translation & localization, AI annotation, multilingual SEO, and performance digital marketing.";
+  "Five integrated services to help you grow globally: translation & localization, AI annotation, multilingual SEO, performance digital marketing, and game localization in 100+ languages.";
 
 export const metadata: Metadata = {
   title: TITLE,
@@ -33,9 +33,10 @@ const SERVICE_IMAGES = {
   "ai-annotation": img.services.aiAnnotation,
   "digital-marketing": img.services.digitalMarketing,
   seo: img.services.seo,
+  "game-localization": img.services.gameLocalization,
 } as const;
 
-const ICONS = { Brain, Languages, Megaphone, Search } as const;
+const ICONS = { Brain, Gamepad2, Languages, Megaphone, Search } as const;
 
 export default function ServicesPage() {
   return (
@@ -54,7 +55,7 @@ export default function ServicesPage() {
             One toolkit. <span className="text-gradient-light">Every market.</span>
           </>
         }
-        subtitle="Four core services that work together — or independently — to help your team move faster across markets."
+        subtitle="Five core services that work together — or independently — to help your team move faster across markets."
         ctas={[
           { label: "Talk to an expert", href: "/contact" },
           { label: "See case studies", href: "/portfolio", variant: "ghost" },
@@ -64,7 +65,7 @@ export default function ServicesPage() {
 
       {/* Quick-jump service list below the hero */}
       <Section className="pt-12 md:pt-16">
-        <ul className="grid gap-3 text-sm sm:grid-cols-2 lg:grid-cols-4">
+        <ul className="grid gap-3 text-sm sm:grid-cols-2 lg:grid-cols-5">
           {services.map((s) => (
             <li key={s.slug}>
               <a
