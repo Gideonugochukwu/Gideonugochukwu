@@ -167,7 +167,7 @@ export default function AboutPage() {
               {founder.role}, {founder.company}
             </p>
             <p className="mt-6 text-ink-700 leading-relaxed">
-              Gideon Ugochukwu is the founder and lead linguist of GlobalAnnotate, a freelance linguist and translator who built the agency to make quality localization and reliable training data accessible to teams at any scale. Based in {founder.location}, he leads a distributed team of native specialists across 30+ countries.
+              Gideon Ugochukwu is the founder and lead linguist of GlobalAnnotate, a freelance linguist and translator who built the agency to make quality localization and reliable training data accessible to teams at any scale. He leads a distributed team of native specialists across 30+ countries.
             </p>
             <p className="mt-4 text-ink-700 leading-relaxed">
               His work spans{" "}
