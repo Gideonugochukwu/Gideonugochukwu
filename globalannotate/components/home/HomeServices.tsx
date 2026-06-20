@@ -1,22 +1,23 @@
 import Image from "next/image";
 import Link from "next/link";
-import { ArrowUpRight, Brain, Languages, Megaphone, Search } from "lucide-react";
+import { ArrowUpRight, Brain, Gamepad2, Languages, Megaphone, Search } from "lucide-react";
 import Reveal from "../Reveal";
 import { services } from "@/lib/site";
 import { img, imageBg, unsplash } from "@/lib/images";
 
-// Homepage-only editorial presentation of the four services. Drops the
-// uniform bordered-card grid in favor of large feature blocks with strong
-// type, a tall image, and just enough whitespace to feel like a magazine
-// spread. The original card-style ServiceCard is still used on /services.
+// Homepage-only editorial presentation of the services. Large feature
+// blocks with strong type, a tall image, and just enough whitespace to
+// feel like a magazine spread. The original card-style ServiceCard is
+// still used on /services.
 
-const ICONS = { Brain, Languages, Megaphone, Search } as const;
+const ICONS = { Brain, Gamepad2, Languages, Megaphone, Search } as const;
 
 const SERVICE_IMAGES = {
   "translation-localization": img.services.translation,
   "ai-annotation": img.services.aiAnnotation,
   "digital-marketing": img.services.digitalMarketing,
   seo: img.services.seo,
+  "game-localization": img.services.gameLocalization,
 } as const;
 
 export default function HomeServices() {
@@ -28,12 +29,12 @@ export default function HomeServices() {
             What we do
           </p>
           <h2 className="section-h2 mt-4 text-ink-900">
-            Four services.
+            Five services.
             <br />
             <span className="text-gradient">One accountable team.</span>
           </h2>
           <p className="mt-4 text-base sm:text-lg text-ink-600 leading-relaxed">
-            Translation, AI training data, multilingual SEO, and marketing — in 100+ languages.
+            Translation, AI training data, multilingual SEO, marketing, and game localization — in 100+ languages.
           </p>
         </div>
         <Link

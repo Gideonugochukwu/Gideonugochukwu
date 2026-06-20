@@ -81,6 +81,14 @@ export const services = [
       "Performance-driven Facebook and Instagram ads, social media management, and content strategy that turn audiences into customers.",
     icon: "Megaphone",
   },
+  {
+    slug: "game-localization",
+    title: "Game Localization & Translation",
+    short: "Game Localization",
+    summary:
+      "Bring your game to players worldwide — UI, dialogue, subtitles, voiceover scripts, store listings, and LQA testing in 100+ languages.",
+    icon: "Gamepad2",
+  },
 ] as const;
 
 export type ServiceSlug = (typeof services)[number]["slug"];

@@ -67,6 +67,13 @@ export default async function CaseStudyPage({
   // clear. Powers the linkable service chip in the hero and the
   // "Learn about this service" line below the outcomes strip.
   const serviceLookup: { keywords: string[]; slug: string; label: string }[] = [
+    // Order matters — first match wins. "Game Localization" must beat the
+    // bare "Localization" keyword below.
+    {
+      keywords: ["Game Localization", "Game"],
+      slug: "game-localization",
+      label: "Game Localization & Translation",
+    },
     {
       keywords: ["Translation", "Localization"],
       slug: "translation-localization",

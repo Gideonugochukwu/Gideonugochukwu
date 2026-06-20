@@ -7,7 +7,7 @@ import { cases } from "@/data/portfolio";
 // fallback for static pages and service detail pages where there isn't a
 // per-record date in the data. Bump this when copy/structure changes site
 // wide rather than letting the sitemap thrash on every deploy.
-const SITE_LAST_UPDATED = "2026-06-16";
+const SITE_LAST_UPDATED = "2026-06-20";
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const fallback = new Date(SITE_LAST_UPDATED);

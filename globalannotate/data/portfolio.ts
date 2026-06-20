@@ -350,6 +350,41 @@ export const cases: CaseStudy[] = [
     ],
     image: img.portfolio.indiaNlp,
   },
+  {
+    slug: "game-localization-rpg",
+    title: "Localizing a narrative RPG into 12 languages",
+    client: "An indie studio launching a story-driven RPG globally",
+    industry: "Games",
+    service: "Game Localization",
+    duration: "10-week launch + ongoing live-ops",
+    lastUpdated: "2026-06-18",
+    summary:
+      "An indie studio with a heavily dialogue-driven RPG needed 12 simultaneous market launches with culturally specific humour, lore-locked terminology, and zero text-truncation bugs at ship. We ran the full programme — gamer-linguists, glossary, transcreation, in-context LQA on real builds — to a fixed Steam release date.",
+    challenge:
+      "The studio's debut RPG had 180k words of branching dialogue, a custom in-world lexicon, and humour that leaned on regional references and wordplay. They were committed to a global Steam launch in 10 weeks, in 12 languages including Japanese, Korean, Simplified Chinese, German, French, Spanish (LatAm), Brazilian Portuguese, and Arabic — with no margin for one-star reviews about broken localization, mistranslated jokes, or truncated UI in the first weekend.",
+    approach: [
+      "Recruited native gamer-linguists — players of the genre in every target language — and ran calibration on a sample chapter before the main programme started",
+      "Built a glossary and style guide for the in-world lexicon, character names, factions, and lore terms — locked into the TMS so every linguist and reviewer worked from the same source of truth",
+      "Transcreated jokes, idioms, and culturally specific references rather than translating literally, so each market got humour that landed in its own voice",
+      "Localized UI, HUD, tutorials, and store-listing copy with character limits and rich-text tags visible in-context — placeholders like {playerName} and %d preserved exactly",
+      "Ran in-context LQA on the actual build per locale — playthroughs by native linguists logging UI truncation, mis-timed subtitles, and broken variables straight into the studio's issue tracker",
+      "Shipped continuous localization for post-launch patches and live-ops content drops on the studio's weekly release cadence",
+    ],
+    headlineOutcomes: [
+      { label: "Languages shipped", value: "12" },
+      { label: "Launch window", value: "10 weeks" },
+      { label: "Critical text bugs at launch", value: "0" },
+    ],
+    outcomes: [
+      { label: "Languages shipped", value: "12" },
+      { label: "Launch window", value: "10 weeks" },
+      { label: "First-week intl. revenue share", value: "~40%" },
+      { label: "Critical text bugs at launch", value: "0" },
+      { label: "Review sentiment by region", value: "Consistent" },
+      { label: "Live-ops cadence", value: "Weekly" },
+    ],
+    image: img.industries.gaming,
+  },
 ];
 
 export function getCase(slug: string): CaseStudy | undefined {
@@ -368,6 +403,7 @@ const SERVICE_KEYWORDS: Record<string, string[]> = {
   "ai-annotation": ["AI Annotation", "Annotation"],
   "digital-marketing": ["Digital Marketing", "Marketing"],
   seo: ["SEO"],
+  "game-localization": ["Game Localization", "Game"],
 };
 
 export function relatedCasesForService(

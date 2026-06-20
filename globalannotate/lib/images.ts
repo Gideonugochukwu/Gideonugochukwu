@@ -54,6 +54,11 @@ export const img = {
       id: "1551288049-bebda4e38f71",
       alt: "Laptop showing search analytics and keyword ranking data",
     },
+    // Sean Do — wireless gaming controller, immediately reads as games.
+    gameLocalization: {
+      id: "1493711662062-fa541adb3fc8",
+      alt: "Wireless gaming controller representing video game localization",
+    },
   },
   industries: {
     // freestocks shopping bags — instantly reads as e-commerce.
