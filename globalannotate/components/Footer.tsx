@@ -50,6 +50,7 @@ export default function Footer() {
             <li><Link href="/portfolio" className="text-sm text-ink-600 hover:text-brand-700 transition">Portfolio</Link></li>
             <li><Link href="/reviews" className="text-sm text-ink-600 hover:text-brand-700 transition">Reviews</Link></li>
             <li><Link href="/blog" className="text-sm text-ink-600 hover:text-brand-700 transition">Blog</Link></li>
+            <li><Link href="/freelancers" className="text-sm text-ink-600 hover:text-brand-700 transition">Join Our Network</Link></li>
             <li><Link href="/contact" className="text-sm text-ink-600 hover:text-brand-700 transition">Contact</Link></li>
           </ul>
         </div>
