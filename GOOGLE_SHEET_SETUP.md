@@ -28,10 +28,15 @@ code, click a few buttons, and paste one link into Vercel.
 Open your Roster sheet. The **first row** must have these column headings,
 in **this exact order**, left to right:
 
-| A | B | C | D | E | F | G | H | I | J | K | L | M | N | O | P | Q | R | S |
-|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|
-| Date Added | Full Name | Email | Country | Time Zone | Native Language | Language Pairs | Services | Specializations | Years Exp. | CAT Tools | Rate (per word) | Rate (per hour) | Currency | LinkedIn/Website | CV/Portfolio Link | Status | Rating | Notes |
+| A | B | C | D | E | F | G | H | I | J | K | L | M | N | O | P | Q | R | S | T |
+|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|
+| Date Added | Full Name | Email | Primary Role | Country | Time Zone | Native Language | Language Pairs | Services | Specializations | Years Exp. | CAT Tools | Rate (per word) | Rate (per hour) | Currency | LinkedIn/Website | CV/Portfolio Link | Status | Rating | Notes |
 
+> **New column:** the form now captures **Primary Role / Profession** (so the
+> network welcomes designers, marketers, SEOs, etc., not only translators).
+> Insert a **Primary Role** column right after **Email** — everything else
+> stays in the same order it was before.
+>
 > The code writes data into columns in this order. If your headings are in a
 > different order, either reorder them to match the table above, or tell me
 > and I’ll adjust the code.
@@ -83,6 +88,7 @@ function doPost(e) {
       today,                       // Date Added   (auto)
       data.fullName || '',         // Full Name
       data.email || '',            // Email
+      data.role || '',             // Primary Role
       data.country || '',          // Country
       data.timeZone || '',         // Time Zone
       data.nativeLanguage || '',   // Native Language
@@ -227,6 +233,7 @@ a few seconds, with **Date Added** filled and **Status** set to **New**. 🎉
 | Date Added | Filled automatically with today’s date |
 | Full Name | Form: Full name |
 | Email | Form: Email |
+| Primary Role | Form: Primary role / profession |
 | Country | Form: Country |
 | Time Zone | Form: Time zone |
 | Native Language | Form: Native language |
