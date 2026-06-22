@@ -45,6 +45,7 @@ export const nav = [
   { href: "/reviews", label: "Reviews" },
   { href: "/blog", label: "Blog" },
   { href: "/about", label: "About" },
+  { href: "/freelancers", label: "Join Our Network" },
   { href: "/contact", label: "Contact" },
 ];
 
