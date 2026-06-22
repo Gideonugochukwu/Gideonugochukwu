@@ -7,6 +7,7 @@ import { ToastProvider } from "@/components/Toast";
 import JsonLd from "@/components/JsonLd";
 import { site } from "@/lib/site";
 import { organizationSchema, websiteSchema } from "@/lib/schema";
+import { SpeedInsights } from "@vercel/speed-insights/next";
 
 const body = Plus_Jakarta_Sans({
   variable: "--font-body",
@@ -105,6 +106,7 @@ export default function RootLayout({
           <main className="flex-1">{children}</main>
           <Footer />
         </ToastProvider>
+        <SpeedInsights />
       </body>
     </html>
   );
