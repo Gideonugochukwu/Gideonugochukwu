@@ -26,6 +26,7 @@ export default function PageHero({
   ctas,
   slides,
   size = "default",
+  backgroundExtra,
 }: {
   eyebrow?: string;
   pre?: React.ReactNode;
@@ -36,6 +37,9 @@ export default function PageHero({
   // "default" = standard hero used by main pages; "compact" = shallower
   // hero used by section pages like Reviews / Blog / Contact / Legal.
   size?: "default" | "compact";
+  // Optional decorative layer rendered above the gradient but behind the hero
+  // text — used by the homepage for the interactive 3D globe.
+  backgroundExtra?: React.ReactNode;
 }) {
   const reduce = useReducedMotion();
 
@@ -57,6 +61,8 @@ export default function PageHero({
         }}
       />
       <div aria-hidden className="absolute inset-0 hero-grid opacity-20" />
+
+      {backgroundExtra}
 
       <div className={`container-wide relative ${paddingY}`}>
         <div className="max-w-3xl">

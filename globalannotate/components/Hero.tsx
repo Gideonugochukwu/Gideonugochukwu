@@ -1,5 +1,6 @@
 import MultilingualGreeting from "./MultilingualGreeting";
 import PageHero from "./PageHero";
+import HeroGlobe from "./HeroGlobe";
 import { homeHeroSlides } from "@/lib/images";
 
 // Home hero — same shared PageHero everywhere else uses. The three statements
@@ -9,6 +10,7 @@ export default function Hero() {
   return (
     <PageHero
       slides={homeHeroSlides}
+      backgroundExtra={<HeroGlobe />}
       pre={
         <div className="text-xl sm:text-2xl md:text-3xl font-display font-medium text-white/80">
           <MultilingualGreeting />
