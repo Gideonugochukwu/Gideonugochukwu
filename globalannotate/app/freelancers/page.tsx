@@ -4,6 +4,7 @@ import Section from "@/components/Section";
 import Reveal from "@/components/Reveal";
 import JsonLd from "@/components/JsonLd";
 import PageHero from "@/components/PageHero";
+import AirtableEmbed from "@/components/AirtableEmbed";
 import { site } from "@/lib/site";
 import { breadcrumbSchema } from "@/lib/schema";
 import { aboutHeroSlides } from "@/lib/images";
@@ -52,6 +53,8 @@ const WHY = [
 export default function FreelancersPage() {
   return (
     <>
+      {/* Warm up the connection to Airtable so the embedded form loads faster. */}
+      <link rel="preconnect" href="https://airtable.com" />
       <JsonLd
         data={breadcrumbSchema([
           { name: "Home", url: site.url },
@@ -120,17 +123,7 @@ export default function FreelancersPage() {
             </p>
           </div>
           <Reveal>
-            {/* Container is fixed-height with overflow hidden; the iframe is
-                50px taller so Airtable's branding footer is clipped off the
-                bottom while the rounded corners + emerald glow stay intact. */}
-            <div className="overflow-hidden rounded-2xl border border-ink-200 bg-white shadow-[0_20px_60px_-20px_rgba(16,185,129,0.35)] ring-1 ring-brand-100 h-[1600px] md:h-[1200px]">
-              <iframe
-                title="GlobalAnnotate freelancer application form"
-                src="https://airtable.com/embed/apph9BiJQVio8ZIrJ/pagLATGP3cXeCVrts/form"
-                className="block w-full h-[1650px] md:h-[1250px]"
-                style={{ background: "transparent", border: 0 }}
-              />
-            </div>
+            <AirtableEmbed />
           </Reveal>
         </div>
       </Section>
