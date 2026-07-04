@@ -4,7 +4,6 @@ import Section from "@/components/Section";
 import Reveal from "@/components/Reveal";
 import JsonLd from "@/components/JsonLd";
 import PageHero from "@/components/PageHero";
-import FreelancerForm from "@/components/FreelancerForm";
 import { site } from "@/lib/site";
 import { breadcrumbSchema } from "@/lib/schema";
 import { aboutHeroSlides } from "@/lib/images";
@@ -120,7 +119,16 @@ export default function FreelancersPage() {
               .
             </p>
           </div>
-          <FreelancerForm />
+          <Reveal>
+            <div className="overflow-hidden rounded-2xl border border-ink-200 bg-white shadow-[0_20px_60px_-20px_rgba(16,185,129,0.35)] ring-1 ring-brand-100">
+              <iframe
+                title="GlobalAnnotate freelancer application form"
+                src="https://airtable.com/embed/apph9BiJQVio8ZIrJ/pagLATGP3cXeCVrts/form"
+                className="block w-full h-[1600px] md:h-[1200px]"
+                style={{ background: "transparent", border: 0 }}
+              />
+            </div>
+          </Reveal>
         </div>
       </Section>
     </>
