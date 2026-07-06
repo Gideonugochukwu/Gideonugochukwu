@@ -101,7 +101,7 @@ export default async function CaseStudyPage({
       {/* Hero — same rotating-slideshow treatment as the main pages, plus
           the service/industry/duration chips + client one-liner this page
           needs. Refined .page-h1 typography. */}
-      <section className="relative isolate overflow-hidden bg-ink-950 text-white">
+      <section className="relative isolate overflow-hidden bg-night-950 text-white">
         <HeroSlideshow slides={heroSlides} />
         <div
           aria-hidden

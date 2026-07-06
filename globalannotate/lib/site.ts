@@ -32,9 +32,14 @@ export const founder = {
   location: "Nigeria",
   description:
     "Gideon Ugochukwu is the founder and lead linguist of GlobalAnnotate, offering translation, AI annotation, digital marketing, and SEO services across 100+ languages.",
+  // Every public profile that confirms "Gideon Ugochukwu = GlobalAnnotate".
+  // Used by the Person schema on /about, the author markup on blog posts,
+  // and merged into the Organization schema's sameAs on every page.
   sameAs: [
+    "https://www.linkedin.com/in/gideon-ugochukwu123/",
     "https://linkedin.com/company/globalannotate",
     "https://www.instagram.com/global_annotate/",
+    "https://www.proz.com/business/199477-globalannotate",
   ],
 };
 

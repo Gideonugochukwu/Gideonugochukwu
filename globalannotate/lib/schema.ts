@@ -43,7 +43,12 @@ export function organizationSchema() {
     email: site.email,
     description: site.description,
     founder: personSchemaShort(),
-    sameAs: activeSocialLinks().map((s) => s.href),
+    // Company socials plus the founder's profiles (personal LinkedIn, ProZ)
+    // so the org and person graphs corroborate each other. Deduplicated —
+    // the two lists overlap on the company pages.
+    sameAs: Array.from(
+      new Set([...activeSocialLinks().map((s) => s.href), ...founder.sameAs])
+    ),
   };
 }
 

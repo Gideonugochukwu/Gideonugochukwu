@@ -48,8 +48,14 @@ export default function PageHero({
       ? "pt-16 sm:pt-20 md:pt-24 pb-16 sm:pb-20 md:pb-24"
       : "pt-16 sm:pt-20 md:pt-24 pb-20 sm:pb-24 md:pb-28";
 
+  // Oversized display type for real headlines; sentence-length titles
+  // (some service pages pass a full value proposition) drop to the
+  // moderate clamp so the hero doesn't wrap five-plus lines.
+  const titleClass =
+    typeof title === "string" && title.length > 70 ? "page-h1-long" : "page-h1";
+
   return (
-    <section className="relative isolate overflow-hidden bg-ink-950 text-white">
+    <section className="relative isolate overflow-hidden bg-night-950 text-white">
       <HeroSlideshow slides={slides} />
 
       <div
@@ -92,7 +98,7 @@ export default function PageHero({
             initial={reduce ? false : { opacity: 0, y: 14 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.7, delay: 0.2, ease: [0.22, 1, 0.36, 1] }}
-            className="page-h1 mt-4 sm:mt-5 text-white max-w-3xl"
+            className={`${titleClass} mt-4 sm:mt-5 text-white max-w-3xl`}
           >
             {title}
           </motion.h1>
@@ -124,7 +130,7 @@ export default function PageHero({
                   <Link
                     key={c.href + c.label}
                     href={c.href}
-                    className="inline-flex items-center justify-center gap-2 rounded-xl bg-white text-ink-900 px-5 py-3 font-semibold hover:bg-brand-50 transition shadow-sm"
+                    className="btn-on-dark px-5 py-3 rounded-xl shadow-sm"
                   >
                     {c.label} <ArrowRight className="h-4 w-4" />
                   </Link>
@@ -135,13 +141,14 @@ export default function PageHero({
         </div>
       </div>
 
-      {/* Soft fade into the next white section. */}
+      {/* Soft fade into the next section — follows the page background in
+          both light and dark mode. */}
       <div
         aria-hidden
         className="absolute inset-x-0 bottom-0 h-20"
         style={{
           background:
-            "linear-gradient(180deg, transparent 0%, rgba(255,255,255,0.55) 70%, #ffffff 100%)",
+            "linear-gradient(180deg, transparent 0%, color-mix(in srgb, var(--color-paper) 55%, transparent) 70%, var(--color-paper) 100%)",
         }}
       />
     </section>
