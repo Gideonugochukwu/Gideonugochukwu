@@ -33,7 +33,7 @@ export default function CTABand() {
           <div className="flex flex-col sm:flex-row md:flex-col gap-3 md:items-end">
             <Link
               href="/contact"
-              className="inline-flex items-center justify-center gap-2 rounded-xl bg-white text-ink-900 px-5 py-3 font-semibold hover:bg-brand-50 transition"
+              className="btn-on-dark px-5 py-3 rounded-xl"
             >
               Talk to an expert <ArrowRight className="h-4 w-4" />
             </Link>

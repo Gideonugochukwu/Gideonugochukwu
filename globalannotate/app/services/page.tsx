@@ -123,7 +123,7 @@ export default function ServicesPage() {
                     <div className="mt-7 flex flex-wrap items-center gap-x-6 gap-y-3">
                       <Link
                         href={`/services/${s.slug}`}
-                        className="inline-flex items-center gap-2 rounded-xl bg-ink-900 px-5 py-3 text-sm font-semibold text-white hover:bg-brand-700 transition"
+                        className="inline-flex items-center gap-2 rounded-xl bg-night-900 px-5 py-3 text-sm font-semibold text-white hover:bg-brand-700 transition"
                       >
                         Explore service <ArrowRight className="h-4 w-4" />
                       </Link>

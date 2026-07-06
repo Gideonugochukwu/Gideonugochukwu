@@ -21,7 +21,7 @@ export function unsplash(id: string, width: number, quality = 80) {
 // hollow box — it looks like an intentional brand panel with the overlay
 // text on top.
 export const imageBg =
-  "bg-gradient-to-br from-ink-900 via-ink-800 to-brand-800";
+  "bg-gradient-to-br from-night-900 via-night-800 to-emerald-900";
 
 export const img = {
   // Atmospheric hero — diverse team collaborating in a bright workspace.

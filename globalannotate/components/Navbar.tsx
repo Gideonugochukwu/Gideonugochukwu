@@ -5,6 +5,7 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { Menu, X, ArrowRight } from "lucide-react";
 import Logo from "./Logo";
+import ThemeToggle from "./ThemeToggle";
 import { nav } from "@/lib/site";
 import { cn } from "@/lib/utils";
 
@@ -31,7 +32,7 @@ export default function Navbar() {
       className={cn(
         "sticky top-0 z-50 w-full transition-all",
         scrolled
-          ? "backdrop-blur-md bg-white/80 border-b border-ink-200/70"
+          ? "backdrop-blur-md bg-white/80 dark:bg-night-900/80 border-b border-ink-200/70"
           : "bg-transparent"
       )}
     >
@@ -64,20 +65,24 @@ export default function Navbar() {
           })}
         </nav>
 
-        <div className="hidden md:flex items-center gap-2">
+        <div className="hidden md:flex items-center gap-2.5">
+          <ThemeToggle />
           <Link href="/contact" className="btn-primary text-sm">
             Talk to an expert <ArrowRight className="h-4 w-4" />
           </Link>
         </div>
 
-        <button
-          className="md:hidden inline-flex items-center justify-center h-10 w-10 rounded-lg border border-ink-200 text-ink-700"
-          onClick={() => setOpen((v) => !v)}
-          aria-label={open ? "Close menu" : "Open menu"}
-          aria-expanded={open}
-        >
-          {open ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
-        </button>
+        <div className="md:hidden flex items-center gap-2">
+          <ThemeToggle />
+          <button
+            className="inline-flex items-center justify-center h-10 w-10 rounded-lg border border-ink-200 text-ink-700"
+            onClick={() => setOpen((v) => !v)}
+            aria-label={open ? "Close menu" : "Open menu"}
+            aria-expanded={open}
+          >
+            {open ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
+          </button>
+        </div>
       </div>
 
       {open && (

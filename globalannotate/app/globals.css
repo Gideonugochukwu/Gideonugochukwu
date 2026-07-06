@@ -1,6 +1,13 @@
 @import "tailwindcss";
 
+/* Class-based dark mode: `dark:` utilities apply inside .dark (set on <html>
+   by the ThemeToggle + the inline THEME_INIT script in the root layout). */
+@custom-variant dark (&:where(.dark, .dark *));
+
 @theme {
+  /* Ink — slate scale for text, borders, and light-gray surfaces. These
+     values FLIP in dark mode (see the .dark block below), so ink-900 text
+     is dark on light and light on dark automatically. */
   --color-ink-50: #f8fafc;
   --color-ink-100: #f1f5f9;
   --color-ink-200: #e2e8f0;
@@ -13,6 +20,15 @@
   --color-ink-900: #0f172a;
   --color-ink-950: #020617;
 
+  /* Night — literal navy scale that does NOT flip in dark mode. Use for
+     structurally dark surfaces (heroes, dark CTA panels, dark buttons) that
+     must stay dark in both themes. */
+  --color-night-800: #1e293b;
+  --color-night-900: #0f172a;
+  --color-night-950: #020617;
+
+  /* Brand — emerald. 400–600 are theme-stable; the light tints and dark
+     shades flip in dark mode so tinted sections and link text stay legible. */
   --color-brand-50: #ecfdf5;
   --color-brand-100: #d1fae5;
   --color-brand-200: #a7f3d0;
@@ -24,14 +40,84 @@
   --color-brand-800: #065f46;
   --color-brand-900: #064e3b;
 
+  /* Accent — terracotta / warm copper. Sparing use only: hover states,
+     link underlines, small highlights, CTA borders. 10–15% of a page max. */
+  --color-accent-50: #fdf6f0;
+  --color-accent-100: #f9e8db;
+  --color-accent-200: #f2d1b8;
+  --color-accent-300: #e5ae87;
+  --color-accent-400: #d68f60;
+  --color-accent-500: #c67a4b;
+  --color-accent-600: #b0663a;
+  --color-accent-700: #92512d;
+  --color-accent-800: #764226;
+  --color-accent-900: #603722;
+
+  /* Semantic surfaces. Paper = page background (warm off-white, not cold
+     #fff). Card = raised surfaces. Field = form controls. All flip dark. */
+  --color-paper: #fafaf8;
+  --color-card: #f5f5f0;
+  --color-field: #ffffff;
+  --color-muted: #6b7280;
+
   --color-surface: #ffffff;
   --color-surface-alt: #f7f9fb;
 
   --font-sans: var(--font-body), ui-sans-serif, system-ui, sans-serif;
-  --font-display: var(--font-display), ui-sans-serif, system-ui, sans-serif;
+  --font-display: var(--font-display), ui-serif, Georgia, serif;
 
   --shadow-soft: 0 1px 2px rgba(15, 23, 42, 0.04), 0 8px 24px rgba(15, 23, 42, 0.06);
   --shadow-glow: 0 20px 60px -20px rgba(16, 185, 129, 0.35);
+}
+
+/* Dark palette — token flips. Because Tailwind v4 utilities resolve to
+   var() references at use-site, overriding the custom properties inside
+   .dark re-themes every utility (including /opacity variants) without
+   touching components. Night tokens are intentionally NOT overridden. */
+.dark {
+  color-scheme: dark;
+
+  --color-paper: #0f172a;
+  --color-card: #1e293b;
+  --color-field: #16213a;
+
+  /* Inverted ink scale: light-gray surfaces become deep navy, dark text
+     becomes near-white. */
+  --color-ink-50: #131e33;
+  --color-ink-100: #1a2740;
+  --color-ink-200: #27374f;
+  --color-ink-300: #3a4c68;
+  --color-ink-400: #64748b;
+  --color-ink-500: #8496ab;
+  --color-ink-600: #9fb0c3;
+  --color-ink-700: #c0cbd9;
+  --color-ink-800: #dde4ed;
+  --color-ink-900: #f1f5f9;
+  --color-ink-950: #f8fafc;
+
+  /* Emerald tints darken; emerald darks lighten so brand-700/800/900 text
+     stays legible on navy. */
+  --color-brand-50: #0b2c23;
+  --color-brand-100: #0f3a2e;
+  --color-brand-200: #15503f;
+  --color-brand-300: #047857;
+  --color-brand-700: #34d399;
+  --color-brand-800: #6ee7b7;
+  --color-brand-900: #a7f3d0;
+
+  /* Terracotta reads warmer/lighter on navy. */
+  --color-accent-600: #d68f60;
+  --color-accent-700: #e5ae87;
+  --color-accent-800: #f2d1b8;
+}
+
+/* Light surfaces that should become cards in dark mode. Solid `bg-white`
+   is used across light-context UI (menus, tier cards, chips, toasts); the
+   few white-on-dark-panel elements use .btn-on-dark instead, so this
+   blanket override is safe. Opacity variants (bg-white/80 etc.) are
+   different class tokens and are not affected. */
+.dark .bg-white {
+  background-color: var(--color-card);
 }
 
 @layer base {
@@ -41,7 +127,7 @@
   }
 
   body {
-    background: var(--color-surface);
+    background: var(--color-paper);
     color: var(--color-ink-900);
     font-family: var(--font-sans);
     font-feature-settings: "ss01", "cv11";
@@ -49,11 +135,14 @@
     -moz-osx-font-smoothing: grayscale;
   }
 
+  /* Fraunces is an expressive serif: it needs looser tracking than the old
+     grotesque, and optical sizing so display sizes get the display cut. */
   h1, h2, h3, h4 {
     font-family: var(--font-display);
-    letter-spacing: -0.025em;
+    font-optical-sizing: auto;
+    letter-spacing: -0.015em;
     color: inherit;
-    line-height: 1.05;
+    line-height: 1.08;
     font-weight: 600;
   }
 
@@ -84,34 +173,50 @@
 
   .display-hero {
     font-family: var(--font-display);
+    font-optical-sizing: auto;
     font-weight: 700;
-    letter-spacing: -0.035em;
-    line-height: 0.98;
+    letter-spacing: -0.02em;
+    line-height: 1.02;
   }
 
-  /* Unified, restrained type scale used site-wide so no page has oversized
-     headings. .page-h1 is the only H1 size; .section-h2 is the only big
-     section heading. Body type stays as the global default. */
+  /* Unified type scale. Hero H1s are oversized and confident (3–5rem on
+     desktop, tapering on mobile); section headings stay moderate so pages
+     keep hierarchy. All display sizes are Fraunces with optical sizing. */
   .page-h1 {
     font-family: var(--font-display);
+    font-optical-sizing: auto;
     font-weight: 700;
-    font-size: clamp(2.25rem, 3.2vw + 1rem, 3.5rem);
-    line-height: 1.1;
-    letter-spacing: -0.025em;
+    font-size: clamp(2.5rem, 3.6vw + 1.35rem, 5rem);
+    line-height: 1.05;
+    letter-spacing: -0.015em;
+    text-wrap: balance;
+  }
+  /* Moderate H1 for sentence-length titles (long service intros, blog
+     articles) where the full 5rem display size would wrap 5+ lines. */
+  .page-h1-long {
+    font-family: var(--font-display);
+    font-optical-sizing: auto;
+    font-weight: 700;
+    font-size: clamp(2rem, 2vw + 1.1rem, 3rem);
+    line-height: 1.12;
+    letter-spacing: -0.012em;
+    text-wrap: balance;
   }
   .section-h2 {
     font-family: var(--font-display);
+    font-optical-sizing: auto;
     font-weight: 600;
     font-size: clamp(1.625rem, 1.8vw + 0.75rem, 2.25rem);
     line-height: 1.15;
-    letter-spacing: -0.02em;
+    letter-spacing: -0.012em;
   }
   .section-h3 {
     font-family: var(--font-display);
+    font-optical-sizing: auto;
     font-weight: 600;
     font-size: clamp(1.125rem, 0.6vw + 0.85rem, 1.375rem);
     line-height: 1.25;
-    letter-spacing: -0.015em;
+    letter-spacing: -0.01em;
   }
 
   /* Logo-style wordmark — Poppins 700, slightly tightened, used only beside
@@ -164,7 +269,7 @@
   }
 
   .card {
-    background: #ffffff;
+    background: var(--color-card);
     border: 1px solid var(--color-ink-200);
     border-radius: 1rem;
     transition: border-color 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
@@ -183,7 +288,7 @@
     padding: 0.8125rem 1.375rem;
     font-weight: 600;
     border-radius: 0.75rem;
-    background: var(--color-ink-900);
+    background: var(--btn-primary-bg, var(--color-night-900));
     color: #fff;
     transition: background 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
   }
@@ -201,14 +306,34 @@
     padding: 0.8125rem 1.375rem;
     font-weight: 600;
     border-radius: 0.75rem;
-    background: #fff;
+    background: var(--color-field);
     color: var(--color-ink-900);
     border: 1px solid var(--color-ink-200);
     transition: border-color 0.2s ease, color 0.2s ease, transform 0.2s ease;
   }
+  /* Warm accent on hover — one of the few sanctioned terracotta touches. */
   .btn-secondary:hover {
-    border-color: var(--color-brand-500);
-    color: var(--color-brand-700);
+    border-color: var(--color-accent-500);
+    color: var(--color-accent-700);
+    transform: translateY(-1px);
+  }
+
+  /* White CTA that sits on permanently-dark panels (hero, CTA band). Uses
+     literals so the dark-mode .bg-white override never touches it. */
+  .btn-on-dark {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    padding: 0.75rem 1.25rem;
+    font-weight: 600;
+    border-radius: 0.75rem;
+    background: #ffffff;
+    color: #0f172a;
+    transition: background 0.2s ease, transform 0.2s ease;
+  }
+  .btn-on-dark:hover {
+    background: #ecfdf5;
     transform: translateY(-1px);
   }
 
@@ -261,7 +386,7 @@
 
   .input {
     width: 100%;
-    background: #ffffff;
+    background: var(--color-field);
     border: 1px solid var(--color-ink-200);
     border-radius: 0.625rem;
     padding: 0.625rem 0.875rem;
@@ -310,9 +435,14 @@
   .prose-section a {
     color: var(--color-brand-700);
     text-decoration: underline;
+    text-decoration-color: var(--color-accent-400);
     text-underline-offset: 3px;
+    transition: color 0.15s ease, text-decoration-color 0.15s ease;
   }
-  .prose-section a:hover { color: var(--color-brand-900); }
+  .prose-section a:hover {
+    color: var(--color-accent-700);
+    text-decoration-color: var(--color-accent-600);
+  }
   .prose-section code {
     background: var(--color-ink-100);
     border-radius: 4px;
@@ -463,6 +593,28 @@
 @keyframes aurora-drift-d {
   0% { transform: translate3d(0, 0, 0) scale(1); }
   100% { transform: translate3d(-8vw, -4vh, 0) scale(1.12); }
+}
+
+/* Dark-mode fixes for utilities whose gradients hardcode light-mode stops.
+   Kept out of @layer so they always win over the base declarations. */
+.dark {
+  /* Primary CTAs go emerald on navy — a dark button on a dark page reads
+     as disabled. Hover stays brand-600 via the base rule. */
+  --btn-primary-bg: #10b981;
+}
+.dark .text-gradient {
+  background: linear-gradient(135deg, #34d399 0%, #6ee7b7 55%, #a7f3d0 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+}
+.dark .display-num {
+  background: linear-gradient(135deg, #f1f5f9 0%, #a7f3d0 55%, #34d399 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+}
+/* Photos sit a touch dimmer on navy so they don't glare. */
+.dark .photo-treat {
+  filter: saturate(0.85) contrast(1.05) brightness(0.88);
 }
 
 /* Emerald shimmer used by the Airtable form loading skeleton. */

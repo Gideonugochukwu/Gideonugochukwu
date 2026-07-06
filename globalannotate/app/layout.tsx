@@ -1,5 +1,5 @@
 import type { Metadata, Viewport } from "next";
-import { Bricolage_Grotesque, Plus_Jakarta_Sans, Poppins } from "next/font/google";
+import { Fraunces, Plus_Jakarta_Sans, Poppins } from "next/font/google";
 import "./globals.css";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
@@ -14,11 +14,14 @@ const body = Plus_Jakarta_Sans({
   display: "swap",
 });
 
-const display = Bricolage_Grotesque({
+// Display serif — Fraunces variable, with the optical-size axis loaded so
+// large headlines render with the display cut and small ones stay readable.
+// Weight axis is included by default for variable fonts (we use 600–800).
+const display = Fraunces({
   variable: "--font-display",
   subsets: ["latin"],
-  weight: ["400", "500", "600", "700", "800"],
   display: "swap",
+  axes: ["opsz"],
 });
 
 // Brand-only font for the "GlobalAnnotate" wordmark beside the GA monogram
@@ -90,15 +93,23 @@ export const viewport: Viewport = {
   initialScale: 1,
 };
 
+// Applies the saved theme (or the OS preference) before first paint so the
+// page never flashes the wrong mode. Runs inline in <head>; kept tiny.
+const THEME_INIT = `(function(){try{var t=localStorage.getItem("theme");var d=t?t==="dark":window.matchMedia("(prefers-color-scheme: dark)").matches;if(d)document.documentElement.classList.add("dark")}catch(e){}})()`;
+
 export default function RootLayout({
   children,
 }: Readonly<{ children: React.ReactNode }>) {
   return (
     <html
       lang="en"
+      suppressHydrationWarning
       className={`${body.variable} ${display.variable} ${brand.variable}`}
     >
-      <body className="min-h-screen flex flex-col bg-white text-ink-900">
+      <head>
+        <script dangerouslySetInnerHTML={{ __html: THEME_INIT }} />
+      </head>
+      <body className="min-h-screen flex flex-col text-ink-900">
         <JsonLd data={[organizationSchema(), websiteSchema()]} />
         <ToastProvider>
           <Navbar />

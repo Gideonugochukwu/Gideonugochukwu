@@ -20,7 +20,7 @@ export default function ServiceCTAGrid() {
             </p>
             <Link
               href="/contact"
-              className="mt-6 inline-flex items-center gap-2 rounded-xl bg-ink-900 px-5 py-3 text-sm font-semibold text-white hover:bg-brand-700 transition"
+              className="mt-6 inline-flex items-center gap-2 rounded-xl bg-night-900 px-5 py-3 text-sm font-semibold text-white hover:bg-brand-700 transition"
             >
               Talk to an expert <ArrowRight className="h-4 w-4" />
             </Link>
