@@ -626,7 +626,9 @@
   position: absolute;
   left: 0;
   top: 0;
-  height: var(--ga-cl-h, 44px);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   pointer-events: none;
   will-change: transform, opacity;
 }
@@ -641,9 +643,25 @@
 }
 .ga-cl-svg {
   display: block;
-  height: 100%;
+  height: var(--ga-cl-h, 44px);
   width: auto;
   filter: drop-shadow(0 0 10px rgba(16, 185, 129, 0.35));
+}
+
+/* Continent name under each map outline — Fraunces (the display face),
+   0.8rem / 600 / white. Fades independently of the mark for label
+   de-collision (see HeroGlobe.placeLogos). */
+.ga-cl-label {
+  margin-top: 0.25rem;
+  font-family: var(--font-display);
+  font-optical-sizing: auto;
+  font-size: 0.8rem;
+  font-weight: 600;
+  line-height: 1;
+  color: #ffffff;
+  white-space: nowrap;
+  text-shadow: 0 1px 6px rgba(2, 6, 23, 0.7);
+  transition: opacity 0.2s ease;
 }
 
 /* Slow asynchronous "breathing" — ±5% around rest for a 10% total delta.
