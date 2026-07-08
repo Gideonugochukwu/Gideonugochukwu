@@ -617,6 +617,50 @@
   filter: saturate(0.85) contrast(1.05) brightness(0.88);
 }
 
+/* Continent logo marks on the hero globe (ga-cl-*). Anchors are positioned
+   imperatively by the globe's render loop (screen-space projection of the
+   continent centroid), so they stay camera-facing and upright regardless of
+   globe rotation. Three nested layers keep the transforms independent:
+   anchor = position/fade · breathe = idle scale loop · inner = hover zoom. */
+.ga-cl-anchor {
+  position: absolute;
+  left: 0;
+  top: 0;
+  height: var(--ga-cl-h, 44px);
+  pointer-events: none;
+  will-change: transform, opacity;
+}
+.ga-cl-inner {
+  transition: transform 0.25s ease;
+}
+.ga-cl-anchor.is-hovered .ga-cl-breathe {
+  animation-play-state: paused;
+}
+.ga-cl-anchor.is-hovered .ga-cl-inner {
+  transform: scale(1.3);
+}
+.ga-cl-svg {
+  display: block;
+  height: 100%;
+  width: auto;
+  filter: drop-shadow(0 0 10px rgba(16, 185, 129, 0.35));
+}
+
+/* Slow asynchronous "breathing" — ±5% around rest for a 10% total delta.
+   Duration/delay are staggered per mark inline for an organic feel. */
+@keyframes ga-cl-breathe {
+  from { transform: scale(0.95); }
+  to { transform: scale(1.05); }
+}
+.ga-cl-breathe {
+  animation: ga-cl-breathe 3.6s ease-in-out infinite alternate;
+  will-change: transform;
+}
+@media (prefers-reduced-motion: reduce) {
+  .ga-cl-breathe { animation: none; }
+  .ga-cl-inner { transition: none; }
+}
+
 /* Emerald shimmer used by the Airtable form loading skeleton. */
 @keyframes ga-shimmer {
   0% { background-position: -150% 0; }

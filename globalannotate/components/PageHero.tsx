@@ -27,6 +27,7 @@ export default function PageHero({
   slides,
   size = "default",
   backgroundExtra,
+  post,
 }: {
   eyebrow?: string;
   pre?: React.ReactNode;
@@ -40,6 +41,9 @@ export default function PageHero({
   // Optional decorative layer rendered above the gradient but behind the hero
   // text — used by the homepage for the interactive 3D globe.
   backgroundExtra?: React.ReactNode;
+  // Optional content slot rendered after the CTAs — used by the homepage
+  // for the mobile continent-logo row.
+  post?: React.ReactNode;
 }) {
   const reduce = useReducedMotion();
 
@@ -136,6 +140,16 @@ export default function PageHero({
                   </Link>
                 )
               )}
+            </motion.div>
+          )}
+
+          {post && (
+            <motion.div
+              initial={reduce ? false : { opacity: 0, y: 10 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.75 }}
+            >
+              {post}
             </motion.div>
           )}
         </div>
