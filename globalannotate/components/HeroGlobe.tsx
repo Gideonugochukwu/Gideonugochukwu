@@ -2,6 +2,12 @@
 
 import { useEffect, useRef, useState } from "react";
 import type * as ThreeNS from "three";
+import {
+  CONTINENT_LOGOS,
+  CONTINENT_LOGOS_ENABLED,
+  type ContinentLogo,
+} from "@/lib/continents";
+import { ContinentLogoSvg } from "./ContinentLogos";
 
 // Brand palette
 const EMERALD = 0x10b981;
@@ -14,17 +20,38 @@ const TEAL = 0x14b8a6;
  *   with raw Three.js. Emerald/teal points, glowing markers that pulse, and a
  *   subtle mouse-parallax tilt. Three.js is dynamically imported inside the
  *   effect so it lands in its own chunk and never blocks first paint / LCP.
+ * - Continent logo marks: flat SVG marks anchored to continent centroids on
+ *   the sphere, rendered as DOM overlays projected to screen space each frame
+ *   — always camera-facing and upright, fading out as they rotate onto the
+ *   globe's dark side. Hovering a mark pauses the rotation and zooms it 30%.
+ *   Hover is detected geometrically (cursor vs. projected rect), so the hero
+ *   text layered above the globe never blocks it, and the marks themselves
+ *   stay pointer-events-none and can never intercept clicks meant for CTAs.
  * - Mobile (< 768px): a lightweight static SVG globe — no canvas, no WebGL.
+ *   The continent marks render as a row below the headline instead (see
+ *   ContinentLogoRow, slotted in by the homepage hero).
  * - prefers-reduced-motion: the globe renders once and then holds still (no
- *   rotation, no pulsing, no parallax).
+ *   rotation, no pulsing, no parallax; logo breathing is disabled in CSS).
  *
  * Purely decorative and behind the hero text: aria-hidden + pointer-events-none.
  */
-export default function HeroGlobe() {
+export default function HeroGlobe({
+  logos = CONTINENT_LOGOS,
+  logosEnabled = CONTINENT_LOGOS_ENABLED,
+}: {
+  /** CMS-swappable continent marks (see lib/continents.ts). */
+  logos?: ContinentLogo[];
+  /** CMS toggle: render the globe without any marks when false. */
+  logosEnabled?: boolean;
+}) {
   const [isDesktop, setIsDesktop] = useState(false);
   const [reduced, setReduced] = useState(false);
   const mountRef = useRef<HTMLDivElement>(null);
-  const pointer = useRef({ x: 0, y: 0 });
+  const overlayRef = useRef<HTMLDivElement>(null);
+  const logoEls = useRef<(HTMLDivElement | null)[]>([]);
+  const pointer = useRef({ x: 0, y: 0, cx: -1e4, cy: -1e4 });
+
+  const showLogos = logosEnabled && logos.length > 0;
 
   // Resolve environment (viewport width + motion preference) after mount.
   useEffect(() => {
@@ -43,12 +70,14 @@ export default function HeroGlobe() {
     };
   }, []);
 
-  // Track cursor for parallax (relative to viewport centre, -1..1).
+  // Track cursor for parallax + logo hover (viewport px and -1..1).
   useEffect(() => {
     if (!isDesktop || reduced) return;
     const onMove = (e: PointerEvent) => {
       pointer.current.x = (e.clientX / window.innerWidth) * 2 - 1;
       pointer.current.y = (e.clientY / window.innerHeight) * 2 - 1;
+      pointer.current.cx = e.clientX;
+      pointer.current.cy = e.clientY;
     };
     window.addEventListener("pointermove", onMove, { passive: true });
     return () => window.removeEventListener("pointermove", onMove);
@@ -66,14 +95,18 @@ export default function HeroGlobe() {
     (async () => {
       const THREE = await import("three");
       if (disposed || !mountRef.current) return;
-      cleanup = initGlobe(THREE, mount, pointer, reduced);
+      cleanup = initGlobe(THREE, mount, pointer, reduced, {
+        anchors: showLogos ? logos : [],
+        els: logoEls,
+        overlay: overlayRef,
+      });
     })();
 
     return () => {
       disposed = true;
       cleanup();
     };
-  }, [isDesktop, reduced]);
+  }, [isDesktop, reduced, logos, showLogos]);
 
   return (
     <div
@@ -90,7 +123,35 @@ export default function HeroGlobe() {
       />
       {!isDesktop && <StaticGlobe />}
       {isDesktop && (
-        <div ref={mountRef} className="absolute inset-0" />
+        <>
+          <div ref={mountRef} className="absolute inset-0" />
+          {showLogos && (
+            <div ref={overlayRef} className="absolute inset-0 text-white">
+              {logos.map((l, i) => (
+                <div
+                  key={l.key}
+                  ref={(el) => {
+                    logoEls.current[i] = el;
+                  }}
+                  className="ga-cl-anchor"
+                  style={{ opacity: 0 }}
+                >
+                  <div
+                    className="ga-cl-breathe h-full"
+                    style={{
+                      animationDuration: `${3.4 + i * 0.45}s`,
+                      animationDelay: `${-(i * 1.1)}s`,
+                    }}
+                  >
+                    <div className="ga-cl-inner h-full">
+                      <ContinentLogoSvg logo={l} className="ga-cl-svg" />
+                    </div>
+                  </div>
+                </div>
+              ))}
+            </div>
+          )}
+        </>
       )}
     </div>
   );
@@ -156,7 +217,13 @@ function StaticGlobe() {
   );
 }
 
-type PointerRef = React.RefObject<{ x: number; y: number }>;
+type PointerRef = React.RefObject<{ x: number; y: number; cx: number; cy: number }>;
+
+type LogoLayer = {
+  anchors: { lat: number; lon: number }[];
+  els: React.RefObject<(HTMLDivElement | null)[]>;
+  overlay: React.RefObject<HTMLDivElement | null>;
+};
 
 /**
  * Builds the Three.js globe inside `mount`. Returns a cleanup function that
@@ -166,7 +233,8 @@ function initGlobe(
   THREE: typeof ThreeNS,
   mount: HTMLDivElement,
   pointer: PointerRef,
-  reduced: boolean
+  reduced: boolean,
+  logoLayer: LogoLayer
 ): () => void {
   const width = mount.clientWidth || window.innerWidth;
   const height = mount.clientHeight || 600;
@@ -266,6 +334,80 @@ function initGlobe(
   }
   disposables.push(markerTexture);
 
+  // --- Continent logo anchors ----------------------------------------------
+  // lat/lon → unit direction in the globe's local space (standard sphere
+  // mapping). Marks sit just above the dot shell so they lead the limb fade.
+  const logoLocals = logoLayer.anchors.map(({ lat, lon }) => {
+    const phi = ((90 - lat) * Math.PI) / 180;
+    const theta = ((lon + 180) * Math.PI) / 180;
+    return new THREE.Vector3(
+      -Math.sin(phi) * Math.cos(theta),
+      Math.cos(phi),
+      Math.sin(phi) * Math.sin(theta)
+    ).multiplyScalar(RADIUS * 1.04);
+  });
+  const worldV = new THREE.Vector3();
+  const ndcV = new THREE.Vector3();
+  const toCamV = new THREE.Vector3();
+  let logoSize = 44;
+  let hoveredLogo = -1;
+  let spinSpeed = 1;
+
+  const setLogoSize = (w: number, h: number) => {
+    // Globe pixel diameter from the camera frustum; marks cap at 10% of it.
+    const halfWorld = Math.tan((camera.fov * Math.PI) / 360) * camera.position.z;
+    const pxDiameter = (RADIUS / halfWorld) * h;
+    logoSize = Math.max(24, Math.min(0.1 * pxDiameter, 64));
+    logoLayer.overlay.current?.style.setProperty("--ga-cl-h", `${logoSize.toFixed(1)}px`);
+    void w;
+  };
+  setLogoSize(width, height);
+
+  const placeLogos = () => {
+    const els = logoLayer.els.current;
+    if (!els || logoLocals.length === 0) return;
+    const rect = canvas.getBoundingClientRect();
+    const mx = pointer.current.cx - rect.left;
+    const my = pointer.current.cy - rect.top;
+    let nextHover = -1;
+
+    for (let i = 0; i < logoLocals.length; i++) {
+      const el = els[i];
+      if (!el) continue;
+      worldV.copy(logoLocals[i]);
+      group.localToWorld(worldV);
+
+      // Front-side check: the mark's outward normal vs. the camera ray.
+      toCamV.copy(camera.position).sub(worldV).normalize();
+      const facing = worldV.clone().normalize().dot(toCamV);
+      const opacity = Math.min(Math.max((facing - 0.08) / 0.3, 0), 1);
+
+      ndcV.copy(worldV).project(camera);
+      const sx = (ndcV.x * 0.5 + 0.5) * rect.width;
+      const sy = (-ndcV.y * 0.5 + 0.5) * rect.height;
+
+      el.style.opacity = opacity.toFixed(3);
+      el.style.transform = `translate(-50%, -50%) translate(${sx.toFixed(1)}px, ${sy.toFixed(1)}px)`;
+
+      // Geometric hover: cursor inside the mark's projected box while it's
+      // clearly on the light side.
+      const half = logoSize * 0.62;
+      if (
+        opacity > 0.55 &&
+        Math.abs(mx - sx) <= half &&
+        Math.abs(my - sy) <= half
+      ) {
+        nextHover = i;
+      }
+    }
+
+    if (nextHover !== hoveredLogo) {
+      if (hoveredLogo >= 0) els[hoveredLogo]?.classList.remove("is-hovered");
+      if (nextHover >= 0) els[nextHover]?.classList.add("is-hovered");
+      hoveredLogo = nextHover;
+    }
+  };
+
   // --- Animation -----------------------------------------------------------
   const clock = new THREE.Clock();
   let raf = 0;
@@ -274,12 +416,12 @@ function initGlobe(
   const renderFrame = () => {
     const t = clock.getElapsedTime();
 
-    // Slow continuous Y spin.
-    group.rotation.y += 0.0016;
+    // Slow continuous Y spin — eased to a halt while a logo is hovered.
+    spinSpeed += ((hoveredLogo >= 0 ? 0 : 1) - spinSpeed) * 0.08;
+    group.rotation.y += 0.0016 * spinSpeed;
 
     // Mouse parallax — ease group + camera toward the pointer.
     targetRot.x = pointer.current.y * 0.18;
-    targetRot.y = pointer.current.x * 0.28;
     group.rotation.x += (targetRot.x - group.rotation.x) * 0.05;
     camera.position.x += (pointer.current.x * 0.35 - camera.position.x) * 0.05;
     camera.position.y += (-pointer.current.y * 0.25 - camera.position.y) * 0.05;
@@ -294,6 +436,7 @@ function initGlobe(
     }
 
     renderer.render(scene, camera);
+    placeLogos();
   };
 
   const animate = () => {
@@ -302,8 +445,9 @@ function initGlobe(
   };
 
   if (reduced) {
-    // Static single frame — no spin, no pulse, no parallax.
-    renderer.render(scene, camera);
+    // Static single frame — no spin, no pulse, no parallax. Logos are
+    // positioned once (and again on resize) with breathing disabled in CSS.
+    renderFrame();
   } else {
     animate();
   }
@@ -315,7 +459,8 @@ function initGlobe(
     camera.aspect = w / h;
     camera.updateProjectionMatrix();
     renderer.setSize(w, h, false);
-    if (reduced) renderer.render(scene, camera);
+    setLogoSize(w, h);
+    if (reduced) renderFrame();
   };
   const ro = new ResizeObserver(onResize);
   ro.observe(mount);

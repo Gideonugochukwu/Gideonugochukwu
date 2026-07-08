@@ -1,6 +1,7 @@
 import MultilingualGreeting from "./MultilingualGreeting";
 import PageHero from "./PageHero";
 import HeroGlobe from "./HeroGlobe";
+import { ContinentLogoRow } from "./ContinentLogos";
 import { homeHeroSlides } from "@/lib/images";
 
 // Home hero — same shared PageHero everywhere else uses. The three statements
@@ -31,6 +32,11 @@ export default function Hero() {
         { label: "Talk to an expert", href: "/contact" },
         { label: "Explore services", href: "/services", variant: "ghost" },
       ]}
+      post={
+        // Mobile only — the 3D globe (and its projected continent marks) is
+        // desktop-only, so below md the marks line up under the headline.
+        <ContinentLogoRow className="mt-9 md:hidden text-white/85" />
+      }
     />
   );
 }
