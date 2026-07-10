@@ -1,72 +1,43 @@
 "use client";
 
+import Image from "next/image";
 import { useEffect, useRef, useState } from "react";
 import type * as ThreeNS from "three";
-import {
-  CONTINENT_LOGOS,
-  CONTINENT_LOGOS_ENABLED,
-  CONTINENT_MAPS_ENABLED,
-  type ContinentLogo,
-} from "@/lib/continents";
-import { ContinentLogoSvg, ContinentMapSvg } from "./ContinentLogos";
 
 // Brand palette
+const NAVY = 0x0f172a;
 const EMERALD = 0x10b981;
-const TEAL = 0x14b8a6;
 
 /**
- * Interactive 3D globe for the homepage hero background.
+ * Full world-map globe for the homepage hero background.
  *
- * - Desktop (>= 768px): a slowly rotating wireframe + dotted-point sphere built
- *   with raw Three.js. Emerald/teal points, glowing markers that pulse, and a
- *   subtle mouse-parallax tilt. Three.js is dynamically imported inside the
- *   effect so it lands in its own chunk and never blocks first paint / LCP.
- * - Continent overlays: either geographic map outlines (default) or the
- *   animal logo marks (PR #38) — one layer at a time, chosen via the CMS
- *   toggles. Anchored to continent centroids on the sphere and rendered as
- *   DOM overlays projected to screen space each frame — always camera-facing
- *   and upright, fading out as they rotate onto the globe's dark side. Map
- *   outlines carry a Fraunces label beneath them; labels that would collide
- *   on a globe turn are suppressed. Hovering an overlay pauses the rotation
- *   and zooms it 30%. Hover is detected geometrically (cursor vs. projected
- *   rect), so the hero text layered above the globe never blocks it, and the
- *   overlays stay pointer-events-none and can never intercept CTA clicks.
- * - Mobile (< 768px): a lightweight static SVG globe — no canvas, no WebGL.
- *   The overlays render as a row below the headline instead (see
- *   ContinentLogoRow, slotted in by the homepage hero).
- * - prefers-reduced-motion: the globe renders once and then holds still (no
- *   rotation, no pulsing, no parallax; breathing is disabled in CSS).
+ * - Desktop (>= 768px): a Three.js SphereGeometry wrapped in a complete
+ *   equirectangular world map (public-domain Natural Earth land, rasterised
+ *   to a brand-tinted texture: emerald→teal land, navy ocean — see
+ *   /public/world-map.png). Slow continuous Y auto-rotation; click-drag to
+ *   spin via OrbitControls, with auto-rotate resuming ~2s after release. A
+ *   soft emerald atmosphere shell glows around the rim. Three.js + the
+ *   controls + the texture are all dynamically imported inside the effect so
+ *   they land in their own chunk and never block first paint / LCP.
+ * - Mobile (< 768px): a static 2D circular world-map image — no canvas, no
+ *   WebGL — so the hero stays fast on phones.
+ * - prefers-reduced-motion: the globe renders but does not auto-rotate
+ *   (drag still works; nothing moves on its own).
  *
- * Purely decorative and behind the hero text: aria-hidden + pointer-events-none.
+ * Decorative and behind the hero text (the hero's dark gradient dims it for
+ * legibility). The canvas accepts pointer events so the globe is draggable;
+ * the hero content above it stays fully clickable.
  */
 export default function HeroGlobe({
-  data = CONTINENT_LOGOS,
-  mapsEnabled = CONTINENT_MAPS_ENABLED,
-  logosEnabled = CONTINENT_LOGOS_ENABLED,
+  textureSrc = "/world-map.png",
+  mobileSrc = "/world-map-mobile.png",
 }: {
-  /** CMS-swappable continent data — map outlines + animal marks + anchors. */
-  data?: ContinentLogo[];
-  /** CMS toggle: render geographic map outlines (with labels). */
-  mapsEnabled?: boolean;
-  /** CMS toggle: render the animal logo marks instead / as well. */
-  logosEnabled?: boolean;
+  textureSrc?: string;
+  mobileSrc?: string;
 }) {
   const [isDesktop, setIsDesktop] = useState(false);
   const [reduced, setReduced] = useState(false);
   const mountRef = useRef<HTMLDivElement>(null);
-  const overlayRef = useRef<HTMLDivElement>(null);
-  const logoEls = useRef<(HTMLDivElement | null)[]>([]);
-  const labelEls = useRef<(HTMLSpanElement | null)[]>([]);
-  const pointer = useRef({ x: 0, y: 0, cx: -1e4, cy: -1e4 });
-
-  // One overlay item per continent per enabled layer. Default is maps-only;
-  // enabling both stacks a map and a mark on the same anchor (documented as
-  // "one at a time" in lib/continents.ts).
-  const items: { d: ContinentLogo; kind: "map" | "logo" }[] = [
-    ...(mapsEnabled ? data.map((d) => ({ d, kind: "map" as const })) : []),
-    ...(logosEnabled ? data.map((d) => ({ d, kind: "logo" as const })) : []),
-  ];
-  const showOverlay = items.length > 0;
 
   // Resolve environment (viewport width + motion preference) after mount.
   useEffect(() => {
@@ -74,7 +45,6 @@ export default function HeroGlobe({
     const mqReduce = window.matchMedia("(prefers-reduced-motion: reduce)");
     setIsDesktop(mqDesktop.matches);
     setReduced(mqReduce.matches);
-
     const onDesktop = (e: MediaQueryListEvent) => setIsDesktop(e.matches);
     const onReduce = (e: MediaQueryListEvent) => setReduced(e.matches);
     mqDesktop.addEventListener("change", onDesktop);
@@ -85,20 +55,7 @@ export default function HeroGlobe({
     };
   }, []);
 
-  // Track cursor for parallax + logo hover (viewport px and -1..1).
-  useEffect(() => {
-    if (!isDesktop || reduced) return;
-    const onMove = (e: PointerEvent) => {
-      pointer.current.x = (e.clientX / window.innerWidth) * 2 - 1;
-      pointer.current.y = (e.clientY / window.innerHeight) * 2 - 1;
-      pointer.current.cx = e.clientX;
-      pointer.current.cy = e.clientY;
-    };
-    window.addEventListener("pointermove", onMove, { passive: true });
-    return () => window.removeEventListener("pointermove", onMove);
-  }, [isDesktop, reduced]);
-
-  // Build / tear down the Three.js scene.
+  // Build / tear down the Three.js scene (desktop only).
   useEffect(() => {
     if (!isDesktop) return;
     const mount = mountRef.current;
@@ -109,166 +66,76 @@ export default function HeroGlobe({
 
     (async () => {
       const THREE = await import("three");
+      const { OrbitControls } = await import(
+        "three/examples/jsm/controls/OrbitControls.js"
+      );
       if (disposed || !mountRef.current) return;
-      cleanup = initGlobe(THREE, mount, pointer, reduced, {
-        anchors: showOverlay ? items.map((it) => it.d) : [],
-        hasLabel: items.map((it) => it.kind === "map"),
-        els: logoEls,
-        labelEls,
-        overlay: overlayRef,
-      });
+      cleanup = initGlobe(THREE, OrbitControls, mount, reduced, textureSrc);
     })();
 
     return () => {
       disposed = true;
       cleanup();
     };
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [isDesktop, reduced, data, mapsEnabled, logosEnabled]);
+  }, [isDesktop, reduced, textureSrc]);
 
   return (
-    <div
-      aria-hidden
-      className="absolute inset-0 overflow-hidden pointer-events-none"
-    >
-      {/* Soft brand glow behind the globe on every device. */}
+    <div aria-hidden className="absolute inset-0 overflow-hidden">
+      {/* Soft emerald glow behind the globe on every device. */}
       <div
-        className="absolute left-1/2 top-1/2 h-[120%] w-[120%] -translate-x-1/2 -translate-y-1/2"
+        className="pointer-events-none absolute left-[62%] top-1/2 h-[130%] w-[95%] -translate-x-1/2 -translate-y-1/2 md:left-[68%]"
         style={{
           background:
-            "radial-gradient(closest-side, rgba(16,185,129,0.18), rgba(20,184,166,0.06) 55%, transparent 75%)",
+            "radial-gradient(closest-side, rgba(16,185,129,0.20), rgba(20,184,166,0.07) 55%, transparent 74%)",
         }}
       />
-      {!isDesktop && <StaticGlobe />}
+      {!isDesktop && (
+        <div className="pointer-events-none absolute inset-0 flex items-center justify-center">
+          <div className="relative aspect-square w-[135%] max-w-none translate-x-[6%] translate-y-[2%] overflow-hidden rounded-full ring-1 ring-brand-500/20">
+            <Image
+              src={mobileSrc}
+              alt="World map showing GlobalAnnotate's global reach"
+              fill
+              priority={false}
+              sizes="140vw"
+              className="object-cover"
+            />
+            {/* Spherical shading + emerald rim so the flat map reads as a globe. */}
+            <div
+              className="absolute inset-0 rounded-full"
+              style={{
+                background:
+                  "radial-gradient(circle at 38% 32%, rgba(255,255,255,0.10), transparent 42%), radial-gradient(circle at 50% 50%, transparent 55%, rgba(2,6,23,0.55) 82%, rgba(2,6,23,0.9) 100%)",
+              }}
+            />
+            <div
+              className="absolute inset-0 rounded-full ring-1 ring-inset"
+              style={{ boxShadow: "inset 0 0 40px rgba(16,185,129,0.25)" }}
+            />
+          </div>
+        </div>
+      )}
       {isDesktop && (
-        <>
-          <div ref={mountRef} className="absolute inset-0" />
-          {showOverlay && (
-            <div ref={overlayRef} className="absolute inset-0 text-white">
-              {items.map((it, i) => (
-                <div
-                  key={`${it.kind}-${it.d.key}`}
-                  ref={(el) => {
-                    logoEls.current[i] = el;
-                  }}
-                  className="ga-cl-anchor"
-                  style={{ opacity: 0 }}
-                >
-                  <div
-                    className="ga-cl-breathe"
-                    style={{
-                      animationDuration: `${3.4 + i * 0.45}s`,
-                      animationDelay: `${-(i * 1.1)}s`,
-                    }}
-                  >
-                    <div className="ga-cl-inner">
-                      {it.kind === "map" ? (
-                        <ContinentMapSvg logo={it.d} className="ga-cl-svg" />
-                      ) : (
-                        <ContinentLogoSvg logo={it.d} className="ga-cl-svg" />
-                      )}
-                    </div>
-                  </div>
-                  {it.kind === "map" && (
-                    <span
-                      ref={(el) => {
-                        labelEls.current[i] = el;
-                      }}
-                      className="ga-cl-label"
-                    >
-                      {it.d.name}
-                    </span>
-                  )}
-                </div>
-              ))}
-            </div>
-          )}
-        </>
+        <div
+          ref={mountRef}
+          className="absolute inset-0 translate-x-[18%] md:translate-x-[22%]"
+        />
       )}
     </div>
   );
 }
 
 /**
- * Lightweight static SVG globe used on mobile and during SSR. No animation,
- * no canvas — just meridians / parallels in the brand emerald at low opacity.
- */
-function StaticGlobe() {
-  return (
-    <svg
-      className="absolute left-1/2 top-1/2 h-[125%] w-auto -translate-x-1/2 -translate-y-1/2 opacity-[0.55]"
-      viewBox="0 0 400 400"
-      fill="none"
-      xmlns="http://www.w3.org/2000/svg"
-    >
-      <defs>
-        <radialGradient id="globeGlow" cx="50%" cy="50%" r="50%">
-          <stop offset="0%" stopColor="#10B981" stopOpacity="0.22" />
-          <stop offset="70%" stopColor="#14B8A6" stopOpacity="0.05" />
-          <stop offset="100%" stopColor="#0F172A" stopOpacity="0" />
-        </radialGradient>
-      </defs>
-      <circle cx="200" cy="200" r="190" fill="url(#globeGlow)" />
-      <circle cx="200" cy="200" r="150" stroke="#10B981" strokeOpacity="0.5" />
-      {/* Parallels */}
-      {[-110, -60, 0, 60, 110].map((oy) => (
-        <ellipse
-          key={`p${oy}`}
-          cx="200"
-          cy={200 + oy}
-          rx={Math.sqrt(Math.max(0, 150 * 150 - oy * oy))}
-          ry={16}
-          stroke="#10B981"
-          strokeOpacity="0.28"
-        />
-      ))}
-      {/* Meridians */}
-      {[150, 105, 55].map((rx, i) => (
-        <ellipse
-          key={`m${i}`}
-          cx="200"
-          cy="200"
-          rx={rx}
-          ry="150"
-          stroke="#14B8A6"
-          strokeOpacity="0.22"
-        />
-      ))}
-      <line x1="200" y1="50" x2="200" y2="350" stroke="#14B8A6" strokeOpacity="0.22" />
-      {/* A few glowing reach markers */}
-      {[
-        [150, 120],
-        [268, 165],
-        [180, 250],
-        [235, 285],
-        [120, 205],
-      ].map(([cx, cy], i) => (
-        <circle key={`d${i}`} cx={cx} cy={cy} r="3.5" fill="#34D399" fillOpacity="0.9" />
-      ))}
-    </svg>
-  );
-}
-
-type PointerRef = React.RefObject<{ x: number; y: number; cx: number; cy: number }>;
-
-type LogoLayer = {
-  anchors: { lat: number; lon: number }[];
-  hasLabel: boolean[];
-  els: React.RefObject<(HTMLDivElement | null)[]>;
-  labelEls: React.RefObject<(HTMLSpanElement | null)[]>;
-  overlay: React.RefObject<HTMLDivElement | null>;
-};
-
-/**
- * Builds the Three.js globe inside `mount`. Returns a cleanup function that
- * stops the loop, removes listeners, and disposes all GPU resources.
+ * Builds the textured world-map globe inside `mount`. Returns a cleanup
+ * function that stops the loop, removes listeners, and disposes all GPU
+ * resources (geometry, material, texture, renderer, controls).
  */
 function initGlobe(
   THREE: typeof ThreeNS,
+  OrbitControls: typeof import("three/examples/jsm/controls/OrbitControls.js").OrbitControls,
   mount: HTMLDivElement,
-  pointer: PointerRef,
   reduced: boolean,
-  logoLayer: LogoLayer
+  textureSrc: string
 ): () => void {
   const width = mount.clientWidth || window.innerWidth;
   const height = mount.clientHeight || 600;
@@ -281,237 +148,120 @@ function initGlobe(
   canvas.style.width = "100%";
   canvas.style.height = "100%";
   canvas.style.display = "block";
+  canvas.style.cursor = "grab";
   mount.appendChild(canvas);
 
   const scene = new THREE.Scene();
-  const camera = new THREE.PerspectiveCamera(45, width / height, 0.1, 100);
-  camera.position.set(0, 0, 4.4);
+  const camera = new THREE.PerspectiveCamera(38, width / height, 0.1, 100);
+  camera.position.set(0, 0, 4.6);
 
-  const RADIUS = 1.55;
+  const RADIUS = 1.6;
   const group = new THREE.Group();
-  // Tilt the axis a touch so rotation reads as a real globe.
-  group.rotation.z = 0.35;
+  group.rotation.z = 0.32; // gentle axial tilt
   scene.add(group);
 
-  // Track everything disposable.
   const disposables: Array<{ dispose: () => void }> = [];
 
-  // --- Wireframe shell -----------------------------------------------------
-  const wireGeo = new THREE.IcosahedronGeometry(RADIUS, 4);
-  const wireMat = new THREE.MeshBasicMaterial({
-    color: EMERALD,
-    wireframe: true,
-    transparent: true,
-    opacity: 0.12,
+  // --- Globe sphere (texture loaded lazily) --------------------------------
+  const geo = new THREE.SphereGeometry(RADIUS, 96, 96);
+  const material = new THREE.MeshStandardMaterial({
+    color: NAVY,
+    roughness: 0.95,
+    metalness: 0.0,
+    // Partly self-lit so the map stays readable on the shaded side, but still
+    // shaded enough to read as a real sphere.
+    emissive: 0xffffff,
+    emissiveIntensity: 0.32,
   });
-  const wire = new THREE.Mesh(wireGeo, wireMat);
-  group.add(wire);
-  disposables.push(wireGeo, wireMat);
+  const globe = new THREE.Mesh(geo, material);
+  group.add(globe);
+  disposables.push(geo, material);
 
-  // --- Dotted points across the surface (fibonacci sphere) -----------------
-  const COUNT = 1600;
-  const positions = new Float32Array(COUNT * 3);
-  const golden = Math.PI * (3 - Math.sqrt(5));
-  for (let i = 0; i < COUNT; i++) {
-    const y = 1 - (i / (COUNT - 1)) * 2;
-    const r = Math.sqrt(1 - y * y);
-    const theta = golden * i;
-    positions[i * 3] = Math.cos(theta) * r * RADIUS;
-    positions[i * 3 + 1] = y * RADIUS;
-    positions[i * 3 + 2] = Math.sin(theta) * r * RADIUS;
-  }
-  const dotGeo = new THREE.BufferGeometry();
-  dotGeo.setAttribute("position", new THREE.BufferAttribute(positions, 3));
-  const dotTexture = makeDotTexture(THREE);
-  const dotMat = new THREE.PointsMaterial({
-    color: EMERALD,
-    size: 0.032,
-    map: dotTexture,
+  const loader = new THREE.TextureLoader();
+  loader.load(textureSrc, (tex) => {
+    tex.colorSpace = THREE.SRGBColorSpace;
+    tex.anisotropy = Math.min(8, renderer.capabilities.getMaxAnisotropy());
+    material.map = tex;
+    material.emissiveMap = tex;
+    material.color.set(0xffffff);
+    material.needsUpdate = true;
+    disposables.push(tex);
+    renderOnce();
+  });
+
+  // --- Atmosphere rim glow (back-side shell) -------------------------------
+  const atmGeo = new THREE.SphereGeometry(RADIUS * 1.14, 64, 64);
+  const atmMat = new THREE.ShaderMaterial({
     transparent: true,
-    opacity: 0.85,
+    side: THREE.BackSide,
     depthWrite: false,
     blending: THREE.AdditiveBlending,
-    sizeAttenuation: true,
+    uniforms: { uColor: { value: new THREE.Color(EMERALD) } },
+    vertexShader: `
+      varying vec3 vN;
+      void main() {
+        vN = normalize(normalMatrix * normal);
+        gl_Position = projectionMatrix * modelViewMatrix * vec4(position, 1.0);
+      }`,
+    fragmentShader: `
+      varying vec3 vN;
+      uniform vec3 uColor;
+      void main() {
+        float intensity = pow(0.7 - dot(vN, vec3(0.0, 0.0, 1.0)), 3.0);
+        gl_FragColor = vec4(uColor, 1.0) * clamp(intensity, 0.0, 1.0) * 0.9;
+      }`,
   });
-  const dots = new THREE.Points(dotGeo, dotMat);
-  group.add(dots);
-  disposables.push(dotGeo, dotMat, dotTexture);
+  const atmosphere = new THREE.Mesh(atmGeo, atmMat);
+  group.add(atmosphere);
+  disposables.push(atmGeo, atmMat);
 
-  // --- Glowing reach markers (pulsing sprites) -----------------------------
-  const MARKERS = 16;
-  const markerTexture = makeDotTexture(THREE, true);
-  const markers: ThreeNS.Sprite[] = [];
-  const markerPhase: number[] = [];
-  const markerMats: ThreeNS.SpriteMaterial[] = [];
-  for (let i = 0; i < MARKERS; i++) {
-    const idx = Math.floor((i / MARKERS) * COUNT + Math.random() * 40);
-    const px = positions[idx * 3];
-    const py = positions[idx * 3 + 1];
-    const pz = positions[idx * 3 + 2];
-    const mat = new THREE.SpriteMaterial({
-      map: markerTexture,
-      color: i % 3 === 0 ? TEAL : EMERALD,
-      transparent: true,
-      opacity: 0.9,
-      depthWrite: false,
-      blending: THREE.AdditiveBlending,
-    });
-    const sprite = new THREE.Sprite(mat);
-    sprite.position.set(px * 1.02, py * 1.02, pz * 1.02);
-    const base = 0.12 + Math.random() * 0.06;
-    sprite.scale.set(base, base, base);
-    sprite.userData.base = base;
-    group.add(sprite);
-    markers.push(sprite);
-    markerMats.push(mat);
-    markerPhase.push(Math.random() * Math.PI * 2);
-  }
-  disposables.push(markerTexture);
+  // --- Lighting ------------------------------------------------------------
+  const ambient = new THREE.AmbientLight(0xffffff, 0.55);
+  const key = new THREE.DirectionalLight(0xffffff, 1.1);
+  key.position.set(-2, 1.2, 3);
+  scene.add(ambient, key);
 
-  // --- Continent logo anchors ----------------------------------------------
-  // lat/lon → unit direction in the globe's local space (standard sphere
-  // mapping). Marks sit just above the dot shell so they lead the limb fade.
-  const logoLocals = logoLayer.anchors.map(({ lat, lon }) => {
-    const phi = ((90 - lat) * Math.PI) / 180;
-    const theta = ((lon + 180) * Math.PI) / 180;
-    return new THREE.Vector3(
-      -Math.sin(phi) * Math.cos(theta),
-      Math.cos(phi),
-      Math.sin(phi) * Math.sin(theta)
-    ).multiplyScalar(RADIUS * 1.04);
-  });
-  const worldV = new THREE.Vector3();
-  const ndcV = new THREE.Vector3();
-  const toCamV = new THREE.Vector3();
-  let logoSize = 44;
-  let hoveredLogo = -1;
-  let spinSpeed = 1;
+  // --- Controls: drag to spin, auto-rotate resumes after release -----------
+  const controls = new OrbitControls(camera, canvas);
+  controls.enableZoom = false;
+  controls.enablePan = false;
+  controls.enableDamping = true;
+  controls.dampingFactor = 0.08;
+  controls.rotateSpeed = 0.5;
+  controls.autoRotate = !reduced;
+  controls.autoRotateSpeed = 0.55;
 
-  const setLogoSize = (w: number, h: number) => {
-    // Globe pixel diameter from the camera frustum; marks cap at 10% of it.
-    const halfWorld = Math.tan((camera.fov * Math.PI) / 360) * camera.position.z;
-    const pxDiameter = (RADIUS / halfWorld) * h;
-    logoSize = Math.max(24, Math.min(0.1 * pxDiameter, 64));
-    logoLayer.overlay.current?.style.setProperty("--ga-cl-h", `${logoSize.toFixed(1)}px`);
-    void w;
+  let resumeTimer: ReturnType<typeof setTimeout> | null = null;
+  const onStart = () => {
+    controls.autoRotate = false;
+    canvas.style.cursor = "grabbing";
+    if (resumeTimer) clearTimeout(resumeTimer);
   };
-  setLogoSize(width, height);
-
-  // Screen-space state per overlay, reused each frame for label de-collision.
-  const scr = logoLocals.map(() => ({ x: 0, y: 0, o: 0 }));
-
-  const placeLogos = () => {
-    const els = logoLayer.els.current;
-    if (!els || logoLocals.length === 0) return;
-    const rect = canvas.getBoundingClientRect();
-    const mx = pointer.current.cx - rect.left;
-    const my = pointer.current.cy - rect.top;
-    let nextHover = -1;
-
-    for (let i = 0; i < logoLocals.length; i++) {
-      const el = els[i];
-      if (!el) continue;
-      worldV.copy(logoLocals[i]);
-      group.localToWorld(worldV);
-
-      // Front-side check: the mark's outward normal vs. the camera ray.
-      toCamV.copy(camera.position).sub(worldV).normalize();
-      const facing = worldV.clone().normalize().dot(toCamV);
-      const opacity = Math.min(Math.max((facing - 0.08) / 0.3, 0), 1);
-
-      ndcV.copy(worldV).project(camera);
-      const sx = (ndcV.x * 0.5 + 0.5) * rect.width;
-      const sy = (-ndcV.y * 0.5 + 0.5) * rect.height;
-
-      el.style.opacity = opacity.toFixed(3);
-      el.style.transform = `translate(-50%, -50%) translate(${sx.toFixed(1)}px, ${sy.toFixed(1)}px)`;
-      scr[i].x = sx;
-      scr[i].y = sy;
-      scr[i].o = opacity;
-
-      // Geometric hover: cursor inside the mark's projected box while it's
-      // clearly on the light side.
-      const half = logoSize * 0.62;
-      if (
-        opacity > 0.55 &&
-        Math.abs(mx - sx) <= half &&
-        Math.abs(my - sy) <= half
-      ) {
-        nextHover = i;
-      }
-    }
-
-    // Label de-collision: walk labelled marks front-to-back (most opaque
-    // first) and hide any whose label would overlap one already shown, so
-    // adjacent continents don't stack their names on a globe turn.
-    const labelEls = logoLayer.labelEls.current;
-    if (labelEls) {
-      const order = [];
-      for (let i = 0; i < logoLocals.length; i++) {
-        if (logoLayer.hasLabel[i] && labelEls[i]) order.push(i);
-      }
-      order.sort((a, b) => scr[b].o - scr[a].o);
-      const shown: number[] = [];
-      const minDX = Math.max(64, logoSize * 1.7); // widest label ≈ "North America"
-      const minDY = logoSize * 0.95;
-      for (const i of order) {
-        const collide = shown.some(
-          (j) =>
-            Math.abs(scr[i].x - scr[j].x) < minDX &&
-            Math.abs(scr[i].y - scr[j].y) < minDY
-        );
-        labelEls[i]!.style.opacity = collide ? "0" : "1";
-        if (!collide) shown.push(i);
-      }
-    }
-
-    if (nextHover !== hoveredLogo) {
-      if (hoveredLogo >= 0) els[hoveredLogo]?.classList.remove("is-hovered");
-      if (nextHover >= 0) els[nextHover]?.classList.add("is-hovered");
-      hoveredLogo = nextHover;
-    }
+  const onEnd = () => {
+    canvas.style.cursor = "grab";
+    if (reduced) return;
+    if (resumeTimer) clearTimeout(resumeTimer);
+    resumeTimer = setTimeout(() => {
+      controls.autoRotate = true;
+    }, 2000);
   };
+  controls.addEventListener("start", onStart);
+  controls.addEventListener("end", onEnd);
 
   // --- Animation -----------------------------------------------------------
-  const clock = new THREE.Clock();
   let raf = 0;
-  const targetRot = { x: 0, y: 0 };
-
-  const renderFrame = () => {
-    const t = clock.getElapsedTime();
-
-    // Slow continuous Y spin — eased to a halt while a logo is hovered.
-    spinSpeed += ((hoveredLogo >= 0 ? 0 : 1) - spinSpeed) * 0.08;
-    group.rotation.y += 0.0016 * spinSpeed;
-
-    // Mouse parallax — ease group + camera toward the pointer.
-    targetRot.x = pointer.current.y * 0.18;
-    group.rotation.x += (targetRot.x - group.rotation.x) * 0.05;
-    camera.position.x += (pointer.current.x * 0.35 - camera.position.x) * 0.05;
-    camera.position.y += (-pointer.current.y * 0.25 - camera.position.y) * 0.05;
-    camera.lookAt(0, 0, 0);
-
-    // Gentle pulse on the markers.
-    for (let i = 0; i < markers.length; i++) {
-      const base = markers[i].userData.base as number;
-      const s = base * (1 + 0.32 * Math.sin(t * 1.8 + markerPhase[i]));
-      markers[i].scale.set(s, s, s);
-      markerMats[i].opacity = 0.6 + 0.4 * (0.5 + 0.5 * Math.sin(t * 1.8 + markerPhase[i]));
-    }
-
-    renderer.render(scene, camera);
-    placeLogos();
-  };
+  const renderOnce = () => renderer.render(scene, camera);
 
   const animate = () => {
     raf = requestAnimationFrame(animate);
-    renderFrame();
+    controls.update();
+    renderer.render(scene, camera);
   };
 
   if (reduced) {
-    // Static single frame — no spin, no pulse, no parallax. Logos are
-    // positioned once (and again on resize) with breathing disabled in CSS.
-    renderFrame();
+    // No self-animation. Re-render only when the user drags.
+    controls.addEventListener("change", renderOnce);
+    renderOnce();
   } else {
     animate();
   }
@@ -523,8 +273,7 @@ function initGlobe(
     camera.aspect = w / h;
     camera.updateProjectionMatrix();
     renderer.setSize(w, h, false);
-    setLogoSize(w, h);
-    if (reduced) renderFrame();
+    if (reduced) renderOnce();
   };
   const ro = new ResizeObserver(onResize);
   ro.observe(mount);
@@ -532,38 +281,14 @@ function initGlobe(
   // --- Cleanup -------------------------------------------------------------
   return () => {
     cancelAnimationFrame(raf);
+    if (resumeTimer) clearTimeout(resumeTimer);
     ro.disconnect();
-    for (const mat of markerMats) mat.dispose();
+    controls.removeEventListener("start", onStart);
+    controls.removeEventListener("end", onEnd);
+    controls.removeEventListener("change", renderOnce);
+    controls.dispose();
     for (const d of disposables) d.dispose();
     renderer.dispose();
     if (canvas.parentNode === mount) mount.removeChild(canvas);
   };
-}
-
-/**
- * Builds a small round soft-edged sprite texture for dots / markers.
- * `hot` gives a brighter core for the pulsing markers.
- */
-function makeDotTexture(THREE: typeof ThreeNS, hot = false): ThreeNS.CanvasTexture {
-  const size = 64;
-  const canvas = document.createElement("canvas");
-  canvas.width = size;
-  canvas.height = size;
-  const ctx = canvas.getContext("2d")!;
-  const g = ctx.createRadialGradient(size / 2, size / 2, 0, size / 2, size / 2, size / 2);
-  if (hot) {
-    g.addColorStop(0, "rgba(255,255,255,1)");
-    g.addColorStop(0.25, "rgba(209,250,229,0.95)");
-    g.addColorStop(0.6, "rgba(16,185,129,0.35)");
-    g.addColorStop(1, "rgba(16,185,129,0)");
-  } else {
-    g.addColorStop(0, "rgba(255,255,255,0.95)");
-    g.addColorStop(0.5, "rgba(255,255,255,0.5)");
-    g.addColorStop(1, "rgba(255,255,255,0)");
-  }
-  ctx.fillStyle = g;
-  ctx.fillRect(0, 0, size, size);
-  const texture = new THREE.CanvasTexture(canvas);
-  texture.needsUpdate = true;
-  return texture;
 }

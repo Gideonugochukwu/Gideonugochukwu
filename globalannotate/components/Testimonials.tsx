@@ -32,7 +32,7 @@ export default function Testimonials() {
           <h2 className="section-h2 mt-4 text-ink-900">
             Loved by teams shipping
             <br />
-            <span className="text-gradient">across borders.</span>
+            across borders.
           </h2>
         </div>
         <Link
@@ -43,17 +43,11 @@ export default function Testimonials() {
         </Link>
       </div>
 
-      <div className="mt-16 grid gap-x-12 gap-y-16 md:grid-cols-3">
+      <div className="mt-20 grid gap-x-12 gap-y-16 md:grid-cols-3">
         {featured.map((t, i) => (
           <Reveal key={`${t.name}-${i}`} delay={i * 0.06}>
             <figure className="flex flex-col h-full">
-              <span
-                aria-hidden
-                className="font-display text-7xl md:text-8xl leading-none text-brand-200/80 select-none"
-              >
-                &ldquo;
-              </span>
-              <blockquote className="-mt-6 font-display text-xl md:text-2xl leading-snug tracking-tight text-ink-900">
+              <blockquote className="font-display text-xl md:text-2xl leading-snug tracking-tight text-ink-900">
                 {t.quote}
               </blockquote>
               <div className="mt-6 flex-1" />

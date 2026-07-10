@@ -1,16 +1,16 @@
 import MultilingualGreeting from "./MultilingualGreeting";
 import PageHero from "./PageHero";
 import HeroGlobe from "./HeroGlobe";
-import { ContinentLogoRow } from "./ContinentLogos";
 import { homeHeroSlides } from "@/lib/images";
 
-// Home hero — same shared PageHero everywhere else uses. The three statements
-// now stack on their own lines on every screen size, with "Growth across
-// markets." sitting in its own paragraph so it reads as a clear close.
+// Home hero — a full world-map globe on a clean solid-navy field, with a
+// single clear call to action. The three statements stack on their own
+// lines, with "Growth across markets." as the close.
 export default function Hero() {
   return (
     <PageHero
       slides={homeHeroSlides}
+      solidBackground
       backgroundExtra={<HeroGlobe />}
       pre={
         <div className="text-xl sm:text-2xl md:text-3xl font-display font-medium text-white/80">
@@ -28,15 +28,7 @@ export default function Hero() {
         </span>
       }
       subtitle="One partner for localization, AI training data, multilingual SEO, and growth marketing."
-      ctas={[
-        { label: "Talk to an expert", href: "/contact" },
-        { label: "Explore services", href: "/services", variant: "ghost" },
-      ]}
-      post={
-        // Mobile only — the 3D globe (and its projected continent marks) is
-        // desktop-only, so below md the marks line up under the headline.
-        <ContinentLogoRow className="mt-9 md:hidden text-white/85" />
-      }
+      ctas={[{ label: "Talk to an expert", href: "/contact" }]}
     />
   );
 }
