@@ -43,14 +43,15 @@ export const founder = {
   ],
 };
 
-// Header navigation — trimmed to five essentials for a calmer, minimalist
-// bar. Home is reachable via the logo; Reviews and Join Our Network remain
-// linked from the footer, and every route stays live and in the sitemap.
+// Header navigation. Reviews stays linked from the footer; every route is
+// live and in the sitemap.
 export const nav = [
+  { href: "/", label: "Home" },
   { href: "/services", label: "Services" },
   { href: "/portfolio", label: "Portfolio" },
   { href: "/blog", label: "Blog" },
   { href: "/about", label: "About" },
+  { href: "/freelancers", label: "Join Our Network" },
   { href: "/contact", label: "Contact" },
 ];
 
