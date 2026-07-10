@@ -38,6 +38,24 @@ const ARCS: [number, number][] = [
   [1, 3], //  US East → Europe
 ];
 
+// Continent name labels, pinned to each landmass centroid (lat, lon).
+const CONTINENTS: { name: string; lat: number; lon: number }[] = [
+  { name: "North America", lat: 46, lon: -100 },
+  { name: "South America", lat: -12, lon: -58 },
+  { name: "Europe", lat: 52, lon: 15 },
+  { name: "Africa", lat: 2, lon: 22 },
+  { name: "Asia", lat: 44, lon: 90 },
+  { name: "Australia", lat: -25, lon: 134 },
+];
+
+// Mobile static globe shows the Africa/Europe/Asia hemisphere. Label the two
+// landmasses that sit clear of the (large) hero heading — Europe would fall
+// behind the text, so it's omitted to keep things clean.
+const MOBILE_LABELS: { name: string; top: string; left: string }[] = [
+  { name: "Asia", top: "40%", left: "72%" },
+  { name: "Africa", top: "56%", left: "58%" },
+];
+
 /**
  * Full, living world-map globe for the homepage hero background.
  *
@@ -69,6 +87,7 @@ export default function HeroGlobe({
   const [isDesktop, setIsDesktop] = useState(false);
   const [reduced, setReduced] = useState(false);
   const mountRef = useRef<HTMLDivElement>(null);
+  const labelEls = useRef<(HTMLSpanElement | null)[]>([]);
 
   useEffect(() => {
     const mqDesktop = window.matchMedia("(min-width: 768px)");
@@ -99,7 +118,7 @@ export default function HeroGlobe({
         "three/examples/jsm/controls/OrbitControls.js"
       );
       if (disposed || !mountRef.current) return;
-      cleanup = initGlobe(THREE, OrbitControls, mount, reduced, textureSrc);
+      cleanup = initGlobe(THREE, OrbitControls, mount, reduced, textureSrc, labelEls);
     })();
 
     return () => {
@@ -140,14 +159,43 @@ export default function HeroGlobe({
               className="absolute inset-0 rounded-full ring-1 ring-inset"
               style={{ boxShadow: "inset 0 0 40px rgba(16,185,129,0.25)" }}
             />
+            {/* A few clean labels over the visible landmasses. */}
+            {MOBILE_LABELS.map((l) => (
+              <span
+                key={l.name}
+                className="globe-label absolute -translate-x-1/2 -translate-y-1/2"
+                style={{ top: l.top, left: l.left }}
+              >
+                {l.name}
+              </span>
+            ))}
           </div>
         </div>
       )}
       {isDesktop && (
-        <div
-          ref={mountRef}
-          className="absolute inset-0 translate-x-[12%] lg:translate-x-[16%]"
-        />
+        <>
+          <div
+            ref={mountRef}
+            className="absolute inset-0 translate-x-[12%] lg:translate-x-[16%]"
+          />
+          {/* Continent labels — projected to screen space each frame by
+              initGlobe so they pin to the surface, face the camera, stay
+              upright, and fade out on the globe's back side. */}
+          <div className="pointer-events-none absolute inset-0 translate-x-[12%] lg:translate-x-[16%]">
+            {CONTINENTS.map((c, i) => (
+              <span
+                key={c.name}
+                ref={(el) => {
+                  labelEls.current[i] = el;
+                }}
+                className="globe-label absolute left-0 top-0"
+                style={{ opacity: 0, willChange: "transform, opacity" }}
+              >
+                {c.name}
+              </span>
+            ))}
+          </div>
+        </>
       )}
     </div>
   );
@@ -174,7 +222,8 @@ function initGlobe(
   OrbitControls: typeof import("three/examples/jsm/controls/OrbitControls.js").OrbitControls,
   mount: HTMLDivElement,
   reduced: boolean,
-  textureSrc: string
+  textureSrc: string,
+  labelEls: React.RefObject<(HTMLSpanElement | null)[]>
 ): () => void {
   const width = mount.clientWidth || window.innerWidth;
   const height = mount.clientHeight || 600;
@@ -197,10 +246,10 @@ function initGlobe(
   const RADIUS = 1.6;
   const group = new THREE.Group();
   group.rotation.z = 0.32; // gentle axial tilt
-  // Scale the whole globe (sphere + arcs + points + atmosphere) down so the
-  // full sphere sits comfortably inside the hero on the right, rather than
-  // filling and overflowing it. Camera stays put, so drift stays framed.
-  group.scale.setScalar(0.62);
+  // Scale the whole globe (sphere + arcs + points + atmosphere) so the full
+  // sphere sits inside the hero on the right with a little more presence,
+  // while the hero section's overflow-hidden keeps it from ever spilling out.
+  group.scale.setScalar(0.72);
   scene.add(group);
 
   const disposables: Array<{ dispose: () => void }> = [];
@@ -382,11 +431,53 @@ function initGlobe(
   controls.addEventListener("start", onStart);
   controls.addEventListener("end", onEnd);
 
+  // --- Continent labels ----------------------------------------------------
+  // Local surface positions (in the group's frame); projected to screen space
+  // each frame so labels pin to the landmass, face the camera + stay upright,
+  // and fade out as the continent rotates to the back side.
+  const labelLocals = CONTINENTS.map((c) =>
+    latLonToVec3(THREE, c.lat, c.lon, RADIUS)
+  );
+  const lWorld = new THREE.Vector3();
+  const lNormal = new THREE.Vector3();
+  const lToCam = new THREE.Vector3();
+  const lNdc = new THREE.Vector3();
+  const groupCenter = new THREE.Vector3();
+
+  const placeLabels = () => {
+    const els = labelEls.current;
+    if (!els) return;
+    const w = canvas.clientWidth || mount.clientWidth || 1;
+    const h = canvas.clientHeight || mount.clientHeight || 1;
+    group.getWorldPosition(groupCenter);
+    for (let i = 0; i < labelLocals.length; i++) {
+      const el = els[i];
+      if (!el) continue;
+      lWorld.copy(labelLocals[i]);
+      group.localToWorld(lWorld);
+      // Facing: outward surface normal vs. direction to camera.
+      lNormal.copy(lWorld).sub(groupCenter).normalize();
+      lToCam.copy(camera.position).sub(lWorld).normalize();
+      const facing = lNormal.dot(lToCam);
+      // Only show once the continent is well onto the front, so labels stay
+      // over the centre/right of the globe and never drift onto the hero text.
+      const opacity = Math.min(Math.max((facing - 0.34) / 0.28, 0), 1);
+      lNdc.copy(lWorld).project(camera);
+      const sx = (lNdc.x * 0.5 + 0.5) * w;
+      const sy = (-lNdc.y * 0.5 + 0.5) * h;
+      el.style.opacity = opacity.toFixed(3);
+      el.style.transform = `translate(-50%, -50%) translate(${sx.toFixed(1)}px, ${sy.toFixed(1)}px)`;
+    }
+  };
+
   // --- Animation -----------------------------------------------------------
   const clock = new THREE.Clock();
   let raf = 0;
   const tmp = new THREE.Vector3();
-  const renderOnce = () => renderer.render(scene, camera);
+  const renderOnce = () => {
+    renderer.render(scene, camera);
+    placeLabels();
+  };
 
   const animate = () => {
     raf = requestAnimationFrame(animate);
@@ -418,6 +509,7 @@ function initGlobe(
 
     controls.update();
     renderer.render(scene, camera);
+    placeLabels();
   };
 
   if (reduced) {
