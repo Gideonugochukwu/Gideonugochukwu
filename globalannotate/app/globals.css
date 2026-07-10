@@ -679,6 +679,26 @@
   .ga-cl-inner { transition: none; }
 }
 
+/* Continent name labels on the hero globe. Understated + premium: small,
+   uppercase, letter-spaced, semi-transparent white. On the desktop WebGL
+   globe, initGlobe drives position/opacity via inline styles each frame;
+   this rule only supplies the type treatment. */
+.globe-label {
+  white-space: nowrap;
+  font-family: var(--font-body);
+  font-size: 0.6rem;
+  font-weight: 500;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.85);
+  text-shadow: 0 1px 6px rgba(2, 6, 23, 0.9);
+  transition: opacity 0.25s ease;
+  pointer-events: none;
+}
+@media (min-width: 1024px) {
+  .globe-label { font-size: 0.66rem; }
+}
+
 /* Emerald shimmer used by the Airtable form loading skeleton. */
 @keyframes ga-shimmer {
   0% { background-position: -150% 0; }
