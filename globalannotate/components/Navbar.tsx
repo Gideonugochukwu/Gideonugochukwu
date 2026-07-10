@@ -39,7 +39,12 @@ export default function Navbar() {
       <div className="container-wide flex h-16 items-center justify-between">
         <Logo />
 
-        <nav className="hidden md:flex items-center gap-1" aria-label="Primary">
+        {/* Seven items: tighter gap/padding at md so they hold one line, a
+            touch roomier from lg up. */}
+        <nav
+          className="hidden md:flex items-center gap-0.5 lg:gap-1"
+          aria-label="Primary"
+        >
           {nav.map((item) => {
             const active =
               item.href === "/"
@@ -50,7 +55,7 @@ export default function Navbar() {
                 key={item.href}
                 href={item.href}
                 className={cn(
-                  "relative px-3 py-2 text-sm font-medium rounded-lg transition",
+                  "relative whitespace-nowrap px-2.5 py-2 text-sm font-medium rounded-lg transition lg:px-3",
                   active
                     ? "text-ink-900"
                     : "text-ink-600 hover:text-ink-900"
@@ -58,7 +63,7 @@ export default function Navbar() {
               >
                 {item.label}
                 {active && (
-                  <span className="absolute left-3 right-3 -bottom-0.5 h-0.5 rounded-full bg-brand-500" />
+                  <span className="absolute left-2.5 right-2.5 -bottom-0.5 h-0.5 rounded-full bg-brand-500 lg:left-3 lg:right-3" />
                 )}
               </Link>
             );
@@ -67,7 +72,8 @@ export default function Navbar() {
 
         <div className="hidden md:flex items-center gap-2.5">
           <ThemeToggle />
-          <Link href="/contact" className="btn-primary text-sm">
+          {/* CTA appears from lg up, where there's room beside seven items. */}
+          <Link href="/contact" className="btn-primary text-sm hidden lg:inline-flex">
             Talk to an expert <ArrowRight className="h-4 w-4" />
           </Link>
         </div>

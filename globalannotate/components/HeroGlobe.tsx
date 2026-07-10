@@ -7,22 +7,53 @@ import type * as ThreeNS from "three";
 // Brand palette
 const NAVY = 0x0f172a;
 const EMERALD = 0x10b981;
+const TEAL = 0x14b8a6;
+
+// Major world regions the glowing points pin to (lat, lon in degrees). The
+// lat/lon → xyz mapping matches Three's SphereGeometry UVs, so points land on
+// the right landmasses of the equirectangular texture.
+const REGIONS: [number, number][] = [
+  [40, -100], // North America
+  [39, -77], //  US East
+  [-15, -58], // South America
+  [50, 8], //    Western Europe
+  [9, 8], //     West Africa (Nigeria)
+  [1, 37], //    East Africa
+  [25, 45], //   Middle East
+  [22, 78], //   India
+  [3, 102], //   Southeast Asia
+  [35, 112], //  East Asia
+  [36, 139], //  Japan
+  [-27, 133], // Australia
+];
+
+// Arcs travel between these region pairs (indices into REGIONS).
+const ARCS: [number, number][] = [
+  [4, 3], //  West Africa → Europe
+  [4, 0], //  West Africa → North America
+  [4, 2], //  West Africa → South America
+  [3, 9], //  Europe → East Asia
+  [7, 8], //  India → SE Asia
+  [11, 8], // Australia → SE Asia
+  [1, 3], //  US East → Europe
+];
 
 /**
- * Full world-map globe for the homepage hero background.
+ * Full, living world-map globe for the homepage hero background.
  *
  * - Desktop (>= 768px): a Three.js SphereGeometry wrapped in a complete
- *   equirectangular world map (public-domain Natural Earth land, rasterised
- *   to a brand-tinted texture: emerald→teal land, navy ocean — see
- *   /public/world-map.png). Slow continuous Y auto-rotation; click-drag to
- *   spin via OrbitControls, with auto-rotate resuming ~2s after release. A
- *   soft emerald atmosphere shell glows around the rim. Three.js + the
- *   controls + the texture are all dynamically imported inside the effect so
- *   they land in their own chunk and never block first paint / LCP.
+ *   equirectangular world map (public-domain Natural Earth land, brand-tinted
+ *   — see /public/world-map.png). The globe feels alive: a slow floating
+ *   drift + axis wobble so it hangs in space, ~12 emerald points pinned to
+ *   world regions that softly pulse, and thin emerald/teal arcs with a bright
+ *   signal travelling between regions. Slow auto-rotation; click-drag to spin
+ *   via OrbitControls, auto-rotate resuming ~2s after release. A soft emerald
+ *   atmosphere shell glows around the rim. Three.js, the controls, and the
+ *   texture are dynamically imported so they never block first paint / LCP.
  * - Mobile (< 768px): a static 2D circular world-map image — no canvas, no
  *   WebGL — so the hero stays fast on phones.
- * - prefers-reduced-motion: the globe renders but does not auto-rotate
- *   (drag still works; nothing moves on its own).
+ * - prefers-reduced-motion: the globe renders but nothing self-animates (no
+ *   drift, pulse, arc travel, or auto-rotation; drag still works).
  *
  * Decorative and behind the hero text (the hero's dark gradient dims it for
  * legibility). The canvas accepts pointer events so the globe is draggable;
@@ -39,7 +70,6 @@ export default function HeroGlobe({
   const [reduced, setReduced] = useState(false);
   const mountRef = useRef<HTMLDivElement>(null);
 
-  // Resolve environment (viewport width + motion preference) after mount.
   useEffect(() => {
     const mqDesktop = window.matchMedia("(min-width: 768px)");
     const mqReduce = window.matchMedia("(prefers-reduced-motion: reduce)");
@@ -55,7 +85,6 @@ export default function HeroGlobe({
     };
   }, []);
 
-  // Build / tear down the Three.js scene (desktop only).
   useEffect(() => {
     if (!isDesktop) return;
     const mount = mountRef.current;
@@ -100,7 +129,6 @@ export default function HeroGlobe({
               sizes="140vw"
               className="object-cover"
             />
-            {/* Spherical shading + emerald rim so the flat map reads as a globe. */}
             <div
               className="absolute inset-0 rounded-full"
               style={{
@@ -125,10 +153,21 @@ export default function HeroGlobe({
   );
 }
 
+/** lat/lon (deg) → point on a sphere of radius r, matching Three's SphereGeometry UVs. */
+function latLonToVec3(THREE: typeof ThreeNS, lat: number, lon: number, r: number) {
+  const phi = ((90 - lat) * Math.PI) / 180;
+  const theta = ((lon + 180) * Math.PI) / 180;
+  return new THREE.Vector3(
+    -r * Math.cos(theta) * Math.sin(phi),
+    r * Math.cos(phi),
+    r * Math.sin(theta) * Math.sin(phi)
+  );
+}
+
 /**
- * Builds the textured world-map globe inside `mount`. Returns a cleanup
+ * Builds the living world-map globe inside `mount`. Returns a cleanup
  * function that stops the loop, removes listeners, and disposes all GPU
- * resources (geometry, material, texture, renderer, controls).
+ * resources.
  */
 function initGlobe(
   THREE: typeof ThreeNS,
@@ -168,8 +207,6 @@ function initGlobe(
     color: NAVY,
     roughness: 0.95,
     metalness: 0.0,
-    // Partly self-lit so the map stays readable on the shaded side, but still
-    // shaded enough to read as a real sphere.
     emissive: 0xffffff,
     emissiveIntensity: 0.32,
   });
@@ -215,6 +252,99 @@ function initGlobe(
   group.add(atmosphere);
   disposables.push(atmGeo, atmMat);
 
+  // --- Soft round sprite texture (shared by points + arc signals) ----------
+  const dotTexture = makeDotTexture(THREE);
+  disposables.push(dotTexture);
+
+  // --- Glowing region points (pulsing) -------------------------------------
+  // depthTest on + at just above the surface, so points on the far side are
+  // occluded by the opaque globe and only front-facing ones show.
+  const pointPos = REGIONS.map(([lat, lon]) =>
+    latLonToVec3(THREE, lat, lon, RADIUS * 1.006)
+  );
+  const points: ThreeNS.Sprite[] = [];
+  const pointMats: ThreeNS.SpriteMaterial[] = [];
+  const pointPhase: number[] = [];
+  const pointBase: number[] = [];
+  for (let i = 0; i < pointPos.length; i++) {
+    const mat = new THREE.SpriteMaterial({
+      map: dotTexture,
+      color: i % 4 === 0 ? TEAL : EMERALD,
+      transparent: true,
+      opacity: 0.9,
+      depthWrite: false,
+      blending: THREE.AdditiveBlending,
+    });
+    const sprite = new THREE.Sprite(mat);
+    sprite.position.copy(pointPos[i]);
+    const base = 0.075 + (i % 3) * 0.012;
+    sprite.scale.setScalar(base);
+    group.add(sprite);
+    points.push(sprite);
+    pointMats.push(mat);
+    pointBase.push(base);
+    pointPhase.push((i * 12.9898) % (Math.PI * 2));
+  }
+
+  // --- Travelling arcs -----------------------------------------------------
+  type Arc = {
+    curve: ThreeNS.QuadraticBezierCurve3;
+    lineMat: ThreeNS.LineBasicMaterial;
+    signal: ThreeNS.Sprite;
+    signalMat: ThreeNS.SpriteMaterial;
+    speed: number;
+    offset: number;
+  };
+  const arcs: Arc[] = [];
+  for (let i = 0; i < ARCS.length; i++) {
+    const [a, b] = ARCS[i];
+    const va = pointPos[a];
+    const vb = pointPos[b];
+    // Control point pushed outward; bigger bulge for longer hops.
+    const dist = va.distanceTo(vb);
+    const mid = va
+      .clone()
+      .add(vb)
+      .multiplyScalar(0.5)
+      .normalize()
+      .multiplyScalar(RADIUS * (1.12 + dist * 0.28));
+    const curve = new THREE.QuadraticBezierCurve3(va.clone(), mid, vb.clone());
+
+    const pts = curve.getPoints(64);
+    const lineGeo = new THREE.BufferGeometry().setFromPoints(pts);
+    const lineMat = new THREE.LineBasicMaterial({
+      color: i % 2 === 0 ? EMERALD : TEAL,
+      transparent: true,
+      opacity: 0.28,
+      depthWrite: false,
+      blending: THREE.AdditiveBlending,
+    });
+    const line = new THREE.Line(lineGeo, lineMat);
+    group.add(line);
+    disposables.push(lineGeo, lineMat);
+
+    const signalMat = new THREE.SpriteMaterial({
+      map: dotTexture,
+      color: 0xd1fae5,
+      transparent: true,
+      opacity: 0,
+      depthWrite: false,
+      blending: THREE.AdditiveBlending,
+    });
+    const signal = new THREE.Sprite(signalMat);
+    signal.scale.setScalar(0.09);
+    group.add(signal);
+
+    arcs.push({
+      curve,
+      lineMat,
+      signal,
+      signalMat,
+      speed: 0.16 + (i % 3) * 0.05,
+      offset: (i * 0.37) % 1,
+    });
+  }
+
   // --- Lighting ------------------------------------------------------------
   const ambient = new THREE.AmbientLight(0xffffff, 0.55);
   const key = new THREE.DirectionalLight(0xffffff, 1.1);
@@ -249,17 +379,48 @@ function initGlobe(
   controls.addEventListener("end", onEnd);
 
   // --- Animation -----------------------------------------------------------
+  const clock = new THREE.Clock();
   let raf = 0;
+  const tmp = new THREE.Vector3();
   const renderOnce = () => renderer.render(scene, camera);
 
   const animate = () => {
     raf = requestAnimationFrame(animate);
+    const t = clock.getElapsedTime();
+
+    // Floating drift — the globe hangs and sways in space.
+    group.position.y = Math.sin(t * 0.85) * 0.17;
+    group.position.x = Math.cos(t * 0.55) * 0.1;
+    // Organic axis wobble on top of the base tilt.
+    group.rotation.z = 0.32 + Math.sin(t * 0.5) * 0.045;
+    group.rotation.x = Math.sin(t * 0.37) * 0.04;
+
+    // Pulse the region points (scale + opacity, asynchronous).
+    for (let i = 0; i < points.length; i++) {
+      const s = 0.5 + 0.5 * Math.sin(t * 1.7 + pointPhase[i]);
+      points[i].scale.setScalar(pointBase[i] * (1 + 0.32 * s));
+      pointMats[i].opacity = 0.45 + 0.5 * s;
+    }
+
+    // Advance each arc's travelling signal; fade in over the trip, out at the end.
+    for (const arc of arcs) {
+      const u = (t * arc.speed + arc.offset) % 1;
+      arc.curve.getPointAt(u, tmp);
+      arc.signal.position.copy(tmp);
+      arc.signalMat.opacity = Math.sin(u * Math.PI); // 0 → 1 → 0 across the arc
+      arc.lineMat.opacity = 0.2 + 0.14 * Math.sin(u * Math.PI);
+    }
+
     controls.update();
     renderer.render(scene, camera);
   };
 
   if (reduced) {
-    // No self-animation. Re-render only when the user drags.
+    // No self-animation. Show a calm static frame; re-render only on drag.
+    for (const arc of arcs) {
+      arc.signalMat.opacity = 0;
+      arc.lineMat.opacity = 0.24;
+    }
     controls.addEventListener("change", renderOnce);
     renderOnce();
   } else {
@@ -287,8 +448,29 @@ function initGlobe(
     controls.removeEventListener("end", onEnd);
     controls.removeEventListener("change", renderOnce);
     controls.dispose();
+    for (const mat of pointMats) mat.dispose();
+    for (const arc of arcs) arc.signalMat.dispose();
     for (const d of disposables) d.dispose();
     renderer.dispose();
     if (canvas.parentNode === mount) mount.removeChild(canvas);
   };
+}
+
+/** Builds a small round soft-edged sprite texture for points / arc signals. */
+function makeDotTexture(THREE: typeof ThreeNS): ThreeNS.CanvasTexture {
+  const size = 64;
+  const canvas = document.createElement("canvas");
+  canvas.width = size;
+  canvas.height = size;
+  const ctx = canvas.getContext("2d")!;
+  const g = ctx.createRadialGradient(size / 2, size / 2, 0, size / 2, size / 2, size / 2);
+  g.addColorStop(0, "rgba(255,255,255,1)");
+  g.addColorStop(0.25, "rgba(209,250,229,0.95)");
+  g.addColorStop(0.6, "rgba(16,185,129,0.35)");
+  g.addColorStop(1, "rgba(16,185,129,0)");
+  ctx.fillStyle = g;
+  ctx.fillRect(0, 0, size, size);
+  const texture = new THREE.CanvasTexture(canvas);
+  texture.needsUpdate = true;
+  return texture;
 }
