@@ -1,10 +1,9 @@
 import Hero from "@/components/Hero";
 import StatStrip from "@/components/StatStrip";
 import Testimonials from "@/components/Testimonials";
-import ServiceCTAGrid from "@/components/ServiceCTAGrid";
+import CTABand from "@/components/CTABand";
 import Industries from "@/components/Industries";
 import JsonLd from "@/components/JsonLd";
-import AnimatedBackground from "@/components/AnimatedBackground";
 import HomeServices from "@/components/home/HomeServices";
 import HomeMethod from "@/components/home/HomeMethod";
 import HomeFAQ from "@/components/home/HomeFAQ";
@@ -43,36 +42,34 @@ export default function HomePage() {
       <JsonLd data={faqSchema(HOME_FAQ)} />
       <Hero />
 
-      {/* Services — editorial 2x2 with offset rows */}
-      <section className="relative isolate overflow-hidden py-20 sm:py-24 md:py-32">
-        <AnimatedBackground variant="tint" className="opacity-70" />
+      {/* Services — flat, calm surface with generous breathing room */}
+      <section className="py-28 sm:py-32 md:py-44">
         <HomeServices />
       </section>
 
       {/* Stats — borderless horizontal band, sits in the rhythm break */}
-      <section className="relative py-12 sm:py-16 md:py-20">
+      <section className="py-16 sm:py-20 md:py-24">
         <StatStrip />
       </section>
 
-      {/* Industries — 6 uniform cards including Gaming, balanced 3-column grid on lg */}
-      <section className="relative py-16 sm:py-20 md:py-28">
+      {/* Industries — 6 uniform cards including Gaming */}
+      <section className="py-28 sm:py-32 md:py-44">
         <Industries />
       </section>
 
       {/* The GlobalAnnotate method — merged Why + How, one section */}
-      <section className="relative isolate overflow-hidden py-20 sm:py-24 md:py-32 bg-brand-50/40">
-        <AnimatedBackground variant="tint" className="opacity-60" />
+      <section className="py-28 sm:py-32 md:py-44 bg-ink-50">
         <HomeMethod />
       </section>
 
       {/* Testimonials — large editorial quotes */}
-      <section className="relative py-20 sm:py-24 md:py-32">
+      <section className="py-28 sm:py-32 md:py-44">
         <Testimonials />
       </section>
 
       {/* FAQ — divided rows, no outer card */}
-      <section className="relative py-20 sm:py-24 md:py-32 bg-brand-50/40">
-        <div className="container-wide grid lg:grid-cols-[1fr_1.4fr] gap-12 lg:gap-20 items-start">
+      <section className="py-28 sm:py-32 md:py-44 bg-ink-50">
+        <div className="container-wide grid lg:grid-cols-[1fr_1.4fr] gap-14 lg:gap-24 items-start">
           <div className="max-w-md">
             <p className="text-sm font-medium uppercase tracking-[0.18em] text-brand-700">
               FAQ
@@ -80,7 +77,7 @@ export default function HomePage() {
             <h2 className="section-h2 mt-4 text-ink-900">
               Common questions.
             </h2>
-            <p className="mt-5 text-base sm:text-lg text-ink-600 leading-relaxed">
+            <p className="mt-6 text-base sm:text-lg text-ink-600 leading-relaxed">
               The things teams ask us before getting started.
             </p>
           </div>
@@ -88,9 +85,9 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* One strong closing CTA. */}
-      <section className="relative py-16 sm:py-20 md:py-28">
-        <ServiceCTAGrid />
+      {/* One clear closing action. */}
+      <section className="py-20 sm:py-24 md:py-32">
+        <CTABand />
       </section>
     </>
   );

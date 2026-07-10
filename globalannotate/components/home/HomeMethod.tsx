@@ -75,7 +75,7 @@ export default function HomeMethod() {
         <h2 className="section-h2 mt-4 text-ink-900">
           Quality you can audit.
           <br />
-          <span className="text-gradient">Speed you can plan around.</span>
+          Speed you can plan around.
         </h2>
         <p className="mt-6 text-base sm:text-lg text-ink-600 leading-relaxed max-w-md">
           Native linguists, specialist annotators, SEO strategists, and growth marketers — under one quality system, one senior lead.

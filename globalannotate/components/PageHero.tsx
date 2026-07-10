@@ -28,6 +28,7 @@ export default function PageHero({
   size = "default",
   backgroundExtra,
   post,
+  solidBackground = false,
 }: {
   eyebrow?: string;
   pre?: React.ReactNode;
@@ -39,11 +40,12 @@ export default function PageHero({
   // hero used by section pages like Reviews / Blog / Contact / Legal.
   size?: "default" | "compact";
   // Optional decorative layer rendered above the gradient but behind the hero
-  // text — used by the homepage for the interactive 3D globe.
+  // text — used by the homepage for the interactive world-map globe.
   backgroundExtra?: React.ReactNode;
-  // Optional content slot rendered after the CTAs — used by the homepage
-  // for the mobile continent-logo row.
+  // Optional content slot rendered after the CTAs.
   post?: React.ReactNode;
+  // Drop the photo slideshow for a clean solid-navy hero (homepage globe).
+  solidBackground?: boolean;
 }) {
   const reduce = useReducedMotion();
 
@@ -58,23 +60,35 @@ export default function PageHero({
   const titleClass =
     typeof title === "string" && title.length > 70 ? "page-h1-long" : "page-h1";
 
+  // When there's a draggable globe behind the text, let pointer events fall
+  // through the content column to the canvas; interactive children (the CTAs)
+  // opt back in with pointer-events-auto so they stay clickable.
+  const passThrough = Boolean(backgroundExtra);
+
   return (
     <section className="relative isolate overflow-hidden bg-night-950 text-white">
-      <HeroSlideshow slides={slides} />
+      {!solidBackground && <HeroSlideshow slides={slides} />}
 
       <div
         aria-hidden
-        className="absolute inset-0"
+        className="pointer-events-none absolute inset-0"
         style={{
-          background:
-            "linear-gradient(180deg, rgba(2,6,23,0.70) 0%, rgba(2,6,23,0.55) 40%, rgba(2,6,23,0.92) 100%)",
+          background: solidBackground
+            ? "linear-gradient(180deg, rgba(2,6,23,0.55) 0%, rgba(2,6,23,0.35) 45%, rgba(2,6,23,0.85) 100%)"
+            : "linear-gradient(180deg, rgba(2,6,23,0.70) 0%, rgba(2,6,23,0.55) 40%, rgba(2,6,23,0.92) 100%)",
         }}
       />
-      <div aria-hidden className="absolute inset-0 hero-grid opacity-20" />
+      {!solidBackground && (
+        <div aria-hidden className="pointer-events-none absolute inset-0 hero-grid opacity-20" />
+      )}
 
       {backgroundExtra}
 
-      <div className={`container-wide relative ${paddingY}`}>
+      <div
+        className={`container-wide relative ${paddingY} ${
+          passThrough ? "pointer-events-none" : ""
+        }`}
+      >
         <div className="max-w-3xl">
           {eyebrow && (
             <motion.p
@@ -123,7 +137,7 @@ export default function PageHero({
               initial={reduce ? false : { opacity: 0, y: 10 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.6 }}
-              className="mt-7 flex flex-col sm:flex-row items-stretch sm:items-center gap-3"
+              className="pointer-events-auto mt-7 flex flex-col sm:flex-row items-stretch sm:items-center gap-3"
             >
               {ctas.map((c) =>
                 c.variant === "ghost" ? (
@@ -159,7 +173,7 @@ export default function PageHero({
           both light and dark mode. */}
       <div
         aria-hidden
-        className="absolute inset-x-0 bottom-0 h-20"
+        className="pointer-events-none absolute inset-x-0 bottom-0 h-20"
         style={{
           background:
             "linear-gradient(180deg, transparent 0%, color-mix(in srgb, var(--color-paper) 55%, transparent) 70%, var(--color-paper) 100%)",
