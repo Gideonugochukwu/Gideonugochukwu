@@ -119,8 +119,8 @@ export default function HeroGlobe({
         }}
       />
       {!isDesktop && (
-        <div className="pointer-events-none absolute inset-0 flex items-center justify-center">
-          <div className="relative aspect-square w-[135%] max-w-none translate-x-[6%] translate-y-[2%] overflow-hidden rounded-full ring-1 ring-brand-500/20">
+        <div className="pointer-events-none absolute inset-0 flex items-center justify-center overflow-hidden">
+          <div className="relative aspect-square w-[112%] max-w-none translate-y-[1%] overflow-hidden rounded-full ring-1 ring-brand-500/20">
             <Image
               src={mobileSrc}
               alt="World map showing GlobalAnnotate's global reach"
@@ -146,7 +146,7 @@ export default function HeroGlobe({
       {isDesktop && (
         <div
           ref={mountRef}
-          className="absolute inset-0 translate-x-[18%] md:translate-x-[22%]"
+          className="absolute inset-0 translate-x-[12%] lg:translate-x-[16%]"
         />
       )}
     </div>
@@ -197,6 +197,10 @@ function initGlobe(
   const RADIUS = 1.6;
   const group = new THREE.Group();
   group.rotation.z = 0.32; // gentle axial tilt
+  // Scale the whole globe (sphere + arcs + points + atmosphere) down so the
+  // full sphere sits comfortably inside the hero on the right, rather than
+  // filling and overflowing it. Camera stays put, so drift stays framed.
+  group.scale.setScalar(0.62);
   scene.add(group);
 
   const disposables: Array<{ dispose: () => void }> = [];
@@ -388,9 +392,10 @@ function initGlobe(
     raf = requestAnimationFrame(animate);
     const t = clock.getElapsedTime();
 
-    // Floating drift — the globe hangs and sways in space.
-    group.position.y = Math.sin(t * 0.85) * 0.17;
-    group.position.x = Math.cos(t * 0.55) * 0.1;
+    // Floating drift — the globe hangs and sways in space. Kept modest so
+    // the (now smaller) globe stays neatly within the hero as it moves.
+    group.position.y = Math.sin(t * 0.85) * 0.13;
+    group.position.x = Math.cos(t * 0.55) * 0.08;
     // Organic axis wobble on top of the base tilt.
     group.rotation.z = 0.32 + Math.sin(t * 0.5) * 0.045;
     group.rotation.x = Math.sin(t * 0.37) * 0.04;
