@@ -66,7 +66,11 @@ export default function PageHero({
   const passThrough = Boolean(backgroundExtra);
 
   return (
-    <section className="relative isolate overflow-hidden bg-night-950 text-white">
+    <section
+      className={`relative isolate overflow-hidden bg-night-950 text-white ${
+        solidBackground ? "flex items-center min-h-[38rem] md:min-h-[44rem]" : ""
+      }`}
+    >
       {!solidBackground && <HeroSlideshow slides={slides} />}
 
       <div
