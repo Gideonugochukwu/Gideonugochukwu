@@ -7,8 +7,7 @@ import Reveal from "@/components/Reveal";
 import JsonLd from "@/components/JsonLd";
 import ServiceCTAGrid from "@/components/ServiceCTAGrid";
 import { cases, getCase, allCaseSlugs } from "@/data/portfolio";
-import { imageBg, unsplash, portfolioHeroSlides } from "@/lib/images";
-import HeroSlideshow from "@/components/HeroSlideshow";
+import { imageBg, unsplash } from "@/lib/images";
 import { site } from "@/lib/site";
 import { breadcrumbSchema } from "@/lib/schema";
 import { ArrowLeft, ArrowRight, ArrowUpRight, Check } from "lucide-react";
@@ -57,10 +56,6 @@ export default async function CaseStudyPage({
   if (!c) notFound();
 
   const url = `${site.url}/portfolio/${c.slug}`;
-  const heroSlides = [
-    { id: c.image.id, alt: c.image.alt },
-    ...portfolioHeroSlides.filter((s) => s.id !== c.image.id),
-  ];
   const related = cases.filter((other) => other.slug !== c.slug).slice(0, 3);
 
   // Map the case's service string to a /services/[slug] when the match is
@@ -98,21 +93,12 @@ export default async function CaseStudyPage({
         ])}
       />
 
-      {/* Hero — same rotating-slideshow treatment as the main pages, plus
-          the service/industry/duration chips + client one-liner this page
-          needs. Refined .page-h1 typography. */}
-      <section className="relative isolate overflow-hidden bg-night-950 text-white">
-        <HeroSlideshow slides={heroSlides} />
-        <div
-          aria-hidden
-          className="absolute inset-0"
-          style={{
-            background:
-              "linear-gradient(180deg, rgba(2,6,23,0.70) 0%, rgba(2,6,23,0.55) 40%, rgba(2,6,23,0.92) 100%)",
-          }}
-        />
-        <div aria-hidden className="absolute inset-0 hero-grid opacity-20" />
-
+      {/* Hero — a clean, solid deep-navy band (no image, no grid) with the
+          service/industry/duration chips + client one-liner this page needs. */}
+      <section
+        className="relative isolate overflow-hidden text-white"
+        style={{ backgroundColor: "#0F172A" }}
+      >
         <div className="container-wide relative pt-16 sm:pt-20 md:pt-24 pb-20 sm:pb-24 md:pb-28">
           <Link
             href="/portfolio"
