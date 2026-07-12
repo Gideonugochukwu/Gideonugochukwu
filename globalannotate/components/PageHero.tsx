@@ -3,7 +3,6 @@
 import Link from "next/link";
 import { motion, useReducedMotion } from "framer-motion";
 import { ArrowRight } from "lucide-react";
-import HeroSlideshow from "./HeroSlideshow";
 
 type Slide = { id: string; alt: string };
 
@@ -24,7 +23,6 @@ export default function PageHero({
   title,
   subtitle,
   ctas,
-  slides,
   size = "default",
   backgroundExtra,
   post,
@@ -35,7 +33,9 @@ export default function PageHero({
   title: React.ReactNode;
   subtitle?: React.ReactNode;
   ctas?: PageHeroCta[];
-  slides: Slide[];
+  // Kept for API compatibility with existing call sites; inner-page heroes no
+  // longer render a background slideshow, so this is now unused.
+  slides?: Slide[];
   // "default" = standard hero used by main pages; "compact" = shallower
   // hero used by section pages like Reviews / Blog / Contact / Legal.
   size?: "default" | "compact";
@@ -67,23 +67,27 @@ export default function PageHero({
 
   return (
     <section
-      className={`relative isolate overflow-hidden bg-night-950 text-white ${
-        solidBackground ? "flex items-center min-h-[38rem] md:min-h-[44rem]" : ""
+      className={`relative isolate overflow-hidden text-white ${
+        solidBackground
+          ? "bg-night-950 flex items-center min-h-[38rem] md:min-h-[44rem]"
+          : ""
       }`}
+      // Inner-page heroes are a clean, solid deep navy — no image, no grid, no
+      // overlay. The homepage (solidBackground) keeps its own navy field for
+      // the globe and is styled via the class above.
+      style={solidBackground ? undefined : { backgroundColor: "#0F172A" }}
     >
-      {!solidBackground && <HeroSlideshow slides={slides} />}
-
-      <div
-        aria-hidden
-        className="pointer-events-none absolute inset-0"
-        style={{
-          background: solidBackground
-            ? "linear-gradient(180deg, rgba(2,6,23,0.55) 0%, rgba(2,6,23,0.35) 45%, rgba(2,6,23,0.85) 100%)"
-            : "linear-gradient(180deg, rgba(2,6,23,0.70) 0%, rgba(2,6,23,0.55) 40%, rgba(2,6,23,0.92) 100%)",
-        }}
-      />
-      {!solidBackground && (
-        <div aria-hidden className="pointer-events-none absolute inset-0 hero-grid opacity-20" />
+      {/* Homepage only: a dimming gradient sits over the globe for legibility.
+          Inner pages need nothing over the flat navy. */}
+      {solidBackground && (
+        <div
+          aria-hidden
+          className="pointer-events-none absolute inset-0"
+          style={{
+            background:
+              "linear-gradient(180deg, rgba(2,6,23,0.55) 0%, rgba(2,6,23,0.35) 45%, rgba(2,6,23,0.85) 100%)",
+          }}
+        />
       )}
 
       {backgroundExtra}
