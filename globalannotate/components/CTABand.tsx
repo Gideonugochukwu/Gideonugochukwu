@@ -7,7 +7,15 @@ export default function CTABand() {
     <div className="container-wide">
       <div
         className="relative overflow-hidden rounded-3xl p-8 md:p-14 text-white"
-        style={{ background: "#10B981" }}
+        style={{
+          // Two-tone brand band: navy holds the top-left (where the heading +
+          // subtext sit, for strong white-on-navy contrast) and blends
+          // smoothly into emerald toward the bottom-right (behind the
+          // buttons). Diagonal so it reads well on desktop and when it stacks
+          // on mobile. No pattern, no texture — just the two brand colours.
+          background:
+            "linear-gradient(120deg, #0F172A 0%, #0F172A 46%, #10B981 100%)",
+        }}
       >
         <div className="relative grid md:grid-cols-[1.5fr_1fr] gap-8 items-end">
           <div>
