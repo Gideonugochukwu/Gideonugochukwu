@@ -100,7 +100,7 @@ export default function QuoteForm() {
           <input
             {...register("fullName")}
             className="input"
-            placeholder="Jane Doe"
+            placeholder="Godsportion"
             autoComplete="name"
           />
         </Field>
