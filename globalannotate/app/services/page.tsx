@@ -6,14 +6,19 @@ import Reveal from "@/components/Reveal";
 import JsonLd from "@/components/JsonLd";
 import ServiceCTAGrid from "@/components/ServiceCTAGrid";
 import PageHero from "@/components/PageHero";
-import { services, site } from "@/lib/site";
+import { services, marketReady, site } from "@/lib/site";
 import { img, imageBg, unsplash, servicesHeroSlides } from "@/lib/images";
 import { breadcrumbSchema } from "@/lib/schema";
-import { ArrowRight, Brain, Gamepad2, Languages, Megaphone, Search } from "lucide-react";
+import { ArrowRight, Brain, Gamepad2, Languages, Megaphone, Search, ShieldCheck } from "lucide-react";
 
-const TITLE = "Services — Translation, AI Annotation, SEO, Marketing & Game Localization";
+const TITLE = "Services — Translation, AI Annotation, SEO, Marketing, Game Localization & MarketReady™";
 const DESCRIPTION =
-  "Five integrated services to help you grow globally: translation & localization, AI annotation, multilingual SEO, performance digital marketing, and game localization in 100+ languages.";
+  "Integrated services to help you grow globally: translation & localization, AI annotation, multilingual SEO, performance digital marketing, game localization, and MarketReady™ pre-launch cultural validation in 100+ languages.";
+
+// MarketReady is a distinct, proprietary service — surfaced here as a sixth
+// card without living in the shared `services` array (which drives the
+// homepage grid and footer).
+const allServices = [...services, marketReady];
 
 export const metadata: Metadata = {
   title: TITLE,
@@ -34,9 +39,10 @@ const SERVICE_IMAGES = {
   "digital-marketing": img.services.digitalMarketing,
   seo: img.services.seo,
   "game-localization": img.services.gameLocalization,
+  marketready: img.services.marketReady,
 } as const;
 
-const ICONS = { Brain, Gamepad2, Languages, Megaphone, Search } as const;
+const ICONS = { Brain, Gamepad2, Languages, Megaphone, Search, ShieldCheck } as const;
 
 export default function ServicesPage() {
   return (
@@ -55,7 +61,7 @@ export default function ServicesPage() {
             One toolkit. <span className="text-gradient-light">Every market.</span>
           </>
         }
-        subtitle="Five core services that work together — or independently — to help your team move faster across markets."
+        subtitle="Core services that work together — or independently — to help your team move faster across markets, plus MarketReady™ to prove your content lands before you launch."
         ctas={[
           { label: "Talk to an expert", href: "/contact" },
           { label: "See case studies", href: "/portfolio", variant: "ghost" },
@@ -65,12 +71,17 @@ export default function ServicesPage() {
 
       {/* Quick-jump service list below the hero */}
       <Section className="pt-12 md:pt-16">
-        <ul className="grid gap-3 text-sm sm:grid-cols-2 lg:grid-cols-5">
-          {services.map((s) => (
+        <ul className="grid gap-3 text-sm sm:grid-cols-2 lg:grid-cols-6">
+          {allServices.map((s) => (
             <li key={s.slug}>
               <a
                 href={`#${s.slug}`}
-                className="group flex items-center justify-between rounded-xl border border-ink-200/80 bg-white px-4 py-3 hover:border-brand-300 transition"
+                className={
+                  "group flex items-center justify-between rounded-xl border bg-white px-4 py-3 transition " +
+                  (s.slug === "marketready"
+                    ? "border-brand-300 hover:border-brand-400"
+                    : "border-ink-200/80 hover:border-brand-300")
+                }
               >
                 <span className="font-medium text-ink-900">{s.short}</span>
                 <ArrowRight className="h-4 w-4 text-ink-400 group-hover:text-brand-700 transition" />
@@ -83,10 +94,11 @@ export default function ServicesPage() {
       {/* Service detail rows — alternating editorial image + copy. No card walls. */}
       <Section className="pt-8 md:pt-12">
         <div className="space-y-24 md:space-y-32">
-          {services.map((s, i) => {
+          {allServices.map((s, i) => {
             const image = SERVICE_IMAGES[s.slug as keyof typeof SERVICE_IMAGES];
             const Icon = ICONS[s.icon as keyof typeof ICONS];
             const reverse = i % 2 === 1;
+            const isMarketReady = s.slug === "marketready";
             return (
               <Reveal key={s.slug} delay={0}>
                 <article
@@ -109,12 +121,17 @@ export default function ServicesPage() {
                   <div className={reverse ? "md:order-1" : ""}>
                     <span
                       aria-hidden
-                      className="inline-flex h-10 w-10 items-center justify-center rounded-lg border border-ink-200 text-brand-700"
+                      className={
+                        "inline-flex h-10 w-10 items-center justify-center rounded-lg " +
+                        (isMarketReady
+                          ? "bg-brand-500 text-white"
+                          : "border border-ink-200 text-brand-700")
+                      }
                     >
                       <Icon className="h-5 w-5" strokeWidth={1.5} />
                     </span>
                     <p className="mt-5 text-xs font-medium uppercase tracking-[0.20em] text-brand-700">
-                      0{i + 1} · Service
+                      0{i + 1} · {isMarketReady ? "Proprietary service" : "Service"}
                     </p>
                     <h2 className="section-h2 mt-3 text-ink-900">{s.title}</h2>
                     <p className="mt-5 text-lg text-ink-600 leading-relaxed">

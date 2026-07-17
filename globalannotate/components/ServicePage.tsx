@@ -5,7 +5,7 @@ import FAQ, { FAQItem } from "./FAQ";
 import ServiceCTAGrid from "./ServiceCTAGrid";
 import PageHero from "./PageHero";
 import Reveal from "./Reveal";
-import { ArrowRight, ArrowUpRight, Check } from "lucide-react";
+import { ArrowRight, ArrowUpRight, Check, ShieldCheck } from "lucide-react";
 import { servicesHeroSlides, imageBg, unsplash } from "@/lib/images";
 import { relatedCasesForService } from "@/data/portfolio";
 
@@ -267,6 +267,34 @@ export default function ServicePage({
           </div>
         </Section>
       )}
+
+      {/* MarketReady™ add-on callout — internal link into the proprietary
+          pre-launch validation service from every service detail page. */}
+      <Section className="pt-0">
+        <div className="rounded-3xl border border-brand-200 bg-brand-50/40 p-8 md:p-10">
+          <div className="flex flex-col gap-6 md:flex-row md:items-center md:justify-between">
+            <div className="max-w-2xl">
+              <p className="inline-flex items-center gap-2 rounded-full border border-brand-200 bg-white px-3 py-1 text-xs font-medium uppercase tracking-[0.16em] text-brand-700">
+                <ShieldCheck className="h-3.5 w-3.5" /> MarketReady™
+              </p>
+              <h2 className="section-h3 mt-4 text-ink-900">
+                Add MarketReady™ to this project
+              </h2>
+              <p className="mt-2 text-ink-600 leading-relaxed">
+                Validate your content with real native users in the target
+                market before launch — and get a signed report that certifies
+                it&apos;s ready.
+              </p>
+            </div>
+            <Link
+              href="/services/marketready"
+              className="inline-flex items-center gap-2 self-start rounded-xl bg-night-900 px-5 py-3 text-sm font-semibold text-white hover:bg-brand-700 transition md:self-auto"
+            >
+              Learn more <ArrowRight className="h-4 w-4" />
+            </Link>
+          </div>
+        </div>
+      </Section>
 
       {/* Tri-column CTA — modelled on languagewire.com/services */}
       <Section className="pb-24">

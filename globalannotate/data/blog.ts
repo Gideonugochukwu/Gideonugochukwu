@@ -158,6 +158,7 @@ export const posts: BlogPost[] = [
 
 <h2>The bottom line</h2>
 <p>Localizing to 100+ markets isn't really a translation project; it's a product, design, engineering, marketing, and operations project that involves translation. Start with the architecture, build a continuous workflow, hire native linguists, and tie localization to SEO. Our <a href="/services/translation-localization">translation and localization service</a> exists exactly for this — talk to us.</p>
+<p>And before you launch, prove it works: <a href="/services/marketready">MarketReady™</a> validates your localized content with real native users in each market — so you catch a culturally off-key phrase in a review panel, not in a viral screenshot.</p>
 `,
   },
   {
@@ -237,6 +238,7 @@ export const posts: BlogPost[] = [
 
 <h2>The bottom line</h2>
 <p>International SEO is a coordination problem as much as a technical one — translators, engineers, marketers, and SEOs all have to ship in the same direction. We built our <a href="/services/seo">SEO service</a> exactly around this coordination, leaning on our translation and localization team for native-quality content in every market. If you're trying to rank in more than one language, talk to us.</p>
+<p>Ranking is only half the battle — the landing page still has to land. <a href="/services/marketready">MarketReady™</a> puts your localized pages in front of real native users before launch, so the content that ranks also converts.</p>
 `,
   },
   {

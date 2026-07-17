@@ -45,9 +45,13 @@ export const founder = {
 
 // Header navigation. Reviews stays linked from the footer; every route is
 // live and in the sitemap.
-export const nav = [
+// Header navigation. `badge` renders a small emerald "new" dot beside the
+// label. Reviews stays linked from the footer; every route is live and in
+// the sitemap.
+export const nav: { href: string; label: string; badge?: boolean }[] = [
   { href: "/", label: "Home" },
   { href: "/services", label: "Services" },
+  { href: "/services/marketready", label: "MarketReady™", badge: true },
   { href: "/portfolio", label: "Portfolio" },
   { href: "/blog", label: "Blog" },
   { href: "/about", label: "About" },
@@ -99,6 +103,19 @@ export const services = [
 ] as const;
 
 export type ServiceSlug = (typeof services)[number]["slug"];
+
+// MarketReady™ — GlobalAnnotate's proprietary pre-launch cultural validation
+// service. Kept separate from `services` on purpose: it gets its own custom
+// page, a dedicated homepage section, and a highlighted card on /services,
+// while the homepage services grid and footer stay as they are.
+export const marketReady = {
+  slug: "marketready",
+  title: "MarketReady™ Cultural Validation",
+  short: "MarketReady™",
+  summary:
+    "Pre-launch testing with real native users. The only translation service that guarantees your content works in the target market.",
+  icon: "ShieldCheck",
+} as const;
 
 // Returns the real social profile URLs in a stable order. Used by the
 // footer icon row and the Organization JSON-LD sameAs.

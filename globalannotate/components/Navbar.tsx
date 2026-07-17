@@ -39,10 +39,10 @@ export default function Navbar() {
       <div className="container-wide flex h-16 items-center justify-between">
         <Logo />
 
-        {/* Seven items: tighter gap/padding at md so they hold one line, a
-            touch roomier from lg up. */}
+        {/* Eight items now (incl. MarketReady™): the horizontal bar renders
+            from lg where there's room; below lg the hamburger takes over. */}
         <nav
-          className="hidden md:flex items-center gap-0.5 lg:gap-1"
+          className="hidden lg:flex items-center gap-0.5 xl:gap-1"
           aria-label="Primary"
         >
           {nav.map((item) => {
@@ -55,30 +55,36 @@ export default function Navbar() {
                 key={item.href}
                 href={item.href}
                 className={cn(
-                  "relative whitespace-nowrap px-2.5 py-2 text-sm font-medium rounded-lg transition lg:px-3",
+                  "relative whitespace-nowrap px-2.5 py-2 text-sm font-medium rounded-lg transition xl:px-3",
                   active
                     ? "text-ink-900"
                     : "text-ink-600 hover:text-ink-900"
                 )}
               >
                 {item.label}
+                {item.badge && (
+                  <span
+                    aria-hidden
+                    className="ml-1 inline-block h-1.5 w-1.5 rounded-full bg-brand-500 align-top"
+                  />
+                )}
                 {active && (
-                  <span className="absolute left-2.5 right-2.5 -bottom-0.5 h-0.5 rounded-full bg-brand-500 lg:left-3 lg:right-3" />
+                  <span className="absolute left-2.5 right-2.5 -bottom-0.5 h-0.5 rounded-full bg-brand-500 xl:left-3 xl:right-3" />
                 )}
               </Link>
             );
           })}
         </nav>
 
-        <div className="hidden md:flex items-center gap-2.5">
+        <div className="hidden lg:flex items-center gap-2.5">
           <ThemeToggle />
-          {/* CTA appears from lg up, where there's room beside seven items. */}
-          <Link href="/contact" className="btn-primary text-sm hidden lg:inline-flex">
+          {/* CTA appears from xl up, where there's room beside eight items. */}
+          <Link href="/contact" className="btn-primary text-sm hidden xl:inline-flex">
             Talk to an expert <ArrowRight className="h-4 w-4" />
           </Link>
         </div>
 
-        <div className="md:hidden flex items-center gap-2">
+        <div className="lg:hidden flex items-center gap-2">
           <ThemeToggle />
           <button
             className="inline-flex items-center justify-center h-10 w-10 rounded-lg border border-ink-200 text-ink-700"
@@ -92,7 +98,7 @@ export default function Navbar() {
       </div>
 
       {open && (
-        <div className="md:hidden border-t border-ink-200 bg-white">
+        <div className="lg:hidden border-t border-ink-200 bg-white">
           <div className="container-wide py-3 flex flex-col gap-1">
             {nav.map((item) => {
               const active =
@@ -104,13 +110,19 @@ export default function Navbar() {
                   key={item.href}
                   href={item.href}
                   className={cn(
-                    "px-3 py-2.5 rounded-lg text-sm font-medium",
+                    "inline-flex items-center gap-1.5 px-3 py-2.5 rounded-lg text-sm font-medium",
                     active
                       ? "bg-brand-50 text-brand-700"
                       : "text-ink-700 hover:bg-ink-50"
                   )}
                 >
                   {item.label}
+                  {item.badge && (
+                    <span
+                      aria-hidden
+                      className="inline-block h-1.5 w-1.5 rounded-full bg-brand-500"
+                    />
+                  )}
                 </Link>
               );
             })}
