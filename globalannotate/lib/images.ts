@@ -59,6 +59,12 @@ export const img = {
       id: "1493711662062-fa541adb3fc8",
       alt: "Wireless gaming controller representing video game localization",
     },
+    // Brooke Cagle — a real, diverse group in discussion. Reads as a panel of
+    // native users reviewing content before launch.
+    marketReady: {
+      id: "1522071820081-009f0129c71c",
+      alt: "A panel of native users reviewing content before launch",
+    },
   },
   industries: {
     // freestocks shopping bags — instantly reads as e-commerce.

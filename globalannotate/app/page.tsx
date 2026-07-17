@@ -5,6 +5,7 @@ import CTABand from "@/components/CTABand";
 import Industries from "@/components/Industries";
 import JsonLd from "@/components/JsonLd";
 import HomeServices from "@/components/home/HomeServices";
+import HomeMarketReady from "@/components/home/HomeMarketReady";
 import HomeMethod from "@/components/home/HomeMethod";
 import HomeFAQ from "@/components/home/HomeFAQ";
 import { faqSchema } from "@/lib/schema";
@@ -45,6 +46,11 @@ export default function HomePage() {
       {/* Services — flat, calm surface with generous breathing room */}
       <section className="py-28 sm:py-32 md:py-44">
         <HomeServices />
+      </section>
+
+      {/* MarketReady™ — the key differentiator, between services and stats */}
+      <section className="pb-4 md:pb-8">
+        <HomeMarketReady />
       </section>
 
       {/* Stats — borderless horizontal band, sits in the rhythm break */}
