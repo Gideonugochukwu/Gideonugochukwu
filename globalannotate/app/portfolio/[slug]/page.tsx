@@ -5,7 +5,7 @@ import { notFound } from "next/navigation";
 import Section from "@/components/Section";
 import Reveal from "@/components/Reveal";
 import JsonLd from "@/components/JsonLd";
-import ServiceCTAGrid from "@/components/ServiceCTAGrid";
+import CTABand from "@/components/CTABand";
 import { cases, getCase, allCaseSlugs } from "@/data/portfolio";
 import { imageBg, unsplash, portfolioHeroSlides } from "@/lib/images";
 import HeroSlideshow from "@/components/HeroSlideshow";
@@ -190,7 +190,7 @@ export default async function CaseStudyPage({
       </Section>
 
       {/* Challenge — large editorial paragraph */}
-      <Section className="bg-brand-50/40">
+      <Section className="bg-card">
         <div className="grid lg:grid-cols-[1fr_2fr] gap-12 lg:gap-20">
           <div>
             <p className="text-xs font-medium uppercase tracking-[0.20em] text-brand-700">
@@ -238,7 +238,7 @@ export default async function CaseStudyPage({
       </Section>
 
       {/* Results — outcomes a second time, this time as a labelled grid */}
-      <Section className="bg-brand-50/40">
+      <Section className="bg-card">
         <div className="grid lg:grid-cols-[1fr_2fr] gap-12 lg:gap-20">
           <div>
             <p className="text-xs font-medium uppercase tracking-[0.20em] text-brand-700">
@@ -319,7 +319,7 @@ export default async function CaseStudyPage({
       </Section>
 
       <Section className="pb-24">
-        <ServiceCTAGrid />
+        <CTABand />
       </Section>
     </>
   );

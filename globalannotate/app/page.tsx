@@ -64,7 +64,7 @@ export default function HomePage() {
       </section>
 
       {/* The GlobalAnnotate method — merged Why + How, one section */}
-      <section className="py-28 sm:py-32 md:py-44 bg-ink-50">
+      <section className="py-28 sm:py-32 md:py-44 bg-card">
         <HomeMethod />
       </section>
 
@@ -74,7 +74,7 @@ export default function HomePage() {
       </section>
 
       {/* FAQ — divided rows, no outer card */}
-      <section className="py-28 sm:py-32 md:py-44 bg-ink-50">
+      <section className="py-28 sm:py-32 md:py-44 bg-card">
         <div className="container-wide grid lg:grid-cols-[1fr_1.4fr] gap-14 lg:gap-24 items-start">
           <div className="max-w-md">
             <p className="text-sm font-medium uppercase tracking-[0.18em] text-brand-700">

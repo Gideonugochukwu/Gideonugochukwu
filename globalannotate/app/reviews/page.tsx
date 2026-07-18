@@ -100,7 +100,7 @@ export default function ReviewsPage() {
         </div>
       </Section>
 
-      <Section className="bg-brand-50/40 border-y border-brand-100/70 pb-24">
+      <Section className="bg-card border-y border-ink-200/70 pb-24">
         <div className="grid lg:grid-cols-2 gap-12 items-start">
           <div>
             <span className="badge">Leave a review</span>

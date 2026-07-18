@@ -4,7 +4,7 @@ import Link from "next/link";
 import Section from "@/components/Section";
 import Reveal from "@/components/Reveal";
 import JsonLd from "@/components/JsonLd";
-import ServiceCTAGrid from "@/components/ServiceCTAGrid";
+import CTABand from "@/components/CTABand";
 import PageHero from "@/components/PageHero";
 import { services, marketReady, site } from "@/lib/site";
 import { img, imageBg, unsplash, servicesHeroSlides } from "@/lib/images";
@@ -140,7 +140,7 @@ export default function ServicesPage() {
                     <div className="mt-7 flex flex-wrap items-center gap-x-6 gap-y-3">
                       <Link
                         href={`/services/${s.slug}`}
-                        className="inline-flex items-center gap-2 rounded-xl bg-night-900 px-5 py-3 text-sm font-semibold text-white hover:bg-brand-700 transition"
+                        className="btn-primary text-sm"
                       >
                         Explore service <ArrowRight className="h-4 w-4" />
                       </Link>
@@ -160,7 +160,7 @@ export default function ServicesPage() {
       </Section>
 
       <Section className="pb-28">
-        <ServiceCTAGrid />
+        <CTABand />
       </Section>
     </>
   );

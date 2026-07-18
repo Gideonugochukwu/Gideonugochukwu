@@ -25,7 +25,7 @@ export default function Stars({
             height={size}
             className={
               filled
-                ? "fill-amber-400 text-amber-400"
+                ? "fill-brand-500 text-brand-500"
                 : "fill-transparent text-ink-300"
             }
           />

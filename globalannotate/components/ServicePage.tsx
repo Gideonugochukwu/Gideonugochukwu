@@ -2,7 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 import Section from "./Section";
 import FAQ, { FAQItem } from "./FAQ";
-import ServiceCTAGrid from "./ServiceCTAGrid";
+import CTABand from "./CTABand";
 import PageHero from "./PageHero";
 import Reveal from "./Reveal";
 import { ArrowRight, ArrowUpRight, Check, ShieldCheck } from "lucide-react";
@@ -104,7 +104,7 @@ export default function ServicePage({
       </Section>
 
       {/* Use cases — light surface, soft outlined panels (not cards) */}
-      <Section className="bg-brand-50/40">
+      <Section className="bg-card">
         <div className="max-w-3xl">
           <p className="text-xs font-medium uppercase tracking-[0.20em] text-brand-700">
             Use cases
@@ -196,7 +196,7 @@ export default function ServicePage({
       </Section>
 
       {/* FAQ — light surface, the shared FAQ component stays */}
-      <Section className="bg-brand-50/40">
+      <Section className="bg-card">
         <div className="max-w-3xl">
           <p className="text-xs font-medium uppercase tracking-[0.20em] text-brand-700">
             FAQ
@@ -288,7 +288,7 @@ export default function ServicePage({
             </div>
             <Link
               href="/services/marketready"
-              className="inline-flex items-center gap-2 self-start rounded-xl bg-night-900 px-5 py-3 text-sm font-semibold text-white hover:bg-brand-700 transition md:self-auto"
+              className="btn-primary text-sm"
             >
               Learn more <ArrowRight className="h-4 w-4" />
             </Link>
@@ -298,7 +298,7 @@ export default function ServicePage({
 
       {/* Tri-column CTA — modelled on languagewire.com/services */}
       <Section className="pb-24">
-        <ServiceCTAGrid />
+        <CTABand />
       </Section>
     </>
   );
