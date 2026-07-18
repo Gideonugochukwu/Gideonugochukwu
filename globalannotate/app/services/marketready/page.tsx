@@ -5,7 +5,7 @@ import Reveal from "@/components/Reveal";
 import FAQ from "@/components/FAQ";
 import JsonLd from "@/components/JsonLd";
 import PageHero from "@/components/PageHero";
-import ServiceCTAGrid from "@/components/ServiceCTAGrid";
+import CTABand from "@/components/CTABand";
 import { site } from "@/lib/site";
 import { servicesHeroSlides } from "@/lib/images";
 import { serviceSchema, faqSchema, breadcrumbSchema } from "@/lib/schema";
@@ -236,7 +236,7 @@ export default function MarketReadyPage() {
       </Section>
 
       {/* B) THE SOLUTION */}
-      <Section className="bg-brand-50/40">
+      <Section className="bg-card">
         <div className="max-w-3xl">
           <p className="text-xs font-medium uppercase tracking-[0.20em] text-brand-700">
             The solution · MarketReady™
@@ -322,7 +322,7 @@ export default function MarketReadyPage() {
       </Section>
 
       {/* D) OUR EDGE */}
-      <Section className="bg-ink-50">
+      <Section className="bg-card">
         <div className="grid lg:grid-cols-[1fr_2fr] gap-12 lg:gap-20">
           <div>
             <p className="text-xs font-medium uppercase tracking-[0.20em] text-brand-700">
@@ -390,7 +390,7 @@ export default function MarketReadyPage() {
             <div className="lg:text-right">
               <Link
                 href="/contact"
-                className="inline-flex items-center gap-2 rounded-xl bg-night-900 px-6 py-3.5 text-sm font-semibold text-white hover:bg-brand-700 transition"
+                className="btn-primary text-sm"
               >
                 Talk to an expert <ArrowRight className="h-4 w-4" />
               </Link>
@@ -400,7 +400,7 @@ export default function MarketReadyPage() {
       </Section>
 
       {/* F) FAQ */}
-      <Section className="bg-brand-50/40">
+      <Section className="bg-card">
         <div className="max-w-3xl">
           <p className="text-xs font-medium uppercase tracking-[0.20em] text-brand-700">
             FAQ
@@ -413,7 +413,7 @@ export default function MarketReadyPage() {
       </Section>
 
       <Section className="pb-24">
-        <ServiceCTAGrid />
+        <CTABand />
       </Section>
     </>
   );

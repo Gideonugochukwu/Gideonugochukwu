@@ -40,18 +40,8 @@
   --color-brand-800: #065f46;
   --color-brand-900: #064e3b;
 
-  /* Accent — terracotta / warm copper. Sparing use only: hover states,
-     link underlines, small highlights, CTA borders. 10–15% of a page max. */
-  --color-accent-50: #fdf6f0;
-  --color-accent-100: #f9e8db;
-  --color-accent-200: #f2d1b8;
-  --color-accent-300: #e5ae87;
-  --color-accent-400: #d68f60;
-  --color-accent-500: #c67a4b;
-  --color-accent-600: #b0663a;
-  --color-accent-700: #92512d;
-  --color-accent-800: #764226;
-  --color-accent-900: #603722;
+  /* Teal — the single secondary accent, used sparingly for subtle highlights. */
+  --color-teal-500: #14b8a6;
 
   /* Semantic surfaces. Paper = page background (warm off-white, not cold
      #fff). Card = raised surfaces. Field = form controls. All flip dark. */
@@ -104,11 +94,6 @@
   --color-brand-700: #34d399;
   --color-brand-800: #6ee7b7;
   --color-brand-900: #a7f3d0;
-
-  /* Terracotta reads warmer/lighter on navy. */
-  --color-accent-600: #d68f60;
-  --color-accent-700: #e5ae87;
-  --color-accent-800: #f2d1b8;
 }
 
 /* Light surfaces that should become cards in dark mode. Solid `bg-white`
@@ -117,7 +102,11 @@
    blanket override is safe. Opacity variants (bg-white/80 etc.) are
    different class tokens and are not affected. */
 .dark .bg-white {
-  background-color: var(--color-card);
+  background-color: #223247;
+}
+/* Cards read one step lighter than the alternating surfaces they sit on. */
+.dark .card {
+  background: #223247;
 }
 
 @layer base {
@@ -268,8 +257,11 @@
       radial-gradient(40% 40% at 15% 30%, rgba(15, 23, 42, 0.05), transparent 70%);
   }
 
+  /* One card treatment site-wide: white surface, rounded-2xl, subtle border,
+     and a gentle lift + emerald border on hover. So cards pop equally on the
+     Paper page background and on the Surface (#F5F5F0) alternating sections. */
   .card {
-    background: var(--color-card);
+    background: #ffffff;
     border: 1px solid var(--color-ink-200);
     border-radius: 1rem;
     transition: border-color 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
@@ -293,11 +285,14 @@
     transition: background 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
   }
   .btn-primary:hover {
-    background: var(--color-brand-600);
+    background: #10b981;
     box-shadow: var(--shadow-glow);
     transform: translateY(-1px);
   }
 
+  /* Secondary / outline button: transparent with a navy outline, filling
+     emerald with white text on hover. Navy border/text use the ink-900 token
+     so the outline stays visible in dark mode too. */
   .btn-secondary {
     display: inline-flex;
     align-items: center;
@@ -306,15 +301,15 @@
     padding: 0.8125rem 1.375rem;
     font-weight: 600;
     border-radius: 0.75rem;
-    background: var(--color-field);
+    background: transparent;
     color: var(--color-ink-900);
-    border: 1px solid var(--color-ink-200);
-    transition: border-color 0.2s ease, color 0.2s ease, transform 0.2s ease;
+    border: 1px solid var(--color-ink-900);
+    transition: background 0.2s ease, border-color 0.2s ease, color 0.2s ease, transform 0.2s ease;
   }
-  /* Warm accent on hover — one of the few sanctioned terracotta touches. */
   .btn-secondary:hover {
-    border-color: var(--color-accent-500);
-    color: var(--color-accent-700);
+    background: #10b981;
+    border-color: #10b981;
+    color: #ffffff;
     transform: translateY(-1px);
   }
 
@@ -435,13 +430,13 @@
   .prose-section a {
     color: var(--color-brand-700);
     text-decoration: underline;
-    text-decoration-color: var(--color-accent-400);
+    text-decoration-color: var(--color-brand-300);
     text-underline-offset: 3px;
     transition: color 0.15s ease, text-decoration-color 0.15s ease;
   }
   .prose-section a:hover {
-    color: var(--color-accent-700);
-    text-decoration-color: var(--color-accent-600);
+    color: var(--color-brand-900);
+    text-decoration-color: var(--color-brand-500);
   }
   .prose-section code {
     background: var(--color-ink-100);

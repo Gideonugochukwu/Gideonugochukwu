@@ -39,7 +39,7 @@ export default function PrivacyPage() {
             Last updated: January 2026
           </p>
 
-          <div className="mt-4 rounded-xl border border-amber-200 bg-amber-50 p-4 text-sm text-amber-900">
+          <div className="mt-4 rounded-xl border border-brand-200 bg-brand-50 p-4 text-sm text-ink-700">
             This page is a starting template, not legal advice. Have it reviewed by a
             qualified lawyer in your jurisdiction before relying on it.
           </div>

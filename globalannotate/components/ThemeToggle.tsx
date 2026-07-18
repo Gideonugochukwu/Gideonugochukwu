@@ -25,7 +25,7 @@ export default function ThemeToggle({ className = "" }: { className?: string }) 
       onClick={toggle}
       aria-label="Toggle dark mode"
       className={
-        "inline-flex h-9 w-9 items-center justify-center rounded-lg border border-ink-200 text-ink-600 hover:text-accent-600 hover:border-accent-400 transition " +
+        "inline-flex h-9 w-9 items-center justify-center rounded-lg border border-ink-200 text-ink-600 hover:text-brand-600 hover:border-brand-400 transition " +
         className
       }
     >

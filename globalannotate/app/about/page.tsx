@@ -128,7 +128,7 @@ export default function AboutPage() {
           role line, the bio paragraphs, and the Person JSON-LD above. */}
       <Section
         id="founder"
-        className="bg-brand-50/40 border-y border-brand-100/70"
+        className="bg-card border-y border-ink-200/70"
       >
         <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-start">
           <figure

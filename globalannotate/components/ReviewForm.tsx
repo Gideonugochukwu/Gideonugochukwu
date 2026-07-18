@@ -166,7 +166,7 @@ export default function ReviewForm() {
                   className={cn(
                     "h-7 w-7 transition-all",
                     active
-                      ? "fill-amber-400 text-amber-400"
+                      ? "fill-brand-500 text-brand-500"
                       : "fill-transparent text-ink-300"
                   )}
                 />
