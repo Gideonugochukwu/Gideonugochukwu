@@ -9,7 +9,7 @@ import { posts, getPost, allSlugs } from "@/data/blog";
 import { relatedCasesForService } from "@/data/portfolio";
 import { imageBg, unsplash } from "@/lib/images";
 import { site } from "@/lib/site";
-import { articleSchema, breadcrumbSchema } from "@/lib/schema";
+import { articleSchema, breadcrumbSchema, faqSchema } from "@/lib/schema";
 import { ArrowLeft, ArrowRight, ArrowUpRight } from "lucide-react";
 
 // Maps a blog post's tag set to the primary /services/[slug] it talks about.
@@ -20,6 +20,12 @@ const TAG_TO_SERVICE: Record<string, { slug: string; label: string }> = {
   // tag array in order — a game-localization post tagged ["Games",
   // "Localization", ...] should resolve to the game service, not the
   // general translation one.
+  // "MarketReady" first so a post tagged ["MarketReady", "Localization", ...]
+  // resolves to the MarketReady service, not the general translation one.
+  MarketReady: {
+    slug: "marketready",
+    label: "MarketReady™ Cultural Validation",
+  },
   Games: {
     slug: "game-localization",
     label: "Game Localization & Translation",
@@ -119,6 +125,7 @@ export default async function BlogPostPage({
             { name: "Blog", url: `${site.url}/blog` },
             { name: post.title, url },
           ]),
+          ...(post.faq && post.faq.length > 0 ? [faqSchema(post.faq)] : []),
         ]}
       />
 
@@ -159,7 +166,7 @@ export default async function BlogPostPage({
             >
               Gideon Ugochukwu
             </Link>
-            , Founder of GlobalAnnotate
+            , Founder &amp; Lead Linguist at GlobalAnnotate
           </p>
         </div>
 
@@ -179,6 +186,28 @@ export default async function BlogPostPage({
         <article className="prose-section max-w-3xl">
           <div dangerouslySetInnerHTML={{ __html: post.body }} />
         </article>
+
+        {/* MarketReady™ callout — identical box on every post except the
+            MarketReady post itself, which is already about it. */}
+        {post.slug !== "marketready-cultural-validation" && (
+          <div className="max-w-3xl mt-12 rounded-lg border-l-4 border-brand-500 bg-brand-50/40 p-6">
+            <h2 className="section-h3 text-ink-900">
+              Guarantee your content works before launch
+            </h2>
+            <p className="mt-2 text-ink-700 leading-relaxed">
+              Every GlobalAnnotate project includes MarketReady™ — pre-launch
+              cultural validation with real native users in your target market.
+              You receive a signed report confirming your content is
+              market-ready, not just linguistically correct.
+            </p>
+            <Link
+              href="/services/marketready"
+              className="mt-4 inline-flex items-center gap-1.5 text-sm font-semibold text-brand-700 hover:text-brand-900 transition"
+            >
+              Learn more about MarketReady™ <ArrowRight className="h-4 w-4" />
+            </Link>
+          </div>
+        )}
 
         {primaryService && (
           <aside className="max-w-3xl mt-12 pt-8 border-t border-ink-200/70">
