@@ -15,7 +15,7 @@ export default function Logo({
   return (
     <Link
       href="/"
-      className="inline-flex items-center gap-2.5 group"
+      className="inline-flex shrink-0 items-center gap-2.5 group"
       aria-label="GlobalAnnotate home"
     >
       {variant === "dark" ? (

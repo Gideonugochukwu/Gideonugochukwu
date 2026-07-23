@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from "react";
 import { Menu, X, ArrowRight } from "lucide-react";
-import { useTranslations } from "next-intl";
+import { useTranslations, useLocale } from "next-intl";
 import { Link, usePathname } from "@/i18n/navigation";
 import Logo from "./Logo";
 import ThemeToggle from "./ThemeToggle";
@@ -25,6 +25,7 @@ const NAV_KEY: Record<string, string> = {
 
 export default function Navbar() {
   const t = useTranslations();
+  const locale = useLocale();
   const pathname = usePathname();
   const [open, setOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
@@ -45,6 +46,15 @@ export default function Navbar() {
   const label = (href: string) =>
     NAV_KEY[href] ? t(`nav.${NAV_KEY[href]}`) : href;
 
+  // The header CTA was removed, so the desktop bar is just eight nav items +
+  // theme toggle + language switcher. English/Chinese fit from `lg`; German
+  // labels ("Netzwerk beitreten") are wider and only fit from `xl`, so `de`
+  // holds the horizontal bar until `xl` and uses the hamburger below that.
+  // Verified with screenshots at 1024/1280/1440/1920 for all three locales.
+  const wide = locale === "de";
+  const barShow = wide ? "hidden xl:flex" : "hidden lg:flex";
+  const barHide = wide ? "xl:hidden" : "lg:hidden";
+
   return (
     <header
       className={cn(
@@ -57,10 +67,11 @@ export default function Navbar() {
       <div className="container-wide flex h-16 items-center justify-between">
         <Logo />
 
-        {/* Eight items now (incl. MarketReady™): the horizontal bar renders
-            from lg where there's room; below lg the hamburger takes over. */}
+        {/* Eight items (incl. MarketReady™): the horizontal bar renders where
+            there's room (lg for en/zh, xl for the wider de labels); below that
+            the hamburger takes over. */}
         <nav
-          className="hidden lg:flex items-center gap-0.5 xl:gap-1"
+          className={cn("items-center gap-0.5 xl:gap-1", barShow)}
           aria-label="Primary"
         >
           {nav.map((item) => {
@@ -94,16 +105,16 @@ export default function Navbar() {
           })}
         </nav>
 
-        <div className="hidden lg:flex items-center gap-2.5">
+        {/* Desktop controls: theme toggle + language switcher only. The
+            "Talk to an expert" CTA was removed from the header to stop the
+            nav from overflowing; it lives in the mobile drawer and in the CTA
+            band / hero on the pages themselves. */}
+        <div className={cn("items-center gap-2.5 shrink-0", barShow)}>
           <ThemeToggle />
           <LanguageSwitcher />
-          {/* CTA appears from xl up, where there's room beside eight items. */}
-          <Link href="/contact" className="btn-primary text-sm hidden xl:inline-flex">
-            {t("common.talkToExpert")} <ArrowRight className="h-4 w-4" />
-          </Link>
         </div>
 
-        <div className="lg:hidden flex items-center gap-2">
+        <div className={cn("flex items-center gap-2", barHide)}>
           <ThemeToggle />
           <button
             className="inline-flex items-center justify-center h-10 w-10 rounded-lg border border-ink-200 text-ink-700"
@@ -117,7 +128,7 @@ export default function Navbar() {
       </div>
 
       {open && (
-        <div className="lg:hidden border-t border-ink-200 bg-white">
+        <div className={cn("border-t border-ink-200 bg-white", barHide)}>
           <div className="container-wide py-3 flex flex-col gap-1">
             {nav.map((item) => {
               const active =
