@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { buildMetadata } from "@/lib/i18n-meta";
 import Image from "next/image";
 import Link from "next/link";
 import Section from "@/components/Section";
@@ -12,22 +13,15 @@ import { breadcrumbSchema } from "@/lib/schema";
 import { cases } from "@/data/portfolio";
 import { ArrowUpRight, ArrowRight } from "lucide-react";
 
-const TITLE = "Portfolio — Case Studies & Results";
-const DESCRIPTION =
-  "Selected case studies across translation & localization, AI annotation, SEO, social media management, and digital marketing — real outcomes for real teams.";
 
-export const metadata: Metadata = {
-  title: TITLE,
-  description: DESCRIPTION,
-  alternates: { canonical: `${site.url}/portfolio` },
-  openGraph: {
-    title: TITLE,
-    description: DESCRIPTION,
-    url: `${site.url}/portfolio`,
-    type: "website",
-  },
-  twitter: { card: "summary_large_image", title: TITLE, description: DESCRIPTION },
-};
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ locale: string }>;
+}): Promise<Metadata> {
+  const { locale } = await params;
+  return buildMetadata({ locale, path: "/portfolio", metaKey: "portfolio" });
+}
 
 export default function PortfolioPage() {
   return (

@@ -1,74 +1,65 @@
 import Image from "next/image";
-import Link from "next/link";
 import { ArrowUpRight } from "lucide-react";
+import { useTranslations } from "next-intl";
+import { Link } from "@/i18n/navigation";
 import Reveal from "./Reveal";
 import { img, imageBg, unsplash } from "@/lib/images";
 
 // Six industries, uniform cards. No "lead tile" — every card shares the
 // same aspect ratio, padding, and title size so nothing reads larger or
-// gets clipped.
+// gets clipped. Name + line come from the `industries.items` namespace.
 const INDUSTRIES = [
   {
     key: "technology",
-    name: "Technology & SaaS",
-    line: "Ship products and docs in every market — without slowing engineering.",
     image: img.industries.technology,
     href: "/services/translation-localization",
   },
   {
     key: "ecommerce",
-    name: "E-Commerce",
-    line: "Localized product, ad, and checkout journeys that convert.",
     image: img.industries.ecommerce,
     href: "/services/translation-localization",
   },
   {
     key: "healthcare",
-    name: "Healthcare & Life Sciences",
-    line: "Certified, audit-ready translation and patient-safe content.",
     image: img.industries.healthcare,
     href: "/services/translation-localization",
   },
   {
     key: "ai",
-    name: "AI & Machine Learning",
-    line: "Production-grade training data your models can trust.",
     image: img.services.aiAnnotation,
     href: "/services/ai-annotation",
   },
   {
     key: "gaming",
-    name: "Gaming & Interactive",
-    line: "UI, dialogue, VO scripts, and LQA — for studios going global.",
     image: img.industries.gaming,
     href: "/services/game-localization",
   },
   {
     key: "media",
-    name: "Media & Entertainment",
-    line: "Subtitling, dubbing, and metadata at streaming scale.",
     image: img.industries.media,
     href: "/services/translation-localization",
   },
 ];
 
 export default function Industries() {
+  const t = useTranslations("industries");
+  const tc = useTranslations("common");
   return (
     <div className="container-wide">
       <div className="flex items-end justify-between flex-wrap gap-6">
         <div className="max-w-xl">
           <p className="text-sm font-medium uppercase tracking-[0.18em] text-brand-700">
-            Industries we serve
+            {t("eyebrow")}
           </p>
           <h2 className="section-h2 mt-4 text-ink-900">
-            Built for global teams in every industry.
+            {t("heading")}
           </h2>
         </div>
         <Link
           href="/contact"
           className="inline-flex items-center gap-2 text-sm font-semibold text-ink-900 hover:text-brand-700 transition"
         >
-          Don&apos;t see yours? Talk to us <ArrowUpRight className="h-4 w-4" />
+          {t("cta")} <ArrowUpRight className="h-4 w-4" />
         </Link>
       </div>
 
@@ -83,7 +74,7 @@ export default function Industries() {
             >
               <Image
                 src={unsplash(item.image.id, 900)}
-                alt={item.image.alt}
+                alt={t(`items.${item.key}.name`)}
                 fill
                 sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 240px"
                 className="object-cover photo-treat transition-transform duration-[1200ms] ease-out group-hover:scale-[1.06]"
@@ -101,13 +92,13 @@ export default function Industries() {
                 style={{ textShadow: "0 1px 2px rgba(0,0,0,0.45)" }}
               >
                 <h3 className="font-display text-base sm:text-lg font-semibold tracking-tight leading-snug text-white text-balance">
-                  {item.name}
+                  {t(`items.${item.key}.name`)}
                 </h3>
                 <p className="mt-1.5 text-xs sm:text-sm text-white/85 leading-snug">
-                  {item.line}
+                  {t(`items.${item.key}.line`)}
                 </p>
                 <span className="mt-3 inline-flex items-center gap-1.5 text-xs font-semibold text-brand-300 group-hover:gap-2.5 transition-all">
-                  Explore <ArrowUpRight className="h-3.5 w-3.5" />
+                  {tc("exploreService")} <ArrowUpRight className="h-3.5 w-3.5" />
                 </span>
               </div>
             </Link>

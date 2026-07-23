@@ -1,4 +1,6 @@
 import type { Metadata } from "next";
+import { setRequestLocale, getTranslations } from "next-intl/server";
+import { hreflangAlternates } from "@/lib/i18n-meta";
 import Link from "next/link";
 import Section from "@/components/Section";
 import JsonLd from "@/components/JsonLd";
@@ -9,20 +11,34 @@ const TITLE = "Terms of Service";
 const DESCRIPTION =
   "The terms that govern your use of the GlobalAnnotate website and services.";
 
-export const metadata: Metadata = {
-  title: TITLE,
-  description: DESCRIPTION,
-  alternates: { canonical: `${site.url}/terms` },
-  openGraph: {
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ locale: string }>;
+}): Promise<Metadata> {
+  const { locale } = await params;
+  return {
     title: TITLE,
     description: DESCRIPTION,
-    url: `${site.url}/terms`,
-    type: "article",
-  },
-  twitter: { card: "summary", title: TITLE, description: DESCRIPTION },
-};
+    alternates: hreflangAlternates(locale, "/terms"),
+    openGraph: {
+      title: TITLE,
+      description: DESCRIPTION,
+      url: `${site.url}/terms`,
+      type: "article",
+    },
+    twitter: { card: "summary", title: TITLE, description: DESCRIPTION },
+  };
+}
 
-export default function TermsPage() {
+export default async function TermsPage({
+  params,
+}: {
+  params: Promise<{ locale: string }>;
+}) {
+  const { locale } = await params;
+  setRequestLocale(locale);
+  const note = (await getTranslations())("legalNote");
   return (
     <>
       <JsonLd
@@ -41,6 +57,12 @@ export default function TermsPage() {
             This page is a starting template, not legal advice. Have it reviewed by a
             qualified lawyer in your jurisdiction before relying on it.
           </div>
+
+          {note && (
+            <div className="mt-4 rounded-xl border border-ink-200 bg-ink-50 p-4 text-sm text-ink-600">
+              {note}
+            </div>
+          )}
 
           <div className="prose-section">
             <h2>1. Agreement</h2>

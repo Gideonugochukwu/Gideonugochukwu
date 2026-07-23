@@ -1,3 +1,4 @@
+import { useTranslations } from "next-intl";
 import MultilingualGreeting from "./MultilingualGreeting";
 import PageHero from "./PageHero";
 import HeroGlobe from "./HeroGlobe";
@@ -7,6 +8,8 @@ import { homeHeroSlides } from "@/lib/images";
 // single clear call to action. The three statements stack on their own
 // lines, with "Growth across markets." as the close.
 export default function Hero() {
+  const t = useTranslations("hero");
+  const tc = useTranslations("common");
   return (
     <PageHero
       slides={homeHeroSlides}
@@ -20,15 +23,13 @@ export default function Hero() {
       }
       title={
         <span className="block">
-          <span className="block">Precision across languages.</span>
-          <span className="block text-gradient-light">
-            Intelligence across data.
-          </span>
-          <span className="mt-2 sm:mt-3 block">Growth across markets.</span>
+          <span className="block">{t("line1")}</span>
+          <span className="block text-gradient-light">{t("line2")}</span>
+          <span className="mt-2 sm:mt-3 block">{t("line3")}</span>
         </span>
       }
-      subtitle="One partner for localization, AI training data, multilingual SEO, and growth marketing."
-      ctas={[{ label: "Talk to an expert", href: "/contact" }]}
+      subtitle={t("subhead")}
+      ctas={[{ label: tc("talkToExpert"), href: "/contact" }]}
     />
   );
 }

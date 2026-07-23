@@ -60,6 +60,19 @@
   --shadow-glow: 0 20px 60px -20px rgba(16, 185, 129, 0.35);
 }
 
+/* Simplified Chinese (zh) — Fraunces (display) and Plus Jakarta Sans (body)
+   carry no CJK glyphs, so on the zh locale we remap both the body and display
+   type stacks to Noto Sans SC. The variable is only attached to <html> for
+   zh (see layout.tsx), so EN/DE never download this font. The higher
+   specificity of `html.lang-zh` overrides the :root stacks above. Headings
+   use the 700 weight of Noto Sans SC in place of Fraunces' display cut. */
+html.lang-zh {
+  --font-sans: var(--font-noto-sc), "PingFang SC", "Microsoft YaHei",
+    "Hiragino Sans GB", ui-sans-serif, system-ui, sans-serif;
+  --font-display: var(--font-noto-sc), "PingFang SC", "Microsoft YaHei",
+    "Hiragino Sans GB", ui-sans-serif, system-ui, sans-serif;
+}
+
 /* Dark palette — token flips. Because Tailwind v4 utilities resolve to
    var() references at use-site, overriding the custom properties inside
    .dark re-themes every utility (including /opacity variants) without

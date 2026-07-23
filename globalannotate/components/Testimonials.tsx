@@ -1,5 +1,6 @@
-import Link from "next/link";
 import { ArrowUpRight } from "lucide-react";
+import { useTranslations } from "next-intl";
+import { Link } from "@/i18n/navigation";
 import Stars from "./Stars";
 import Reveal from "./Reveal";
 import ReviewAuthor from "./ReviewAuthor";
@@ -22,24 +23,25 @@ function featuredReviews() {
 
 export default function Testimonials() {
   const featured = featuredReviews();
+  const t = useTranslations("testimonials");
   return (
     <div className="container-wide">
       <div className="flex items-end justify-between flex-wrap gap-6">
         <div className="max-w-2xl">
           <p className="text-sm font-medium uppercase tracking-[0.18em] text-brand-700">
-            What clients say
+            {t("eyebrow")}
           </p>
           <h2 className="section-h2 mt-4 text-ink-900">
-            Loved by teams shipping
+            {t("heading1")}
             <br />
-            across borders.
+            {t("heading2")}
           </h2>
         </div>
         <Link
           href="/reviews"
           className="inline-flex items-center gap-2 text-sm font-semibold text-ink-900 hover:text-brand-700 transition"
         >
-          Read all reviews <ArrowUpRight className="h-4 w-4" />
+          {t("readAll")} <ArrowUpRight className="h-4 w-4" />
         </Link>
       </div>
 

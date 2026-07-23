@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
+import { setRequestLocale, getTranslations } from "next-intl/server";
+import { buildMetadata } from "@/lib/i18n-meta";
 import Image from "next/image";
-import Link from "next/link";
+import { Link } from "@/i18n/navigation";
 import Section from "@/components/Section";
 import CTABand from "@/components/CTABand";
 import Reveal from "@/components/Reveal";
@@ -12,32 +14,40 @@ import { site } from "@/lib/site";
 import { breadcrumbSchema } from "@/lib/schema";
 import { ArrowUpRight } from "lucide-react";
 
-const TITLE = "Insights & Guides on Localization, AI Data, and Multilingual SEO";
-const DESCRIPTION =
-  "Practical guides from the GlobalAnnotate team on AI data annotation, translation & localization, and international SEO.";
 
-export const metadata: Metadata = {
-  title: TITLE,
-  description: DESCRIPTION,
-  alternates: { canonical: `${site.url}/blog` },
-  openGraph: {
-    title: TITLE,
-    description: DESCRIPTION,
-    url: `${site.url}/blog`,
-    type: "website",
-  },
-  twitter: { card: "summary_large_image", title: TITLE, description: DESCRIPTION },
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ locale: string }>;
+}): Promise<Metadata> {
+  const { locale } = await params;
+  return buildMetadata({ locale, path: "/blog", metaKey: "blog" });
+}
+
+// Locale → BCP-47 tag for date formatting (English July 15, 2026 · German
+// 15. Juli 2026 · Chinese 2026年7月15日).
+const DATE_LOCALE: Record<string, string> = {
+  en: "en-US",
+  de: "de-DE",
+  zh: "zh-CN",
 };
 
-function formatDate(iso: string) {
-  return new Date(iso).toLocaleDateString("en-US", {
+function formatDate(iso: string, locale: string) {
+  return new Date(iso).toLocaleDateString(DATE_LOCALE[locale] ?? "en-US", {
     year: "numeric",
     month: "long",
     day: "numeric",
   });
 }
 
-export default function BlogIndex() {
+export default async function BlogIndex({
+  params,
+}: {
+  params: Promise<{ locale: string }>;
+}) {
+  const { locale } = await params;
+  setRequestLocale(locale);
+  const t = await getTranslations("blog");
   const sorted = [...posts].sort((a, b) => (a.date < b.date ? 1 : -1));
   return (
     <>
@@ -82,9 +92,9 @@ export default function BlogIndex() {
                 </div>
                 <div className="p-6 flex flex-col flex-1">
                   <div className="flex items-center gap-2 text-xs text-ink-500">
-                    <time dateTime={p.date}>{formatDate(p.date)}</time>
+                    <time dateTime={p.date}>{formatDate(p.date, locale)}</time>
                     <span aria-hidden>·</span>
-                    <span>{p.readMinutes} min read</span>
+                    <span>{p.readMinutes} {t("minRead")}</span>
                   </div>
                   <h2 className="section-h3 mt-3 text-ink-900">
                     {p.title}
@@ -93,7 +103,7 @@ export default function BlogIndex() {
                     {p.description}
                   </p>
                   <span className="mt-5 inline-flex items-center gap-1.5 text-sm font-semibold text-brand-700 group-hover:gap-2.5 transition-all">
-                    Read article <ArrowUpRight className="h-4 w-4" />
+                    {t("readArticle")} <ArrowUpRight className="h-4 w-4" />
                   </span>
                 </div>
               </Link>

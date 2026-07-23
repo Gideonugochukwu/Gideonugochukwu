@@ -1,0 +1,260 @@
+{
+  "nav": {
+    "home": "首页",
+    "services": "服务",
+    "marketready": "MarketReady™",
+    "portfolio": "案例",
+    "blog": "博客",
+    "about": "关于我们",
+    "network": "加入我们的网络",
+    "contact": "联系我们"
+  },
+  "common": {
+    "talkToExpert": "咨询专家",
+    "learnMore": "了解更多",
+    "seeAllServices": "查看所有服务",
+    "exploreService": "了解详情",
+    "readMore": "阅读更多",
+    "getStarted": "立即开始"
+  },
+  "hero": {
+    "line1": "精准覆盖每一种语言。",
+    "line2": "智能赋能每一项数据。",
+    "line3": "增长触达每一个市场。",
+    "subhead": "一站式本地化、AI训练数据、多语言SEO和增长营销合作伙伴——支持100+种语言。"
+  },
+  "services": {
+    "translation-localization": {
+      "title": "翻译与本地化",
+      "short": "翻译与本地化",
+      "summary": "为网站、应用、文档和多媒体内容提供媲美人工的高质量翻译，以及贴合文化语境的精准本地化，支持100+种语言。"
+    },
+    "ai-annotation": {
+      "title": "AI数据标注与标记",
+      "short": "AI数据标注",
+      "summary": "为计算机视觉、NLP和LLM团队提供高精度训练数据——包括边界框、语义分割、音频和文本，全程经过质量审核。"
+    },
+    "seo": {
+      "title": "SEO与搜索可见性",
+      "short": "SEO与搜索可见性",
+      "summary": "在您销售的每一个地区、每一种语言中脱颖而出。多语言与国际SEO、技术审计、内容建设和可持续积累的外链建设。"
+    },
+    "digital-marketing": {
+      "title": "数字营销",
+      "short": "数字营销",
+      "summary": "以效果为导向的Facebook和Instagram广告、社交媒体运营和内容策略，将受众转化为客户。"
+    },
+    "game-localization": {
+      "title": "游戏本地化与翻译",
+      "short": "游戏本地化",
+      "summary": "让您的游戏触达全球玩家——界面、对白、字幕、配音脚本、商店页面和LQA测试，支持100+种语言。"
+    },
+    "marketready": {
+      "title": "MarketReady™文化验证",
+      "short": "MarketReady™",
+      "summary": "在发布前由真实母语用户进行测试。唯一一家保证您的内容在目标市场真正有效的翻译服务。"
+    }
+  },
+  "homeServices": {
+    "eyebrow": "我们的服务",
+    "heading1": "五大服务，",
+    "heading2": "一个负责的团队。",
+    "subhead": "翻译、AI训练数据、多语言SEO、营销和游戏本地化——支持100+种语言。"
+  },
+  "stats": {
+    "languages": "支持语言",
+    "dataPoints": "已标注数据点",
+    "countries": "服务国家",
+    "satisfaction": "客户满意度"
+  },
+  "industries": {
+    "eyebrow": "我们服务的行业",
+    "heading": "为各行各业的全球化团队而打造。",
+    "cta": "没有找到您的行业？欢迎咨询我们",
+    "items": {
+      "technology": { "name": "科技与SaaS", "line": "在每一个市场发布产品与文档——同时不拖慢研发进度。" },
+      "ecommerce": { "name": "电商", "line": "本地化的产品、广告和结算体验，切实提升转化。" },
+      "healthcare": { "name": "医疗健康与生命科学", "line": "经过认证、可供审计的翻译，以及保障患者安全的内容。" },
+      "ai": { "name": "AI与机器学习", "line": "生产级训练数据，让您的模型值得信赖。" },
+      "gaming": { "name": "游戏与互动娱乐", "line": "界面、对白、配音脚本和LQA——助力工作室走向全球。" },
+      "media": { "name": "媒体与娱乐", "line": "流媒体规模的字幕、配音和元数据处理。" }
+    }
+  },
+  "marketready": {
+    "badge": "MarketReady™ · 独家专有",
+    "heading": "唯一一家保证您的内容在目标市场真正有效的翻译公司。",
+    "description": "其他公司只检查文字是否正确，而MarketReady™检验您的内容是否真正有效——在发布前，由目标市场的真实母语用户进行验证。",
+    "learnMore": "了解更多关于MarketReady™",
+    "bullet1Strong": "真实的母语用户",
+    "bullet1": "——而非译者——以盲测方式审阅您的内容。",
+    "bullet2Strong": "一份签署的报告",
+    "bullet2": "，证明您的内容已达到发布标准。"
+  },
+  "method": {
+    "eyebrow": "GlobalAnnotate方法论",
+    "heading1": "可审核的质量。",
+    "heading2": "可预期的速度。",
+    "intro": "母语语言专家、专业标注员、SEO策略师和增长营销专家——在统一的质量体系下，由一位资深负责人统筹。",
+    "promises": {
+      "quality": { "title": "可审核的质量", "body": "每个项目都附带质量审核报告和修订周期。" },
+      "global": { "title": "真正的全球覆盖", "body": "覆盖100+种语言、30+个市场的母语专家。" },
+      "ailed": { "title": "AI辅助，人工主导", "body": "智能自动化，专家把关。在提速的同时绝不牺牲质量。" },
+      "senior": { "title": "资深团队，而非单纯销售", "body": "从第一天起即由资深项目负责人对接，绝无中途交接。" }
+    },
+    "howEyebrow": "合作流程",
+    "howHeading": "从首次沟通到最终交付。",
+    "steps": {
+      "discovery": { "title": "需求沟通", "body": "我们深入了解您的目标、受众和各项要求。" },
+      "proposal": { "title": "定制方案", "body": "在24–48小时内提供清晰的范围、时间表和报价。" },
+      "production": { "title": "生产与质量控制", "body": "专家团队执行，质量团队审核每一项交付成果。" },
+      "delivery": { "title": "交付与增长", "body": "交付精良成果，并随您的业务扩展持续优化。" }
+    }
+  },
+  "testimonials": {
+    "eyebrow": "客户评价",
+    "heading1": "深受全球化团队",
+    "heading2": "的信赖。",
+    "readAll": "查看所有评价"
+  },
+  "faq": {
+    "eyebrow": "常见问题",
+    "heading": "常见问题解答。",
+    "subhead": "团队在合作前经常会问的问题。",
+    "items": [
+      {
+        "q": "GlobalAnnotate提供哪些服务？",
+        "a": "五项一体化服务：支持100+种语言的翻译与本地化、AI数据标注与标记、多语言SEO与搜索可见性、以效果为导向的数字营销，以及面向出海工作室的游戏本地化与翻译。"
+      },
+      {
+        "q": "你们支持多少种语言？",
+        "a": "支持100+种语言，母语专家遍布30多个国家——涵盖所有主要的欧洲、亚洲、非洲和中东语言。"
+      },
+      {
+        "q": "我可以组合多项服务吗？",
+        "a": "当然可以——我们大多数客户都会组合两项或更多服务。本地化搭配国际SEO，或AI标注搭配多语言数据集，都是常见的组合，均由一位资深项目负责人统筹。"
+      },
+      {
+        "q": "通常的交付周期是多久？",
+        "a": "我们在一个工作日内回复每一份咨询，在24–48小时内提供明确的项目方案，大多数项目会在两周内交付首批成果。"
+      },
+      {
+        "q": "你们如何保证质量？",
+        "a": "每个项目都遵循标准化的质量审核流程：语言类工作由母语专家审校，AI数据采用黄金标准集校准和标注员一致性评估，SEO和营销则提供清晰的数据报告。"
+      },
+      {
+        "q": "你们位于哪里？覆盖哪些时区？",
+        "a": "我们是一支分布于30多个国家的远程团队，母语专家的工作时间与您的营业时间保持一致。"
+      }
+    ]
+  },
+  "cta": {
+    "heading": "准备好拓展全球市场了吗？",
+    "subhead": "告诉我们您的项目需求，我们将在一个工作日内回复。",
+    "talkToExpert": "咨询专家"
+  },
+  "footer": {
+    "servicesHeading": "服务",
+    "companyHeading": "公司",
+    "followHeading": "关注我们",
+    "legalHeading": "法律条款",
+    "about": "关于我们",
+    "portfolio": "案例",
+    "reviews": "客户评价",
+    "blog": "博客",
+    "network": "加入我们的网络",
+    "contact": "联系我们",
+    "privacy": "隐私政策",
+    "terms": "服务条款",
+    "foundedBy": "创始人：",
+    "rights": "版权所有。"
+  },
+  "contact": {
+    "eyebrow": "与我们联系",
+    "heading": "与我们联系。",
+    "subhead": "告诉我们您的项目需求，我们将在一个工作日内回复。",
+    "emailUsHeading": "直接给我们发邮件",
+    "emailUsBody": "一般咨询、合作或招聘事宜。",
+    "responseHeading": "响应时间",
+    "responseBody": "一个工作日内回复，多数咨询当天即可得到答复。",
+    "whereHeading": "我们的工作方式",
+    "whereBody": "母语专家遍布30多个国家，与您的时区保持一致。",
+    "formHeading": "请描述您的项目",
+    "formIntro": "您提供的背景信息越多，我们的方案就越精准。资深项目负责人将在一个工作日内回复。不知从何开始？欢迎先浏览我们的<services>服务</services>或近期<cases>案例</cases>。",
+    "form": {
+      "fullName": "姓名",
+      "fullNamePlaceholder": "Godsportion",
+      "businessEmail": "企业邮箱",
+      "businessEmailPlaceholder": "jane@company.com",
+      "company": "公司名称（选填）",
+      "companyPlaceholder": "Acme Inc.",
+      "service": "服务类型",
+      "selectService": "请选择服务……",
+      "fullPackage": "全套服务",
+      "projectDetails": "项目详情",
+      "projectPlaceholder": "请描述您的项目——目标、格式、语言、数量、目标受众……",
+      "budget": "预算（选填）",
+      "budgetPlaceholder": "例如：2,000 – 5,000美元",
+      "timeline": "时间要求（选填）",
+      "timelinePlaceholder": "例如：两周后启动，30天内交付",
+      "consent": "提交即表示您同意就本次咨询接受我们的联系。",
+      "send": "发送消息",
+      "sending": "发送中……",
+      "successHeading": "已收到您的请求",
+      "successBody": "我们的团队成员将在一个工作日内与您联系，提供后续步骤和量身定制的方案。",
+      "sendAnother": "再发送一条请求",
+      "errFullName": "请输入您的姓名",
+      "errEmail": "请输入有效的企业邮箱",
+      "errService": "请选择一项服务",
+      "errDetails": "请再多描述一些——至少20个字符",
+      "errNoEndpoint": "表单端点尚未配置。请在.env.local中添加NEXT_PUBLIC_FORMSPREE_QUOTE_ENDPOINT。",
+      "toastSuccess": "感谢您——您的请求已发送，我们将在一个工作日内回复。",
+      "toastError": "出现问题，请重试或直接给我们发送邮件。"
+    }
+  },
+  "blog": {
+    "keepReading": "继续阅读",
+    "readArticle": "阅读文章",
+    "allArticles": "所有文章",
+    "minRead": "分钟阅读",
+    "by": "作者：",
+    "authorRole": "GlobalAnnotate创始人兼首席语言专家",
+    "calloutHeading": "确保您的内容在发布前已验证有效",
+    "calloutBody": "每个GlobalAnnotate项目都包含MarketReady™——在发布前，由目标市场的真实母语用户进行文化验证。您将获得一份签署的报告，证明您的内容不仅在语言上准确，更已达到市场就绪标准。",
+    "calloutLink": "了解更多关于MarketReady™"
+  },
+  "legalNote": "本文件以英文提供。如需翻译版本，请联系我们。",
+  "meta": {
+    "home": {
+      "title": "GlobalAnnotate — 翻译、AI标注、SEO与数字营销 | 100+种语言",
+      "description": "翻译与本地化服务，配备MarketReady™文化验证。非洲语言专家。100+种语言，一个负责的团队。"
+    },
+    "services": {
+      "title": "服务 — 翻译、本地化、AI标注、游戏本地化",
+      "description": "助力全球化发展的一体化服务：翻译、AI标注、多语言SEO、数字营销、游戏本地化以及MarketReady™验证。"
+    },
+    "marketready": {
+      "title": "MarketReady™ — 发布前文化验证",
+      "description": "唯一在发布前由真实母语用户验证您内容的翻译服务，帮助您避免代价高昂的文化失误。"
+    },
+    "about": {
+      "title": "关于GlobalAnnotate — 创始人Gideon Ugochukwu",
+      "description": "认识GlobalAnnotate创始人Gideon Ugochukwu——提供100+种语言的翻译、AI标注、SEO和营销服务。"
+    },
+    "contact": {
+      "title": "联系GlobalAnnotate — 咨询专家",
+      "description": "告诉我们您的项目需求，我们将在一个工作日内回复，并为您提供量身定制的方案。"
+    },
+    "blog": {
+      "title": "博客 — 翻译、本地化与AI相关文章",
+      "description": "GlobalAnnotate团队关于本地化、AI数据和国际SEO的实用指南。"
+    },
+    "portfolio": {
+      "title": "案例 — 项目案例",
+      "description": "为跨市场增长的团队带来真实的本地化、AI标注、SEO和营销成果。"
+    },
+    "freelancers": {
+      "title": "加入我们的语言专家网络",
+      "description": "加入GlobalAnnotate的译员、本地化专家、标注员和配音人才网络。"
+    }
+  }
+}

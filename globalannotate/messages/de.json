@@ -1,0 +1,260 @@
+{
+  "nav": {
+    "home": "Startseite",
+    "services": "Leistungen",
+    "marketready": "MarketReady™",
+    "portfolio": "Referenzen",
+    "blog": "Blog",
+    "about": "Über uns",
+    "network": "Netzwerk beitreten",
+    "contact": "Kontakt"
+  },
+  "common": {
+    "talkToExpert": "Experten kontaktieren",
+    "learnMore": "Mehr erfahren",
+    "seeAllServices": "Alle Leistungen ansehen",
+    "exploreService": "Leistung entdecken",
+    "readMore": "Weiterlesen",
+    "getStarted": "Loslegen"
+  },
+  "hero": {
+    "line1": "Präzision in jeder Sprache.",
+    "line2": "Intelligenz in jedem Datensatz.",
+    "line3": "Wachstum in jedem Markt.",
+    "subhead": "Ein Partner für Lokalisierung, KI-Trainingsdaten, mehrsprachiges SEO und Wachstumsmarketing — in über 100 Sprachen."
+  },
+  "services": {
+    "translation-localization": {
+      "title": "Übersetzung und Lokalisierung",
+      "short": "Übersetzung und Lokalisierung",
+      "summary": "Übersetzungen in menschlicher Qualität und kulturell präzise Lokalisierung in über 100 Sprachen — für Websites, Apps, Dokumente und Multimedia-Inhalte."
+    },
+    "ai-annotation": {
+      "title": "KI-Annotation und Datenlabeling",
+      "short": "KI-Annotation",
+      "summary": "Hochpräzise Trainingsdaten für Computer-Vision-, NLP- und LLM-Teams — Bounding Boxes, semantische Segmentierung, Audio und Text, jeweils qualitätsgeprüft."
+    },
+    "seo": {
+      "title": "SEO und Suchmaschinenoptimierung",
+      "short": "SEO und Suchmaschinenoptimierung",
+      "summary": "Sichtbar überall dort, wo Sie verkaufen — in jeder Sprache. Mehrsprachiges und internationales SEO, technische Audits, Content und nachhaltiger Linkaufbau."
+    },
+    "digital-marketing": {
+      "title": "Digitales Marketing",
+      "short": "Digitales Marketing",
+      "summary": "Leistungsorientierte Facebook- und Instagram-Anzeigen, Social-Media-Management und Content-Strategie, die aus Zielgruppen Kunden machen."
+    },
+    "game-localization": {
+      "title": "Spielelokalisierung und Übersetzung",
+      "short": "Spielelokalisierung",
+      "summary": "Bringen Sie Ihr Spiel zu Spielern weltweit — Benutzeroberfläche, Dialoge, Untertitel, Sprecherskripte, Store-Einträge und LQA-Tests in über 100 Sprachen."
+    },
+    "marketready": {
+      "title": "MarketReady™ Kulturelle Validierung",
+      "short": "MarketReady™",
+      "summary": "Tests vor dem Launch mit echten muttersprachlichen Nutzern. Der einzige Übersetzungsdienst, der garantiert, dass Ihre Inhalte im Zielmarkt funktionieren."
+    }
+  },
+  "homeServices": {
+    "eyebrow": "Unsere Leistungen",
+    "heading1": "Fünf Leistungen.",
+    "heading2": "Ein verantwortliches Team.",
+    "subhead": "Übersetzung, KI-Trainingsdaten, mehrsprachiges SEO, Marketing und Spielelokalisierung — in über 100 Sprachen."
+  },
+  "stats": {
+    "languages": "Unterstützte Sprachen",
+    "dataPoints": "Annotierte Datenpunkte",
+    "countries": "Bediente Länder",
+    "satisfaction": "Kundenzufriedenheit"
+  },
+  "industries": {
+    "eyebrow": "Branchen, die wir bedienen",
+    "heading": "Entwickelt für internationale Teams in jeder Branche.",
+    "cta": "Ihre Branche fehlt? Sprechen Sie uns an",
+    "items": {
+      "technology": { "name": "Technologie und SaaS", "line": "Bringen Sie Produkte und Dokumentation in jeden Markt — ohne die Entwicklung auszubremsen." },
+      "ecommerce": { "name": "E-Commerce", "line": "Lokalisierte Produkt-, Anzeigen- und Checkout-Erlebnisse, die konvertieren." },
+      "healthcare": { "name": "Gesundheitswesen und Life Sciences", "line": "Zertifizierte, auditsichere Übersetzungen und patientensichere Inhalte." },
+      "ai": { "name": "KI und maschinelles Lernen", "line": "Produktionsreife Trainingsdaten, auf die sich Ihre Modelle verlassen können." },
+      "gaming": { "name": "Gaming und Interactive", "line": "UI, Dialoge, Sprecherskripte und LQA — für Studios, die international wachsen." },
+      "media": { "name": "Medien und Unterhaltung", "line": "Untertitelung, Synchronisation und Metadaten im Streaming-Maßstab." }
+    }
+  },
+  "marketready": {
+    "badge": "MarketReady™ · Proprietär",
+    "heading": "Die einzige Übersetzungsagentur, die garantiert, dass Ihre Inhalte im Zielmarkt funktionieren.",
+    "description": "Jede andere Agentur prüft nur, ob die Worte korrekt sind. MarketReady™ prüft, ob Ihre Inhalte tatsächlich funktionieren — validiert von echten muttersprachlichen Nutzern in Ihrem Zielmarkt, noch vor dem Launch.",
+    "learnMore": "Mehr über MarketReady™ erfahren",
+    "bullet1Strong": "Echte muttersprachliche Nutzer",
+    "bullet1": " — keine Übersetzer — prüfen Ihre Inhalte im Blindtest.",
+    "bullet2Strong": "Ein unterzeichneter Bericht",
+    "bullet2": ", der bestätigt, dass Ihre Inhalte startbereit sind."
+  },
+  "method": {
+    "eyebrow": "Die GlobalAnnotate-Methode",
+    "heading1": "Qualität, die Sie überprüfen können.",
+    "heading2": "Geschwindigkeit, auf die Sie sich verlassen können.",
+    "intro": "Muttersprachliche Linguisten, spezialisierte Annotatoren, SEO-Strategen und Wachstumsmarketer — unter einem Qualitätssystem, mit einer erfahrenen Projektleitung.",
+    "promises": {
+      "quality": { "title": "Qualität, die Sie überprüfen können", "body": "Jedes Projekt wird mit einem QA-Bericht und einem Korrekturzeitraum geliefert." },
+      "global": { "title": "Wirklich globale Abdeckung", "body": "Muttersprachliche Spezialisten in über 100 Sprachen und 30+ Märkten." },
+      "ailed": { "title": "KI-gestützt, von Menschen geführt", "body": "Intelligente Automatisierung, fachliche Kontrolle. Tempo ohne Kompromisse." },
+      "senior": { "title": "Erfahrung statt reinem Vertrieb", "body": "Eine erfahrene Projektleitung ab dem ersten Tag. Keine Übergaben." }
+    },
+    "howEyebrow": "So funktioniert es",
+    "howHeading": "Von der ersten Anfrage bis zur finalen Lieferung.",
+    "steps": {
+      "discovery": { "title": "Erstgespräch", "body": "Wir lernen Ihre Ziele, Ihre Zielgruppe und Ihre Rahmenbedingungen kennen." },
+      "proposal": { "title": "Maßgeschneidertes Angebot", "body": "Klarer Umfang, Zeitplan und Preise innerhalb von 24–48 Stunden." },
+      "production": { "title": "Produktion und Qualitätssicherung", "body": "Spezialisten setzen um. Unser Qualitätsteam prüft jedes Ergebnis." },
+      "delivery": { "title": "Lieferung und Wachstum", "body": "Ausgereifte Ergebnisse, mit Iteration im Zuge Ihres Wachstums." }
+    }
+  },
+  "testimonials": {
+    "eyebrow": "Was unsere Kunden sagen",
+    "heading1": "Geschätzt von Teams,",
+    "heading2": "die international wachsen.",
+    "readAll": "Alle Bewertungen lesen"
+  },
+  "faq": {
+    "eyebrow": "Häufige Fragen",
+    "heading": "Häufig gestellte Fragen.",
+    "subhead": "Die Fragen, die Teams uns stellen, bevor sie starten.",
+    "items": [
+      {
+        "q": "Welche Leistungen bietet GlobalAnnotate an?",
+        "a": "Fünf integrierte Leistungen: Übersetzung und Lokalisierung in über 100 Sprachen, KI-Annotation und Datenlabeling, mehrsprachiges SEO und Suchmaschinenoptimierung, leistungsorientiertes digitales Marketing sowie Spielelokalisierung und Übersetzung für Studios, die international wachsen."
+      },
+      {
+        "q": "Wie viele Sprachen unterstützen Sie?",
+        "a": "Über 100 Sprachen mit muttersprachlichen Spezialisten in mehr als 30 Ländern — einschließlich aller wichtigen europäischen, asiatischen, afrikanischen und nahöstlichen Sprachen."
+      },
+      {
+        "q": "Kann ich mehrere Leistungen kombinieren?",
+        "a": "Ja — die meisten unserer Kunden kombinieren zwei oder mehr. Lokalisierung plus internationales SEO oder KI-Annotation plus mehrsprachige Datensätze sind gängige Kombinationen, die von einer erfahrenen Projektleitung betreut werden."
+      },
+      {
+        "q": "Wie lang sind Ihre üblichen Bearbeitungszeiten?",
+        "a": "Wir beantworten jede Anfrage innerhalb eines Werktages, legen innerhalb von 24–48 Stunden ein umrissenes Angebot vor, und die meisten Projekte liefern das erste Ergebnis innerhalb von zwei Wochen."
+      },
+      {
+        "q": "Wie stellen Sie die Qualität sicher?",
+        "a": "Jedes Projekt durchläuft einen dokumentierten QA-Prozess: muttersprachliche Prüfung bei Spracharbeit, Gold-Set-Kalibrierung und Inter-Annotator-Übereinstimmung bei KI-Daten sowie transparentes Reporting bei SEO und Marketing."
+      },
+      {
+        "q": "Wo sind Sie ansässig und welche Zeitzonen decken Sie ab?",
+        "a": "Wir arbeiten als verteiltes Team in über 30 Ländern, mit muttersprachlichen Spezialisten, die auf Ihre Geschäftszeiten abgestimmt sind."
+      }
+    ]
+  },
+  "cta": {
+    "heading": "Bereit für internationales Wachstum?",
+    "subhead": "Erzählen Sie uns von Ihrem Projekt — wir melden uns innerhalb eines Werktages bei Ihnen.",
+    "talkToExpert": "Experten kontaktieren"
+  },
+  "footer": {
+    "servicesHeading": "Leistungen",
+    "companyHeading": "Unternehmen",
+    "followHeading": "Folgen",
+    "legalHeading": "Rechtliches",
+    "about": "Über uns",
+    "portfolio": "Referenzen",
+    "reviews": "Kundenbewertungen",
+    "blog": "Blog",
+    "network": "Netzwerk beitreten",
+    "contact": "Kontakt",
+    "privacy": "Datenschutzerklärung",
+    "terms": "Nutzungsbedingungen",
+    "foundedBy": "Gegründet von",
+    "rights": "Alle Rechte vorbehalten."
+  },
+  "contact": {
+    "eyebrow": "Kontakt aufnehmen",
+    "heading": "Sprechen Sie mit uns.",
+    "subhead": "Erzählen Sie uns von Ihrem Projekt — wir melden uns innerhalb eines Werktages bei Ihnen.",
+    "emailUsHeading": "Schreiben Sie uns direkt",
+    "emailUsBody": "Allgemeine Fragen, Partnerschaften oder Karriere.",
+    "responseHeading": "Reaktionszeit",
+    "responseBody": "Innerhalb eines Werktages. Die meisten Antworten erfolgen noch am selben Tag.",
+    "whereHeading": "Wo wir arbeiten",
+    "whereBody": "Muttersprachliche Spezialisten in über 30 Ländern. Abgestimmt auf Ihre Zeitzone.",
+    "formHeading": "Erzählen Sie uns von Ihrem Projekt",
+    "formIntro": "Je mehr Kontext Sie teilen, desto präziser wird unser Angebot. Eine erfahrene Projektleitung antwortet innerhalb eines Werktages. Sie wissen nicht, wo Sie anfangen sollen? Werfen Sie zunächst einen Blick auf unsere <services>Leistungen</services> oder aktuelle <cases>Fallstudien</cases>.",
+    "form": {
+      "fullName": "Vollständiger Name",
+      "fullNamePlaceholder": "Godsportion",
+      "businessEmail": "Geschäftliche E-Mail-Adresse",
+      "businessEmailPlaceholder": "jane@unternehmen.de",
+      "company": "Unternehmen (optional)",
+      "companyPlaceholder": "Acme GmbH",
+      "service": "Leistung",
+      "selectService": "Leistung auswählen …",
+      "fullPackage": "Komplettpaket",
+      "projectDetails": "Projektdetails",
+      "projectPlaceholder": "Erzählen Sie uns von Ihrem Projekt — Ziele, Formate, Sprachen, Umfang, Zielgruppe …",
+      "budget": "Budget (optional)",
+      "budgetPlaceholder": "z. B. 2.000 – 5.000 USD",
+      "timeline": "Zeitrahmen (optional)",
+      "timelinePlaceholder": "z. B. Start in 2 Wochen, Lieferung in 30 Tagen",
+      "consent": "Mit dem Absenden erklären Sie sich damit einverstanden, zu Ihrer Anfrage kontaktiert zu werden.",
+      "send": "Nachricht senden",
+      "sending": "Wird gesendet …",
+      "successHeading": "Anfrage erhalten",
+      "successBody": "Ein Mitglied unseres Teams meldet sich innerhalb eines Werktages bei Ihnen mit den nächsten Schritten und einem maßgeschneiderten Angebot.",
+      "sendAnother": "Weitere Anfrage senden",
+      "errFullName": "Bitte geben Sie Ihren vollständigen Namen ein",
+      "errEmail": "Bitte geben Sie eine gültige geschäftliche E-Mail-Adresse ein",
+      "errService": "Bitte wählen Sie eine Leistung aus",
+      "errDetails": "Bitte erzählen Sie uns etwas mehr — mindestens 20 Zeichen",
+      "errNoEndpoint": "Formular-Endpunkt noch nicht konfiguriert. Fügen Sie NEXT_PUBLIC_FORMSPREE_QUOTE_ENDPOINT in .env.local hinzu.",
+      "toastSuccess": "Vielen Dank — Ihre Anfrage wurde gesendet. Wir antworten innerhalb eines Werktages.",
+      "toastError": "Etwas ist schiefgelaufen. Bitte versuchen Sie es erneut oder schreiben Sie uns direkt."
+    }
+  },
+  "blog": {
+    "keepReading": "Weiterlesen",
+    "readArticle": "Artikel lesen",
+    "allArticles": "Alle Artikel",
+    "minRead": "Min. Lesezeit",
+    "by": "Von",
+    "authorRole": "Gründer und leitender Linguist bei GlobalAnnotate",
+    "calloutHeading": "Garantieren Sie, dass Ihre Inhalte vor dem Launch funktionieren",
+    "calloutBody": "Jedes GlobalAnnotate-Projekt umfasst MarketReady™ — kulturelle Validierung vor dem Launch mit echten muttersprachlichen Nutzern in Ihrem Zielmarkt. Sie erhalten einen unterzeichneten Bericht, der bestätigt, dass Ihre Inhalte marktreif und nicht nur sprachlich korrekt sind.",
+    "calloutLink": "Mehr über MarketReady™ erfahren"
+  },
+  "legalNote": "Dieses Dokument liegt in englischer Sprache vor. Für eine übersetzte Version kontaktieren Sie uns bitte.",
+  "meta": {
+    "home": {
+      "title": "GlobalAnnotate — Übersetzung, KI-Annotation, SEO und digitales Marketing in über 100 Sprachen",
+      "description": "Übersetzungs- und Lokalisierungsdienstleistungen mit kultureller Validierung durch MarketReady™. Spezialist für afrikanische Sprachen. Über 100 Sprachen, ein verantwortliches Team."
+    },
+    "services": {
+      "title": "Leistungen — Übersetzung, Lokalisierung, KI-Annotation, Spielelokalisierung",
+      "description": "Integrierte Leistungen für Ihr internationales Wachstum: Übersetzung, KI-Annotation, mehrsprachiges SEO, digitales Marketing, Spielelokalisierung und MarketReady™-Validierung."
+    },
+    "marketready": {
+      "title": "MarketReady™ — Kulturelle Validierung vor dem Launch",
+      "description": "Der einzige Übersetzungsdienst, der Ihre Inhalte vor dem Launch mit echten muttersprachlichen Nutzern validiert. Vermeiden Sie kostspielige kulturelle Fehltritte."
+    },
+    "about": {
+      "title": "Über GlobalAnnotate — Gegründet von Gideon Ugochukwu",
+      "description": "Lernen Sie Gideon Ugochukwu kennen, den Gründer von GlobalAnnotate — Übersetzung, KI-Annotation, SEO und Marketing in über 100 Sprachen."
+    },
+    "contact": {
+      "title": "Kontakt — Experten kontaktieren",
+      "description": "Erzählen Sie uns von Ihrem Projekt — wir melden uns innerhalb eines Werktages mit einem maßgeschneiderten Angebot bei Ihnen."
+    },
+    "blog": {
+      "title": "Blog — Artikel über Übersetzung, Lokalisierung und KI",
+      "description": "Praxisnahe Leitfäden des GlobalAnnotate-Teams zu Lokalisierung, KI-Daten und internationalem SEO."
+    },
+    "portfolio": {
+      "title": "Referenzen — Fallstudien",
+      "description": "Echte Ergebnisse aus Lokalisierung, KI-Annotation, SEO und Marketing für Teams, die über Märkte hinweg wachsen."
+    },
+    "freelancers": {
+      "title": "Werden Sie Teil unseres Linguisten-Netzwerks",
+      "description": "Werden Sie Teil des GlobalAnnotate-Netzwerks aus Übersetzern, Lokalisierern, Annotatoren und Sprechertalenten."
+    }
+  }
+}

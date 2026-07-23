@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { buildMetadata } from "@/lib/i18n-meta";
 import Link from "next/link";
 import Section from "@/components/Section";
 import Reveal from "@/components/Reveal";
@@ -21,22 +22,20 @@ import {
   CheckCircle2,
 } from "lucide-react";
 
-const TITLE = "MarketReady™ — Pre-Launch Cultural Validation | GlobalAnnotate";
+
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ locale: string }>;
+}): Promise<Metadata> {
+  const { locale } = await params;
+  return buildMetadata({ locale, path: "/services/marketready", metaKey: "marketready" });
+}
+
+// Kept in English on purpose: feeds the Service JSON-LD, which stays English
+// across all locales (canonical schema).
 const DESCRIPTION =
   "The only translation service that validates your content with real native users before launch. Avoid costly cultural misfires. Get certified market-ready content.";
-
-export const metadata: Metadata = {
-  title: TITLE,
-  description: DESCRIPTION,
-  alternates: { canonical: `${site.url}/services/marketready` },
-  openGraph: {
-    title: TITLE,
-    description: DESCRIPTION,
-    url: `${site.url}/services/marketready`,
-    type: "website",
-  },
-  twitter: { card: "summary_large_image", title: TITLE, description: DESCRIPTION },
-};
 
 const STATS = [
   {

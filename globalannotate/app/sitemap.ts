@@ -2,6 +2,19 @@ import type { MetadataRoute } from "next";
 import { site, services } from "@/lib/site";
 import { posts } from "@/data/blog";
 import { cases } from "@/data/portfolio";
+import { localePath } from "@/lib/i18n-meta";
+
+// hreflang alternates for a path, emitted as <xhtml:link> entries by Next.
+// English is canonical (root); de/zh are prefixed. zh uses the zh-Hans subtag.
+function localeAlternates(path: string) {
+  return {
+    languages: {
+      en: localePath("en", path),
+      de: localePath("de", path),
+      "zh-Hans": localePath("zh", path),
+    },
+  };
+}
 
 // Stable site-wide "last meaningfully updated" date. Used as a sensible
 // fallback for static pages and service detail pages where there isn't a
@@ -64,5 +77,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
     lastModified: r.lastModified,
     changeFrequency: r.changeFrequency,
     priority: r.priority,
+    alternates: localeAlternates(r.path),
   }));
 }

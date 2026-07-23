@@ -1,8 +1,10 @@
-import Link from "next/link";
 import { ArrowRight, Mail } from "lucide-react";
+import { useTranslations } from "next-intl";
+import { Link } from "@/i18n/navigation";
 import { site } from "@/lib/site";
 
 export default function CTABand() {
+  const t = useTranslations("cta");
   return (
     <div className="container-wide">
       <div
@@ -20,10 +22,10 @@ export default function CTABand() {
         <div className="relative grid md:grid-cols-[1.5fr_1fr] gap-8 items-end">
           <div>
             <h3 className="font-display text-3xl md:text-5xl font-semibold tracking-tight leading-tight text-white">
-              Ready to grow globally?
+              {t("heading")}
             </h3>
             <p className="mt-4 text-white/90 max-w-xl leading-relaxed text-lg">
-              Tell us about your project and we&apos;ll get back to you within one business day.
+              {t("subhead")}
             </p>
           </div>
           <div className="flex flex-col sm:flex-row md:flex-col gap-3 md:items-end">
@@ -31,7 +33,7 @@ export default function CTABand() {
               href="/contact"
               className="btn-on-dark px-5 py-3 rounded-xl"
             >
-              Talk to an expert <ArrowRight className="h-4 w-4" />
+              {t("talkToExpert")} <ArrowRight className="h-4 w-4" />
             </Link>
             <a
               href={`mailto:${site.email}`}
