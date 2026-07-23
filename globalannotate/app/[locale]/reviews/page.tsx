@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import Link from "next/link";
+import { Link } from "@/i18n/navigation";
 import Section from "@/components/Section";
 import Stars from "@/components/Stars";
 import ReviewForm from "@/components/ReviewForm";

@@ -1,5 +1,5 @@
 import Image from "next/image";
-import Link from "next/link";
+import { Link } from "@/i18n/navigation";
 import Section from "./Section";
 import FAQ, { FAQItem } from "./FAQ";
 import CTABand from "./CTABand";

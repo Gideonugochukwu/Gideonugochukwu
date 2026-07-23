@@ -1,5 +1,5 @@
 import Image from "next/image";
-import Link from "next/link";
+import { Link } from "@/i18n/navigation";
 import { ArrowUpRight, Brain, Gamepad2, Languages, Megaphone, Search } from "lucide-react";
 import { imageBg } from "@/lib/images";
 
