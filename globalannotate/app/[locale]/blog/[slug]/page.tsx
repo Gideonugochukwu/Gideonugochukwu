@@ -1,7 +1,8 @@
 import type { Metadata } from "next";
+import { setRequestLocale, getTranslations } from "next-intl/server";
 import Image from "next/image";
-import Link from "next/link";
 import { notFound } from "next/navigation";
+import { Link } from "@/i18n/navigation";
 import Section from "@/components/Section";
 import CTABand from "@/components/CTABand";
 import JsonLd from "@/components/JsonLd";
@@ -10,6 +11,7 @@ import { relatedCasesForService } from "@/data/portfolio";
 import { imageBg, unsplash } from "@/lib/images";
 import { site } from "@/lib/site";
 import { articleSchema, breadcrumbSchema, faqSchema } from "@/lib/schema";
+import { hreflangAlternates } from "@/lib/i18n-meta";
 import { ArrowLeft, ArrowRight, ArrowUpRight } from "lucide-react";
 
 // Maps a blog post's tag set to the primary /services/[slug] it talks about.
@@ -51,9 +53,9 @@ export function generateStaticParams() {
 export async function generateMetadata({
   params,
 }: {
-  params: Promise<{ slug: string }>;
+  params: Promise<{ locale: string; slug: string }>;
 }): Promise<Metadata> {
-  const { slug } = await params;
+  const { locale, slug } = await params;
   const post = getPost(slug);
   if (!post) return { title: "Article not found" };
   const url = `${site.url}/blog/${post.slug}`;
@@ -61,7 +63,7 @@ export async function generateMetadata({
   return {
     title: post.title,
     description: post.description,
-    alternates: { canonical: url },
+    alternates: hreflangAlternates(locale, `/blog/${post.slug}`),
     openGraph: {
       title: post.title,
       description: post.description,
@@ -80,8 +82,10 @@ export async function generateMetadata({
   };
 }
 
-function formatDate(iso: string) {
-  return new Date(iso).toLocaleDateString("en-US", {
+const DATE_LOCALE: Record<string, string> = { en: "en-US", de: "de-DE", zh: "zh-CN" };
+
+function formatDate(iso: string, locale: string) {
+  return new Date(iso).toLocaleDateString(DATE_LOCALE[locale] ?? "en-US", {
     year: "numeric",
     month: "long",
     day: "numeric",
@@ -91,9 +95,11 @@ function formatDate(iso: string) {
 export default async function BlogPostPage({
   params,
 }: {
-  params: Promise<{ slug: string }>;
+  params: Promise<{ locale: string; slug: string }>;
 }) {
-  const { slug } = await params;
+  const { locale, slug } = await params;
+  setRequestLocale(locale);
+  const t = await getTranslations("blog");
   const post = getPost(slug);
   if (!post) notFound();
 
@@ -135,12 +141,12 @@ export default async function BlogPostPage({
             href="/blog"
             className="inline-flex items-center gap-1.5 text-sm font-semibold text-brand-700 hover:text-brand-900"
           >
-            <ArrowLeft className="h-4 w-4" /> All articles
+            <ArrowLeft className="h-4 w-4" /> {t("allArticles")}
           </Link>
           <div className="mt-6 flex flex-wrap items-center gap-2 text-xs text-ink-500">
-            <time dateTime={post.date}>{formatDate(post.date)}</time>
+            <time dateTime={post.date}>{formatDate(post.date, locale)}</time>
             <span aria-hidden>·</span>
-            <span>{post.readMinutes} min read</span>
+            <span>{post.readMinutes} {t("minRead")}</span>
             {post.tags.map((tag) => (
               <span
                 key={tag}
@@ -158,7 +164,7 @@ export default async function BlogPostPage({
           {/* Author byline — links to the founder section on /about so the
               attribution flows into the Person SEO graph for Gideon. */}
           <p className="mt-6 text-sm text-ink-600">
-            By{" "}
+            {t("by")}{" "}
             <Link
               href="/about#founder"
               className="font-semibold text-ink-900 hover:text-brand-700 transition"
@@ -166,7 +172,7 @@ export default async function BlogPostPage({
             >
               Gideon Ugochukwu
             </Link>
-            , Founder &amp; Lead Linguist at GlobalAnnotate
+            , {t("authorRole")}
           </p>
         </div>
 
@@ -191,20 +197,13 @@ export default async function BlogPostPage({
             MarketReady post itself, which is already about it. */}
         {post.slug !== "marketready-cultural-validation" && (
           <div className="max-w-3xl mt-12 rounded-lg border-l-4 border-brand-500 bg-brand-50/40 p-6">
-            <h2 className="section-h3 text-ink-900">
-              Guarantee your content works before launch
-            </h2>
-            <p className="mt-2 text-ink-700 leading-relaxed">
-              Every GlobalAnnotate project includes MarketReady™ — pre-launch
-              cultural validation with real native users in your target market.
-              You receive a signed report confirming your content is
-              market-ready, not just linguistically correct.
-            </p>
+            <h2 className="section-h3 text-ink-900">{t("calloutHeading")}</h2>
+            <p className="mt-2 text-ink-700 leading-relaxed">{t("calloutBody")}</p>
             <Link
               href="/services/marketready"
               className="mt-4 inline-flex items-center gap-1.5 text-sm font-semibold text-brand-700 hover:text-brand-900 transition"
             >
-              Learn more about MarketReady™ <ArrowRight className="h-4 w-4" />
+              {t("calloutLink")} <ArrowRight className="h-4 w-4" />
             </Link>
           </div>
         )}
@@ -281,7 +280,7 @@ export default async function BlogPostPage({
       {related.length > 0 && (
         <Section className="bg-card border-y border-ink-200/70">
           <h2 className="text-2xl md:text-3xl font-semibold tracking-tight">
-            Keep reading
+            {t("keepReading")}
           </h2>
           <div className="mt-8 grid gap-6 md:grid-cols-2">
             {related.map((p) => (
@@ -291,12 +290,12 @@ export default async function BlogPostPage({
                 className="card group p-6 flex flex-col"
               >
                 <div className="text-xs text-ink-500">
-                  <time dateTime={p.date}>{formatDate(p.date)}</time> · {p.readMinutes} min read
+                  <time dateTime={p.date}>{formatDate(p.date, locale)}</time> · {p.readMinutes} {t("minRead")}
                 </div>
                 <h3 className="mt-2 text-lg font-semibold tracking-tight">{p.title}</h3>
                 <p className="mt-2 text-sm text-ink-600 leading-relaxed">{p.description}</p>
                 <span className="mt-5 inline-flex items-center gap-1.5 text-sm font-semibold text-brand-700 group-hover:gap-2.5 transition-all">
-                  Read article <ArrowUpRight className="h-4 w-4" />
+                  {t("readArticle")} <ArrowUpRight className="h-4 w-4" />
                 </span>
               </Link>
             ))}

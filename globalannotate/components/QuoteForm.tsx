@@ -5,29 +5,47 @@ import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
 import { Loader2, Send, CheckCircle2 } from "lucide-react";
+import { useTranslations } from "next-intl";
 import { useToast } from "./Toast";
 import { services } from "@/lib/site";
 
-const schema = z.object({
-  fullName: z.string().min(2, "Please enter your full name"),
-  email: z.string().email("Enter a valid business email"),
-  company: z.string().optional(),
-  service: z.string().min(1, "Select a service"),
-  details: z.string().min(20, "Tell us a little more — at least 20 characters"),
-  budget: z.string().optional(),
-  timeline: z.string().optional(),
-});
+type FormData = {
+  fullName: string;
+  email: string;
+  company?: string;
+  service: string;
+  details: string;
+  budget?: string;
+  timeline?: string;
+};
 
-type FormData = z.infer<typeof schema>;
+// Service <option> values submitted to Formspree stay in English (stable
+// backend values) regardless of locale; only the visible labels translate.
+const SERVICE_VALUES = [...services.map((s) => s.slug), "full-package"] as const;
 
-const SERVICE_OPTIONS = [
-  ...services.map((s) => s.title),
-  "Full Package",
-];
+// Maps the stable slug value back to its readable English name, so the
+// enquiry email always reads "Translation & Localization" — never a raw slug
+// — no matter which locale the visitor submitted from.
+const SERVICE_EN_LABEL: Record<string, string> = {
+  ...Object.fromEntries(services.map((s) => [s.slug, s.title])),
+  "full-package": "Full Package",
+};
 
 export default function QuoteForm() {
+  const t = useTranslations("contact.form");
+  const ts = useTranslations("services");
   const { toast } = useToast();
   const [submitted, setSubmitted] = useState(false);
+
+  const schema = z.object({
+    fullName: z.string().min(2, t("errFullName")),
+    email: z.string().email(t("errEmail")),
+    company: z.string().optional(),
+    service: z.string().min(1, t("errService")),
+    details: z.string().min(20, t("errDetails")),
+    budget: z.string().optional(),
+    timeline: z.string().optional(),
+  });
 
   const {
     register,
@@ -43,29 +61,34 @@ export default function QuoteForm() {
 
   const onSubmit = async (data: FormData) => {
     if (!endpoint) {
-      toast(
-        "Form endpoint not configured yet. Add NEXT_PUBLIC_FORMSPREE_QUOTE_ENDPOINT to .env.local.",
-        "error"
-      );
+      toast(t("errNoEndpoint"), "error");
       return;
     }
     try {
+      // Submit the readable English service name (not the slug the <select>
+      // carries) so the enquiry email stays consistent across all locales.
+      const serviceName = SERVICE_EN_LABEL[data.service] ?? data.service;
       const res = await fetch(endpoint, {
         method: "POST",
         headers: { "Content-Type": "application/json", Accept: "application/json" },
         body: JSON.stringify({
-          _subject: `New quote request — ${data.service}`,
+          _subject: `New quote request — ${serviceName}`,
           ...data,
+          service: serviceName,
         }),
       });
       if (!res.ok) throw new Error("Network response not ok");
-      toast("Thanks — your request was sent. We'll reply within 1 business day.");
+      toast(t("toastSuccess"));
       setSubmitted(true);
       reset();
     } catch {
-      toast("Something went wrong. Please try again or email us directly.", "error");
+      toast(t("toastError"), "error");
     }
   };
+
+  // Translated label for a service <option> by its stable English value.
+  const optionLabel = (value: string) =>
+    value === "full-package" ? t("fullPackage") : ts(`${value}.title`);
 
   if (submitted) {
     return (
@@ -73,17 +96,14 @@ export default function QuoteForm() {
         <div className="inline-flex h-12 w-12 items-center justify-center rounded-full bg-brand-50 text-brand-600">
           <CheckCircle2 className="h-6 w-6" />
         </div>
-        <h3 className="mt-5 text-xl font-semibold">Request received</h3>
-        <p className="mt-2 text-ink-600 max-w-md mx-auto">
-          A member of our team will reach out within one business day with next
-          steps and a tailored proposal.
-        </p>
+        <h3 className="mt-5 text-xl font-semibold">{t("successHeading")}</h3>
+        <p className="mt-2 text-ink-600 max-w-md mx-auto">{t("successBody")}</p>
         <button
           type="button"
           onClick={() => setSubmitted(false)}
           className="mt-6 btn-secondary"
         >
-          Send another request
+          {t("sendAnother")}
         </button>
       </div>
     );
@@ -96,19 +116,19 @@ export default function QuoteForm() {
       noValidate
     >
       <div className="grid md:grid-cols-2 gap-5">
-        <Field label="Full name" error={errors.fullName?.message}>
+        <Field label={t("fullName")} error={errors.fullName?.message}>
           <input
             {...register("fullName")}
             className="input"
-            placeholder="Godsportion"
+            placeholder={t("fullNamePlaceholder")}
             autoComplete="name"
           />
         </Field>
-        <Field label="Business email" error={errors.email?.message}>
+        <Field label={t("businessEmail")} error={errors.email?.message}>
           <input
             {...register("email")}
             className="input"
-            placeholder="jane@company.com"
+            placeholder={t("businessEmailPlaceholder")}
             type="email"
             autoComplete="email"
           />
@@ -116,58 +136,56 @@ export default function QuoteForm() {
       </div>
 
       <div className="grid md:grid-cols-2 gap-5">
-        <Field label="Company (optional)" error={errors.company?.message}>
+        <Field label={t("company")} error={errors.company?.message}>
           <input
             {...register("company")}
             className="input"
-            placeholder="Acme Inc."
+            placeholder={t("companyPlaceholder")}
             autoComplete="organization"
           />
         </Field>
-        <Field label="Service" error={errors.service?.message}>
+        <Field label={t("service")} error={errors.service?.message}>
           <select {...register("service")} className="input">
             <option value="" disabled>
-              Select a service…
+              {t("selectService")}
             </option>
-            {SERVICE_OPTIONS.map((s) => (
-              <option key={s} value={s}>
-                {s}
+            {SERVICE_VALUES.map((value) => (
+              <option key={value} value={value}>
+                {optionLabel(value)}
               </option>
             ))}
           </select>
         </Field>
       </div>
 
-      <Field label="Project details" error={errors.details?.message}>
+      <Field label={t("projectDetails")} error={errors.details?.message}>
         <textarea
           {...register("details")}
           rows={5}
           className="input resize-y"
-          placeholder="Tell us about the project — goals, formats, languages, volume, audience…"
+          placeholder={t("projectPlaceholder")}
         />
       </Field>
 
       <div className="grid md:grid-cols-2 gap-5">
-        <Field label="Budget (optional)" error={errors.budget?.message}>
+        <Field label={t("budget")} error={errors.budget?.message}>
           <input
             {...register("budget")}
             className="input"
-            placeholder="e.g. $2,000 – $5,000"
+            placeholder={t("budgetPlaceholder")}
           />
         </Field>
-        <Field label="Timeline (optional)" error={errors.timeline?.message}>
+        <Field label={t("timeline")} error={errors.timeline?.message}>
           <input
             {...register("timeline")}
             className="input"
-            placeholder="e.g. start in 2 weeks, 30-day delivery"
+            placeholder={t("timelinePlaceholder")}
           />
         </Field>
       </div>
 
       <div className="flex flex-col sm:flex-row items-center justify-between gap-3 pt-2">
-        <p className="text-xs text-ink-500">
-          By submitting, you agree to be contacted about your enquiry.
-        </p>
+        <p className="text-xs text-ink-500">{t("consent")}</p>
         <button
           type="submit"
           disabled={isSubmitting}
@@ -175,11 +193,11 @@ export default function QuoteForm() {
         >
           {isSubmitting ? (
             <>
-              <Loader2 className="h-4 w-4 animate-spin" /> Sending…
+              <Loader2 className="h-4 w-4 animate-spin" /> {t("sending")}
             </>
           ) : (
             <>
-              Send request <Send className="h-4 w-4" />
+              {t("send")} <Send className="h-4 w-4" />
             </>
           )}
         </button>

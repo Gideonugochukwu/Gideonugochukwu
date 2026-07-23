@@ -8,6 +8,7 @@ import {
   Rocket,
   Workflow,
 } from "lucide-react";
+import { useTranslations } from "next-intl";
 import Reveal from "../Reveal";
 
 // One unified "how we work" section. Replaces the previous separate
@@ -18,81 +19,51 @@ import Reveal from "../Reveal";
 // promises (icon + title + body), and a right column with the four-step
 // process running down a thin vertical rail. No card boxes anywhere.
 
+// Icons + message keys; the copy lives under `method.promises` / `method.steps`.
 const PROMISES = [
-  {
-    icon: ShieldCheck,
-    title: "Quality you can audit",
-    body: "Every project ships with a QA report and revision window.",
-  },
-  {
-    icon: Globe2,
-    title: "Truly global coverage",
-    body: "Native specialists across 100+ languages and 30+ markets.",
-  },
-  {
-    icon: Sparkles,
-    title: "AI-aware, human-led",
-    body: "Smart automation, expert oversight. Speed without sacrifice.",
-  },
-  {
-    icon: Users,
-    title: "Senior, not just sales",
-    body: "A senior project lead from day one. No handoffs.",
-  },
+  { icon: ShieldCheck, key: "quality" },
+  { icon: Globe2, key: "global" },
+  { icon: Sparkles, key: "ailed" },
+  { icon: Users, key: "senior" },
 ];
 
 const STEPS = [
-  {
-    icon: Compass,
-    title: "Discovery call",
-    body: "We learn your goals, audience, and constraints.",
-  },
-  {
-    icon: Workflow,
-    title: "Tailored proposal",
-    body: "Clear scope, timeline, and pricing within 24–48 hours.",
-  },
-  {
-    icon: FileCheck2,
-    title: "Production & QA",
-    body: "Specialists execute. Our quality team reviews every deliverable.",
-  },
-  {
-    icon: Rocket,
-    title: "Delivery & growth",
-    body: "Polished output, with iteration as you scale.",
-  },
+  { icon: Compass, key: "discovery" },
+  { icon: Workflow, key: "proposal" },
+  { icon: FileCheck2, key: "production" },
+  { icon: Rocket, key: "delivery" },
 ];
 
 export default function HomeMethod() {
+  const t = useTranslations("method");
   return (
     <div className="container-wide grid lg:grid-cols-[5fr_6fr] gap-16 lg:gap-24 items-start">
       {/* Left — the why */}
       <div>
         <p className="text-sm font-medium uppercase tracking-[0.18em] text-brand-700">
-          The GlobalAnnotate method
+          {t("eyebrow")}
         </p>
         <h2 className="section-h2 mt-4 text-ink-900">
-          Quality you can audit.
+          {t("heading1")}
           <br />
-          Speed you can plan around.
+          {t("heading2")}
         </h2>
         <p className="mt-6 text-base sm:text-lg text-ink-600 leading-relaxed max-w-md">
-          Native linguists, specialist annotators, SEO strategists, and growth marketers — under one quality system, one senior lead.
+          {t("intro")}
         </p>
 
         <ul className="mt-10 grid sm:grid-cols-2 gap-x-8 gap-y-6">
           {PROMISES.map((p, i) => (
-            <Reveal key={p.title} delay={i * 0.04}>
+            <Reveal key={p.key} delay={i * 0.04}>
               <li>
                 <span className="inline-flex h-9 w-9 items-center justify-center rounded-full bg-brand-50 text-brand-700">
                   <p.icon className="h-4.5 w-4.5" strokeWidth={1.75} />
                 </span>
                 <h3 className="mt-3 text-base font-semibold tracking-tight text-ink-900">
-                  {p.title}
+                  {t(`promises.${p.key}.title`)}
                 </h3>
                 <p className="mt-1.5 text-sm text-ink-600 leading-relaxed">
-                  {p.body}
+                  {t(`promises.${p.key}.body`)}
                 </p>
               </li>
             </Reveal>
@@ -103,10 +74,10 @@ export default function HomeMethod() {
       {/* Right — the how */}
       <div>
         <p className="text-sm font-medium uppercase tracking-[0.18em] text-brand-700">
-          How it works
+          {t("howEyebrow")}
         </p>
         <h3 className="mt-4 font-display text-2xl md:text-3xl font-semibold tracking-tight text-ink-900 leading-tight">
-          From first message to final delivery.
+          {t("howHeading")}
         </h3>
 
         <ol className="mt-8 relative">
@@ -116,7 +87,7 @@ export default function HomeMethod() {
             className="absolute left-[14px] top-2 bottom-2 w-px bg-gradient-to-b from-ink-200/40 via-ink-200 to-ink-200/40"
           />
           {STEPS.map((s, i) => (
-            <Reveal key={s.title} delay={i * 0.05}>
+            <Reveal key={s.key} delay={i * 0.05}>
               <li className="relative pl-12 pb-8 last:pb-0">
                 <span
                   aria-hidden
@@ -129,11 +100,11 @@ export default function HomeMethod() {
                     {String(i + 1).padStart(2, "0")}
                   </span>
                   <h4 className="text-lg font-semibold tracking-tight text-ink-900">
-                    {s.title}
+                    {t(`steps.${s.key}.title`)}
                   </h4>
                 </div>
                 <p className="mt-1.5 text-ink-600 leading-relaxed">
-                  {s.body}
+                  {t(`steps.${s.key}.body`)}
                 </p>
               </li>
             </Reveal>

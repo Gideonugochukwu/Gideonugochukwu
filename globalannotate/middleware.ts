@@ -1,31 +1,31 @@
 import { NextResponse } from "next/server";
 import type { NextRequest } from "next/server";
+import createMiddleware from "next-intl/middleware";
+import { routing } from "./i18n/routing";
 
-// Permanent (301) redirect from any *.vercel.app preview/production host to
-// the canonical https://globalannotate.com origin, preserving the path and
-// query string. Keeps SEO equity flowing to the real domain and prevents
-// the old Vercel URL from being indexed.
-//
-// Skipped for /_next assets (Next.js internals) and a few common health/
-// monitoring endpoints so platform probes still hit a 200, not a 301.
+// next-intl handles locale detection (Accept-Language + NEXT_LOCALE cookie),
+// the /fr and /es prefixes, and "never redirect if already prefixed".
+const intlMiddleware = createMiddleware(routing);
+
+// Permanent (301) redirect from any *.vercel.app host to the canonical
+// origin, preserving path + query. Runs before the i18n middleware.
 const CANONICAL_ORIGIN = "https://globalannotate.com";
 
 export function middleware(request: NextRequest) {
   const host = request.headers.get("host") ?? "";
-
-  if (!host.includes("vercel.app")) {
-    return NextResponse.next();
+  if (host.includes("vercel.app")) {
+    const { pathname, search } = request.nextUrl;
+    return NextResponse.redirect(
+      new URL(pathname + search, CANONICAL_ORIGIN),
+      301
+    );
   }
-
-  const { pathname, search } = request.nextUrl;
-  const url = new URL(pathname + search, CANONICAL_ORIGIN);
-  return NextResponse.redirect(url, 301);
+  return intlMiddleware(request);
 }
 
-// Skip Next internals, the image optimizer, prerendered metadata, and a few
-// common health-check paths.
+// Run on everything except Next internals, the image optimizer, and any path
+// with a file extension (sitemap.xml, robots.txt, *.png, the Google
+// verification .html file, favicon, etc.), plus API/health routes.
 export const config = {
-  matcher: [
-    "/((?!_next/|api/health|healthz|robots\\.txt|sitemap\\.xml|favicon\\.ico|apple-touch-icon\\.png|google6092810f1a80faed\\.html).*)",
-  ],
+  matcher: ["/((?!api|_next|_vercel|healthz|.*\\..*).*)"],
 };

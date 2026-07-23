@@ -1,3 +1,4 @@
+import { useTranslations } from "next-intl";
 import Hero from "@/components/Hero";
 import StatStrip from "@/components/StatStrip";
 import Testimonials from "@/components/Testimonials";
@@ -38,8 +39,11 @@ const HOME_FAQ = [
 ];
 
 export default function HomePage() {
+  const t = useTranslations("faq");
   return (
     <>
+      {/* JSON-LD stays English by design (canonical schema); the visible FAQ
+          below renders the translated items from the `faq` namespace. */}
       <JsonLd data={faqSchema(HOME_FAQ)} />
       <Hero />
 
@@ -78,16 +82,16 @@ export default function HomePage() {
         <div className="container-wide grid lg:grid-cols-[1fr_1.4fr] gap-14 lg:gap-24 items-start">
           <div className="max-w-md">
             <p className="text-sm font-medium uppercase tracking-[0.18em] text-brand-700">
-              FAQ
+              {t("eyebrow")}
             </p>
             <h2 className="section-h2 mt-4 text-ink-900">
-              Common questions.
+              {t("heading")}
             </h2>
             <p className="mt-6 text-base sm:text-lg text-ink-600 leading-relaxed">
-              The things teams ask us before getting started.
+              {t("subhead")}
             </p>
           </div>
-          <HomeFAQ items={HOME_FAQ} />
+          <HomeFAQ />
         </div>
       </section>
 

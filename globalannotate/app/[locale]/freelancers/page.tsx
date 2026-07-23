@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { buildMetadata } from "@/lib/i18n-meta";
 import Link from "next/link";
 import Section from "@/components/Section";
 import Reveal from "@/components/Reveal";
@@ -10,22 +11,15 @@ import { breadcrumbSchema } from "@/lib/schema";
 import { aboutHeroSlides } from "@/lib/images";
 import { Briefcase, BadgeDollarSign, Globe2, HeartHandshake } from "lucide-react";
 
-const TITLE = "Translator & Localization Jobs — Join the GlobalAnnotate Network";
-const DESCRIPTION =
-  "Join the GlobalAnnotate network of freelance translators, localizers, annotators, and voiceover talent. We especially welcome native speakers of underserved African and Asian languages. Apply to be matched with real client projects.";
 
-export const metadata: Metadata = {
-  title: TITLE,
-  description: DESCRIPTION,
-  alternates: { canonical: `${site.url}/freelancers` },
-  openGraph: {
-    title: TITLE,
-    description: DESCRIPTION,
-    url: `${site.url}/freelancers`,
-    type: "website",
-  },
-  twitter: { card: "summary_large_image", title: TITLE, description: DESCRIPTION },
-};
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ locale: string }>;
+}): Promise<Metadata> {
+  const { locale } = await params;
+  return buildMetadata({ locale, path: "/freelancers", metaKey: "freelancers" });
+}
 
 const WHY = [
   {

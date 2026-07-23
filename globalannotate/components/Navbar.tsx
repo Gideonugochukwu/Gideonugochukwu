@@ -1,15 +1,30 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import Link from "next/link";
-import { usePathname } from "next/navigation";
 import { Menu, X, ArrowRight } from "lucide-react";
+import { useTranslations } from "next-intl";
+import { Link, usePathname } from "@/i18n/navigation";
 import Logo from "./Logo";
 import ThemeToggle from "./ThemeToggle";
+import LanguageSwitcher from "./LanguageSwitcher";
 import { nav } from "@/lib/site";
 import { cn } from "@/lib/utils";
 
+// Maps each nav href to its translation key under the `nav` namespace, so the
+// labels come from messages/*.json while the routes stay in lib/site.
+const NAV_KEY: Record<string, string> = {
+  "/": "home",
+  "/services": "services",
+  "/services/marketready": "marketready",
+  "/portfolio": "portfolio",
+  "/blog": "blog",
+  "/about": "about",
+  "/freelancers": "network",
+  "/contact": "contact",
+};
+
 export default function Navbar() {
+  const t = useTranslations();
   const pathname = usePathname();
   const [open, setOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
@@ -26,6 +41,9 @@ export default function Navbar() {
     window.addEventListener("scroll", onScroll, { passive: true });
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
+
+  const label = (href: string) =>
+    NAV_KEY[href] ? t(`nav.${NAV_KEY[href]}`) : href;
 
   return (
     <header
@@ -61,7 +79,7 @@ export default function Navbar() {
                     : "text-ink-600 hover:text-ink-900"
                 )}
               >
-                {item.label}
+                {label(item.href)}
                 {item.badge && (
                   <span
                     aria-hidden
@@ -78,9 +96,10 @@ export default function Navbar() {
 
         <div className="hidden lg:flex items-center gap-2.5">
           <ThemeToggle />
+          <LanguageSwitcher />
           {/* CTA appears from xl up, where there's room beside eight items. */}
           <Link href="/contact" className="btn-primary text-sm hidden xl:inline-flex">
-            Talk to an expert <ArrowRight className="h-4 w-4" />
+            {t("common.talkToExpert")} <ArrowRight className="h-4 w-4" />
           </Link>
         </div>
 
@@ -116,7 +135,7 @@ export default function Navbar() {
                       : "text-ink-700 hover:bg-ink-50"
                   )}
                 >
-                  {item.label}
+                  {label(item.href)}
                   {item.badge && (
                     <span
                       aria-hidden
@@ -127,8 +146,10 @@ export default function Navbar() {
               );
             })}
             <Link href="/contact" className="btn-primary mt-2 text-sm">
-              Talk to an expert <ArrowRight className="h-4 w-4" />
+              {t("common.talkToExpert")} <ArrowRight className="h-4 w-4" />
             </Link>
+            {/* Language options as a row at the bottom of the mobile menu. */}
+            <LanguageSwitcher variant="mobile" />
           </div>
         </div>
       )}

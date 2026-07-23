@@ -1,10 +1,13 @@
-import Link from "next/link";
 import { Mail } from "lucide-react";
+import { useTranslations } from "next-intl";
+import { Link } from "@/i18n/navigation";
 import Logo from "./Logo";
 import { services, site, activeSocialLinks, founder } from "@/lib/site";
 import { SOCIAL_META } from "./SocialIcons";
 
 export default function Footer() {
+  const t = useTranslations("footer");
+  const ts = useTranslations("services");
   const year = new Date().getFullYear();
   const socials = activeSocialLinks();
 
@@ -28,7 +31,7 @@ export default function Footer() {
         </div>
 
         <div className="md:col-span-3">
-          <h4 className="text-sm font-semibold text-ink-900">Services</h4>
+          <h4 className="text-sm font-semibold text-ink-900">{t("servicesHeading")}</h4>
           <ul className="mt-4 space-y-2.5">
             {services.map((s) => (
               <li key={s.slug}>
@@ -36,7 +39,7 @@ export default function Footer() {
                   href={`/services/${s.slug}`}
                   className="text-sm text-ink-600 hover:text-brand-700 transition"
                 >
-                  {s.short}
+                  {ts(`${s.slug}.short`)}
                 </Link>
               </li>
             ))}
@@ -44,19 +47,19 @@ export default function Footer() {
         </div>
 
         <div className="md:col-span-2">
-          <h4 className="text-sm font-semibold text-ink-900">Company</h4>
+          <h4 className="text-sm font-semibold text-ink-900">{t("companyHeading")}</h4>
           <ul className="mt-4 space-y-2.5">
-            <li><Link href="/about" className="text-sm text-ink-600 hover:text-brand-700 transition">About</Link></li>
-            <li><Link href="/portfolio" className="text-sm text-ink-600 hover:text-brand-700 transition">Portfolio</Link></li>
-            <li><Link href="/reviews" className="text-sm text-ink-600 hover:text-brand-700 transition">Reviews</Link></li>
-            <li><Link href="/blog" className="text-sm text-ink-600 hover:text-brand-700 transition">Blog</Link></li>
-            <li><Link href="/freelancers" className="text-sm text-ink-600 hover:text-brand-700 transition">Join Our Network</Link></li>
-            <li><Link href="/contact" className="text-sm text-ink-600 hover:text-brand-700 transition">Contact</Link></li>
+            <li><Link href="/about" className="text-sm text-ink-600 hover:text-brand-700 transition">{t("about")}</Link></li>
+            <li><Link href="/portfolio" className="text-sm text-ink-600 hover:text-brand-700 transition">{t("portfolio")}</Link></li>
+            <li><Link href="/reviews" className="text-sm text-ink-600 hover:text-brand-700 transition">{t("reviews")}</Link></li>
+            <li><Link href="/blog" className="text-sm text-ink-600 hover:text-brand-700 transition">{t("blog")}</Link></li>
+            <li><Link href="/freelancers" className="text-sm text-ink-600 hover:text-brand-700 transition">{t("network")}</Link></li>
+            <li><Link href="/contact" className="text-sm text-ink-600 hover:text-brand-700 transition">{t("contact")}</Link></li>
           </ul>
         </div>
 
         <div className="md:col-span-3">
-          <h4 className="text-sm font-semibold text-ink-900">Follow</h4>
+          <h4 className="text-sm font-semibold text-ink-900">{t("followHeading")}</h4>
           <ul className="mt-4 flex flex-col gap-2.5">
             {socials.map(({ key, href }) => {
               const meta = SOCIAL_META[key];
@@ -79,19 +82,19 @@ export default function Footer() {
               );
             })}
           </ul>
-          <h4 className="mt-6 text-sm font-semibold text-ink-900">Legal</h4>
+          <h4 className="mt-6 text-sm font-semibold text-ink-900">{t("legalHeading")}</h4>
           <ul className="mt-4 space-y-2.5">
-            <li><Link href="/privacy" className="text-sm text-ink-600 hover:text-brand-700 transition">Privacy Policy</Link></li>
-            <li><Link href="/terms" className="text-sm text-ink-600 hover:text-brand-700 transition">Terms of Service</Link></li>
+            <li><Link href="/privacy" className="text-sm text-ink-600 hover:text-brand-700 transition">{t("privacy")}</Link></li>
+            <li><Link href="/terms" className="text-sm text-ink-600 hover:text-brand-700 transition">{t("terms")}</Link></li>
           </ul>
         </div>
       </div>
 
       <div className="border-t border-ink-200">
         <div className="container-wide py-5 flex flex-col md:flex-row items-center justify-between gap-3 text-xs text-ink-500">
-          <p>© {year} {site.name}. All rights reserved.</p>
+          <p>© {year} {site.name}. {t("rights")}</p>
           <p>
-            Founded by{" "}
+            {t("foundedBy")}{" "}
             <Link
               href="/about#founder"
               className="font-medium text-ink-700 hover:text-brand-700 transition"

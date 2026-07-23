@@ -1,0 +1,260 @@
+{
+  "nav": {
+    "home": "Home",
+    "services": "Services",
+    "marketready": "MarketReady™",
+    "portfolio": "Portfolio",
+    "blog": "Blog",
+    "about": "About",
+    "network": "Join Our Network",
+    "contact": "Contact"
+  },
+  "common": {
+    "talkToExpert": "Talk to an expert",
+    "learnMore": "Learn more",
+    "seeAllServices": "See all services",
+    "exploreService": "Explore service",
+    "readMore": "Read more",
+    "getStarted": "Get started"
+  },
+  "hero": {
+    "line1": "Precision across languages.",
+    "line2": "Intelligence across data.",
+    "line3": "Growth across markets.",
+    "subhead": "One partner for localization, AI training data, multilingual SEO, and growth marketing."
+  },
+  "services": {
+    "translation-localization": {
+      "title": "Translation & Localization",
+      "short": "Translation & Localization",
+      "summary": "Human-quality translation and culturally accurate localization across 100+ languages for websites, apps, documents, and multimedia."
+    },
+    "ai-annotation": {
+      "title": "AI Annotation & Data Labeling",
+      "short": "AI Annotation",
+      "summary": "High-precision training data for computer vision, NLP, and LLM teams — bounding boxes, semantic segmentation, audio, and text, all QA-checked."
+    },
+    "seo": {
+      "title": "SEO & Search Visibility",
+      "short": "SEO & Search Visibility",
+      "summary": "Rank everywhere you sell — in every language. Multilingual & international SEO, technical audits, content, and link building that compound."
+    },
+    "digital-marketing": {
+      "title": "Digital Marketing",
+      "short": "Digital Marketing",
+      "summary": "Performance-driven Facebook and Instagram ads, social media management, and content strategy that turn audiences into customers."
+    },
+    "game-localization": {
+      "title": "Game Localization & Translation",
+      "short": "Game Localization",
+      "summary": "Bring your game to players worldwide — UI, dialogue, subtitles, voiceover scripts, store listings, and LQA testing in 100+ languages."
+    },
+    "marketready": {
+      "title": "MarketReady™ Cultural Validation",
+      "short": "MarketReady™",
+      "summary": "Pre-launch testing with real native users. The only translation service that guarantees your content works in the target market."
+    }
+  },
+  "homeServices": {
+    "eyebrow": "What we do",
+    "heading1": "Five services.",
+    "heading2": "One accountable team.",
+    "subhead": "Translation, AI training data, multilingual SEO, marketing, and game localization — in 100+ languages."
+  },
+  "stats": {
+    "languages": "Languages supported",
+    "dataPoints": "Data points annotated",
+    "countries": "Countries served",
+    "satisfaction": "Client satisfaction"
+  },
+  "industries": {
+    "eyebrow": "Industries we serve",
+    "heading": "Built for global teams in every industry.",
+    "cta": "Don’t see yours? Talk to us",
+    "items": {
+      "technology": { "name": "Technology & SaaS", "line": "Ship products and docs in every market — without slowing engineering." },
+      "ecommerce": { "name": "E-Commerce", "line": "Localized product, ad, and checkout journeys that convert." },
+      "healthcare": { "name": "Healthcare & Life Sciences", "line": "Certified, audit-ready translation and patient-safe content." },
+      "ai": { "name": "AI & Machine Learning", "line": "Production-grade training data your models can trust." },
+      "gaming": { "name": "Gaming & Interactive", "line": "UI, dialogue, VO scripts, and LQA — for studios going global." },
+      "media": { "name": "Media & Entertainment", "line": "Subtitling, dubbing, and metadata at streaming scale." }
+    }
+  },
+  "marketready": {
+    "badge": "MarketReady™ · Proprietary",
+    "heading": "The only translation agency that guarantees market-readiness.",
+    "description": "Every other agency checks whether words are correct. MarketReady™ checks whether your content actually works — validated by real native users in your target market before launch.",
+    "learnMore": "Learn more about MarketReady™",
+    "bullet1Strong": "Real native users",
+    "bullet1": " — not translators — review your content blind.",
+    "bullet2Strong": "A signed report",
+    "bullet2": " certifying your content is ready to launch."
+  },
+  "method": {
+    "eyebrow": "The GlobalAnnotate method",
+    "heading1": "Quality you can audit.",
+    "heading2": "Speed you can plan around.",
+    "intro": "Native linguists, specialist annotators, SEO strategists, and growth marketers — under one quality system, one senior lead.",
+    "promises": {
+      "quality": { "title": "Quality you can audit", "body": "Every project ships with a QA report and revision window." },
+      "global": { "title": "Truly global coverage", "body": "Native specialists across 100+ languages and 30+ markets." },
+      "ailed": { "title": "AI-aware, human-led", "body": "Smart automation, expert oversight. Speed without sacrifice." },
+      "senior": { "title": "Senior, not just sales", "body": "A senior project lead from day one. No handoffs." }
+    },
+    "howEyebrow": "How it works",
+    "howHeading": "From first message to final delivery.",
+    "steps": {
+      "discovery": { "title": "Discovery call", "body": "We learn your goals, audience, and constraints." },
+      "proposal": { "title": "Tailored proposal", "body": "Clear scope, timeline, and pricing within 24–48 hours." },
+      "production": { "title": "Production & QA", "body": "Specialists execute. Our quality team reviews every deliverable." },
+      "delivery": { "title": "Delivery & growth", "body": "Polished output, with iteration as you scale." }
+    }
+  },
+  "testimonials": {
+    "eyebrow": "What clients say",
+    "heading1": "Loved by teams shipping",
+    "heading2": "across borders.",
+    "readAll": "Read all reviews"
+  },
+  "faq": {
+    "eyebrow": "FAQ",
+    "heading": "Common questions.",
+    "subhead": "The things teams ask us before getting started.",
+    "items": [
+      {
+        "q": "What services does GlobalAnnotate offer?",
+        "a": "Five integrated services: translation & localization in 100+ languages, AI annotation & data labeling, multilingual SEO & search visibility, performance digital marketing, and game localization & translation for studios going global."
+      },
+      {
+        "q": "How many languages do you support?",
+        "a": "100+ languages with native specialists across 30+ countries — including all major European, Asian, African, and Middle Eastern languages."
+      },
+      {
+        "q": "Can I combine services?",
+        "a": "Yes — most of our clients combine two or more. Localization plus international SEO, or AI annotation plus multilingual datasets, are common pairings handled by one senior project lead."
+      },
+      {
+        "q": "What's your typical turnaround?",
+        "a": "We reply to every enquiry within one business day, share a scoped proposal within 24–48 hours, and most projects ship a first deliverable within two weeks."
+      },
+      {
+        "q": "How do you guarantee quality?",
+        "a": "Every program runs through a documented QA process: native-speaker review for language work, gold-set calibration and inter-annotator agreement for AI data, and clear reporting for SEO and marketing."
+      },
+      {
+        "q": "Where are you based and what time zones do you cover?",
+        "a": "We operate as a distributed team across 30+ countries, with native specialists aligned to your business hours."
+      }
+    ]
+  },
+  "cta": {
+    "heading": "Ready to grow globally?",
+    "subhead": "Tell us about your project and we'll get back to you within one business day.",
+    "talkToExpert": "Talk to an expert"
+  },
+  "footer": {
+    "servicesHeading": "Services",
+    "companyHeading": "Company",
+    "followHeading": "Follow",
+    "legalHeading": "Legal",
+    "about": "About",
+    "portfolio": "Portfolio",
+    "reviews": "Reviews",
+    "blog": "Blog",
+    "network": "Join Our Network",
+    "contact": "Contact",
+    "privacy": "Privacy Policy",
+    "terms": "Terms of Service",
+    "foundedBy": "Founded by",
+    "rights": "All rights reserved."
+  },
+  "contact": {
+    "eyebrow": "Get in touch",
+    "heading": "Talk to an expert.",
+    "subhead": "Tell us about your project and we'll get back to you within one business day.",
+    "emailUsHeading": "Email us directly",
+    "emailUsBody": "General questions, partnerships, or careers.",
+    "responseHeading": "Response time",
+    "responseBody": "Within one business day. Most replies are same-day.",
+    "whereHeading": "Where we work",
+    "whereBody": "Native specialists across 30+ countries. Aligned to your time zone.",
+    "formHeading": "Tell us about your project",
+    "formIntro": "The more context you share, the sharper our proposal. A senior project lead will reply within one business day. Not sure where to start? Skim our <services>services</services> or recent <cases>case studies</cases> first.",
+    "form": {
+      "fullName": "Full name",
+      "fullNamePlaceholder": "Godsportion",
+      "businessEmail": "Business email",
+      "businessEmailPlaceholder": "jane@company.com",
+      "company": "Company (optional)",
+      "companyPlaceholder": "Acme Inc.",
+      "service": "Service",
+      "selectService": "Select a service…",
+      "fullPackage": "Full Package",
+      "projectDetails": "Project details",
+      "projectPlaceholder": "Tell us about the project — goals, formats, languages, volume, audience…",
+      "budget": "Budget (optional)",
+      "budgetPlaceholder": "e.g. $2,000 – $5,000",
+      "timeline": "Timeline (optional)",
+      "timelinePlaceholder": "e.g. start in 2 weeks, 30-day delivery",
+      "consent": "By submitting, you agree to be contacted about your enquiry.",
+      "send": "Send request",
+      "sending": "Sending…",
+      "successHeading": "Request received",
+      "successBody": "A member of our team will reach out within one business day with next steps and a tailored proposal.",
+      "sendAnother": "Send another request",
+      "errFullName": "Please enter your full name",
+      "errEmail": "Enter a valid business email",
+      "errService": "Select a service",
+      "errDetails": "Tell us a little more — at least 20 characters",
+      "errNoEndpoint": "Form endpoint not configured yet. Add NEXT_PUBLIC_FORMSPREE_QUOTE_ENDPOINT to .env.local.",
+      "toastSuccess": "Thanks — your request was sent. We'll reply within 1 business day.",
+      "toastError": "Something went wrong. Please try again or email us directly."
+    }
+  },
+  "blog": {
+    "keepReading": "Keep reading",
+    "readArticle": "Read article",
+    "allArticles": "All articles",
+    "minRead": "min read",
+    "by": "By",
+    "authorRole": "Founder & Lead Linguist at GlobalAnnotate",
+    "calloutHeading": "Guarantee your content works before launch",
+    "calloutBody": "Every GlobalAnnotate project includes MarketReady™ — pre-launch cultural validation with real native users in your target market. You receive a signed report confirming your content is market-ready, not just linguistically correct.",
+    "calloutLink": "Learn more about MarketReady™"
+  },
+  "legalNote": "",
+  "meta": {
+    "home": {
+      "title": "GlobalAnnotate — Translation, AI Annotation, SEO & Digital Marketing in 100+ Languages",
+      "description": "Translation and localization services with MarketReady™ cultural validation. Specialists in African languages. 100+ languages, one accountable team."
+    },
+    "services": {
+      "title": "Services — Translation, Localization, AI Annotation & Game Localization",
+      "description": "Integrated services to grow globally: translation, AI annotation, multilingual SEO, digital marketing, game localization, and MarketReady™ validation."
+    },
+    "marketready": {
+      "title": "MarketReady™ — Pre-Launch Cultural Validation",
+      "description": "The only translation service that validates your content with real native users before launch. Avoid costly cultural misfires."
+    },
+    "about": {
+      "title": "About GlobalAnnotate — Founded by Gideon Ugochukwu",
+      "description": "Meet Gideon Ugochukwu, founder of GlobalAnnotate — translation, AI annotation, SEO, and marketing across 100+ languages."
+    },
+    "contact": {
+      "title": "Contact GlobalAnnotate — Talk to an Expert",
+      "description": "Tell us about your project and we'll get back to you within one business day with a tailored proposal."
+    },
+    "blog": {
+      "title": "Blog — Insights on Translation, Localization, and AI",
+      "description": "Practical guides from the GlobalAnnotate team on localization, AI data, and international SEO."
+    },
+    "portfolio": {
+      "title": "Portfolio — Case Studies",
+      "description": "Real localization, AI annotation, SEO, and marketing results for teams growing across markets."
+    },
+    "freelancers": {
+      "title": "Join Our Network of Linguists & Specialists",
+      "description": "Join the GlobalAnnotate network of translators, localizers, annotators, and voiceover talent."
+    }
+  }
+}

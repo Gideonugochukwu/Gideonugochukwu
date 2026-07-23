@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { buildMetadata } from "@/lib/i18n-meta";
 import Image from "next/image";
 import Link from "next/link";
 import Section from "@/components/Section";
@@ -11,22 +12,15 @@ import PageHero from "@/components/PageHero";
 import { site, founder } from "@/lib/site";
 import { breadcrumbSchema, personSchema } from "@/lib/schema";
 
-const TITLE = "About GlobalAnnotate — Founded by Gideon Ugochukwu";
-const DESCRIPTION =
-  "Meet Gideon Ugochukwu, founder of GlobalAnnotate. Learn about the team behind our translation, AI annotation, digital marketing, and SEO services across 100+ languages.";
 
-export const metadata: Metadata = {
-  title: TITLE,
-  description: DESCRIPTION,
-  alternates: { canonical: `${site.url}/about` },
-  openGraph: {
-    title: TITLE,
-    description: DESCRIPTION,
-    url: `${site.url}/about`,
-    type: "website",
-  },
-  twitter: { card: "summary_large_image", title: TITLE, description: DESCRIPTION },
-};
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ locale: string }>;
+}): Promise<Metadata> {
+  const { locale } = await params;
+  return buildMetadata({ locale, path: "/about", metaKey: "about" });
+}
 
 const values = [
   {

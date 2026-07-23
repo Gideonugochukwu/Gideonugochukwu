@@ -3,13 +3,17 @@
 import { useState } from "react";
 import { ChevronDown } from "lucide-react";
 import { AnimatePresence, motion } from "framer-motion";
+import { useTranslations } from "next-intl";
 import { cn } from "@/lib/utils";
 import type { FAQItem } from "../FAQ";
 
 // Homepage-only FAQ. The shared FAQ component used on service pages renders
 // inside a bordered card; on the homepage we drop the outer box, lean on
-// row dividers, and give each row generous vertical breathing room.
-export default function HomeFAQ({ items }: { items: FAQItem[] }) {
+// row dividers, and give each row generous vertical breathing room. Items are
+// read from the translated `faq.items` array so the whole list localizes.
+export default function HomeFAQ() {
+  const t = useTranslations("faq");
+  const items = t.raw("items") as FAQItem[];
   const [open, setOpen] = useState<number | null>(0);
 
   return (

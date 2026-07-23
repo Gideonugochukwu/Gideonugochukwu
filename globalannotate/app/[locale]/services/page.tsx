@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { buildMetadata } from "@/lib/i18n-meta";
 import Image from "next/image";
 import Link from "next/link";
 import Section from "@/components/Section";
@@ -11,27 +12,20 @@ import { img, imageBg, unsplash, servicesHeroSlides } from "@/lib/images";
 import { breadcrumbSchema } from "@/lib/schema";
 import { ArrowRight, Brain, Gamepad2, Languages, Megaphone, Search, ShieldCheck } from "lucide-react";
 
-const TITLE = "Services — Translation, AI Annotation, SEO, Marketing, Game Localization & MarketReady™";
-const DESCRIPTION =
-  "Integrated services to help you grow globally: translation & localization, AI annotation, multilingual SEO, performance digital marketing, game localization, and MarketReady™ pre-launch cultural validation in 100+ languages.";
 
 // MarketReady is a distinct, proprietary service — surfaced here as a sixth
 // card without living in the shared `services` array (which drives the
 // homepage grid and footer).
 const allServices = [...services, marketReady];
 
-export const metadata: Metadata = {
-  title: TITLE,
-  description: DESCRIPTION,
-  alternates: { canonical: `${site.url}/services` },
-  openGraph: {
-    title: TITLE,
-    description: DESCRIPTION,
-    url: `${site.url}/services`,
-    type: "website",
-  },
-  twitter: { card: "summary_large_image", title: TITLE, description: DESCRIPTION },
-};
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ locale: string }>;
+}): Promise<Metadata> {
+  const { locale } = await params;
+  return buildMetadata({ locale, path: "/services", metaKey: "services" });
+}
 
 const SERVICE_IMAGES = {
   "translation-localization": img.services.translation,
