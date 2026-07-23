@@ -385,6 +385,76 @@ export const cases: CaseStudy[] = [
     ],
     image: img.industries.gaming,
   },
+  {
+    slug: "b2b-saas-organic-revenue-seo",
+    title: "3.4x organic revenue for a B2B SaaS",
+    client: "A Series-B workflow-automation SaaS, North America",
+    industry: "SaaS",
+    service: "SEO",
+    duration: "12-month programme",
+    lastUpdated: "2026-06-20",
+    summary:
+      "We rebuilt this SaaS company's organic channel end to end — fixing a CMS-level hreflang bug that was silently capping rankings outside the US, consolidating 380 thin blog posts into 42 intent-mapped pillar pages, and shipping product-led content for the long-tail terms their users actually searched for. Organic became their single largest pipeline source by month nine.",
+    challenge:
+      "Organic traffic had been flat for eighteen months despite a busy in-house content team. Non-US rankings were inexplicably weak, a CMS migration two years earlier had left orphan URLs, duplicate templated pages, and a broken canonical strategy, and product pages were buried four clicks from the homepage. Paid acquisition was carrying the entire growth number.",
+    approach: [
+      "Full technical audit (Search Console, Sitebulb, server logs) — identified and fixed a hreflang loop that was de-indexing all en-GB, en-AU and de-DE pages",
+      "Information-architecture rewrite: collapsed 380 blog posts into 42 pillar pages with proper internal-linking hubs and a clean canonical tree",
+      "Intent-mapped keyword strategy: 1,400 target queries clustered by buyer stage and product surface, prioritised by revenue potential not just volume",
+      "Product-led content programme: 6 long-form articles per month written by senior strategists with input from the product team, plus 18 use-case landing pages",
+      "Digital PR: 24 placements in industry publications over 9 months, building topical authority on workflow automation",
+      "Conversion work: redesigned mid-funnel pages with embedded product tours, lifting demo-to-signup rate by 31%",
+    ],
+    headlineOutcomes: [
+      { label: "Organic revenue", value: "+241%" },
+      { label: "Ranking keywords", value: "+1.8k" },
+      { label: "Pipeline from organic", value: "$4.1M" },
+    ],
+    outcomes: [
+      { label: "Organic revenue", value: "+241%" },
+      { label: "Ranking keywords", value: "+1.8k" },
+      { label: "Avg. position", value: "12 → 4.7" },
+      { label: "Demos booked / mo", value: "+186%" },
+      { label: "Non-US organic", value: "+412%" },
+      { label: "Pipeline from organic", value: "$4.1M" },
+    ],
+    image: img.portfolio.seoGrowth,
+  },
+  {
+    slug: "international-seo-launch-9-markets",
+    title: "International SEO launch across 9 markets",
+    client: "A DACH-origin direct-to-consumer e-commerce brand",
+    industry: "E-commerce",
+    service: "SEO + Localization",
+    duration: "6-month launch + ongoing",
+    lastUpdated: "2026-06-05",
+    summary:
+      "A consolidation and re-launch of nine country sites — replacing fragmented ccTLDs with a single high-authority domain on a subdirectory architecture, rebuilding hreflang from scratch, and shipping native-quality localized content in nine languages in coordination with our translation team. Non-English organic revenue grew more than 4x in the first year.",
+    challenge:
+      "Existing presence sat on nine separate ccTLDs, each acting as its own tiny site with no shared authority. Hreflang was incorrectly implemented across every locale, internal linking didn't cross domains, and most translated content had been machine-generated — which Google had clearly noticed. Outside the home market, the brand barely ranked for category terms, never mind product ones.",
+    approach: [
+      "Architecture decision: migrated all nine ccTLDs into subdirectories under the strongest domain, preserving link equity with a fully-mapped 301 plan and per-locale redirect tests",
+      "Hreflang rebuild: reciprocal, self-referential tags with x-default fallbacks across 12k pages, validated weekly via Search Console's International Targeting report",
+      "Localized keyword research per market by native speakers — not translations of the English list — surfacing 2,300 high-intent terms competitors had missed",
+      "Content rewrite: 640 category and product pages rewritten by native linguists (transcreated, not translated), with locale-specific imagery, sizing, and currency",
+      "Local link building and digital PR in each market via in-country specialists, totalling 180+ in-language placements",
+      "Per-locale Core Web Vitals work — fixing CLS regressions caused by region-specific font loading and shifting hero imagery",
+    ],
+    headlineOutcomes: [
+      { label: "Markets launched", value: "9" },
+      { label: "Non-EN organic", value: "+318%" },
+      { label: "Organic revenue", value: "+274%" },
+    ],
+    outcomes: [
+      { label: "Markets launched", value: "9" },
+      { label: "Non-EN organic", value: "+318%" },
+      { label: "Indexed pages", value: "+12k" },
+      { label: "Organic revenue", value: "+274%" },
+      { label: "International AOV", value: "+22%" },
+      { label: "First-page rankings", value: "1,940" },
+    ],
+    image: img.portfolio.internationalSeo,
+  },
 ];
 
 export function getCase(slug: string): CaseStudy | undefined {
