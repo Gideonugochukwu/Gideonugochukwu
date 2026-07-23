@@ -23,6 +23,14 @@ type FormData = {
 // backend values) regardless of locale; only the visible labels translate.
 const SERVICE_VALUES = [...services.map((s) => s.slug), "full-package"] as const;
 
+// Maps the stable slug value back to its readable English name, so the
+// enquiry email always reads "Translation & Localization" — never a raw slug
+// — no matter which locale the visitor submitted from.
+const SERVICE_EN_LABEL: Record<string, string> = {
+  ...Object.fromEntries(services.map((s) => [s.slug, s.title])),
+  "full-package": "Full Package",
+};
+
 export default function QuoteForm() {
   const t = useTranslations("contact.form");
   const ts = useTranslations("services");
@@ -57,12 +65,16 @@ export default function QuoteForm() {
       return;
     }
     try {
+      // Submit the readable English service name (not the slug the <select>
+      // carries) so the enquiry email stays consistent across all locales.
+      const serviceName = SERVICE_EN_LABEL[data.service] ?? data.service;
       const res = await fetch(endpoint, {
         method: "POST",
         headers: { "Content-Type": "application/json", Accept: "application/json" },
         body: JSON.stringify({
-          _subject: `New quote request — ${data.service}`,
+          _subject: `New quote request — ${serviceName}`,
           ...data,
+          service: serviceName,
         }),
       });
       if (!res.ok) throw new Error("Network response not ok");

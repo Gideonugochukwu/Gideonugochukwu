@@ -229,7 +229,7 @@ export default function MarketReadyPage() {
         </div>
         <p className="mt-6 max-w-3xl text-ink-600 leading-relaxed">
           Every one of these was linguistically “correct.” Each still damaged
-          brand perception — because the root cause isn't bad grammar, it's that
+          brand perception — because the root cause isn&apos;t bad grammar, it&apos;s that
           no one tested the content with the people it was meant for.
         </p>
       </Section>
