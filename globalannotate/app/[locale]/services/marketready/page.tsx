@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { buildMetadata } from "@/lib/i18n-meta";
-import Link from "next/link";
+import { Link } from "@/i18n/navigation";
 import Section from "@/components/Section";
 import Reveal from "@/components/Reveal";
 import FAQ from "@/components/FAQ";

@@ -1,4 +1,4 @@
-import Link from "next/link";
+import { Link } from "@/i18n/navigation";
 import { ArrowRight, FileText, Folder } from "lucide-react";
 
 // Three-column CTA block modeled on languagewire.com/services. Column 1 is
