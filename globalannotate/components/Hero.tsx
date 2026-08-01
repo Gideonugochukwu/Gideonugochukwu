@@ -14,18 +14,19 @@ export default function Hero() {
     <PageHero
       slides={homeHeroSlides}
       solidBackground
+      eyebrow={t("credential")}
       backgroundExtra={<HeroGlobe />}
       pre={
-        <div className="text-xl sm:text-2xl md:text-3xl font-display font-medium text-white/80">
+        <div className="text-base sm:text-lg font-display font-medium text-white/60">
           <MultilingualGreeting />
-          <span className="text-white/35">.</span>
+          <span className="text-white/25">.</span>
         </div>
       }
       title={
         <span className="block">
           <span className="block">{t("line1")}</span>
           <span className="block text-gradient-light">{t("line2")}</span>
-          <span className="mt-2 sm:mt-3 block">{t("line3")}</span>
+          <span className="block">{t("line3")}</span>
         </span>
       }
       subtitle={t("subhead")}
