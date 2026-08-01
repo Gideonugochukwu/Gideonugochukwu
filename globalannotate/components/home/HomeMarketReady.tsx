@@ -32,13 +32,13 @@ export default function HomeMarketReady() {
             </div>
 
             <ul className="grid gap-4 sm:grid-cols-2 lg:grid-cols-1">
-              <li className="flex items-start gap-3 rounded-2xl bg-white/70 p-4">
+              <li className="flex items-start gap-3 rounded-2xl bg-white p-4">
                 <Users className="mt-0.5 h-5 w-5 shrink-0 text-brand-600" strokeWidth={1.75} />
                 <span className="text-sm text-ink-700 leading-relaxed">
                   <strong className="font-semibold text-ink-900">{t("bullet1Strong")}</strong>{t("bullet1")}
                 </span>
               </li>
-              <li className="flex items-start gap-3 rounded-2xl bg-white/70 p-4">
+              <li className="flex items-start gap-3 rounded-2xl bg-white p-4">
                 <FileCheck2 className="mt-0.5 h-5 w-5 shrink-0 text-brand-600" strokeWidth={1.75} />
                 <span className="text-sm text-ink-700 leading-relaxed">
                   <strong className="font-semibold text-ink-900">{t("bullet2Strong")}</strong>{t("bullet2")}
