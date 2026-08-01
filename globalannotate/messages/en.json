@@ -65,19 +65,39 @@
     "languages": "Languages supported",
     "dataPoints": "Data points annotated",
     "countries": "Countries served",
-    "satisfaction": "Client satisfaction"
+    "satisfaction": "Client satisfaction",
+    "eyebrow": "By the numbers",
+    "note": "A snapshot of the work our native specialists deliver across 30+ countries."
   },
   "industries": {
     "eyebrow": "Industries we serve",
     "heading": "Built for global teams in every industry.",
     "cta": "Don’t see yours? Talk to us",
     "items": {
-      "technology": { "name": "Technology & SaaS", "line": "Ship products and docs in every market — without slowing engineering." },
-      "ecommerce": { "name": "E-Commerce", "line": "Localized product, ad, and checkout journeys that convert." },
-      "healthcare": { "name": "Healthcare & Life Sciences", "line": "Certified, audit-ready translation and patient-safe content." },
-      "ai": { "name": "AI & Machine Learning", "line": "Production-grade training data your models can trust." },
-      "gaming": { "name": "Gaming & Interactive", "line": "UI, dialogue, VO scripts, and LQA — for studios going global." },
-      "media": { "name": "Media & Entertainment", "line": "Subtitling, dubbing, and metadata at streaming scale." }
+      "technology": {
+        "name": "Technology & SaaS",
+        "line": "Ship products and docs in every market — without slowing engineering."
+      },
+      "ecommerce": {
+        "name": "E-Commerce",
+        "line": "Localized product, ad, and checkout journeys that convert."
+      },
+      "healthcare": {
+        "name": "Healthcare & Life Sciences",
+        "line": "Certified, audit-ready translation and patient-safe content."
+      },
+      "ai": {
+        "name": "AI & Machine Learning",
+        "line": "Production-grade training data your models can trust."
+      },
+      "gaming": {
+        "name": "Gaming & Interactive",
+        "line": "UI, dialogue, VO scripts, and LQA — for studios going global."
+      },
+      "media": {
+        "name": "Media & Entertainment",
+        "line": "Subtitling, dubbing, and metadata at streaming scale."
+      }
     }
   },
   "marketready": {
@@ -96,18 +116,42 @@
     "heading2": "Speed you can plan around.",
     "intro": "Native linguists, specialist annotators, SEO strategists, and growth marketers — under one quality system, one senior lead.",
     "promises": {
-      "quality": { "title": "Quality you can audit", "body": "Every project ships with a QA report and revision window." },
-      "global": { "title": "Truly global coverage", "body": "Native specialists across 100+ languages and 30+ markets." },
-      "ailed": { "title": "AI-aware, human-led", "body": "Smart automation, expert oversight. Speed without sacrifice." },
-      "senior": { "title": "Senior, not just sales", "body": "A senior project lead from day one. No handoffs." }
+      "quality": {
+        "title": "Quality you can audit",
+        "body": "Every project ships with a QA report and revision window."
+      },
+      "global": {
+        "title": "Truly global coverage",
+        "body": "Native specialists across 100+ languages and 30+ markets."
+      },
+      "ailed": {
+        "title": "AI-aware, human-led",
+        "body": "Smart automation, expert oversight. Speed without sacrifice."
+      },
+      "senior": {
+        "title": "Senior, not just sales",
+        "body": "A senior project lead from day one. No handoffs."
+      }
     },
     "howEyebrow": "How it works",
     "howHeading": "From first message to final delivery.",
     "steps": {
-      "discovery": { "title": "Discovery call", "body": "We learn your goals, audience, and constraints." },
-      "proposal": { "title": "Tailored proposal", "body": "Clear scope, timeline, and pricing within 24–48 hours." },
-      "production": { "title": "Production & QA", "body": "Specialists execute. Our quality team reviews every deliverable." },
-      "delivery": { "title": "Delivery & growth", "body": "Polished output, with iteration as you scale." }
+      "discovery": {
+        "title": "Discovery call",
+        "body": "We learn your goals, audience, and constraints."
+      },
+      "proposal": {
+        "title": "Tailored proposal",
+        "body": "Clear scope, timeline, and pricing within 24–48 hours."
+      },
+      "production": {
+        "title": "Production & QA",
+        "body": "Specialists execute. Our quality team reviews every deliverable."
+      },
+      "delivery": {
+        "title": "Delivery & growth",
+        "body": "Polished output, with iteration as you scale."
+      }
     }
   },
   "testimonials": {
@@ -256,5 +300,14 @@
       "title": "Join Our Network of Linguists & Specialists",
       "description": "Join the GlobalAnnotate network of translators, localizers, annotators, and voiceover talent."
     }
+  },
+  "trust": {
+    "eyebrow": "How we safeguard quality",
+    "nativeTitle": "Native-speaker review",
+    "nativeBody": "Every language deliverable is checked by a native specialist before it ships.",
+    "aiTitle": "Calibrated AI data",
+    "aiBody": "Gold-set calibration and inter-annotator agreement on every annotation program.",
+    "replyTitle": "Reply within one business day",
+    "replyBody": "Every enquiry gets a response within one business day, with a scoped proposal in 24–48 hours."
   }
 }

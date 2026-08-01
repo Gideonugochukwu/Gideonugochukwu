@@ -134,7 +134,7 @@ export default function HeroGlobe({
         className="pointer-events-none absolute left-[62%] top-1/2 h-[130%] w-[95%] -translate-x-1/2 -translate-y-1/2 md:left-[68%]"
         style={{
           background:
-            "radial-gradient(closest-side, rgba(16,185,129,0.20), rgba(20,184,166,0.07) 55%, transparent 74%)",
+            "radial-gradient(closest-side, rgba(16,185,129,0.13), rgba(20,184,166,0.05) 55%, transparent 74%)",
         }}
       />
       {!isDesktop && (
@@ -157,7 +157,7 @@ export default function HeroGlobe({
             />
             <div
               className="absolute inset-0 rounded-full ring-1 ring-inset"
-              style={{ boxShadow: "inset 0 0 40px rgba(16,185,129,0.25)" }}
+              style={{ boxShadow: "inset 0 0 40px rgba(16,185,129,0.16)" }}
             />
             {/* A few clean labels over the visible landmasses. */}
             {MOBILE_LABELS.map((l) => (
