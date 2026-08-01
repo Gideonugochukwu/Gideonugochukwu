@@ -68,7 +68,7 @@ export default function PageHero({
   return (
     <section
       className={`relative isolate overflow-hidden bg-night-950 text-white ${
-        solidBackground ? "flex items-center min-h-[38rem] md:min-h-[44rem]" : ""
+        solidBackground ? "flex items-center min-h-[44rem] md:min-h-[54rem]" : ""
       }`}
     >
       {!solidBackground && <HeroSlideshow slides={slides} />}
@@ -86,17 +86,17 @@ export default function PageHero({
       {backgroundExtra}
 
       <div
-        className={`container-wide relative ${paddingY} ${
+        className={`container-wide relative w-full min-w-0 ${paddingY} ${
           passThrough ? "pointer-events-none" : ""
         }`}
       >
-        <div className="max-w-3xl">
+        <div className="max-w-4xl">
           {eyebrow && (
             <motion.p
               initial={reduce ? false : { opacity: 0, y: 8 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: 0.05 }}
-              className="text-xs font-medium uppercase tracking-[0.20em] text-brand-300"
+              className="text-xs font-medium uppercase tracking-[0.22em] text-brand-300"
             >
               {eyebrow}
             </motion.p>
@@ -117,7 +117,7 @@ export default function PageHero({
             initial={reduce ? false : { opacity: 0, y: 14 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.7, delay: 0.2, ease: [0.22, 1, 0.36, 1] }}
-            className={`${titleClass} mt-4 sm:mt-5 text-white max-w-3xl`}
+            className={`${titleClass} mt-5 sm:mt-6 text-white max-w-5xl`}
           >
             {title}
           </motion.h1>

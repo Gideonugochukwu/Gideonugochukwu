@@ -131,6 +131,9 @@ html.lang-zh {
   body {
     background: var(--color-paper);
     color: var(--color-ink-900);
+    /* Guard against horizontal overflow from oversized display type on
+       narrow screens (clip preserves position:sticky, unlike hidden). */
+    overflow-x: clip;
     font-family: var(--font-sans);
     font-feature-settings: "ss01", "cv11";
     -webkit-font-smoothing: antialiased;
@@ -188,10 +191,13 @@ html.lang-zh {
     font-family: var(--font-display);
     font-optical-sizing: auto;
     font-weight: 700;
-    font-size: clamp(2.5rem, 3.6vw + 1.35rem, 5rem);
-    line-height: 1.05;
-    letter-spacing: -0.015em;
+    /* Steep slope, small base: ~2rem on a 390px phone, ~6.5rem at 1440px,
+       up to 7.5rem on very wide screens — big without overflowing mobile. */
+    font-size: clamp(2rem, 6.9vw + 0.3rem, 7.5rem);
+    line-height: 0.95;
+    letter-spacing: -0.03em;
     text-wrap: balance;
+    overflow-wrap: break-word;
   }
   /* Moderate H1 for sentence-length titles (long service intros, blog
      articles) where the full 5rem display size would wrap 5+ lines. */
@@ -208,9 +214,35 @@ html.lang-zh {
     font-family: var(--font-display);
     font-optical-sizing: auto;
     font-weight: 600;
-    font-size: clamp(1.625rem, 1.8vw + 0.75rem, 2.25rem);
-    line-height: 1.15;
-    letter-spacing: -0.012em;
+    font-size: clamp(1.875rem, 2.4vw + 0.75rem, 3rem);
+    line-height: 1.08;
+    letter-spacing: -0.02em;
+    overflow-wrap: break-word;
+  }
+
+  /* Oversized editorial statement — for the one or two type-led moments that
+     should read like a magazine headline. Bigger than a section heading,
+     smaller than the hero. Fraunces, tight tracking, balanced wrap. */
+  .statement {
+    font-family: var(--font-display);
+    font-optical-sizing: auto;
+    font-weight: 600;
+    font-size: clamp(1.75rem, 2.7vw + 1.1rem, 3.75rem);
+    line-height: 1.04;
+    letter-spacing: -0.025em;
+    text-wrap: balance;
+    overflow-wrap: break-word;
+  }
+
+  /* Large faded index numeral for the editorial services index (01–05).
+     Uses the display face and tabular figures so the column stays aligned. */
+  .index-num {
+    font-family: var(--font-display);
+    font-optical-sizing: auto;
+    font-weight: 600;
+    font-variant-numeric: tabular-nums;
+    letter-spacing: -0.02em;
+    line-height: 1;
   }
   .section-h3 {
     font-family: var(--font-display);

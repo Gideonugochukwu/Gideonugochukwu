@@ -1,23 +1,14 @@
-import Image from "next/image";
 import { ArrowUpRight } from "lucide-react";
 import { useTranslations } from "next-intl";
 import { Link } from "@/i18n/navigation";
 import Reveal from "../Reveal";
 import { services } from "@/lib/site";
-import { img, imageBg, unsplash } from "@/lib/images";
 
-// Homepage-only editorial presentation of the services. Large feature
-// blocks with strong type, a tall image, and generous whitespace. The
-// original card-style ServiceCard is still used on /services.
-
-const SERVICE_IMAGES = {
-  "translation-localization": img.services.translation,
-  "ai-annotation": img.services.aiAnnotation,
-  "digital-marketing": img.services.digitalMarketing,
-  seo: img.services.seo,
-  "game-localization": img.services.gameLocalization,
-} as const;
-
+// Homepage services as a typographic editorial index (01–05) — no photography.
+// Each service is a full-width row on a strict grid: a large faded index
+// numeral, the service name in Fraunces, a one-line value proposition, and an
+// arrow that steps out on hover. Hairline rules divide the rows. This replaces
+// the previous photo-card grid; the card presentation still lives on /services.
 export default function HomeServices() {
   const t = useTranslations("homeServices");
   const ts = useTranslations("services");
@@ -25,18 +16,15 @@ export default function HomeServices() {
   return (
     <div className="container-wide">
       <div className="flex items-end justify-between flex-wrap gap-6">
-        <div className="max-w-xl">
+        <div className="max-w-2xl">
           <p className="text-sm font-medium uppercase tracking-[0.18em] text-brand-700">
             {t("eyebrow")}
           </p>
-          <h2 className="section-h2 mt-4 text-ink-900">
+          <h2 className="statement mt-5 text-ink-900">
             {t("heading1")}
             <br />
             {t("heading2")}
           </h2>
-          <p className="mt-5 text-base sm:text-lg text-ink-600 leading-relaxed">
-            {t("subhead")}
-          </p>
         </div>
         <Link
           href="/services"
@@ -46,44 +34,34 @@ export default function HomeServices() {
         </Link>
       </div>
 
-      {/* Uniform 2x2 grid — no vertical offset, moderate card height,
-          consistent title size that matches the industries cards. */}
-      <div className="mt-16 sm:mt-20 grid gap-6 sm:gap-8 sm:grid-cols-2">
-        {services.map((s, i) => {
-          const image = SERVICE_IMAGES[s.slug as keyof typeof SERVICE_IMAGES];
-          return (
-            <Reveal key={s.slug} delay={i * 0.06}>
-              <Link href={`/services/${s.slug}`} className="group block">
-                <div className={`relative aspect-[4/3] overflow-hidden rounded-2xl ${imageBg}`}>
-                  <Image
-                    src={unsplash(image.id, 1000)}
-                    alt={image.alt}
-                    fill
-                    sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 480px"
-                    className="object-cover photo-treat transition-transform duration-700 group-hover:scale-105"
-                  />
-                  <div
-                    aria-hidden
-                    className="absolute inset-0"
-                    style={{
-                      background:
-                        "linear-gradient(180deg, rgba(2,6,23,0.05) 0%, rgba(2,6,23,0.30) 55%, rgba(2,6,23,0.85) 100%)",
-                    }}
-                  />
-                  <div className="absolute inset-x-0 bottom-0 p-6 sm:p-7 text-white">
-                    <h3 className="font-display text-xl sm:text-2xl font-semibold tracking-tight leading-snug">
-                      {ts(`${s.slug}.title`)}
-                    </h3>
-                    <p className="mt-2 text-sm text-white/80 leading-relaxed max-w-md">
-                      {ts(`${s.slug}.summary`)}
-                    </p>
-                  </div>
+      <ul className="mt-14 sm:mt-20 border-t border-ink-200">
+        {services.map((s, i) => (
+          <Reveal key={s.slug} delay={i * 0.06}>
+            <li>
+              <Link
+                href={`/services/${s.slug}`}
+                className="group grid grid-cols-[auto_1fr_auto] items-baseline gap-x-6 sm:gap-x-10 border-b border-ink-200 py-7 sm:py-9 transition-colors"
+              >
+                <span className="index-num text-2xl sm:text-4xl text-ink-300 transition-colors group-hover:text-brand-500">
+                  {String(i + 1).padStart(2, "0")}
+                </span>
+                <div className="min-w-0">
+                  <h3 className="section-h2 text-ink-900 transition-colors group-hover:text-brand-700">
+                    {ts(`${s.slug}.title`)}
+                  </h3>
+                  <p className="mt-2 max-w-2xl text-base sm:text-lg text-ink-600 leading-relaxed">
+                    {ts(`${s.slug}.summary`)}
+                  </p>
                 </div>
+                <ArrowUpRight
+                  className="h-6 w-6 shrink-0 self-center text-ink-300 transition-all group-hover:text-brand-600 group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
+                  aria-hidden
+                />
               </Link>
-            </Reveal>
-          );
-        })}
-      </div>
+            </li>
+          </Reveal>
+        ))}
+      </ul>
     </div>
   );
 }

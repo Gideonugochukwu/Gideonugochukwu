@@ -45,8 +45,26 @@ export default function Testimonials() {
         </Link>
       </div>
 
-      <div className="mt-20 grid gap-x-12 gap-y-16 md:grid-cols-3">
-        {featured.map((t, i) => (
+      {/* Featured pull-quote — the strongest review, set large and editorial. */}
+      {featured[0] && (
+        <Reveal>
+          <figure className="mt-16 sm:mt-20 border-t border-ink-200 pt-10 sm:pt-14">
+            <blockquote className="statement max-w-4xl text-ink-900">
+              <span className="text-brand-500">“</span>
+              {featured[0].quote}
+              <span className="text-brand-500">”</span>
+            </blockquote>
+            <figcaption className="mt-8 flex items-center gap-4">
+              <Stars value={featured[0].rating} />
+              <ReviewAuthor review={featured[0]} />
+            </figcaption>
+          </figure>
+        </Reveal>
+      )}
+
+      {/* Two supporting quotes. */}
+      <div className="mt-16 grid gap-x-16 gap-y-14 border-t border-ink-200 pt-12 md:grid-cols-2">
+        {featured.slice(1, 3).map((t, i) => (
           <Reveal key={`${t.name}-${i}`} delay={i * 0.06}>
             <figure className="flex flex-col h-full">
               <blockquote className="font-display text-xl md:text-2xl leading-snug tracking-tight text-ink-900">
