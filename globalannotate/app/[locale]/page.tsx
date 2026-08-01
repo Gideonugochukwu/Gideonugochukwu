@@ -8,6 +8,7 @@ import JsonLd from "@/components/JsonLd";
 import HomeServices from "@/components/home/HomeServices";
 import HomeMarketReady from "@/components/home/HomeMarketReady";
 import HomeMethod from "@/components/home/HomeMethod";
+import HomeTrust from "@/components/home/HomeTrust";
 import HomeFAQ from "@/components/home/HomeFAQ";
 import { faqSchema } from "@/lib/schema";
 
@@ -57,9 +58,13 @@ export default function HomePage() {
         <HomeMarketReady />
       </section>
 
-      {/* Stats — borderless horizontal band, sits in the rhythm break */}
+      {/* Proof — the numbers and the quality safeguards behind them, together
+          as one credibility block. */}
       <section className="py-16 sm:py-20 md:py-24">
         <StatStrip />
+        <div className="mt-16 sm:mt-20 md:mt-24">
+          <HomeTrust />
+        </div>
       </section>
 
       {/* Industries — 6 uniform cards including Gaming */}

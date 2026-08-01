@@ -35,14 +35,22 @@ export default function StatStrip() {
   const stats = STATS[locale] ?? STATS.en;
   return (
     <div className="container-wide">
-      <div className="grid grid-cols-2 md:grid-cols-4 gap-y-12 gap-x-8 md:gap-x-12">
+      <div className="max-w-xl">
+        <p className="text-sm font-medium uppercase tracking-[0.18em] text-brand-700">
+          {t("eyebrow")}
+        </p>
+        <p className="mt-4 text-base sm:text-lg text-ink-600 leading-relaxed">
+          {t("note")}
+        </p>
+      </div>
+      <div className="mt-12 grid grid-cols-2 md:grid-cols-4 gap-y-12 gap-x-8 md:gap-x-12">
         {stats.map((s, i) => (
           <Reveal key={s.key} delay={i * 0.05}>
             <div className="flex flex-col">
               <div className="display-num text-3xl sm:text-4xl">
                 <CountUp value={s.value} suffix={s.suffix} />
               </div>
-              <div className="mt-2 text-xs sm:text-sm text-ink-500 tracking-wide">
+              <div className="mt-2 text-xs sm:text-sm text-ink-600 tracking-wide">
                 {t(s.key)}
               </div>
             </div>

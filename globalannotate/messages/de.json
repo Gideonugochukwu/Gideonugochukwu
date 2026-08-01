@@ -65,19 +65,39 @@
     "languages": "Unterstützte Sprachen",
     "dataPoints": "Annotierte Datenpunkte",
     "countries": "Bediente Länder",
-    "satisfaction": "Kundenzufriedenheit"
+    "satisfaction": "Kundenzufriedenheit",
+    "eyebrow": "In Zahlen",
+    "note": "Ein Einblick in die Arbeit unserer muttersprachlichen Fachleute in über 30 Ländern."
   },
   "industries": {
     "eyebrow": "Branchen, die wir bedienen",
     "heading": "Entwickelt für internationale Teams in jeder Branche.",
     "cta": "Ihre Branche fehlt? Sprechen Sie uns an",
     "items": {
-      "technology": { "name": "Technologie und SaaS", "line": "Bringen Sie Produkte und Dokumentation in jeden Markt — ohne die Entwicklung auszubremsen." },
-      "ecommerce": { "name": "E-Commerce", "line": "Lokalisierte Produkt-, Anzeigen- und Checkout-Erlebnisse, die konvertieren." },
-      "healthcare": { "name": "Gesundheitswesen und Life Sciences", "line": "Zertifizierte, auditsichere Übersetzungen und patientensichere Inhalte." },
-      "ai": { "name": "KI und maschinelles Lernen", "line": "Produktionsreife Trainingsdaten, auf die sich Ihre Modelle verlassen können." },
-      "gaming": { "name": "Gaming und Interactive", "line": "UI, Dialoge, Sprecherskripte und LQA — für Studios, die international wachsen." },
-      "media": { "name": "Medien und Unterhaltung", "line": "Untertitelung, Synchronisation und Metadaten im Streaming-Maßstab." }
+      "technology": {
+        "name": "Technologie und SaaS",
+        "line": "Bringen Sie Produkte und Dokumentation in jeden Markt — ohne die Entwicklung auszubremsen."
+      },
+      "ecommerce": {
+        "name": "E-Commerce",
+        "line": "Lokalisierte Produkt-, Anzeigen- und Checkout-Erlebnisse, die konvertieren."
+      },
+      "healthcare": {
+        "name": "Gesundheitswesen und Life Sciences",
+        "line": "Zertifizierte, auditsichere Übersetzungen und patientensichere Inhalte."
+      },
+      "ai": {
+        "name": "KI und maschinelles Lernen",
+        "line": "Produktionsreife Trainingsdaten, auf die sich Ihre Modelle verlassen können."
+      },
+      "gaming": {
+        "name": "Gaming und Interactive",
+        "line": "UI, Dialoge, Sprecherskripte und LQA — für Studios, die international wachsen."
+      },
+      "media": {
+        "name": "Medien und Unterhaltung",
+        "line": "Untertitelung, Synchronisation und Metadaten im Streaming-Maßstab."
+      }
     }
   },
   "marketready": {
@@ -96,18 +116,42 @@
     "heading2": "Geschwindigkeit, auf die Sie sich verlassen können.",
     "intro": "Muttersprachliche Linguisten, spezialisierte Annotatoren, SEO-Strategen und Wachstumsmarketer — unter einem Qualitätssystem, mit einer erfahrenen Projektleitung.",
     "promises": {
-      "quality": { "title": "Qualität, die Sie überprüfen können", "body": "Jedes Projekt wird mit einem QA-Bericht und einem Korrekturzeitraum geliefert." },
-      "global": { "title": "Wirklich globale Abdeckung", "body": "Muttersprachliche Spezialisten in über 100 Sprachen und 30+ Märkten." },
-      "ailed": { "title": "KI-gestützt, von Menschen geführt", "body": "Intelligente Automatisierung, fachliche Kontrolle. Tempo ohne Kompromisse." },
-      "senior": { "title": "Erfahrung statt reinem Vertrieb", "body": "Eine erfahrene Projektleitung ab dem ersten Tag. Keine Übergaben." }
+      "quality": {
+        "title": "Qualität, die Sie überprüfen können",
+        "body": "Jedes Projekt wird mit einem QA-Bericht und einem Korrekturzeitraum geliefert."
+      },
+      "global": {
+        "title": "Wirklich globale Abdeckung",
+        "body": "Muttersprachliche Spezialisten in über 100 Sprachen und 30+ Märkten."
+      },
+      "ailed": {
+        "title": "KI-gestützt, von Menschen geführt",
+        "body": "Intelligente Automatisierung, fachliche Kontrolle. Tempo ohne Kompromisse."
+      },
+      "senior": {
+        "title": "Erfahrung statt reinem Vertrieb",
+        "body": "Eine erfahrene Projektleitung ab dem ersten Tag. Keine Übergaben."
+      }
     },
     "howEyebrow": "So funktioniert es",
     "howHeading": "Von der ersten Anfrage bis zur finalen Lieferung.",
     "steps": {
-      "discovery": { "title": "Erstgespräch", "body": "Wir lernen Ihre Ziele, Ihre Zielgruppe und Ihre Rahmenbedingungen kennen." },
-      "proposal": { "title": "Maßgeschneidertes Angebot", "body": "Klarer Umfang, Zeitplan und Preise innerhalb von 24–48 Stunden." },
-      "production": { "title": "Produktion und Qualitätssicherung", "body": "Spezialisten setzen um. Unser Qualitätsteam prüft jedes Ergebnis." },
-      "delivery": { "title": "Lieferung und Wachstum", "body": "Ausgereifte Ergebnisse, mit Iteration im Zuge Ihres Wachstums." }
+      "discovery": {
+        "title": "Erstgespräch",
+        "body": "Wir lernen Ihre Ziele, Ihre Zielgruppe und Ihre Rahmenbedingungen kennen."
+      },
+      "proposal": {
+        "title": "Maßgeschneidertes Angebot",
+        "body": "Klarer Umfang, Zeitplan und Preise innerhalb von 24–48 Stunden."
+      },
+      "production": {
+        "title": "Produktion und Qualitätssicherung",
+        "body": "Spezialisten setzen um. Unser Qualitätsteam prüft jedes Ergebnis."
+      },
+      "delivery": {
+        "title": "Lieferung und Wachstum",
+        "body": "Ausgereifte Ergebnisse, mit Iteration im Zuge Ihres Wachstums."
+      }
     }
   },
   "testimonials": {
@@ -256,5 +300,14 @@
       "title": "Werden Sie Teil unseres Linguisten-Netzwerks",
       "description": "Werden Sie Teil des GlobalAnnotate-Netzwerks aus Übersetzern, Lokalisierern, Annotatoren und Sprechertalenten."
     }
+  },
+  "trust": {
+    "eyebrow": "So sichern wir Qualität",
+    "nativeTitle": "Muttersprachliche Prüfung",
+    "nativeBody": "Jedes Sprachergebnis wird vor der Lieferung von einer muttersprachlichen Fachkraft geprüft.",
+    "aiTitle": "Kalibrierte KI-Daten",
+    "aiBody": "Gold-Set-Kalibrierung und Inter-Annotator-Übereinstimmung in jedem Annotationsprojekt.",
+    "replyTitle": "Antwort in einem Werktag",
+    "replyBody": "Jede Anfrage wird innerhalb eines Werktags beantwortet, mit einem Angebot in 24–48 Stunden."
   }
 }

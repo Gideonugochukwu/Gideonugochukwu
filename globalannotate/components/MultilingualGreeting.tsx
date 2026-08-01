@@ -55,7 +55,7 @@ export default function MultilingualGreeting() {
             animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
             exit={reduce ? undefined : { opacity: 0, y: -20, filter: "blur(6px)" }}
             transition={{ duration: 0.55, ease: [0.22, 1, 0.36, 1] }}
-            className="inline-block text-gradient-light"
+            className="inline-block text-brand-200"
           >
             {current.word}
           </motion.span>
