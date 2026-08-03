@@ -289,7 +289,7 @@ export default async function BlogPostPage({
 
       {related.length > 0 && (
         <Section className="bg-card border-y border-ink-200/70">
-          <h2 className="text-2xl md:text-3xl font-semibold tracking-tight">
+          <h2 className="section-h2 text-ink-900">
             {t("keepReading")}
           </h2>
           <div className="mt-8 grid gap-6 md:grid-cols-2">
