@@ -6,6 +6,7 @@ import Section from "@/components/Section";
 import Reveal from "@/components/Reveal";
 import JsonLd from "@/components/JsonLd";
 import CTABand from "@/components/CTABand";
+import Breadcrumbs from "@/components/Breadcrumbs";
 import { cases, getCase, allCaseSlugs } from "@/data/portfolio";
 import { imageBg, unsplash, portfolioHeroSlides } from "@/lib/images";
 import HeroSlideshow from "@/components/HeroSlideshow";
@@ -113,6 +114,15 @@ export default async function CaseStudyPage({
         />
 
         <div className="container-wide relative pt-16 sm:pt-20 md:pt-24 pb-20 sm:pb-24 md:pb-28">
+          <Breadcrumbs
+            items={[
+              { name: "Home", href: "/" },
+              { name: "Portfolio", href: "/portfolio" },
+              { name: c.title, href: `/portfolio/${c.slug}` },
+            ]}
+            tone="dark"
+            className="mb-5"
+          />
           <Link
             href="/portfolio"
             className="inline-flex items-center gap-1.5 text-sm font-semibold text-white/85 hover:text-white transition"

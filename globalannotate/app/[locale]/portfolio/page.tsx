@@ -35,6 +35,10 @@ export default function PortfolioPage() {
 
       <PageHero
         eyebrow="Portfolio"
+        breadcrumbs={[
+          { name: "Home", href: "/" },
+          { name: "Portfolio", href: "/portfolio" },
+        ]}
         title={
           <>
             Real teams.{" "}

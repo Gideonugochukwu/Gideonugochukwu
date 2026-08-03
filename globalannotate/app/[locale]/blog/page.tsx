@@ -59,6 +59,10 @@ export default async function BlogIndex({
       />
       <PageHero
         eyebrow="Insights"
+        breadcrumbs={[
+          { name: "Home", href: "/" },
+          { name: "Blog", href: "/blog" },
+        ]}
         title="Field notes from the global team."
         subtitle="Practical guides on AI data, localization, and international SEO — written by the people doing the work."
         slides={servicesHeroSlides}

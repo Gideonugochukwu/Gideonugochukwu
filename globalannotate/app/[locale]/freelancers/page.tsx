@@ -57,6 +57,10 @@ export default function FreelancersPage() {
       />
       <PageHero
         eyebrow="Join Our Network"
+        breadcrumbs={[
+          { name: "Home", href: "/" },
+          { name: "Join Our Network", href: "/freelancers" },
+        ]}
         title="Join the GlobalAnnotate Network"
         subtitle="We're building a network of professional translators, localizers, annotators and voiceover talent — especially native speakers of underserved African and Asian languages. Apply below and we'll reach out when projects match your skills."
         slides={aboutHeroSlides}

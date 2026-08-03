@@ -5,6 +5,9 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
+    "postbuild": "node scripts/indexnow-ping.mjs",
+    "indexnow": "node scripts/indexnow-ping.mjs",
+    "og-image": "node scripts/generate-og-image.mjs",
     "start": "next start",
     "lint": "eslint"
   },

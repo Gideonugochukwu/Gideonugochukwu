@@ -4,6 +4,7 @@ import { Link } from "@/i18n/navigation";
 import { motion, useReducedMotion } from "framer-motion";
 import { ArrowRight } from "lucide-react";
 import HeroSlideshow from "./HeroSlideshow";
+import Breadcrumbs, { type Crumb } from "./Breadcrumbs";
 
 type Slide = { id: string; alt: string };
 
@@ -29,8 +30,13 @@ export default function PageHero({
   backgroundExtra,
   post,
   solidBackground = false,
+  breadcrumbs,
 }: {
   eyebrow?: string;
+  // Optional breadcrumb trail rendered at the top of the hero content, over
+  // the navy background (dark tone). Sits below the navbar, above the hero
+  // headline. The matching BreadcrumbList JSON-LD is emitted by the page.
+  breadcrumbs?: Crumb[];
   pre?: React.ReactNode;
   title: React.ReactNode;
   subtitle?: React.ReactNode;
@@ -91,6 +97,17 @@ export default function PageHero({
         }`}
       >
         <div className="max-w-4xl">
+          {breadcrumbs && breadcrumbs.length > 0 && (
+            <motion.div
+              initial={reduce ? false : { opacity: 0, y: 6 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5 }}
+              className="pointer-events-auto mb-5"
+            >
+              <Breadcrumbs items={breadcrumbs} tone="dark" />
+            </motion.div>
+          )}
+
           {eyebrow && (
             <motion.p
               initial={reduce ? false : { opacity: 0, y: 8 }}

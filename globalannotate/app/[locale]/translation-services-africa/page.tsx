@@ -6,6 +6,7 @@ import PageHero from "@/components/PageHero";
 import CTABand from "@/components/CTABand";
 import JsonLd from "@/components/JsonLd";
 import { site } from "@/lib/site";
+import { ogImages, OG_IMAGE_URL } from "@/lib/i18n-meta";
 import { servicesHeroSlides } from "@/lib/images";
 import {
   breadcrumbSchema,
@@ -30,8 +31,14 @@ export const metadata: Metadata = {
     description: DESCRIPTION,
     url: URL,
     type: "website",
+    images: ogImages(),
   },
-  twitter: { card: "summary_large_image", title: TITLE, description: DESCRIPTION },
+  twitter: {
+    card: "summary_large_image",
+    title: TITLE,
+    description: DESCRIPTION,
+    images: [OG_IMAGE_URL],
+  },
 };
 
 const GAP = [
@@ -122,6 +129,10 @@ export default function AfricaPage() {
 
       <PageHero
         eyebrow="Translation Services · Africa"
+        breadcrumbs={[
+          { name: "Home", href: "/" },
+          { name: "African Language Translation Services", href: "/translation-services-africa" },
+        ]}
         title="African Languages. Native Speakers. Market-Ready Content."
         subtitle="The translation company built for Africa's languages — from Wolof to Zulu, Hausa to Amharic. Every project includes MarketReady™ cultural validation."
         ctas={[
