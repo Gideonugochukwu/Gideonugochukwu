@@ -91,6 +91,80 @@ export function serviceSchema({
   };
 }
 
+// ItemList — the schema structure AI systems parse and cite most easily.
+// Used by /languages to enumerate every language we cover as ordered
+// ListItems. `url` (optional) anchors the list to the page it lives on.
+export function itemListSchema({
+  name,
+  description,
+  url,
+  items,
+}: {
+  name: string;
+  description?: string;
+  url?: string;
+  items: string[];
+}) {
+  return {
+    "@context": "https://schema.org",
+    "@type": "ItemList",
+    name,
+    ...(description ? { description } : {}),
+    ...(url ? { url } : {}),
+    numberOfItems: items.length,
+    itemListElement: items.map((item, i) => ({
+      "@type": "ListItem",
+      position: i + 1,
+      name: item,
+    })),
+  };
+}
+
+// LocalBusiness — used by the geo landing pages (/translation-services-nigeria)
+// so local search and AI systems associate GlobalAnnotate with a physical
+// place and service area. Telephone is intentionally omitted until a real,
+// published number exists; email carries the contact signal instead.
+export function localBusinessSchema({
+  name = site.name,
+  description,
+  url = site.url,
+  email = site.email,
+  addressLocality,
+  addressRegion,
+  addressCountry,
+  areaServed,
+  serviceType,
+}: {
+  name?: string;
+  description: string;
+  url?: string;
+  email?: string;
+  addressLocality: string;
+  addressRegion?: string;
+  addressCountry: string;
+  areaServed: string | string[];
+  serviceType: string | string[];
+}) {
+  return {
+    "@context": "https://schema.org",
+    "@type": "LocalBusiness",
+    name,
+    description,
+    url,
+    email,
+    logo: site.logo,
+    image: site.logo,
+    address: {
+      "@type": "PostalAddress",
+      addressLocality,
+      ...(addressRegion ? { addressRegion } : {}),
+      addressCountry,
+    },
+    areaServed,
+    serviceType,
+  };
+}
+
 export function faqSchema(items: { q: string; a: string }[]) {
   return {
     "@context": "https://schema.org",

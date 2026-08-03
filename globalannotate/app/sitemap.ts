@@ -35,6 +35,9 @@ export default function sitemap(): MetadataRoute.Sitemap {
   }[] = [
     { path: "", priority: 1.0, changeFrequency: "weekly", lastModified: fallback },
     { path: "/services", priority: 0.9, changeFrequency: "monthly", lastModified: fallback },
+    { path: "/languages", priority: 0.9, changeFrequency: "monthly", lastModified: fallback },
+    { path: "/translation-services-nigeria", priority: 0.9, changeFrequency: "monthly", lastModified: fallback },
+    { path: "/translation-services-africa", priority: 0.9, changeFrequency: "monthly", lastModified: fallback },
     { path: "/services/marketready", priority: 0.9, changeFrequency: "monthly", lastModified: fallback },
     { path: "/portfolio", priority: 0.85, changeFrequency: "monthly", lastModified: fallback },
     { path: "/reviews", priority: 0.7, changeFrequency: "monthly", lastModified: fallback },

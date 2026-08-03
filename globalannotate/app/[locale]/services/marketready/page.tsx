@@ -146,6 +146,32 @@ const FAQ_ITEMS = [
   },
 ];
 
+// FAQPage JSON-LD content — the canonical, GEO-optimized Q&A surfaced to
+// search engines and AI systems. Kept distinct from the visible `FAQ_ITEMS`
+// above (which drives the on-page accordion) so page content stays unchanged.
+const SCHEMA_FAQ = [
+  {
+    q: "What is MarketReady™?",
+    a: "MarketReady is GlobalAnnotate's proprietary pre-launch cultural validation process. Before delivery, 3-5 real native users in the target market review translated content and confirm it works.",
+  },
+  {
+    q: "How is MarketReady different from proofreading?",
+    a: "Proofreading checks linguistic accuracy. MarketReady tests whether the content works with real people — evaluating naturalness, cultural appropriateness, tone, clarity, and sensitivity.",
+  },
+  {
+    q: "How long does MarketReady add to project timelines?",
+    a: "Typically 24-48 hours for the validation panel, depending on language and content type.",
+  },
+  {
+    q: "Can I use MarketReady on content translated by another agency?",
+    a: "Yes. MarketReady can validate any translated content, regardless of who translated it.",
+  },
+  {
+    q: "What languages can GlobalAnnotate validate?",
+    a: "All 100+ languages we cover, with particular depth in African languages where cultural nuance is highest and qualified validators are hardest to find.",
+  },
+];
+
 export default function MarketReadyPage() {
   const url = `${site.url}/services/marketready`;
   const heroSlides = [
@@ -167,7 +193,7 @@ export default function MarketReadyPage() {
             areaServed: "Worldwide",
             serviceType: "Pre-launch cultural validation",
           }),
-          faqSchema(FAQ_ITEMS),
+          faqSchema(SCHEMA_FAQ),
           breadcrumbSchema([
             { name: "Home", url: site.url },
             { name: "Services", url: `${site.url}/services` },

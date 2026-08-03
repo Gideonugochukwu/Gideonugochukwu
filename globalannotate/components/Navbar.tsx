@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from "react";
 import { Menu, X, ArrowRight } from "lucide-react";
-import { useTranslations, useLocale } from "next-intl";
+import { useTranslations } from "next-intl";
 import { Link, usePathname } from "@/i18n/navigation";
 import Logo from "./Logo";
 import ThemeToggle from "./ThemeToggle";
@@ -15,6 +15,7 @@ import { cn } from "@/lib/utils";
 const NAV_KEY: Record<string, string> = {
   "/": "home",
   "/services": "services",
+  "/languages": "languages",
   "/services/marketready": "marketready",
   "/portfolio": "portfolio",
   "/blog": "blog",
@@ -25,7 +26,6 @@ const NAV_KEY: Record<string, string> = {
 
 export default function Navbar() {
   const t = useTranslations();
-  const locale = useLocale();
   const pathname = usePathname();
   const [open, setOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
@@ -46,14 +46,13 @@ export default function Navbar() {
   const label = (href: string) =>
     NAV_KEY[href] ? t(`nav.${NAV_KEY[href]}`) : href;
 
-  // The header CTA was removed, so the desktop bar is just eight nav items +
-  // theme toggle + language switcher. English/Chinese fit from `lg`; German
-  // labels ("Netzwerk beitreten") are wider and only fit from `xl`, so `de`
-  // holds the horizontal bar until `xl` and uses the hamburger below that.
-  // Verified with screenshots at 1024/1280/1440/1920 for all three locales.
-  const wide = locale === "de";
-  const barShow = wide ? "hidden xl:flex" : "hidden lg:flex";
-  const barHide = wide ? "xl:hidden" : "lg:hidden";
+  // The header CTA was removed, so the desktop bar is nine nav items (incl.
+  // Languages + MarketReady™) + theme toggle + language switcher. The
+  // container caps at 1240px, so all nine items only clear the controls from
+  // `xl` up — below that the hamburger takes over for every locale (including
+  // the wider German labels like "Netzwerk beitreten").
+  const barShow = "hidden xl:flex";
+  const barHide = "xl:hidden";
 
   return (
     <header

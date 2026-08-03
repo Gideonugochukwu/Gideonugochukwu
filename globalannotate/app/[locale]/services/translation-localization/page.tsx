@@ -45,6 +45,32 @@ const FAQ = [
   },
 ];
 
+// FAQPage JSON-LD content — the canonical, GEO-optimized Q&A surfaced to
+// search engines and AI systems. Kept distinct from the visible `FAQ` above
+// (which drives the on-page accordion) so the page content stays unchanged.
+const SCHEMA_FAQ = [
+  {
+    q: "What languages does GlobalAnnotate translate?",
+    a: "We translate in 100+ languages including specialist African languages like Hausa, Yoruba, Igbo, Wolof, Amharic, Swahili, Somali, and Zulu, plus all major European and Asian language pairs.",
+  },
+  {
+    q: "What is the difference between translation and localization?",
+    a: "Translation converts text from one language to another. Localization adapts the content for a specific market — adjusting cultural references, formats, currencies, and tone so it feels native to the target audience.",
+  },
+  {
+    q: "How long does a translation project take?",
+    a: "Timelines depend on volume, language pair, and complexity. Standard projects (up to 5,000 words) typically take 3-5 business days. Large projects are scoped individually.",
+  },
+  {
+    q: "What quality assurance process do you use?",
+    a: "Every project includes native-speaker translation, independent native review, terminology management, automated QA (Xbench), and a documented QA report. Projects also include MarketReady™ cultural validation.",
+  },
+  {
+    q: "Do you offer certified translation?",
+    a: "Yes. We provide certified translations for legal, immigration, academic, and official documents.",
+  },
+];
+
 export default function Page() {
   const url = `${site.url}/services/translation-localization`;
   return (
@@ -56,7 +82,7 @@ export default function Page() {
             description: DESCRIPTION,
             url,
           }),
-          faqSchema(FAQ),
+          faqSchema(SCHEMA_FAQ),
           breadcrumbSchema([
             { name: "Home", url: site.url },
             { name: "Services", url: `${site.url}/services` },
