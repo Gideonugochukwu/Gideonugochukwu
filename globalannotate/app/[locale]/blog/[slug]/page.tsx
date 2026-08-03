@@ -6,6 +6,7 @@ import { Link } from "@/i18n/navigation";
 import Section from "@/components/Section";
 import CTABand from "@/components/CTABand";
 import JsonLd from "@/components/JsonLd";
+import Breadcrumbs from "@/components/Breadcrumbs";
 import { posts, getPost, allSlugs } from "@/data/blog";
 import { relatedCasesForService } from "@/data/portfolio";
 import { imageBg, unsplash } from "@/lib/images";
@@ -137,6 +138,15 @@ export default async function BlogPostPage({
 
       <Section className="pt-12">
         <div className="max-w-3xl">
+          <Breadcrumbs
+            items={[
+              { name: "Home", href: "/" },
+              { name: "Blog", href: "/blog" },
+              { name: post.title, href: `/blog/${post.slug}` },
+            ]}
+            tone="light"
+            className="mb-6"
+          />
           <Link
             href="/blog"
             className="inline-flex items-center gap-1.5 text-sm font-semibold text-brand-700 hover:text-brand-900"

@@ -8,6 +8,7 @@ import JsonLd from "@/components/JsonLd";
 import ReviewAuthor from "@/components/ReviewAuthor";
 import { reviews, authorDisplay } from "@/data/reviews";
 import { site } from "@/lib/site";
+import { ogImages, OG_IMAGE_URL } from "@/lib/i18n-meta";
 import { breadcrumbSchema, reviewListingSchema } from "@/lib/schema";
 import PageHero from "@/components/PageHero";
 import { portfolioHeroSlides } from "@/lib/images";
@@ -25,8 +26,14 @@ export const metadata: Metadata = {
     description: DESCRIPTION,
     url: `${site.url}/reviews`,
     type: "website",
+    images: ogImages(),
   },
-  twitter: { card: "summary_large_image", title: TITLE, description: DESCRIPTION },
+  twitter: {
+    card: "summary_large_image",
+    title: TITLE,
+    description: DESCRIPTION,
+    images: [OG_IMAGE_URL],
+  },
 };
 
 function average(arr: { rating: number }[]) {
@@ -56,6 +63,10 @@ export default function ReviewsPage() {
       />
       <PageHero
         eyebrow="Client Reviews"
+        breadcrumbs={[
+          { name: "Home", href: "/" },
+          { name: "Reviews", href: "/reviews" },
+        ]}
         title="Trusted by global teams."
         subtitle="What clients say after working with us."
         slides={portfolioHeroSlides}

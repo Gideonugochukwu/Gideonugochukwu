@@ -50,6 +50,10 @@ export default function ServicesPage() {
 
       <PageHero
         eyebrow="Services"
+        breadcrumbs={[
+          { name: "Home", href: "/" },
+          { name: "Services", href: "/services" },
+        ]}
         title={
           <>
             One toolkit. <span className="text-gradient-light">Every market.</span>

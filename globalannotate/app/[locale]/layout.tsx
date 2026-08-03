@@ -11,7 +11,7 @@ import JsonLd from "@/components/JsonLd";
 import { site } from "@/lib/site";
 import { organizationSchema, websiteSchema } from "@/lib/schema";
 import { routing } from "@/i18n/routing";
-import { hreflangAlternates, OG_LOCALE, ogAlternateLocales, HTML_LANG } from "@/lib/i18n-meta";
+import { hreflangAlternates, OG_LOCALE, ogAlternateLocales, HTML_LANG, ogImages, OG_IMAGE_URL } from "@/lib/i18n-meta";
 
 const body = Plus_Jakarta_Sans({
   variable: "--font-body",
@@ -86,11 +86,13 @@ export async function generateMetadata({
       locale: OG_LOCALE[locale] ?? "en_US",
       alternateLocale: ogAlternateLocales(locale),
       type: "website",
+      images: ogImages(),
     },
     twitter: {
       card: "summary_large_image",
       title: t("home.title"),
       description: t("home.description"),
+      images: [OG_IMAGE_URL],
     },
     icons: {
       icon: [{ url: "/favicon.ico", sizes: "any" }],

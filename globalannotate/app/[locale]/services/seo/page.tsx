@@ -3,6 +3,7 @@ import ServicePage from "@/components/ServicePage";
 import JsonLd from "@/components/JsonLd";
 import { img } from "@/lib/images";
 import { site } from "@/lib/site";
+import { ogImages, OG_IMAGE_URL } from "@/lib/i18n-meta";
 import { serviceSchema, faqSchema, breadcrumbSchema } from "@/lib/schema";
 
 const TITLE = "SEO & Search Visibility — Multilingual & International SEO";
@@ -18,11 +19,13 @@ export const metadata: Metadata = {
     description: DESCRIPTION,
     url: `${site.url}/services/seo`,
     type: "website",
+    images: ogImages(),
   },
   twitter: {
     card: "summary_large_image",
     title: TITLE,
     description: DESCRIPTION,
+    images: [OG_IMAGE_URL],
   },
 };
 

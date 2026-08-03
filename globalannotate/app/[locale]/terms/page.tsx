@@ -1,9 +1,10 @@
 import type { Metadata } from "next";
 import { setRequestLocale, getTranslations } from "next-intl/server";
-import { hreflangAlternates } from "@/lib/i18n-meta";
+import { hreflangAlternates, ogImages, OG_IMAGE_URL } from "@/lib/i18n-meta";
 import Link from "next/link";
 import Section from "@/components/Section";
 import JsonLd from "@/components/JsonLd";
+import Breadcrumbs from "@/components/Breadcrumbs";
 import { site } from "@/lib/site";
 import { breadcrumbSchema } from "@/lib/schema";
 
@@ -26,8 +27,14 @@ export async function generateMetadata({
       description: DESCRIPTION,
       url: `${site.url}/terms`,
       type: "article",
+      images: ogImages(),
     },
-    twitter: { card: "summary", title: TITLE, description: DESCRIPTION },
+    twitter: {
+      card: "summary_large_image",
+      title: TITLE,
+      description: DESCRIPTION,
+      images: [OG_IMAGE_URL],
+    },
   };
 }
 
@@ -49,6 +56,14 @@ export default async function TermsPage({
       />
       <Section className="pt-16 pb-24">
         <div className="max-w-3xl">
+          <Breadcrumbs
+            items={[
+              { name: "Home", href: "/" },
+              { name: "Terms of Service", href: "/terms" },
+            ]}
+            tone="light"
+            className="mb-6"
+          />
           <span className="badge">Legal</span>
           <h1 className="page-h1 mt-5">Terms of Service</h1>
           <p className="mt-4 text-sm text-ink-500">Last updated: January 2026</p>

@@ -6,6 +6,7 @@ import PageHero from "@/components/PageHero";
 import CTABand from "@/components/CTABand";
 import JsonLd from "@/components/JsonLd";
 import { site } from "@/lib/site";
+import { ogImages, OG_IMAGE_URL } from "@/lib/i18n-meta";
 import { servicesHeroSlides } from "@/lib/images";
 import {
   breadcrumbSchema,
@@ -36,8 +37,14 @@ export const metadata: Metadata = {
     description: DESCRIPTION,
     url: URL,
     type: "website",
+    images: ogImages(),
   },
-  twitter: { card: "summary_large_image", title: TITLE, description: DESCRIPTION },
+  twitter: {
+    card: "summary_large_image",
+    title: TITLE,
+    description: DESCRIPTION,
+    images: [OG_IMAGE_URL],
+  },
 };
 
 const FAQ = [
@@ -93,6 +100,10 @@ export default function LanguagesPage() {
 
       <PageHero
         eyebrow="Languages"
+        breadcrumbs={[
+          { name: "Home", href: "/" },
+          { name: "Languages", href: "/languages" },
+        ]}
         title="100+ Languages. One Team."
         subtitle="Translation, localization, AI data annotation, and MarketReady™ cultural validation — in every language your business needs."
         ctas={[
