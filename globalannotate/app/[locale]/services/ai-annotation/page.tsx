@@ -45,6 +45,32 @@ const FAQ = [
   },
 ];
 
+// FAQPage JSON-LD content — the canonical, GEO-optimized Q&A surfaced to
+// search engines and AI systems. Kept distinct from the visible `FAQ` above
+// (which drives the on-page accordion) so the page content stays unchanged.
+const SCHEMA_FAQ = [
+  {
+    q: "What is AI data annotation?",
+    a: "AI data annotation is the process of labeling data (text, images, audio, video) so machine learning models can learn from it. This includes tasks like sentiment labeling, named entity recognition, image classification, and speech transcription.",
+  },
+  {
+    q: "What languages can you annotate in?",
+    a: "We provide annotation in 100+ languages with native speakers, including African languages like Hausa, Yoruba, Amharic, and Swahili that most annotation vendors cannot cover.",
+  },
+  {
+    q: "What quality standards do you use for annotation?",
+    a: "We use gold-set calibration, inter-annotator agreement (IAA) measurement, and documented QA reporting on every project.",
+  },
+  {
+    q: "What types of annotation do you support?",
+    a: "Text classification, sentiment analysis, NER, intent detection, RLHF preference pairs, safety evaluation, image labeling, audio transcription, and speech evaluation.",
+  },
+  {
+    q: "What is your minimum project size?",
+    a: "We handle projects from 500 data points to 100,000+. Contact us with your specific requirements for a custom quote.",
+  },
+];
+
 export default function Page() {
   const url = `${site.url}/services/ai-annotation`;
   return (
@@ -56,7 +82,7 @@ export default function Page() {
             description: DESCRIPTION,
             url,
           }),
-          faqSchema(FAQ),
+          faqSchema(SCHEMA_FAQ),
           breadcrumbSchema([
             { name: "Home", url: site.url },
             { name: "Services", url: `${site.url}/services` },

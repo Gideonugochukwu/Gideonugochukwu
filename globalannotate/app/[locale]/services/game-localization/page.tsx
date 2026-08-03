@@ -146,6 +146,32 @@ const TIERS = [
   },
 ];
 
+// FAQPage JSON-LD content — the canonical, GEO-optimized Q&A surfaced to
+// search engines and AI systems. Kept distinct from the visible `FAQ` above
+// (which drives the on-page accordion) so the page content stays unchanged.
+const SCHEMA_FAQ = [
+  {
+    q: "What game localization services do you offer?",
+    a: "UI string localization, narrative dialogue translation, subtitling, voiceover script adaptation, store listing optimization, ASO, and linguistic quality assurance (LQA) testing on real builds.",
+  },
+  {
+    q: "What languages do you localize games into?",
+    a: "All major gaming markets plus African languages — giving studios access to the fastest-growing mobile gaming market in the world.",
+  },
+  {
+    q: "Do you test localization on actual game builds?",
+    a: "Yes. We perform LQA testing on real builds to catch truncation, overlap, context errors, and formatting issues before ship.",
+  },
+  {
+    q: "Can you handle culturally sensitive content in games?",
+    a: "Absolutely. Every game localization project can include MarketReady™ cultural validation where real native gamers in the target market confirm the localization feels natural.",
+  },
+  {
+    q: "What file formats do you work with?",
+    a: "JSON, XML, CSV, XLIFF, PO, XLSX, custom formats, and direct integration with major game engines.",
+  },
+];
+
 export default function Page() {
   const url = `${site.url}/services/game-localization`;
   return (
@@ -158,7 +184,7 @@ export default function Page() {
             url,
             areaServed: "Worldwide",
           }),
-          faqSchema(FAQ),
+          faqSchema(SCHEMA_FAQ),
           breadcrumbSchema([
             { name: "Home", url: site.url },
             { name: "Services", url: `${site.url}/services` },

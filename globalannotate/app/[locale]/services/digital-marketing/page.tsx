@@ -45,6 +45,32 @@ const FAQ = [
   },
 ];
 
+// FAQPage JSON-LD content — the canonical, GEO-optimized Q&A surfaced to
+// search engines and AI systems. Kept distinct from the visible `FAQ` above
+// (which drives the on-page accordion) so the page content stays unchanged.
+const SCHEMA_FAQ = [
+  {
+    q: "What digital marketing services do you offer?",
+    a: "Meta Ads (Facebook/Instagram), Google Ads, LinkedIn Ads, social media management, content marketing, and multilingual campaign management across 100+ languages.",
+  },
+  {
+    q: "Can you run ad campaigns in languages other than English?",
+    a: "Yes. We create native-language ad campaigns — not translated English campaigns — with culturally adapted creative, copy, and targeting for each market.",
+  },
+  {
+    q: "What platforms do you manage ads on?",
+    a: "Facebook, Instagram, LinkedIn, Google (Search, Display, YouTube, Shopping, Performance Max), TikTok, and Telegram.",
+  },
+  {
+    q: "What results have you achieved?",
+    a: "4x blended ROAS for DTC brands, +540% LinkedIn follower growth, +180% inbound leads, and +212% non-domestic revenue through localized marketing.",
+  },
+  {
+    q: "Do you offer social media management?",
+    a: "Yes. Full social media management including strategy, content creation, scheduling, community management, and monthly reporting across Instagram, Facebook, LinkedIn, TikTok, and X.",
+  },
+];
+
 export default function Page() {
   const url = `${site.url}/services/digital-marketing`;
   return (
@@ -56,7 +82,7 @@ export default function Page() {
             description: DESCRIPTION,
             url,
           }),
-          faqSchema(FAQ),
+          faqSchema(SCHEMA_FAQ),
           breadcrumbSchema([
             { name: "Home", url: site.url },
             { name: "Services", url: `${site.url}/services` },

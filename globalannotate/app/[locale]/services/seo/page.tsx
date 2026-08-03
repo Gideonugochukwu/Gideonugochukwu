@@ -148,6 +148,32 @@ const TIERS = [
   },
 ];
 
+// FAQPage JSON-LD content — the canonical, GEO-optimized Q&A surfaced to
+// search engines and AI systems. Kept distinct from the visible `FAQ` above
+// (which drives the on-page accordion) so the page content stays unchanged.
+const SCHEMA_FAQ = [
+  {
+    q: "What is multilingual SEO?",
+    a: "Multilingual SEO optimizes your website to rank in search engines across multiple languages and markets — using native-language keyword research, not translated English keywords.",
+  },
+  {
+    q: "How is multilingual SEO different from regular SEO?",
+    a: "Regular SEO targets one language. Multilingual SEO requires per-market keyword research, hreflang implementation, international site architecture, and content that ranks naturally in each target language.",
+  },
+  {
+    q: "What languages do you provide SEO services in?",
+    a: "We provide multilingual SEO in 100+ languages with native-speaker keyword research and content optimization.",
+  },
+  {
+    q: "Do you offer local SEO?",
+    a: "Yes. We optimize Google Business Profile, local directories, and location-specific content for your target markets.",
+  },
+  {
+    q: "How long does multilingual SEO take to show results?",
+    a: "Typically 3-6 months for organic ranking improvements, depending on competition, domain authority, and content quality.",
+  },
+];
+
 export default function Page() {
   const url = `${site.url}/services/seo`;
   return (
@@ -160,7 +186,7 @@ export default function Page() {
             url,
             areaServed: "Worldwide",
           }),
-          faqSchema(FAQ),
+          faqSchema(SCHEMA_FAQ),
           breadcrumbSchema([
             { name: "Home", url: site.url },
             { name: "Services", url: `${site.url}/services` },

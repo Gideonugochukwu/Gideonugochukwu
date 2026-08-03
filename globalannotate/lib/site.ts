@@ -51,6 +51,7 @@ export const founder = {
 export const nav: { href: string; label: string; badge?: boolean }[] = [
   { href: "/", label: "Home" },
   { href: "/services", label: "Services" },
+  { href: "/languages", label: "Languages" },
   { href: "/services/marketready", label: "MarketReady™", badge: true },
   { href: "/portfolio", label: "Portfolio" },
   { href: "/blog", label: "Blog" },
