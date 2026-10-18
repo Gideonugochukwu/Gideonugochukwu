@@ -202,7 +202,7 @@
     "servicesHeading": "Services",
     "companyHeading": "Company",
     "followHeading": "Follow",
-    "legalHeading": "Legal",
+    "legalHeading": "Legal & trust",
     "about": "About",
     "portfolio": "Portfolio",
     "reviews": "Reviews",
@@ -212,7 +212,12 @@
     "privacy": "Privacy Policy",
     "terms": "Terms of Service",
     "foundedBy": "Founded by",
-    "rights": "All rights reserved."
+    "rights": "All rights reserved.",
+    "industries": "Industries",
+    "procurement": "Working with us",
+    "security": "Security & Confidentiality",
+    "quality": "Quality",
+    "cookies": "Cookie settings"
   },
   "contact": {
     "eyebrow": "Get in touch",
@@ -254,7 +259,10 @@
       "errDetails": "Tell us a little more — at least 20 characters",
       "errNoEndpoint": "Form endpoint not configured yet. Add NEXT_PUBLIC_FORMSPREE_QUOTE_ENDPOINT to .env.local.",
       "toastSuccess": "Thanks — your request was sent. We'll reply within 1 business day.",
-      "toastError": "Something went wrong. Please try again or email us directly."
+      "toastError": "Something went wrong. Please try again or email us directly.",
+      "consentAgree": "I agree to the <link>Privacy Policy</link> and to GlobalAnnotate contacting me about this enquiry.",
+      "confidential": "Your project details are handled confidentially and shared only with the team working on your request.",
+      "errConsent": "Please accept the Privacy Policy to continue."
     }
   },
   "blog": {

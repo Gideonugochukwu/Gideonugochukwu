@@ -202,7 +202,7 @@
     "servicesHeading": "Leistungen",
     "companyHeading": "Unternehmen",
     "followHeading": "Folgen",
-    "legalHeading": "Rechtliches",
+    "legalHeading": "Recht & Vertrauen",
     "about": "Über uns",
     "portfolio": "Referenzen",
     "reviews": "Kundenbewertungen",
@@ -212,7 +212,12 @@
     "privacy": "Datenschutzerklärung",
     "terms": "Nutzungsbedingungen",
     "foundedBy": "Gegründet von",
-    "rights": "Alle Rechte vorbehalten."
+    "rights": "Alle Rechte vorbehalten.",
+    "industries": "Branchen",
+    "procurement": "Zusammenarbeit",
+    "security": "Sicherheit & Vertraulichkeit",
+    "quality": "Qualität",
+    "cookies": "Cookie-Einstellungen"
   },
   "contact": {
     "eyebrow": "Kontakt aufnehmen",
@@ -254,7 +259,10 @@
       "errDetails": "Bitte erzählen Sie uns etwas mehr — mindestens 20 Zeichen",
       "errNoEndpoint": "Formular-Endpunkt noch nicht konfiguriert. Fügen Sie NEXT_PUBLIC_FORMSPREE_QUOTE_ENDPOINT in .env.local hinzu.",
       "toastSuccess": "Vielen Dank — Ihre Anfrage wurde gesendet. Wir antworten innerhalb eines Werktages.",
-      "toastError": "Etwas ist schiefgelaufen. Bitte versuchen Sie es erneut oder schreiben Sie uns direkt."
+      "toastError": "Etwas ist schiefgelaufen. Bitte versuchen Sie es erneut oder schreiben Sie uns direkt.",
+      "consentAgree": "Ich stimme der <link>Datenschutzerklärung</link> zu und bin damit einverstanden, dass GlobalAnnotate mich zu dieser Anfrage kontaktiert.",
+      "confidential": "Ihre Projektdaten werden vertraulich behandelt und nur mit dem Team geteilt, das an Ihrer Anfrage arbeitet.",
+      "errConsent": "Bitte akzeptieren Sie die Datenschutzerklärung, um fortzufahren."
     }
   },
   "blog": {

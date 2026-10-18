@@ -6,6 +6,7 @@ import { setRequestLocale, getMessages, getTranslations } from "next-intl/server
 import "../globals.css";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
+import CookieConsent from "@/components/CookieConsent";
 import { ToastProvider } from "@/components/Toast";
 import JsonLd from "@/components/JsonLd";
 import { site } from "@/lib/site";
@@ -148,6 +149,7 @@ export default async function LocaleLayout({
             <Navbar />
             <main className="flex-1">{children}</main>
             <Footer />
+            <CookieConsent />
           </ToastProvider>
         </NextIntlClientProvider>
       </body>

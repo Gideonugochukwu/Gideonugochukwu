@@ -202,7 +202,7 @@
     "servicesHeading": "服务",
     "companyHeading": "公司",
     "followHeading": "关注我们",
-    "legalHeading": "法律条款",
+    "legalHeading": "法律与信任",
     "about": "关于我们",
     "portfolio": "案例",
     "reviews": "客户评价",
@@ -212,7 +212,12 @@
     "privacy": "隐私政策",
     "terms": "服务条款",
     "foundedBy": "创始人：",
-    "rights": "版权所有。"
+    "rights": "版权所有。",
+    "industries": "行业",
+    "procurement": "与我们合作",
+    "security": "安全与保密",
+    "quality": "质量",
+    "cookies": "Cookie 设置"
   },
   "contact": {
     "eyebrow": "与我们联系",
@@ -254,7 +259,10 @@
       "errDetails": "请再多描述一些——至少20个字符",
       "errNoEndpoint": "表单端点尚未配置。请在.env.local中添加NEXT_PUBLIC_FORMSPREE_QUOTE_ENDPOINT。",
       "toastSuccess": "感谢您——您的请求已发送，我们将在一个工作日内回复。",
-      "toastError": "出现问题，请重试或直接给我们发送邮件。"
+      "toastError": "出现问题，请重试或直接给我们发送邮件。",
+      "consentAgree": "我同意<link>隐私政策</link>，并同意 GlobalAnnotate 就此咨询与我联系。",
+      "confidential": "您的项目信息将被保密处理，仅与处理您请求的团队共享。",
+      "errConsent": "请接受隐私政策以继续。"
     }
   },
   "blog": {

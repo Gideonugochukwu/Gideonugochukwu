@@ -2,6 +2,7 @@ import { Mail } from "lucide-react";
 import { useTranslations } from "next-intl";
 import { Link } from "@/i18n/navigation";
 import Logo from "./Logo";
+import CookieSettingsButton from "./CookieSettingsButton";
 import { services, site, activeSocialLinks, founder } from "@/lib/site";
 import { SOCIAL_META } from "./SocialIcons";
 
@@ -50,6 +51,8 @@ export default function Footer() {
           <h4 className="text-sm font-semibold text-ink-900">{t("companyHeading")}</h4>
           <ul className="mt-4 space-y-2.5">
             <li><Link href="/about" className="text-sm text-ink-600 hover:text-brand-700 transition">{t("about")}</Link></li>
+            <li><Link href="/industries" className="text-sm text-ink-600 hover:text-brand-700 transition">{t("industries")}</Link></li>
+            <li><Link href="/procurement" className="text-sm text-ink-600 hover:text-brand-700 transition">{t("procurement")}</Link></li>
             <li><Link href="/portfolio" className="text-sm text-ink-600 hover:text-brand-700 transition">{t("portfolio")}</Link></li>
             <li><Link href="/reviews" className="text-sm text-ink-600 hover:text-brand-700 transition">{t("reviews")}</Link></li>
             <li><Link href="/blog" className="text-sm text-ink-600 hover:text-brand-700 transition">{t("blog")}</Link></li>
@@ -86,6 +89,11 @@ export default function Footer() {
           <ul className="mt-4 space-y-2.5">
             <li><Link href="/privacy" className="text-sm text-ink-600 hover:text-brand-700 transition">{t("privacy")}</Link></li>
             <li><Link href="/terms" className="text-sm text-ink-600 hover:text-brand-700 transition">{t("terms")}</Link></li>
+            <li><Link href="/security" className="text-sm text-ink-600 hover:text-brand-700 transition">{t("security")}</Link></li>
+            <li><Link href="/quality" className="text-sm text-ink-600 hover:text-brand-700 transition">{t("quality")}</Link></li>
+            <li>
+              <CookieSettingsButton className="text-sm text-ink-600 hover:text-brand-700 transition text-left" label={t("cookies")} />
+            </li>
           </ul>
         </div>
       </div>

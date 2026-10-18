@@ -190,6 +190,29 @@ export function breadcrumbSchema(crumbs: Crumb[]) {
   };
 }
 
+// WebPage schema for standalone informational pages (legal, security,
+// quality, procurement). Ties the page to the publishing Organization so the
+// page and org graphs corroborate each other.
+export function webPageSchema({
+  name,
+  description,
+  url,
+}: {
+  name: string;
+  description: string;
+  url: string;
+}) {
+  return {
+    "@context": "https://schema.org",
+    "@type": "WebPage",
+    name,
+    description,
+    url,
+    isPartOf: { "@type": "WebSite", name: site.name, url: site.url },
+    publisher: { "@type": "Organization", name: site.name, url: site.url },
+  };
+}
+
 export function articleSchema({
   title,
   description,
