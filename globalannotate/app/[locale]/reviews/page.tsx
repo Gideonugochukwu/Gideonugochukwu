@@ -6,10 +6,10 @@ import ReviewForm from "@/components/ReviewForm";
 import Reveal from "@/components/Reveal";
 import JsonLd from "@/components/JsonLd";
 import ReviewAuthor from "@/components/ReviewAuthor";
-import { reviews, authorDisplay } from "@/data/reviews";
+import { reviews } from "@/data/reviews";
 import { site } from "@/lib/site";
 import { ogImages, OG_IMAGE_URL } from "@/lib/i18n-meta";
-import { breadcrumbSchema, reviewListingSchema } from "@/lib/schema";
+import { breadcrumbSchema } from "@/lib/schema";
 import PageHero from "@/components/PageHero";
 import { portfolioHeroSlides } from "@/lib/images";
 
@@ -43,23 +43,18 @@ function average(arr: { rating: number }[]) {
 
 export default function ReviewsPage() {
   const avg = average(reviews);
-  const schemaReviews = reviews.map((r) => ({
-    schemaAuthor: authorDisplay(r).schemaAuthor,
-    rating: r.rating,
-    quote: r.quote,
-    date: r.date,
-  }));
 
   return (
     <>
+      {/* Review/AggregateRating structured data was intentionally removed:
+          Google doesn't surface self-serving reviews of an organization on
+          its own site, and the previous markup nested an illegal
+          `itemReviewed` field. The reviews remain visible on the page below. */}
       <JsonLd
-        data={[
-          reviewListingSchema({ itemName: site.name, reviews: schemaReviews }),
-          breadcrumbSchema([
-            { name: "Home", url: site.url },
-            { name: "Reviews", url: `${site.url}/reviews` },
-          ]),
-        ]}
+        data={breadcrumbSchema([
+          { name: "Home", url: site.url },
+          { name: "Reviews", url: `${site.url}/reviews` },
+        ])}
       />
       <PageHero
         eyebrow="Client Reviews"
