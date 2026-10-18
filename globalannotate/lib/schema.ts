@@ -43,11 +43,23 @@ export function organizationSchema() {
     email: site.email,
     description: site.description,
     founder: personSchemaShort(),
-    // Company socials plus the founder's profiles (personal LinkedIn, ProZ)
-    // so the org and person graphs corroborate each other. Deduplicated —
-    // the two lists overlap on the company pages.
+    contactPoint: {
+      "@type": "ContactPoint",
+      contactType: "customer support",
+      email: site.email,
+      areaServed: "Worldwide",
+      availableLanguage: ["English", "German", "Chinese"],
+    },
+    // Company socials, the founder's profiles (personal LinkedIn, ProZ), and
+    // the GlobalAnnotate Wikidata entity so the org and person graphs are
+    // corroborated by independent sources. Deduplicated — the lists overlap
+    // on the company pages.
     sameAs: Array.from(
-      new Set([...activeSocialLinks().map((s) => s.href), ...founder.sameAs])
+      new Set([
+        ...activeSocialLinks().map((s) => s.href),
+        ...founder.sameAs,
+        "https://www.wikidata.org/wiki/Q140775742",
+      ])
     ),
   };
 }
@@ -255,49 +267,11 @@ export function articleSchema({
   };
 }
 
-// Generic review shape accepted by reviewListingSchema. Mirrors the public
-// display: schemaAuthor follows the review's displayMode so JSON-LD never
-// leaks a name the visible page is hiding.
-type SchemaReview = {
-  schemaAuthor: string;
-  rating: number;
-  quote: string;
-  date: string;
-};
-
-export function reviewListingSchema({
-  itemName,
-  reviews,
-}: {
-  itemName: string;
-  reviews: SchemaReview[];
-}) {
-  const avg =
-    reviews.reduce((sum, r) => sum + r.rating, 0) / Math.max(reviews.length, 1);
-  return {
-    "@context": "https://schema.org",
-    "@type": "Organization",
-    name: site.name,
-    url: site.url,
-    aggregateRating: {
-      "@type": "AggregateRating",
-      ratingValue: avg.toFixed(2),
-      reviewCount: reviews.length,
-      bestRating: "5",
-      worstRating: "1",
-    },
-    review: reviews.map((r) => ({
-      "@type": "Review",
-      author: { "@type": "Person", name: r.schemaAuthor },
-      datePublished: r.date,
-      reviewBody: r.quote,
-      itemReviewed: { "@type": "Organization", name: itemName },
-      reviewRating: {
-        "@type": "Rating",
-        ratingValue: r.rating,
-        bestRating: "5",
-        worstRating: "1",
-      },
-    })),
-  };
-}
+// NOTE: reviewListingSchema was removed intentionally. It emitted an
+// Organization with aggregateRating + review[] for GlobalAnnotate's own
+// reviews. Google does not show self-serving reviews of an Organization on
+// its own site, and each nested Review illegally carried an `itemReviewed`
+// field (a nested review may not reference what it reviews — the parent is
+// already the reviewed item), which triggered a Search Console
+// "Review snippets" error. The reviews still render visibly on /reviews;
+// only the invalid, policy-disallowed structured data was dropped.
