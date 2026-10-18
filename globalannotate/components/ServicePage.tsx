@@ -58,6 +58,11 @@ export default function ServicePage({
         eyebrow={eyebrow}
         title={title}
         subtitle={intro}
+        breadcrumbs={[
+          { name: "Home", href: "/" },
+          { name: "Services", href: "/services" },
+          { name: eyebrow, href: `/services/${serviceSlug}` },
+        ]}
         ctas={[
           { label: "Talk to an expert", href: "/contact" },
           { label: "All services", href: "/services", variant: "ghost" },

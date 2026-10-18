@@ -5,6 +5,20 @@ import { getTranslations } from "next-intl/server";
 // links across en / de / zh. English lives at the root; de/zh are prefixed.
 const BASE = "https://globalannotate.com";
 
+// Default Open Graph / Twitter share image (1200×630). Lives in /public and
+// shows the GlobalAnnotate wordmark on the brand navy. Used as the fallback
+// share image site-wide; blog posts and case studies override it with their
+// own featured image.
+export const OG_IMAGE_URL = `${BASE}/og-image.png`;
+export const OG_IMAGE_ALT =
+  "GlobalAnnotate — Precision Across Languages. Intelligence Across Data. Growth Across Markets.";
+
+// The Open Graph `images` array. Pass a custom URL (e.g. a blog hero) to
+// override the default; `alt` describes it for accessibility + link previews.
+export function ogImages(url: string = OG_IMAGE_URL, alt: string = OG_IMAGE_ALT) {
+  return [{ url, width: 1200, height: 630, alt }];
+}
+
 export function localePath(locale: string, path = ""): string {
   const p = path && !path.startsWith("/") ? `/${path}` : path;
   return locale === "en" ? `${BASE}${p}` : `${BASE}/${locale}${p}`;
@@ -77,7 +91,13 @@ export async function buildMetadata({
       locale: OG_LOCALE[locale] ?? "en_US",
       alternateLocale: ogAlternateLocales(locale),
       type: "website",
+      images: ogImages(),
     },
-    twitter: { card: "summary_large_image", title, description },
+    twitter: {
+      card: "summary_large_image",
+      title,
+      description,
+      images: [OG_IMAGE_URL],
+    },
   };
 }

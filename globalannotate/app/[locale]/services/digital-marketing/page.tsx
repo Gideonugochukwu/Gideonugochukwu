@@ -3,6 +3,7 @@ import ServicePage from "@/components/ServicePage";
 import JsonLd from "@/components/JsonLd";
 import { img } from "@/lib/images";
 import { site } from "@/lib/site";
+import { ogImages, OG_IMAGE_URL } from "@/lib/i18n-meta";
 import { breadcrumbSchema, faqSchema, serviceSchema } from "@/lib/schema";
 
 const TITLE = "Digital Marketing — Meta Ads, Social & Content";
@@ -18,8 +19,14 @@ export const metadata: Metadata = {
     description: DESCRIPTION,
     url: `${site.url}/services/digital-marketing`,
     type: "website",
+    images: ogImages(),
   },
-  twitter: { card: "summary_large_image", title: TITLE, description: DESCRIPTION },
+  twitter: {
+    card: "summary_large_image",
+    title: TITLE,
+    description: DESCRIPTION,
+    images: [OG_IMAGE_URL],
+  },
 };
 
 const FAQ = [

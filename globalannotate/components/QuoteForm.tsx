@@ -6,6 +6,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
 import { Loader2, Send, CheckCircle2 } from "lucide-react";
 import { useTranslations } from "next-intl";
+import { Link } from "@/i18n/navigation";
 import { useToast } from "./Toast";
 import { services } from "@/lib/site";
 
@@ -17,6 +18,7 @@ type FormData = {
   details: string;
   budget?: string;
   timeline?: string;
+  consent: boolean;
 };
 
 // Service <option> values submitted to Formspree stay in English (stable
@@ -45,6 +47,7 @@ export default function QuoteForm() {
     details: z.string().min(20, t("errDetails")),
     budget: z.string().optional(),
     timeline: z.string().optional(),
+    consent: z.boolean().refine((v) => v === true, { message: t("errConsent") }),
   });
 
   const {
@@ -54,7 +57,7 @@ export default function QuoteForm() {
     formState: { errors, isSubmitting },
   } = useForm<FormData>({
     resolver: zodResolver(schema),
-    defaultValues: { service: "" },
+    defaultValues: { service: "", consent: false },
   });
 
   const endpoint = process.env.NEXT_PUBLIC_FORMSPREE_QUOTE_ENDPOINT;
@@ -184,8 +187,35 @@ export default function QuoteForm() {
         </Field>
       </div>
 
-      <div className="flex flex-col sm:flex-row items-center justify-between gap-3 pt-2">
-        <p className="text-xs text-ink-500">{t("consent")}</p>
+      <div className="pt-2">
+        <label className="flex items-start gap-3">
+          <input
+            type="checkbox"
+            {...register("consent")}
+            className="mt-1 h-4 w-4 rounded border-ink-300 text-brand-600 focus:ring-brand-500"
+          />
+          <span className="text-sm text-ink-600 leading-relaxed">
+            {t.rich("consentAgree", {
+              link: (chunks) => (
+                <Link
+                  href="/privacy"
+                  className="font-semibold text-brand-700 hover:text-brand-900 underline-offset-4 hover:underline"
+                >
+                  {chunks}
+                </Link>
+              ),
+            })}
+          </span>
+        </label>
+        {errors.consent && (
+          <span className="block mt-1.5 text-xs text-red-600">
+            {errors.consent.message}
+          </span>
+        )}
+        <p className="mt-3 text-xs text-ink-500">{t("confidential")}</p>
+      </div>
+
+      <div className="flex justify-end pt-2">
         <button
           type="submit"
           disabled={isSubmitting}

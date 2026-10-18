@@ -1,15 +1,24 @@
+/*
+ * ─────────────────────────────────────────────────────────────────────────
+ *  DRAFT prepared with AI. Needs legal review before relying on it.
+ *  (Internal note for the team — intentionally NOT rendered on the live page.)
+ * ─────────────────────────────────────────────────────────────────────────
+ */
 import type { Metadata } from "next";
 import { setRequestLocale, getTranslations } from "next-intl/server";
-import { hreflangAlternates } from "@/lib/i18n-meta";
+import { hreflangAlternates, ogImages, OG_IMAGE_URL } from "@/lib/i18n-meta";
 import Link from "next/link";
 import Section from "@/components/Section";
 import JsonLd from "@/components/JsonLd";
+import Breadcrumbs from "@/components/Breadcrumbs";
 import { site } from "@/lib/site";
-import { breadcrumbSchema } from "@/lib/schema";
+import { breadcrumbSchema, webPageSchema } from "@/lib/schema";
 
 const TITLE = "Terms of Service";
 const DESCRIPTION =
-  "The terms that govern your use of the GlobalAnnotate website and services.";
+  "The terms that govern use of the GlobalAnnotate website and our general service terms. Signed client contracts, MSAs, and SOWs take precedence.";
+
+const LAST_UPDATED = "18 October 2026";
 
 export async function generateMetadata({
   params,
@@ -26,8 +35,14 @@ export async function generateMetadata({
       description: DESCRIPTION,
       url: `${site.url}/terms`,
       type: "article",
+      images: ogImages(),
     },
-    twitter: { card: "summary", title: TITLE, description: DESCRIPTION },
+    twitter: {
+      card: "summary_large_image",
+      title: TITLE,
+      description: DESCRIPTION,
+      images: [OG_IMAGE_URL],
+    },
   };
 }
 
@@ -42,130 +57,221 @@ export default async function TermsPage({
   return (
     <>
       <JsonLd
-        data={breadcrumbSchema([
-          { name: "Home", url: site.url },
-          { name: "Terms of Service", url: `${site.url}/terms` },
-        ])}
+        data={[
+          webPageSchema({
+            name: `${TITLE} — ${site.name}`,
+            description: DESCRIPTION,
+            url: `${site.url}/terms`,
+          }),
+          breadcrumbSchema([
+            { name: "Home", url: site.url },
+            { name: "Terms of Service", url: `${site.url}/terms` },
+          ]),
+        ]}
       />
       <Section className="pt-16 pb-24">
         <div className="max-w-3xl">
+          <Breadcrumbs
+            items={[
+              { name: "Home", href: "/" },
+              { name: "Terms of Service", href: "/terms" },
+            ]}
+            tone="light"
+            className="mb-6"
+          />
           <span className="badge">Legal</span>
           <h1 className="page-h1 mt-5">Terms of Service</h1>
-          <p className="mt-4 text-sm text-ink-500">Last updated: January 2026</p>
-
-          <div className="mt-4 rounded-xl border border-brand-200 bg-brand-50 p-4 text-sm text-ink-700">
-            This page is a starting template, not legal advice. Have it reviewed by a
-            qualified lawyer in your jurisdiction before relying on it.
-          </div>
+          <p className="mt-4 text-sm text-ink-500">Last updated: {LAST_UPDATED}</p>
 
           {note && (
             <div className="mt-4 rounded-xl border border-ink-200 bg-ink-50 p-4 text-sm text-ink-600">
-              {note}
+              {note} The English version of these Terms is the governing version.
             </div>
           )}
 
           <div className="prose-section">
-            <h2>1. Agreement</h2>
             <p>
-              These Terms of Service (&ldquo;Terms&rdquo;) govern your access to and
-              use of the {site.name} website at{" "}
-              <Link href={site.url}>{site.domain}</Link> and any services you engage
-              us for. By using the site or our services, you agree to these Terms.
+              These Terms govern your use of the {site.name} website at{" "}
+              <Link href={site.url}>{site.domain}</Link> (the
+              &ldquo;Website&rdquo;) and set out our general terms for services.
+              By using the Website or engaging us, you agree to these Terms.
             </p>
 
-            <h2>2. Services</h2>
+            <h2>1. Precedence of signed contracts</h2>
             <p>
-              {site.name} provides translation & localization, AI annotation & data
-              labeling, multilingual SEO & search visibility, and digital marketing
-              services. Each engagement is governed by a separate written proposal
-              or statement of work that controls in case of conflict with these
-              Terms.
+              Where you have signed a separate agreement with us &mdash; such as
+              a Master Services Agreement (MSA), a Statement of Work (SOW), a
+              Data Processing Agreement (DPA), or a Non-Disclosure Agreement
+              (NDA) &mdash; <strong>that signed agreement takes precedence</strong>{" "}
+              over these Terms to the extent of any conflict. These Terms apply
+              where no signed agreement covers the point in question.
             </p>
 
-            <h2>3. Quotes and proposals</h2>
+            <h2>2. Use of the Website</h2>
             <p>
-              Quotes are valid for 30 days unless stated otherwise. Final scope,
-              timeline, and fees are confirmed in a signed proposal or statement of
-              work.
+              You may use the Website for lawful purposes only. You agree not to
+              misuse it, interfere with its operation or security, attempt
+              unauthorized access, scrape it at scale, or use it to infringe the
+              rights of others.
             </p>
 
-            <h2>4. Fees and payment</h2>
+            <h2>3. Intellectual property</h2>
             <p>
-              Invoices are due within 14 days of issue unless otherwise agreed. Late
-              payments may accrue interest at the lower of 1.5% per month or the
-              maximum rate permitted by law. Recurring engagements may require a
-              deposit or retainer.
+              The Website and its content &mdash; text, design, graphics, logos,
+              and the &ldquo;GlobalAnnotate&rdquo; and
+              &ldquo;MarketReady&trade;&rdquo; marks &mdash; are owned by{" "}
+              {site.name} or its licensors and are protected by intellectual
+              property laws. You may not copy, reproduce, or create derivative
+              works from the Website without our permission. Rights in
+              deliverables we produce for clients are addressed in section 6.
             </p>
 
-            <h2>5. Client responsibilities</h2>
+            <h2>4. Acceptable use</h2>
             <p>
-              You agree to provide accurate information, source files, access, and
-              timely feedback needed for us to deliver the work. Delays or missing
-              inputs may shift agreed timelines.
+              You agree not to submit unlawful content, malware, or content you
+              do not have the right to share, and not to use our services to
+              produce material that is unlawful or that infringes third-party
+              rights.
             </p>
 
-            <h2>6. Intellectual property</h2>
+            <h2>5. Quotes, purchase orders &amp; SOWs</h2>
             <p>
-              On full payment, you own the final deliverables produced specifically
-              for you. We retain ownership of our pre-existing methods, templates,
-              tools, and know-how. We may reference engagements in case studies in
-              anonymized form unless you opt out in writing.
+              Quotes we provide are estimates based on the scope, volume,
+              language pairs, and turnaround you describe, and are valid for the
+              period stated (or 30 days if none is stated). Work begins once you
+              accept a quote, issue a purchase order, or sign a SOW. The scope,
+              fees, and schedule in an accepted quote, PO, or SOW govern that
+              engagement.
             </p>
 
-            <h2>7. Confidentiality</h2>
+            <h2>6. Payment, revisions &amp; rights</h2>
+            <ul>
+              <li>
+                {/* TODO(Gideon): confirm standard payment terms (net days)
+                    and billing currency, and whether deposits apply. */}
+                <strong>Payment terms:</strong> invoices are payable within{" "}
+                <em>[net days — TODO]</em> of the invoice date, in{" "}
+                <em>[currency — TODO]</em>, unless a signed agreement or SOW
+                states otherwise. We may require a deposit for new clients or
+                large programs.
+              </li>
+              <li>
+                <strong>Revisions:</strong> each deliverable includes reasonable
+                revisions to correct work that does not meet the agreed brief or
+                specification.
+              </li>
+              <li>
+                <strong>Quality complaints window:</strong> please raise any
+                quality concern within{" "}
+                <em>[complaints window — TODO, e.g. 14 days]</em> of delivery so
+                we can investigate and, where a concern is valid, correct the
+                work at no additional cost.
+              </li>
+              <li>
+                <strong>Transfer of rights:</strong> on full payment of the
+                applicable fees, all intellectual property rights in the final
+                translated or localized deliverables transfer to you, except for
+                our pre-existing materials, tools, and any translation memories
+                or glossaries we retain to support future work (which we license
+                to you for your use).
+              </li>
+            </ul>
+
+            <h2>7. Client responsibility for final use</h2>
             <p>
-              Each party agrees to keep the other&rsquo;s confidential information
-              confidential and to use it only to perform under the engagement. We
-              are happy to sign mutual NDAs on request.
+              We deliver professional language and data services. However,{" "}
+              <strong>
+                you remain responsible for the final review, approval, and
+                regulatory and legal use of translated or localized content
+              </strong>{" "}
+              in your market &mdash; including compliance with medical,
+              regulatory, legal, labeling, and advertising requirements that
+              apply to you. Where required, you should arrange in-market legal
+              or regulatory review before publication or submission.
             </p>
 
-            <h2>8. Acceptable use of the website</h2>
+            <h2>8. Confidentiality</h2>
             <p>
-              You agree not to abuse, disrupt, or attempt to gain unauthorized access
-              to the site, and not to submit unlawful content via our forms.
+              We treat client materials as confidential, limit access on a
+              need-to-know basis, and bind our team and linguists to NDAs. See
+              our <Link href="/security">Security &amp; Confidentiality</Link>{" "}
+              page. Each party will protect the other&rsquo;s confidential
+              information and use it only to perform the engagement.
             </p>
 
-            <h2>9. Warranties and disclaimers</h2>
+            <h2>9. Limitation of liability</h2>
             <p>
-              We perform services with reasonable skill and care. The website and any
-              free resources are provided &ldquo;as is&rdquo; without warranties of
-              any kind to the fullest extent permitted by law.
+              To the maximum extent permitted by law, {site.name} is not liable
+              for indirect, incidental, special, or consequential damages, or for
+              loss of profits, revenue, or data. Our total aggregate liability
+              arising out of or relating to an engagement is limited to the fees
+              paid for the specific services giving rise to the claim. Nothing in
+              these Terms limits liability that cannot be limited by law.
             </p>
 
-            <h2>10. Limitation of liability</h2>
+            <h2>10. Warranties &amp; disclaimer</h2>
             <p>
-              To the maximum extent permitted by law, neither party will be liable
-              for indirect, incidental, consequential, or punitive damages. Each
-              party&rsquo;s total liability arising out of or related to an engagement
-              is capped at the fees paid for that engagement in the 12 months
-              preceding the claim.
+              We provide services with reasonable skill and care in line with our
+              quality process. Except as expressly stated, the Website and
+              services are provided &ldquo;as is&rdquo; without further
+              warranties of any kind.
             </p>
 
-            <h2>11. Termination</h2>
+            <h2>11. Force majeure</h2>
             <p>
-              Either party may terminate an engagement for material breach that
-              remains uncured after 15 days&rsquo; written notice. You will pay for
-              work completed up to the termination date.
+              Neither party is liable for delay or failure to perform caused by
+              events beyond its reasonable control, including natural disasters,
+              war, civil unrest, strikes, failures of utilities or
+              telecommunications, and government action.
             </p>
 
-            <h2>12. Governing law</h2>
+            <h2>12. Termination</h2>
             <p>
-              Unless otherwise agreed in a signed proposal, these Terms are governed
-              by the laws of England and Wales, without regard to conflict-of-laws
-              principles. Disputes are subject to the exclusive jurisdiction of the
-              courts of London, England.
+              Either party may terminate an engagement as set out in the
+              applicable SOW or agreement, or on reasonable written notice where
+              none applies. You remain responsible for fees for work performed
+              and non-cancellable commitments up to the effective date of
+              termination. Sections that by their nature should survive
+              (including confidentiality, IP, and limitation of liability)
+              survive termination.
             </p>
 
-            <h2>13. Changes</h2>
+            <h2>13. Freelancers &amp; vendors</h2>
             <p>
-              We may update these Terms from time to time. Material changes will be
-              announced on this page with a new &ldquo;last updated&rdquo; date.
+              If you apply through our{" "}
+              <Link href="/freelancers">linguist network</Link> or vendor
+              onboarding, you confirm that the information you provide is accurate
+              and that you have the right to share any samples or references.
+              Engaged linguists and vendors work under separate agreements and
+              NDAs that govern confidentiality, data handling, IP assignment, and
+              payment; those agreements take precedence over these Terms for that
+              relationship.
             </p>
 
-            <h2>14. Contact</h2>
+            <h2>14. Governing law</h2>
+            <p>
+              {/* TODO(Gideon): confirm governing law / jurisdiction; update to
+                  the Estonian EU entity once formed. Kept as a single editable
+                  clause for easy change. */}
+              These Terms are governed by the laws of the Federal Republic of
+              Nigeria, and the courts of Nigeria have jurisdiction, unless a
+              signed agreement specifies otherwise. <em>[Governing law — TODO; an
+              EU (Estonia) entity is planned and this clause will be updated
+              accordingly.]</em>
+            </p>
+
+            <h2>15. Changes to these Terms</h2>
+            <p>
+              We may update these Terms from time to time. The version published
+              on this page with the current &ldquo;Last updated&rdquo; date
+              applies to your use of the Website.
+            </p>
+
+            <h2>16. Contact</h2>
             <p>
               Questions about these Terms? Email{" "}
-              <a href={`mailto:${site.email}`}>{site.email}</a>.
+              <a href={`mailto:${site.email}`}>{site.email}</a> or use our{" "}
+              <Link href="/contact">contact page</Link>.
             </p>
           </div>
         </div>

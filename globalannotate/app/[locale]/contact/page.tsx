@@ -39,6 +39,10 @@ export default async function ContactPage({
       />
       <PageHero
         eyebrow={t("eyebrow")}
+        breadcrumbs={[
+          { name: "Home", href: "/" },
+          { name: "Contact", href: "/contact" },
+        ]}
         title={t("heading")}
         subtitle={t("subhead")}
         slides={aboutHeroSlides}

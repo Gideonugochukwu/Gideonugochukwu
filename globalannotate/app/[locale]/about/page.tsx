@@ -59,6 +59,10 @@ export default function AboutPage() {
       />
       <PageHero
         eyebrow="About GlobalAnnotate"
+        breadcrumbs={[
+          { name: "Home", href: "/" },
+          { name: "About", href: "/about" },
+        ]}
         title="The connective tissue for international growth."
         subtitle="One team for translation, AI training data, multilingual SEO, and marketing — with the rigor of a product company."
         slides={aboutHeroSlides}

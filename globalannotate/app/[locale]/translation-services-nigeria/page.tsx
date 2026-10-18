@@ -6,6 +6,7 @@ import PageHero from "@/components/PageHero";
 import CTABand from "@/components/CTABand";
 import JsonLd from "@/components/JsonLd";
 import { site } from "@/lib/site";
+import { ogImages, OG_IMAGE_URL } from "@/lib/i18n-meta";
 import { servicesHeroSlides } from "@/lib/images";
 import {
   breadcrumbSchema,
@@ -30,8 +31,14 @@ export const metadata: Metadata = {
     description: DESCRIPTION,
     url: URL,
     type: "website",
+    images: ogImages(),
   },
-  twitter: { card: "summary_large_image", title: TITLE, description: DESCRIPTION },
+  twitter: {
+    card: "summary_large_image",
+    title: TITLE,
+    description: DESCRIPTION,
+    images: [OG_IMAGE_URL],
+  },
 };
 
 const WHY = [
@@ -145,6 +152,10 @@ export default function NigeriaPage() {
 
       <PageHero
         eyebrow="Translation Services · Nigeria"
+        breadcrumbs={[
+          { name: "Home", href: "/" },
+          { name: "Translation Services in Nigeria", href: "/translation-services-nigeria" },
+        ]}
         title="Nigeria's Translation & Localization Partner"
         subtitle="Based in Ibadan. Serving the world. Native-quality translation in every Nigerian language — plus 100+ international language pairs."
         ctas={[

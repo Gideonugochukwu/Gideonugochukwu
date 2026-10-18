@@ -2,6 +2,7 @@
 
 import { useMemo, useState } from "react";
 import { Loader2, Send, CheckCircle2, Plus, X } from "lucide-react";
+import { Link } from "@/i18n/navigation";
 import { useToast } from "./Toast";
 import Combobox from "./Combobox";
 import { COUNTRIES } from "@/lib/countries";
@@ -589,7 +590,14 @@ export default function FreelancerForm() {
             <span className="text-sm text-ink-600 leading-relaxed">
               I agree to be contacted by GlobalAnnotate about freelance
               opportunities and to GlobalAnnotate storing the information
-              I&apos;ve provided. <span className="text-red-600">*</span>
+              I&apos;ve provided, as described in the{" "}
+              <Link
+                href="/privacy"
+                className="font-semibold text-brand-700 hover:text-brand-900 underline-offset-4 hover:underline"
+              >
+                Privacy Policy
+              </Link>
+              . <span className="text-red-600">*</span>
             </span>
           </label>
           {errors.consent && (
