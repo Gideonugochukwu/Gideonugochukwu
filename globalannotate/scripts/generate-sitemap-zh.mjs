@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 // Generates public/sitemap-zh.xml — every /zh URL with xhtml:link alternates
-// (en, de, zh-Hans, zh-CN, x-default). Runs before `next build` (prebuild)
+// (en, de, de-AT, de-CH, zh-Hans, zh-CN, x-default). Runs before `next build` (prebuild)
 // so the file always matches the routes and data being deployed.
 //
 // Slugs are read straight from the data files (services from lib/site.ts,
@@ -99,6 +99,8 @@ const body = entries
       : [
           ["en", url("en", e.path)],
           ["de", url("de", e.path)],
+          ["de-AT", url("de", e.path)],
+          ["de-CH", url("de", e.path)],
           ["zh-Hans", zh],
           ["zh-CN", zh],
           ["x-default", url("en", e.path)],

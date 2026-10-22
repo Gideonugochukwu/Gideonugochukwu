@@ -9,6 +9,8 @@ import JsonLd from "@/components/JsonLd";
 import Breadcrumbs from "@/components/Breadcrumbs";
 import { posts, getPost, getLocalizedPost, allSlugsAnyLocale } from "@/data/blog";
 import BlogPostZh from "@/components/zh/BlogPostZh";
+import BlogPostDe from "@/components/de/BlogPostDe";
+import { deMetadata, deTitle } from "@/lib/de";
 import { zhMetadata } from "@/lib/zh";
 import { relatedCasesForService } from "@/data/portfolio";
 import { imageBg, unsplash } from "@/lib/images";
@@ -50,7 +52,7 @@ const TAG_TO_SERVICE: Record<string, { slug: string; label: string }> = {
 };
 
 export function generateStaticParams() {
-  // Includes the zh-only articles; they 404 outside /zh (see below).
+  // Includes the zh-only and de-only articles; they 404 outside their locale.
   return allSlugsAnyLocale().map((slug) => ({ slug }));
 }
 
@@ -60,6 +62,20 @@ export async function generateMetadata({
   params: Promise<{ locale: string; slug: string }>;
 }): Promise<Metadata> {
   const { locale, slug } = await params;
+  if (locale === "de") {
+    const de = getLocalizedPost(slug, "de");
+    if (!de) return { title: "Beitrag nicht gefunden" };
+    return deMetadata({
+      path: `/blog/${de.slug}`,
+      title: deTitle(de.metaTitle ?? de.title),
+      description: de.description,
+      type: "article",
+      image: unsplash(de.heroImage.id, 1600),
+      imageAlt: de.heroImage.alt,
+      publishedTime: de.date,
+      deOnly: !getPost(slug),
+    });
+  }
   if (locale === "zh") {
     const zh = getLocalizedPost(slug, "zh");
     if (!zh) return { title: "未找到该文章" };
@@ -119,6 +135,11 @@ export default async function BlogPostPage({
 }) {
   const { locale, slug } = await params;
   setRequestLocale(locale);
+  if (locale === "de") {
+    const de = getLocalizedPost(slug, "de");
+    if (!de) notFound();
+    return <BlogPostDe post={de} />;
+  }
   if (locale === "zh") {
     const zh = getLocalizedPost(slug, "zh");
     if (!zh) notFound();

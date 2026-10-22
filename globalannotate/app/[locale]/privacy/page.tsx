@@ -14,6 +14,8 @@ import Breadcrumbs from "@/components/Breadcrumbs";
 import { site } from "@/lib/site";
 import { breadcrumbSchema, webPageSchema } from "@/lib/schema";
 import PrivacyZh, { ZH_META } from "@/components/zh/PrivacyZh";
+import PrivacyDe, { DE_META } from "@/components/de/PrivacyDe";
+import { deMetadata } from "@/lib/de";
 import { zhMetadata } from "@/lib/zh";
 
 const TITLE = "Privacy Policy";
@@ -32,6 +34,7 @@ export async function generateMetadata({
 }): Promise<Metadata> {
   const { locale } = await params;
   if (locale === "zh") return zhMetadata({ path: "/privacy", ...ZH_META });
+  if (locale === "de") return deMetadata({ path: "/privacy", ...DE_META });
   return {
     title: TITLE,
     description: DESCRIPTION,
@@ -60,6 +63,7 @@ export default async function PrivacyPage({
   const { locale } = await params;
   setRequestLocale(locale);
   if (locale === "zh") return <PrivacyZh />;
+  if (locale === "de") return <PrivacyDe />;
   const note = (await getTranslations())("legalNote");
   return (
     <>

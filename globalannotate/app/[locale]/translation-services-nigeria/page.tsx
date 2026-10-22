@@ -16,6 +16,8 @@ import {
 import { ArrowRight, Check } from "lucide-react";
 import { setRequestLocale } from "next-intl/server";
 import NigeriaZh, { ZH_META } from "@/components/zh/NigeriaZh";
+import NigeriaDe, { DE_META } from "@/components/de/NigeriaDe";
+import { deMetadata } from "@/lib/de";
 import { zhMetadata } from "@/lib/zh";
 
 const TITLE =
@@ -51,6 +53,7 @@ export async function generateMetadata({
 }): Promise<Metadata> {
   const { locale } = await params;
   if (locale === "zh") return zhMetadata({ path: "/translation-services-nigeria", ...ZH_META });
+  if (locale === "de") return deMetadata({ path: "/translation-services-nigeria", ...DE_META });
   return withHreflang(EN_METADATA, "/translation-services-nigeria");
 }
 
@@ -139,6 +142,7 @@ export default async function NigeriaPage({
   const { locale } = await params;
   setRequestLocale(locale);
   if (locale === "zh") return <NigeriaZh />;
+  if (locale === "de") return <NigeriaDe />;
   return (
     <>
       <JsonLd

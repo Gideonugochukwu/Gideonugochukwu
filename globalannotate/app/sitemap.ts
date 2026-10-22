@@ -3,17 +3,29 @@ import { site, services } from "@/lib/site";
 import { posts } from "@/data/blog";
 import { cases } from "@/data/portfolio";
 import { localePath } from "@/lib/i18n-meta";
+import { deOnlyPosts } from "@/data/blog.de";
 
 // hreflang alternates for a path, emitted as <xhtml:link> entries by Next.
-// English is canonical (root); de/zh are prefixed. zh uses the zh-Hans subtag.
+// English is canonical (root); de/zh are prefixed. zh uses the zh-Hans
+// subtag; Austria and Switzerland share the German version.
 function localeAlternates(path: string) {
+  const de = localePath("de", path);
   return {
     languages: {
       en: localePath("en", path),
-      de: localePath("de", path),
+      de,
+      "de-AT": de,
+      "de-CH": de,
       "zh-Hans": localePath("zh", path),
+      "x-default": localePath("en", path),
     },
   };
+}
+
+// Pages that exist only in German.
+function deOnlyAlternates(path: string) {
+  const de = localePath("de", path);
+  return { languages: { de, "de-AT": de, "de-CH": de } };
 }
 
 // Stable site-wide "last meaningfully updated" date. Used as a sensible
@@ -74,16 +86,44 @@ export default function sitemap(): MetadataRoute.Sitemap {
     lastModified: new Date(c.lastUpdated),
   }));
 
+  const shared = [...staticRoutes, ...serviceRoutes, ...blogRoutes, ...portfolioRoutes];
+
+  // German-only routes: DACH landing pages, Impressum, German articles.
+  const deOnlyRoutes = [
+    { path: "/uebersetzung-afrika", priority: 0.9, changeFrequency: "monthly" as const, lastModified: fallback },
+    { path: "/lokalisierung-spiele", priority: 0.9, changeFrequency: "monthly" as const, lastModified: fallback },
+    { path: "/impressum", priority: 0.3, changeFrequency: "yearly" as const, lastModified: fallback },
+    ...deOnlyPosts.map((p) => ({
+      path: `/blog/${p.slug}`,
+      priority: 0.75,
+      changeFrequency: "monthly" as const,
+      lastModified: new Date(p.date),
+    })),
+  ];
+
   return [
-    ...staticRoutes,
-    ...serviceRoutes,
-    ...blogRoutes,
-    ...portfolioRoutes,
-  ].map((r) => ({
-    url: `${site.url}${r.path}`,
-    lastModified: r.lastModified,
-    changeFrequency: r.changeFrequency,
-    priority: r.priority,
-    alternates: localeAlternates(r.path),
-  }));
+    // English (canonical) URLs.
+    ...shared.map((r) => ({
+      url: `${site.url}${r.path}`,
+      lastModified: r.lastModified,
+      changeFrequency: r.changeFrequency,
+      priority: r.priority,
+      alternates: localeAlternates(r.path),
+    })),
+    // Every /de URL, for Google.de / .at / .ch.
+    ...shared.map((r) => ({
+      url: localePath("de", r.path),
+      lastModified: r.lastModified,
+      changeFrequency: r.changeFrequency,
+      priority: r.priority,
+      alternates: localeAlternates(r.path),
+    })),
+    ...deOnlyRoutes.map((r) => ({
+      url: localePath("de", r.path),
+      lastModified: r.lastModified,
+      changeFrequency: r.changeFrequency,
+      priority: r.priority,
+      alternates: deOnlyAlternates(r.path),
+    })),
+  ];
 }

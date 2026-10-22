@@ -8,6 +8,7 @@ import Reveal from "./Reveal";
 import { ArrowRight, ArrowUpRight, Check, ShieldCheck } from "lucide-react";
 import { servicesHeroSlides, imageBg, unsplash } from "@/lib/images";
 import { zhSlides } from "@/lib/images.zh";
+import { deSlides } from "@/lib/images.de";
 import { useLocale, useTranslations } from "next-intl";
 import { relatedCasesForService, localizeCase } from "@/data/portfolio";
 
@@ -52,7 +53,12 @@ export default function ServicePage({
   const locale = useLocale();
   const slides = [
     { id: heroSlideId, alt: heroSlideAlt },
-    ...(locale === "zh" ? zhSlides(servicesHeroSlides) : servicesHeroSlides).filter(
+    ...(locale === "zh"
+      ? zhSlides(servicesHeroSlides)
+      : locale === "de"
+        ? deSlides(servicesHeroSlides)
+        : servicesHeroSlides
+    ).filter(
       (s) => s.id !== heroSlideId
     ),
   ];

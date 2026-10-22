@@ -13,6 +13,8 @@ import JsonLd from "@/components/JsonLd";
 import { site } from "@/lib/site";
 import { organizationSchema, websiteSchema } from "@/lib/schema";
 import { siteSchemasZh } from "@/lib/schema.zh";
+import { siteSchemasDe } from "@/lib/schema.de";
+import { deMetadata } from "@/lib/de";
 import { routing } from "@/i18n/routing";
 import { hreflangAlternates, OG_LOCALE, ogAlternateLocales, HTML_LANG, ogImages, OG_IMAGE_URL } from "@/lib/i18n-meta";
 
@@ -81,6 +83,18 @@ export async function generateMetadata({
 }): Promise<Metadata> {
   const { locale } = await params;
   const t = await getTranslations({ locale, namespace: "meta" });
+  if (locale === "de") {
+    return {
+      metadataBase: new URL(site.url),
+      ...deMetadata({ path: "", title: t("home.title"), description: t("home.description") }),
+      icons: {
+        icon: [{ url: "/favicon.ico", sizes: "any" }],
+        apple: "/apple-touch-icon.png",
+      },
+      robots: { index: true, follow: true },
+      verification: { google: "google6092810f1a80faed" },
+    };
+  }
 
   return {
     metadataBase: new URL(site.url),
@@ -169,7 +183,7 @@ export default async function LocaleLayout({
       <body className="min-h-screen flex flex-col text-ink-900">
         <NextIntlClientProvider messages={messages}>
           <JsonLd
-            data={isZh ? siteSchemasZh() : [organizationSchema(), websiteSchema()]}
+            data={isZh ? siteSchemasZh() : locale === "de" ? siteSchemasDe() : [organizationSchema(), websiteSchema()]}
           />
           {isZh && BAIDU_ANALYTICS_ID && <BaiduAnalytics id={BAIDU_ANALYTICS_ID} />}
           <ToastProvider>

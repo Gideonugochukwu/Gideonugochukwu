@@ -12,6 +12,8 @@ import { aboutHeroSlides } from "@/lib/images";
 import { buildMetadata } from "@/lib/i18n-meta";
 import { zhSlides } from "@/lib/images.zh";
 import { zhLd, ZH_HOME } from "@/lib/zh";
+import { deSlides } from "@/lib/images.de";
+import { deLd, DE_HOME } from "@/lib/de";
 
 export async function generateMetadata({
   params,
@@ -31,17 +33,19 @@ export default async function ContactPage({
   setRequestLocale(locale);
   const t = await getTranslations("contact");
   const isZh = locale === "zh";
-  // Chinese breadcrumb labels + JSON-LD (inLanguage zh-CN) for /zh/contact.
-  const crumbHome = isZh ? ZH_HOME : "Home";
-  const crumbContact = isZh ? "联系我们" : "Contact";
+  const isDe = locale === "de";
+  // Localized breadcrumb labels + JSON-LD (inLanguage) for /zh and /de.
+  const crumbHome = isZh ? ZH_HOME : isDe ? DE_HOME : "Home";
+  const crumbContact = isZh ? "联系我们" : isDe ? "Kontakt" : "Contact";
+  const prefix = isZh ? "/zh" : isDe ? "/de" : "";
   const ld = breadcrumbSchema([
-    { name: crumbHome, url: isZh ? `${site.url}/zh` : site.url },
-    { name: crumbContact, url: isZh ? `${site.url}/zh/contact` : `${site.url}/contact` },
+    { name: crumbHome, url: `${site.url}${prefix}` },
+    { name: crumbContact, url: `${site.url}${prefix}/contact` },
   ]);
 
   return (
     <>
-      <JsonLd data={isZh ? zhLd(ld) : ld} />
+      <JsonLd data={isZh ? zhLd(ld) : isDe ? deLd(ld) : ld} />
       <PageHero
         eyebrow={t("eyebrow")}
         breadcrumbs={[
@@ -50,7 +54,7 @@ export default async function ContactPage({
         ]}
         title={t("heading")}
         subtitle={t("subhead")}
-        slides={isZh ? zhSlides(aboutHeroSlides) : aboutHeroSlides}
+        slides={isZh ? zhSlides(aboutHeroSlides) : isDe ? deSlides(aboutHeroSlides) : aboutHeroSlides}
         size="compact"
       />
 

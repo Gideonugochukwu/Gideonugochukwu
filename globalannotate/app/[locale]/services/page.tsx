@@ -13,6 +13,7 @@ import { breadcrumbSchema } from "@/lib/schema";
 import { ArrowRight, Brain, Gamepad2, Languages, Megaphone, Search, ShieldCheck } from "lucide-react";
 import { setRequestLocale } from "next-intl/server";
 import ServicesZh from "@/components/zh/ServicesZh";
+import ServicesDe from "@/components/de/ServicesDe";
 
 
 // MarketReady is a distinct, proprietary service — surfaced here as a sixth
@@ -48,6 +49,7 @@ export default async function ServicesPage({
   const { locale } = await params;
   setRequestLocale(locale);
   if (locale === "zh") return <ServicesZh />;
+  if (locale === "de") return <ServicesDe />;
   return (
     <>
       <JsonLd

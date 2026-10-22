@@ -12,6 +12,8 @@ import { breadcrumbSchema, webPageSchema } from "@/lib/schema";
 import { ArrowRight, HeartPulse, Factory, Scale, Landmark, Cpu } from "lucide-react";
 import { setRequestLocale } from "next-intl/server";
 import IndustriesZh, { ZH_META } from "@/components/zh/IndustriesZh";
+import IndustriesDe, { DE_META } from "@/components/de/IndustriesDe";
+import { deMetadata } from "@/lib/de";
 import { zhMetadata } from "@/lib/zh";
 
 const TITLE =
@@ -47,6 +49,7 @@ export async function generateMetadata({
 }): Promise<Metadata> {
   const { locale } = await params;
   if (locale === "zh") return zhMetadata({ path: "/industries", ...ZH_META });
+  if (locale === "de") return deMetadata({ path: "/industries", ...DE_META });
   return withHreflang(EN_METADATA, "/industries");
 }
 
@@ -121,6 +124,7 @@ export default async function IndustriesPage({
   const { locale } = await params;
   setRequestLocale(locale);
   if (locale === "zh") return <IndustriesZh />;
+  if (locale === "de") return <IndustriesDe />;
   return (
     <>
       <JsonLd

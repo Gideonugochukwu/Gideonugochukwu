@@ -23,6 +23,7 @@ import {
 } from "lucide-react";
 import { setRequestLocale } from "next-intl/server";
 import MarketReadyZh from "@/components/zh/MarketReadyZh";
+import MarketReadyDe from "@/components/de/MarketReadyDe";
 
 
 export async function generateMetadata({
@@ -182,6 +183,7 @@ export default async function MarketReadyPage({
   const { locale } = await params;
   setRequestLocale(locale);
   if (locale === "zh") return <MarketReadyZh />;
+  if (locale === "de") return <MarketReadyDe />;
   const url = `${site.url}/services/marketready`;
   const heroSlides = [
     {

@@ -12,6 +12,8 @@ import { breadcrumbSchema, webPageSchema } from "@/lib/schema";
 import { ArrowRight, Check, Lock, FileCheck, ShieldCheck, Trash2 } from "lucide-react";
 import { setRequestLocale } from "next-intl/server";
 import SecurityZh, { ZH_META } from "@/components/zh/SecurityZh";
+import SecurityDe, { DE_META } from "@/components/de/SecurityDe";
+import { deMetadata } from "@/lib/de";
 import { zhMetadata } from "@/lib/zh";
 
 // TODO(Gideon): make sure the privacy@ and security@ aliases forward to a
@@ -51,6 +53,7 @@ export async function generateMetadata({
 }): Promise<Metadata> {
   const { locale } = await params;
   if (locale === "zh") return zhMetadata({ path: "/security", ...ZH_META });
+  if (locale === "de") return deMetadata({ path: "/security", ...DE_META });
   return withHreflang(EN_METADATA, "/security");
 }
 
@@ -123,6 +126,7 @@ export default async function SecurityPage({
   const { locale } = await params;
   setRequestLocale(locale);
   if (locale === "zh") return <SecurityZh />;
+  if (locale === "de") return <SecurityDe />;
   return (
     <>
       <JsonLd

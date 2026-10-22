@@ -4,6 +4,9 @@ import ServicePage from "@/components/ServicePage";
 import ZhServicePage from "@/components/zh/ZhServicePage";
 import { seoZh } from "@/content/zh/services/seo";
 import { zhMetadata } from "@/lib/zh";
+import { deMetadata } from "@/lib/de";
+import DeServicePage from "@/components/de/DeServicePage";
+import { seoDe } from "@/content/de/services/seo";
 import JsonLd from "@/components/JsonLd";
 import { img } from "@/lib/images";
 import { site } from "@/lib/site";
@@ -41,6 +44,9 @@ export async function generateMetadata({
   const { locale } = await params;
   if (locale === "zh") {
     return zhMetadata({ path: "/services/seo", ...seoZh.meta });
+  }
+  if (locale === "de") {
+    return deMetadata({ path: "/services/seo", ...seoDe.meta });
   }
   return withHreflang(EN_METADATA, "/services/seo");
 }
@@ -200,6 +206,9 @@ export default async function Page({
 }) {
   const { locale } = await params;
   setRequestLocale(locale);
+  if (locale === "de") {
+    return <DeServicePage slug="seo" heroSlideId={img.services.seo.id} content={seoDe} />;
+  }
   if (locale === "zh") {
     return (
       <ZhServicePage

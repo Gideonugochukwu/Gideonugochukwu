@@ -14,6 +14,7 @@ import { cases } from "@/data/portfolio";
 import { ArrowUpRight, ArrowRight } from "lucide-react";
 import { setRequestLocale } from "next-intl/server";
 import PortfolioZh from "@/components/zh/PortfolioZh";
+import PortfolioDe from "@/components/de/PortfolioDe";
 
 
 export async function generateMetadata({
@@ -33,6 +34,7 @@ export default async function PortfolioPage({
   const { locale } = await params;
   setRequestLocale(locale);
   if (locale === "zh") return <PortfolioZh />;
+  if (locale === "de") return <PortfolioDe />;
   return (
     <>
       <JsonLd

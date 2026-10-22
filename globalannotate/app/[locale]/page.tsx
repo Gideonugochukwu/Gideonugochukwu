@@ -14,6 +14,7 @@ import HomeTrust from "@/components/home/HomeTrust";
 import HomeFAQ from "@/components/home/HomeFAQ";
 import { faqSchema } from "@/lib/schema";
 import { zhLd } from "@/lib/zh";
+import { deLd } from "@/lib/de";
 import type { FAQItem } from "@/components/FAQ";
 
 const HOME_FAQ = [
@@ -54,13 +55,15 @@ export default function HomePage({
   const t = useTranslations("faq");
   return (
     <>
-      {/* JSON-LD stays English for en/de (canonical schema); the Chinese
-          homepage emits the translated FAQ with inLanguage zh-CN. */}
+      {/* JSON-LD stays English for en; the German and Chinese homepages
+          emit the translated FAQ with inLanguage de / zh-CN. */}
       <JsonLd
         data={
           locale === "zh"
             ? zhLd(faqSchema(t.raw("items") as FAQItem[]))
-            : faqSchema(HOME_FAQ)
+            : locale === "de"
+              ? deLd(faqSchema(t.raw("items") as FAQItem[]))
+              : faqSchema(HOME_FAQ)
         }
       />
       <Hero />

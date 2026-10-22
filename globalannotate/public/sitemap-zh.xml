@@ -5,6 +5,8 @@
     <loc>https://globalannotate.com/zh</loc>
     <xhtml:link rel="alternate" hreflang="en" href="https://globalannotate.com" />
     <xhtml:link rel="alternate" hreflang="de" href="https://globalannotate.com/de" />
+    <xhtml:link rel="alternate" hreflang="de-AT" href="https://globalannotate.com/de" />
+    <xhtml:link rel="alternate" hreflang="de-CH" href="https://globalannotate.com/de" />
     <xhtml:link rel="alternate" hreflang="zh-Hans" href="https://globalannotate.com/zh" />
     <xhtml:link rel="alternate" hreflang="zh-CN" href="https://globalannotate.com/zh" />
     <xhtml:link rel="alternate" hreflang="x-default" href="https://globalannotate.com" />
@@ -16,6 +18,8 @@
     <loc>https://globalannotate.com/zh/services</loc>
     <xhtml:link rel="alternate" hreflang="en" href="https://globalannotate.com/services" />
     <xhtml:link rel="alternate" hreflang="de" href="https://globalannotate.com/de/services" />
+    <xhtml:link rel="alternate" hreflang="de-AT" href="https://globalannotate.com/de/services" />
+    <xhtml:link rel="alternate" hreflang="de-CH" href="https://globalannotate.com/de/services" />
     <xhtml:link rel="alternate" hreflang="zh-Hans" href="https://globalannotate.com/zh/services" />
     <xhtml:link rel="alternate" hreflang="zh-CN" href="https://globalannotate.com/zh/services" />
     <xhtml:link rel="alternate" hreflang="x-default" href="https://globalannotate.com/services" />
@@ -27,6 +31,8 @@
     <loc>https://globalannotate.com/zh/languages</loc>
     <xhtml:link rel="alternate" hreflang="en" href="https://globalannotate.com/languages" />
     <xhtml:link rel="alternate" hreflang="de" href="https://globalannotate.com/de/languages" />
+    <xhtml:link rel="alternate" hreflang="de-AT" href="https://globalannotate.com/de/languages" />
+    <xhtml:link rel="alternate" hreflang="de-CH" href="https://globalannotate.com/de/languages" />
     <xhtml:link rel="alternate" hreflang="zh-Hans" href="https://globalannotate.com/zh/languages" />
     <xhtml:link rel="alternate" hreflang="zh-CN" href="https://globalannotate.com/zh/languages" />
     <xhtml:link rel="alternate" hreflang="x-default" href="https://globalannotate.com/languages" />
@@ -38,6 +44,8 @@
     <loc>https://globalannotate.com/zh/translation-services-nigeria</loc>
     <xhtml:link rel="alternate" hreflang="en" href="https://globalannotate.com/translation-services-nigeria" />
     <xhtml:link rel="alternate" hreflang="de" href="https://globalannotate.com/de/translation-services-nigeria" />
+    <xhtml:link rel="alternate" hreflang="de-AT" href="https://globalannotate.com/de/translation-services-nigeria" />
+    <xhtml:link rel="alternate" hreflang="de-CH" href="https://globalannotate.com/de/translation-services-nigeria" />
     <xhtml:link rel="alternate" hreflang="zh-Hans" href="https://globalannotate.com/zh/translation-services-nigeria" />
     <xhtml:link rel="alternate" hreflang="zh-CN" href="https://globalannotate.com/zh/translation-services-nigeria" />
     <xhtml:link rel="alternate" hreflang="x-default" href="https://globalannotate.com/translation-services-nigeria" />
@@ -49,6 +57,8 @@
     <loc>https://globalannotate.com/zh/translation-services-africa</loc>
     <xhtml:link rel="alternate" hreflang="en" href="https://globalannotate.com/translation-services-africa" />
     <xhtml:link rel="alternate" hreflang="de" href="https://globalannotate.com/de/translation-services-africa" />
+    <xhtml:link rel="alternate" hreflang="de-AT" href="https://globalannotate.com/de/translation-services-africa" />
+    <xhtml:link rel="alternate" hreflang="de-CH" href="https://globalannotate.com/de/translation-services-africa" />
     <xhtml:link rel="alternate" hreflang="zh-Hans" href="https://globalannotate.com/zh/translation-services-africa" />
     <xhtml:link rel="alternate" hreflang="zh-CN" href="https://globalannotate.com/zh/translation-services-africa" />
     <xhtml:link rel="alternate" hreflang="x-default" href="https://globalannotate.com/translation-services-africa" />
@@ -60,6 +70,8 @@
     <loc>https://globalannotate.com/zh/industries</loc>
     <xhtml:link rel="alternate" hreflang="en" href="https://globalannotate.com/industries" />
     <xhtml:link rel="alternate" hreflang="de" href="https://globalannotate.com/de/industries" />
+    <xhtml:link rel="alternate" hreflang="de-AT" href="https://globalannotate.com/de/industries" />
+    <xhtml:link rel="alternate" hreflang="de-CH" href="https://globalannotate.com/de/industries" />
     <xhtml:link rel="alternate" hreflang="zh-Hans" href="https://globalannotate.com/zh/industries" />
     <xhtml:link rel="alternate" hreflang="zh-CN" href="https://globalannotate.com/zh/industries" />
     <xhtml:link rel="alternate" hreflang="x-default" href="https://globalannotate.com/industries" />
@@ -71,6 +83,8 @@
     <loc>https://globalannotate.com/zh/portfolio</loc>
     <xhtml:link rel="alternate" hreflang="en" href="https://globalannotate.com/portfolio" />
     <xhtml:link rel="alternate" hreflang="de" href="https://globalannotate.com/de/portfolio" />
+    <xhtml:link rel="alternate" hreflang="de-AT" href="https://globalannotate.com/de/portfolio" />
+    <xhtml:link rel="alternate" hreflang="de-CH" href="https://globalannotate.com/de/portfolio" />
     <xhtml:link rel="alternate" hreflang="zh-Hans" href="https://globalannotate.com/zh/portfolio" />
     <xhtml:link rel="alternate" hreflang="zh-CN" href="https://globalannotate.com/zh/portfolio" />
     <xhtml:link rel="alternate" hreflang="x-default" href="https://globalannotate.com/portfolio" />
@@ -82,6 +96,8 @@
     <loc>https://globalannotate.com/zh/procurement</loc>
     <xhtml:link rel="alternate" hreflang="en" href="https://globalannotate.com/procurement" />
     <xhtml:link rel="alternate" hreflang="de" href="https://globalannotate.com/de/procurement" />
+    <xhtml:link rel="alternate" hreflang="de-AT" href="https://globalannotate.com/de/procurement" />
+    <xhtml:link rel="alternate" hreflang="de-CH" href="https://globalannotate.com/de/procurement" />
     <xhtml:link rel="alternate" hreflang="zh-Hans" href="https://globalannotate.com/zh/procurement" />
     <xhtml:link rel="alternate" hreflang="zh-CN" href="https://globalannotate.com/zh/procurement" />
     <xhtml:link rel="alternate" hreflang="x-default" href="https://globalannotate.com/procurement" />
@@ -93,6 +109,8 @@
     <loc>https://globalannotate.com/zh/quality</loc>
     <xhtml:link rel="alternate" hreflang="en" href="https://globalannotate.com/quality" />
     <xhtml:link rel="alternate" hreflang="de" href="https://globalannotate.com/de/quality" />
+    <xhtml:link rel="alternate" hreflang="de-AT" href="https://globalannotate.com/de/quality" />
+    <xhtml:link rel="alternate" hreflang="de-CH" href="https://globalannotate.com/de/quality" />
     <xhtml:link rel="alternate" hreflang="zh-Hans" href="https://globalannotate.com/zh/quality" />
     <xhtml:link rel="alternate" hreflang="zh-CN" href="https://globalannotate.com/zh/quality" />
     <xhtml:link rel="alternate" hreflang="x-default" href="https://globalannotate.com/quality" />
@@ -104,6 +122,8 @@
     <loc>https://globalannotate.com/zh/security</loc>
     <xhtml:link rel="alternate" hreflang="en" href="https://globalannotate.com/security" />
     <xhtml:link rel="alternate" hreflang="de" href="https://globalannotate.com/de/security" />
+    <xhtml:link rel="alternate" hreflang="de-AT" href="https://globalannotate.com/de/security" />
+    <xhtml:link rel="alternate" hreflang="de-CH" href="https://globalannotate.com/de/security" />
     <xhtml:link rel="alternate" hreflang="zh-Hans" href="https://globalannotate.com/zh/security" />
     <xhtml:link rel="alternate" hreflang="zh-CN" href="https://globalannotate.com/zh/security" />
     <xhtml:link rel="alternate" hreflang="x-default" href="https://globalannotate.com/security" />
@@ -115,6 +135,8 @@
     <loc>https://globalannotate.com/zh/reviews</loc>
     <xhtml:link rel="alternate" hreflang="en" href="https://globalannotate.com/reviews" />
     <xhtml:link rel="alternate" hreflang="de" href="https://globalannotate.com/de/reviews" />
+    <xhtml:link rel="alternate" hreflang="de-AT" href="https://globalannotate.com/de/reviews" />
+    <xhtml:link rel="alternate" hreflang="de-CH" href="https://globalannotate.com/de/reviews" />
     <xhtml:link rel="alternate" hreflang="zh-Hans" href="https://globalannotate.com/zh/reviews" />
     <xhtml:link rel="alternate" hreflang="zh-CN" href="https://globalannotate.com/zh/reviews" />
     <xhtml:link rel="alternate" hreflang="x-default" href="https://globalannotate.com/reviews" />
@@ -126,6 +148,8 @@
     <loc>https://globalannotate.com/zh/about</loc>
     <xhtml:link rel="alternate" hreflang="en" href="https://globalannotate.com/about" />
     <xhtml:link rel="alternate" hreflang="de" href="https://globalannotate.com/de/about" />
+    <xhtml:link rel="alternate" hreflang="de-AT" href="https://globalannotate.com/de/about" />
+    <xhtml:link rel="alternate" hreflang="de-CH" href="https://globalannotate.com/de/about" />
     <xhtml:link rel="alternate" hreflang="zh-Hans" href="https://globalannotate.com/zh/about" />
     <xhtml:link rel="alternate" hreflang="zh-CN" href="https://globalannotate.com/zh/about" />
     <xhtml:link rel="alternate" hreflang="x-default" href="https://globalannotate.com/about" />
@@ -137,6 +161,8 @@
     <loc>https://globalannotate.com/zh/freelancers</loc>
     <xhtml:link rel="alternate" hreflang="en" href="https://globalannotate.com/freelancers" />
     <xhtml:link rel="alternate" hreflang="de" href="https://globalannotate.com/de/freelancers" />
+    <xhtml:link rel="alternate" hreflang="de-AT" href="https://globalannotate.com/de/freelancers" />
+    <xhtml:link rel="alternate" hreflang="de-CH" href="https://globalannotate.com/de/freelancers" />
     <xhtml:link rel="alternate" hreflang="zh-Hans" href="https://globalannotate.com/zh/freelancers" />
     <xhtml:link rel="alternate" hreflang="zh-CN" href="https://globalannotate.com/zh/freelancers" />
     <xhtml:link rel="alternate" hreflang="x-default" href="https://globalannotate.com/freelancers" />
@@ -148,6 +174,8 @@
     <loc>https://globalannotate.com/zh/contact</loc>
     <xhtml:link rel="alternate" hreflang="en" href="https://globalannotate.com/contact" />
     <xhtml:link rel="alternate" hreflang="de" href="https://globalannotate.com/de/contact" />
+    <xhtml:link rel="alternate" hreflang="de-AT" href="https://globalannotate.com/de/contact" />
+    <xhtml:link rel="alternate" hreflang="de-CH" href="https://globalannotate.com/de/contact" />
     <xhtml:link rel="alternate" hreflang="zh-Hans" href="https://globalannotate.com/zh/contact" />
     <xhtml:link rel="alternate" hreflang="zh-CN" href="https://globalannotate.com/zh/contact" />
     <xhtml:link rel="alternate" hreflang="x-default" href="https://globalannotate.com/contact" />
@@ -159,6 +187,8 @@
     <loc>https://globalannotate.com/zh/blog</loc>
     <xhtml:link rel="alternate" hreflang="en" href="https://globalannotate.com/blog" />
     <xhtml:link rel="alternate" hreflang="de" href="https://globalannotate.com/de/blog" />
+    <xhtml:link rel="alternate" hreflang="de-AT" href="https://globalannotate.com/de/blog" />
+    <xhtml:link rel="alternate" hreflang="de-CH" href="https://globalannotate.com/de/blog" />
     <xhtml:link rel="alternate" hreflang="zh-Hans" href="https://globalannotate.com/zh/blog" />
     <xhtml:link rel="alternate" hreflang="zh-CN" href="https://globalannotate.com/zh/blog" />
     <xhtml:link rel="alternate" hreflang="x-default" href="https://globalannotate.com/blog" />
@@ -170,6 +200,8 @@
     <loc>https://globalannotate.com/zh/privacy</loc>
     <xhtml:link rel="alternate" hreflang="en" href="https://globalannotate.com/privacy" />
     <xhtml:link rel="alternate" hreflang="de" href="https://globalannotate.com/de/privacy" />
+    <xhtml:link rel="alternate" hreflang="de-AT" href="https://globalannotate.com/de/privacy" />
+    <xhtml:link rel="alternate" hreflang="de-CH" href="https://globalannotate.com/de/privacy" />
     <xhtml:link rel="alternate" hreflang="zh-Hans" href="https://globalannotate.com/zh/privacy" />
     <xhtml:link rel="alternate" hreflang="zh-CN" href="https://globalannotate.com/zh/privacy" />
     <xhtml:link rel="alternate" hreflang="x-default" href="https://globalannotate.com/privacy" />
@@ -181,6 +213,8 @@
     <loc>https://globalannotate.com/zh/terms</loc>
     <xhtml:link rel="alternate" hreflang="en" href="https://globalannotate.com/terms" />
     <xhtml:link rel="alternate" hreflang="de" href="https://globalannotate.com/de/terms" />
+    <xhtml:link rel="alternate" hreflang="de-AT" href="https://globalannotate.com/de/terms" />
+    <xhtml:link rel="alternate" hreflang="de-CH" href="https://globalannotate.com/de/terms" />
     <xhtml:link rel="alternate" hreflang="zh-Hans" href="https://globalannotate.com/zh/terms" />
     <xhtml:link rel="alternate" hreflang="zh-CN" href="https://globalannotate.com/zh/terms" />
     <xhtml:link rel="alternate" hreflang="x-default" href="https://globalannotate.com/terms" />
@@ -192,6 +226,8 @@
     <loc>https://globalannotate.com/zh/services/translation-localization</loc>
     <xhtml:link rel="alternate" hreflang="en" href="https://globalannotate.com/services/translation-localization" />
     <xhtml:link rel="alternate" hreflang="de" href="https://globalannotate.com/de/services/translation-localization" />
+    <xhtml:link rel="alternate" hreflang="de-AT" href="https://globalannotate.com/de/services/translation-localization" />
+    <xhtml:link rel="alternate" hreflang="de-CH" href="https://globalannotate.com/de/services/translation-localization" />
     <xhtml:link rel="alternate" hreflang="zh-Hans" href="https://globalannotate.com/zh/services/translation-localization" />
     <xhtml:link rel="alternate" hreflang="zh-CN" href="https://globalannotate.com/zh/services/translation-localization" />
     <xhtml:link rel="alternate" hreflang="x-default" href="https://globalannotate.com/services/translation-localization" />
@@ -203,6 +239,8 @@
     <loc>https://globalannotate.com/zh/services/ai-annotation</loc>
     <xhtml:link rel="alternate" hreflang="en" href="https://globalannotate.com/services/ai-annotation" />
     <xhtml:link rel="alternate" hreflang="de" href="https://globalannotate.com/de/services/ai-annotation" />
+    <xhtml:link rel="alternate" hreflang="de-AT" href="https://globalannotate.com/de/services/ai-annotation" />
+    <xhtml:link rel="alternate" hreflang="de-CH" href="https://globalannotate.com/de/services/ai-annotation" />
     <xhtml:link rel="alternate" hreflang="zh-Hans" href="https://globalannotate.com/zh/services/ai-annotation" />
     <xhtml:link rel="alternate" hreflang="zh-CN" href="https://globalannotate.com/zh/services/ai-annotation" />
     <xhtml:link rel="alternate" hreflang="x-default" href="https://globalannotate.com/services/ai-annotation" />
@@ -214,6 +252,8 @@
     <loc>https://globalannotate.com/zh/services/seo</loc>
     <xhtml:link rel="alternate" hreflang="en" href="https://globalannotate.com/services/seo" />
     <xhtml:link rel="alternate" hreflang="de" href="https://globalannotate.com/de/services/seo" />
+    <xhtml:link rel="alternate" hreflang="de-AT" href="https://globalannotate.com/de/services/seo" />
+    <xhtml:link rel="alternate" hreflang="de-CH" href="https://globalannotate.com/de/services/seo" />
     <xhtml:link rel="alternate" hreflang="zh-Hans" href="https://globalannotate.com/zh/services/seo" />
     <xhtml:link rel="alternate" hreflang="zh-CN" href="https://globalannotate.com/zh/services/seo" />
     <xhtml:link rel="alternate" hreflang="x-default" href="https://globalannotate.com/services/seo" />
@@ -225,6 +265,8 @@
     <loc>https://globalannotate.com/zh/services/digital-marketing</loc>
     <xhtml:link rel="alternate" hreflang="en" href="https://globalannotate.com/services/digital-marketing" />
     <xhtml:link rel="alternate" hreflang="de" href="https://globalannotate.com/de/services/digital-marketing" />
+    <xhtml:link rel="alternate" hreflang="de-AT" href="https://globalannotate.com/de/services/digital-marketing" />
+    <xhtml:link rel="alternate" hreflang="de-CH" href="https://globalannotate.com/de/services/digital-marketing" />
     <xhtml:link rel="alternate" hreflang="zh-Hans" href="https://globalannotate.com/zh/services/digital-marketing" />
     <xhtml:link rel="alternate" hreflang="zh-CN" href="https://globalannotate.com/zh/services/digital-marketing" />
     <xhtml:link rel="alternate" hreflang="x-default" href="https://globalannotate.com/services/digital-marketing" />
@@ -236,6 +278,8 @@
     <loc>https://globalannotate.com/zh/services/game-localization</loc>
     <xhtml:link rel="alternate" hreflang="en" href="https://globalannotate.com/services/game-localization" />
     <xhtml:link rel="alternate" hreflang="de" href="https://globalannotate.com/de/services/game-localization" />
+    <xhtml:link rel="alternate" hreflang="de-AT" href="https://globalannotate.com/de/services/game-localization" />
+    <xhtml:link rel="alternate" hreflang="de-CH" href="https://globalannotate.com/de/services/game-localization" />
     <xhtml:link rel="alternate" hreflang="zh-Hans" href="https://globalannotate.com/zh/services/game-localization" />
     <xhtml:link rel="alternate" hreflang="zh-CN" href="https://globalannotate.com/zh/services/game-localization" />
     <xhtml:link rel="alternate" hreflang="x-default" href="https://globalannotate.com/services/game-localization" />
@@ -247,6 +291,8 @@
     <loc>https://globalannotate.com/zh/services/marketready</loc>
     <xhtml:link rel="alternate" hreflang="en" href="https://globalannotate.com/services/marketready" />
     <xhtml:link rel="alternate" hreflang="de" href="https://globalannotate.com/de/services/marketready" />
+    <xhtml:link rel="alternate" hreflang="de-AT" href="https://globalannotate.com/de/services/marketready" />
+    <xhtml:link rel="alternate" hreflang="de-CH" href="https://globalannotate.com/de/services/marketready" />
     <xhtml:link rel="alternate" hreflang="zh-Hans" href="https://globalannotate.com/zh/services/marketready" />
     <xhtml:link rel="alternate" hreflang="zh-CN" href="https://globalannotate.com/zh/services/marketready" />
     <xhtml:link rel="alternate" hreflang="x-default" href="https://globalannotate.com/services/marketready" />
@@ -274,6 +320,8 @@
     <loc>https://globalannotate.com/zh/blog/marketready-cultural-validation</loc>
     <xhtml:link rel="alternate" hreflang="en" href="https://globalannotate.com/blog/marketready-cultural-validation" />
     <xhtml:link rel="alternate" hreflang="de" href="https://globalannotate.com/de/blog/marketready-cultural-validation" />
+    <xhtml:link rel="alternate" hreflang="de-AT" href="https://globalannotate.com/de/blog/marketready-cultural-validation" />
+    <xhtml:link rel="alternate" hreflang="de-CH" href="https://globalannotate.com/de/blog/marketready-cultural-validation" />
     <xhtml:link rel="alternate" hreflang="zh-Hans" href="https://globalannotate.com/zh/blog/marketready-cultural-validation" />
     <xhtml:link rel="alternate" hreflang="zh-CN" href="https://globalannotate.com/zh/blog/marketready-cultural-validation" />
     <xhtml:link rel="alternate" hreflang="x-default" href="https://globalannotate.com/blog/marketready-cultural-validation" />
@@ -285,6 +333,8 @@
     <loc>https://globalannotate.com/zh/blog/what-is-ai-data-annotation</loc>
     <xhtml:link rel="alternate" hreflang="en" href="https://globalannotate.com/blog/what-is-ai-data-annotation" />
     <xhtml:link rel="alternate" hreflang="de" href="https://globalannotate.com/de/blog/what-is-ai-data-annotation" />
+    <xhtml:link rel="alternate" hreflang="de-AT" href="https://globalannotate.com/de/blog/what-is-ai-data-annotation" />
+    <xhtml:link rel="alternate" hreflang="de-CH" href="https://globalannotate.com/de/blog/what-is-ai-data-annotation" />
     <xhtml:link rel="alternate" hreflang="zh-Hans" href="https://globalannotate.com/zh/blog/what-is-ai-data-annotation" />
     <xhtml:link rel="alternate" hreflang="zh-CN" href="https://globalannotate.com/zh/blog/what-is-ai-data-annotation" />
     <xhtml:link rel="alternate" hreflang="x-default" href="https://globalannotate.com/blog/what-is-ai-data-annotation" />
@@ -296,6 +346,8 @@
     <loc>https://globalannotate.com/zh/blog/localize-your-app-for-100-markets</loc>
     <xhtml:link rel="alternate" hreflang="en" href="https://globalannotate.com/blog/localize-your-app-for-100-markets" />
     <xhtml:link rel="alternate" hreflang="de" href="https://globalannotate.com/de/blog/localize-your-app-for-100-markets" />
+    <xhtml:link rel="alternate" hreflang="de-AT" href="https://globalannotate.com/de/blog/localize-your-app-for-100-markets" />
+    <xhtml:link rel="alternate" hreflang="de-CH" href="https://globalannotate.com/de/blog/localize-your-app-for-100-markets" />
     <xhtml:link rel="alternate" hreflang="zh-Hans" href="https://globalannotate.com/zh/blog/localize-your-app-for-100-markets" />
     <xhtml:link rel="alternate" hreflang="zh-CN" href="https://globalannotate.com/zh/blog/localize-your-app-for-100-markets" />
     <xhtml:link rel="alternate" hreflang="x-default" href="https://globalannotate.com/blog/localize-your-app-for-100-markets" />
@@ -307,6 +359,8 @@
     <loc>https://globalannotate.com/zh/blog/international-seo-rank-in-every-language</loc>
     <xhtml:link rel="alternate" hreflang="en" href="https://globalannotate.com/blog/international-seo-rank-in-every-language" />
     <xhtml:link rel="alternate" hreflang="de" href="https://globalannotate.com/de/blog/international-seo-rank-in-every-language" />
+    <xhtml:link rel="alternate" hreflang="de-AT" href="https://globalannotate.com/de/blog/international-seo-rank-in-every-language" />
+    <xhtml:link rel="alternate" hreflang="de-CH" href="https://globalannotate.com/de/blog/international-seo-rank-in-every-language" />
     <xhtml:link rel="alternate" hreflang="zh-Hans" href="https://globalannotate.com/zh/blog/international-seo-rank-in-every-language" />
     <xhtml:link rel="alternate" hreflang="zh-CN" href="https://globalannotate.com/zh/blog/international-seo-rank-in-every-language" />
     <xhtml:link rel="alternate" hreflang="x-default" href="https://globalannotate.com/blog/international-seo-rank-in-every-language" />
@@ -318,6 +372,8 @@
     <loc>https://globalannotate.com/zh/blog/game-localization-guide</loc>
     <xhtml:link rel="alternate" hreflang="en" href="https://globalannotate.com/blog/game-localization-guide" />
     <xhtml:link rel="alternate" hreflang="de" href="https://globalannotate.com/de/blog/game-localization-guide" />
+    <xhtml:link rel="alternate" hreflang="de-AT" href="https://globalannotate.com/de/blog/game-localization-guide" />
+    <xhtml:link rel="alternate" hreflang="de-CH" href="https://globalannotate.com/de/blog/game-localization-guide" />
     <xhtml:link rel="alternate" hreflang="zh-Hans" href="https://globalannotate.com/zh/blog/game-localization-guide" />
     <xhtml:link rel="alternate" hreflang="zh-CN" href="https://globalannotate.com/zh/blog/game-localization-guide" />
     <xhtml:link rel="alternate" hreflang="x-default" href="https://globalannotate.com/blog/game-localization-guide" />
@@ -329,6 +385,8 @@
     <loc>https://globalannotate.com/zh/portfolio/telehealth-app-localized-14-languages</loc>
     <xhtml:link rel="alternate" hreflang="en" href="https://globalannotate.com/portfolio/telehealth-app-localized-14-languages" />
     <xhtml:link rel="alternate" hreflang="de" href="https://globalannotate.com/de/portfolio/telehealth-app-localized-14-languages" />
+    <xhtml:link rel="alternate" hreflang="de-AT" href="https://globalannotate.com/de/portfolio/telehealth-app-localized-14-languages" />
+    <xhtml:link rel="alternate" hreflang="de-CH" href="https://globalannotate.com/de/portfolio/telehealth-app-localized-14-languages" />
     <xhtml:link rel="alternate" hreflang="zh-Hans" href="https://globalannotate.com/zh/portfolio/telehealth-app-localized-14-languages" />
     <xhtml:link rel="alternate" hreflang="zh-CN" href="https://globalannotate.com/zh/portfolio/telehealth-app-localized-14-languages" />
     <xhtml:link rel="alternate" hreflang="x-default" href="https://globalannotate.com/portfolio/telehealth-app-localized-14-languages" />
@@ -340,6 +398,8 @@
     <loc>https://globalannotate.com/zh/portfolio/8-market-ecommerce-localization-dtc</loc>
     <xhtml:link rel="alternate" hreflang="en" href="https://globalannotate.com/portfolio/8-market-ecommerce-localization-dtc" />
     <xhtml:link rel="alternate" hreflang="de" href="https://globalannotate.com/de/portfolio/8-market-ecommerce-localization-dtc" />
+    <xhtml:link rel="alternate" hreflang="de-AT" href="https://globalannotate.com/de/portfolio/8-market-ecommerce-localization-dtc" />
+    <xhtml:link rel="alternate" hreflang="de-CH" href="https://globalannotate.com/de/portfolio/8-market-ecommerce-localization-dtc" />
     <xhtml:link rel="alternate" hreflang="zh-Hans" href="https://globalannotate.com/zh/portfolio/8-market-ecommerce-localization-dtc" />
     <xhtml:link rel="alternate" hreflang="zh-CN" href="https://globalannotate.com/zh/portfolio/8-market-ecommerce-localization-dtc" />
     <xhtml:link rel="alternate" hreflang="x-default" href="https://globalannotate.com/portfolio/8-market-ecommerce-localization-dtc" />
@@ -351,6 +411,8 @@
     <loc>https://globalannotate.com/zh/portfolio/elearning-video-ui-localization-12-languages</loc>
     <xhtml:link rel="alternate" hreflang="en" href="https://globalannotate.com/portfolio/elearning-video-ui-localization-12-languages" />
     <xhtml:link rel="alternate" hreflang="de" href="https://globalannotate.com/de/portfolio/elearning-video-ui-localization-12-languages" />
+    <xhtml:link rel="alternate" hreflang="de-AT" href="https://globalannotate.com/de/portfolio/elearning-video-ui-localization-12-languages" />
+    <xhtml:link rel="alternate" hreflang="de-CH" href="https://globalannotate.com/de/portfolio/elearning-video-ui-localization-12-languages" />
     <xhtml:link rel="alternate" hreflang="zh-Hans" href="https://globalannotate.com/zh/portfolio/elearning-video-ui-localization-12-languages" />
     <xhtml:link rel="alternate" hreflang="zh-CN" href="https://globalannotate.com/zh/portfolio/elearning-video-ui-localization-12-languages" />
     <xhtml:link rel="alternate" hreflang="x-default" href="https://globalannotate.com/portfolio/elearning-video-ui-localization-12-languages" />
@@ -362,6 +424,8 @@
     <loc>https://globalannotate.com/zh/portfolio/linkedin-growth-b2b-social-media</loc>
     <xhtml:link rel="alternate" hreflang="en" href="https://globalannotate.com/portfolio/linkedin-growth-b2b-social-media" />
     <xhtml:link rel="alternate" hreflang="de" href="https://globalannotate.com/de/portfolio/linkedin-growth-b2b-social-media" />
+    <xhtml:link rel="alternate" hreflang="de-AT" href="https://globalannotate.com/de/portfolio/linkedin-growth-b2b-social-media" />
+    <xhtml:link rel="alternate" hreflang="de-CH" href="https://globalannotate.com/de/portfolio/linkedin-growth-b2b-social-media" />
     <xhtml:link rel="alternate" hreflang="zh-Hans" href="https://globalannotate.com/zh/portfolio/linkedin-growth-b2b-social-media" />
     <xhtml:link rel="alternate" hreflang="zh-CN" href="https://globalannotate.com/zh/portfolio/linkedin-growth-b2b-social-media" />
     <xhtml:link rel="alternate" hreflang="x-default" href="https://globalannotate.com/portfolio/linkedin-growth-b2b-social-media" />
@@ -373,6 +437,8 @@
     <loc>https://globalannotate.com/zh/portfolio/patient-app-14-languages</loc>
     <xhtml:link rel="alternate" hreflang="en" href="https://globalannotate.com/portfolio/patient-app-14-languages" />
     <xhtml:link rel="alternate" hreflang="de" href="https://globalannotate.com/de/portfolio/patient-app-14-languages" />
+    <xhtml:link rel="alternate" hreflang="de-AT" href="https://globalannotate.com/de/portfolio/patient-app-14-languages" />
+    <xhtml:link rel="alternate" hreflang="de-CH" href="https://globalannotate.com/de/portfolio/patient-app-14-languages" />
     <xhtml:link rel="alternate" hreflang="zh-Hans" href="https://globalannotate.com/zh/portfolio/patient-app-14-languages" />
     <xhtml:link rel="alternate" hreflang="zh-CN" href="https://globalannotate.com/zh/portfolio/patient-app-14-languages" />
     <xhtml:link rel="alternate" hreflang="x-default" href="https://globalannotate.com/portfolio/patient-app-14-languages" />
@@ -384,6 +450,8 @@
     <loc>https://globalannotate.com/zh/portfolio/perception-model-1m-images-annotated</loc>
     <xhtml:link rel="alternate" hreflang="en" href="https://globalannotate.com/portfolio/perception-model-1m-images-annotated" />
     <xhtml:link rel="alternate" hreflang="de" href="https://globalannotate.com/de/portfolio/perception-model-1m-images-annotated" />
+    <xhtml:link rel="alternate" hreflang="de-AT" href="https://globalannotate.com/de/portfolio/perception-model-1m-images-annotated" />
+    <xhtml:link rel="alternate" hreflang="de-CH" href="https://globalannotate.com/de/portfolio/perception-model-1m-images-annotated" />
     <xhtml:link rel="alternate" hreflang="zh-Hans" href="https://globalannotate.com/zh/portfolio/perception-model-1m-images-annotated" />
     <xhtml:link rel="alternate" hreflang="zh-CN" href="https://globalannotate.com/zh/portfolio/perception-model-1m-images-annotated" />
     <xhtml:link rel="alternate" hreflang="x-default" href="https://globalannotate.com/portfolio/perception-model-1m-images-annotated" />
@@ -395,6 +463,8 @@
     <loc>https://globalannotate.com/zh/portfolio/dtc-beauty-brand-roas-4x</loc>
     <xhtml:link rel="alternate" hreflang="en" href="https://globalannotate.com/portfolio/dtc-beauty-brand-roas-4x" />
     <xhtml:link rel="alternate" hreflang="de" href="https://globalannotate.com/de/portfolio/dtc-beauty-brand-roas-4x" />
+    <xhtml:link rel="alternate" hreflang="de-AT" href="https://globalannotate.com/de/portfolio/dtc-beauty-brand-roas-4x" />
+    <xhtml:link rel="alternate" hreflang="de-CH" href="https://globalannotate.com/de/portfolio/dtc-beauty-brand-roas-4x" />
     <xhtml:link rel="alternate" hreflang="zh-Hans" href="https://globalannotate.com/zh/portfolio/dtc-beauty-brand-roas-4x" />
     <xhtml:link rel="alternate" hreflang="zh-CN" href="https://globalannotate.com/zh/portfolio/dtc-beauty-brand-roas-4x" />
     <xhtml:link rel="alternate" hreflang="x-default" href="https://globalannotate.com/portfolio/dtc-beauty-brand-roas-4x" />
@@ -406,6 +476,8 @@
     <loc>https://globalannotate.com/zh/portfolio/multilingual-rlhf-dataset</loc>
     <xhtml:link rel="alternate" hreflang="en" href="https://globalannotate.com/portfolio/multilingual-rlhf-dataset" />
     <xhtml:link rel="alternate" hreflang="de" href="https://globalannotate.com/de/portfolio/multilingual-rlhf-dataset" />
+    <xhtml:link rel="alternate" hreflang="de-AT" href="https://globalannotate.com/de/portfolio/multilingual-rlhf-dataset" />
+    <xhtml:link rel="alternate" hreflang="de-CH" href="https://globalannotate.com/de/portfolio/multilingual-rlhf-dataset" />
     <xhtml:link rel="alternate" hreflang="zh-Hans" href="https://globalannotate.com/zh/portfolio/multilingual-rlhf-dataset" />
     <xhtml:link rel="alternate" hreflang="zh-CN" href="https://globalannotate.com/zh/portfolio/multilingual-rlhf-dataset" />
     <xhtml:link rel="alternate" hreflang="x-default" href="https://globalannotate.com/portfolio/multilingual-rlhf-dataset" />
@@ -417,6 +489,8 @@
     <loc>https://globalannotate.com/zh/portfolio/uae-arabic-first-beauty-launch</loc>
     <xhtml:link rel="alternate" hreflang="en" href="https://globalannotate.com/portfolio/uae-arabic-first-beauty-launch" />
     <xhtml:link rel="alternate" hreflang="de" href="https://globalannotate.com/de/portfolio/uae-arabic-first-beauty-launch" />
+    <xhtml:link rel="alternate" hreflang="de-AT" href="https://globalannotate.com/de/portfolio/uae-arabic-first-beauty-launch" />
+    <xhtml:link rel="alternate" hreflang="de-CH" href="https://globalannotate.com/de/portfolio/uae-arabic-first-beauty-launch" />
     <xhtml:link rel="alternate" hreflang="zh-Hans" href="https://globalannotate.com/zh/portfolio/uae-arabic-first-beauty-launch" />
     <xhtml:link rel="alternate" hreflang="zh-CN" href="https://globalannotate.com/zh/portfolio/uae-arabic-first-beauty-launch" />
     <xhtml:link rel="alternate" hreflang="x-default" href="https://globalannotate.com/portfolio/uae-arabic-first-beauty-launch" />
@@ -428,6 +502,8 @@
     <loc>https://globalannotate.com/zh/portfolio/nlp-intent-dataset-indian-languages</loc>
     <xhtml:link rel="alternate" hreflang="en" href="https://globalannotate.com/portfolio/nlp-intent-dataset-indian-languages" />
     <xhtml:link rel="alternate" hreflang="de" href="https://globalannotate.com/de/portfolio/nlp-intent-dataset-indian-languages" />
+    <xhtml:link rel="alternate" hreflang="de-AT" href="https://globalannotate.com/de/portfolio/nlp-intent-dataset-indian-languages" />
+    <xhtml:link rel="alternate" hreflang="de-CH" href="https://globalannotate.com/de/portfolio/nlp-intent-dataset-indian-languages" />
     <xhtml:link rel="alternate" hreflang="zh-Hans" href="https://globalannotate.com/zh/portfolio/nlp-intent-dataset-indian-languages" />
     <xhtml:link rel="alternate" hreflang="zh-CN" href="https://globalannotate.com/zh/portfolio/nlp-intent-dataset-indian-languages" />
     <xhtml:link rel="alternate" hreflang="x-default" href="https://globalannotate.com/portfolio/nlp-intent-dataset-indian-languages" />
@@ -439,6 +515,8 @@
     <loc>https://globalannotate.com/zh/portfolio/game-localization-rpg</loc>
     <xhtml:link rel="alternate" hreflang="en" href="https://globalannotate.com/portfolio/game-localization-rpg" />
     <xhtml:link rel="alternate" hreflang="de" href="https://globalannotate.com/de/portfolio/game-localization-rpg" />
+    <xhtml:link rel="alternate" hreflang="de-AT" href="https://globalannotate.com/de/portfolio/game-localization-rpg" />
+    <xhtml:link rel="alternate" hreflang="de-CH" href="https://globalannotate.com/de/portfolio/game-localization-rpg" />
     <xhtml:link rel="alternate" hreflang="zh-Hans" href="https://globalannotate.com/zh/portfolio/game-localization-rpg" />
     <xhtml:link rel="alternate" hreflang="zh-CN" href="https://globalannotate.com/zh/portfolio/game-localization-rpg" />
     <xhtml:link rel="alternate" hreflang="x-default" href="https://globalannotate.com/portfolio/game-localization-rpg" />
@@ -450,6 +528,8 @@
     <loc>https://globalannotate.com/zh/portfolio/b2b-saas-organic-revenue-seo</loc>
     <xhtml:link rel="alternate" hreflang="en" href="https://globalannotate.com/portfolio/b2b-saas-organic-revenue-seo" />
     <xhtml:link rel="alternate" hreflang="de" href="https://globalannotate.com/de/portfolio/b2b-saas-organic-revenue-seo" />
+    <xhtml:link rel="alternate" hreflang="de-AT" href="https://globalannotate.com/de/portfolio/b2b-saas-organic-revenue-seo" />
+    <xhtml:link rel="alternate" hreflang="de-CH" href="https://globalannotate.com/de/portfolio/b2b-saas-organic-revenue-seo" />
     <xhtml:link rel="alternate" hreflang="zh-Hans" href="https://globalannotate.com/zh/portfolio/b2b-saas-organic-revenue-seo" />
     <xhtml:link rel="alternate" hreflang="zh-CN" href="https://globalannotate.com/zh/portfolio/b2b-saas-organic-revenue-seo" />
     <xhtml:link rel="alternate" hreflang="x-default" href="https://globalannotate.com/portfolio/b2b-saas-organic-revenue-seo" />
@@ -461,6 +541,8 @@
     <loc>https://globalannotate.com/zh/portfolio/international-seo-launch-9-markets</loc>
     <xhtml:link rel="alternate" hreflang="en" href="https://globalannotate.com/portfolio/international-seo-launch-9-markets" />
     <xhtml:link rel="alternate" hreflang="de" href="https://globalannotate.com/de/portfolio/international-seo-launch-9-markets" />
+    <xhtml:link rel="alternate" hreflang="de-AT" href="https://globalannotate.com/de/portfolio/international-seo-launch-9-markets" />
+    <xhtml:link rel="alternate" hreflang="de-CH" href="https://globalannotate.com/de/portfolio/international-seo-launch-9-markets" />
     <xhtml:link rel="alternate" hreflang="zh-Hans" href="https://globalannotate.com/zh/portfolio/international-seo-launch-9-markets" />
     <xhtml:link rel="alternate" hreflang="zh-CN" href="https://globalannotate.com/zh/portfolio/international-seo-launch-9-markets" />
     <xhtml:link rel="alternate" hreflang="x-default" href="https://globalannotate.com/portfolio/international-seo-launch-9-markets" />

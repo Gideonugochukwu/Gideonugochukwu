@@ -4,6 +4,9 @@ import ServicePage from "@/components/ServicePage";
 import ZhServicePage from "@/components/zh/ZhServicePage";
 import { translationLocalizationZh } from "@/content/zh/services/translation-localization";
 import { zhMetadata } from "@/lib/zh";
+import { deMetadata } from "@/lib/de";
+import DeServicePage from "@/components/de/DeServicePage";
+import { translationLocalizationDe } from "@/content/de/services/translation-localization";
 import JsonLd from "@/components/JsonLd";
 import { img } from "@/lib/images";
 import { site } from "@/lib/site";
@@ -41,6 +44,9 @@ export async function generateMetadata({
   const { locale } = await params;
   if (locale === "zh") {
     return zhMetadata({ path: "/services/translation-localization", ...translationLocalizationZh.meta });
+  }
+  if (locale === "de") {
+    return deMetadata({ path: "/services/translation-localization", ...translationLocalizationDe.meta });
   }
   return withHreflang(EN_METADATA, "/services/translation-localization");
 }
@@ -101,6 +107,9 @@ export default async function Page({
 }) {
   const { locale } = await params;
   setRequestLocale(locale);
+  if (locale === "de") {
+    return <DeServicePage slug="translation-localization" heroSlideId={img.services.translation.id} content={translationLocalizationDe} />;
+  }
   if (locale === "zh") {
     return (
       <ZhServicePage

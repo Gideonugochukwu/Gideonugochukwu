@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { getTranslations } from "next-intl/server";
 import { zhMetadata } from "./zh";
+import { deMetadata } from "./de";
 
 // Canonical + hreflang helpers so every page can emit correct alternate
 // links across en / de / zh. English lives at the root; de/zh are prefixed.
@@ -29,6 +30,8 @@ export function localePath(locale: string, path = ""): string {
 // `locale`. canonical points at the current locale; languages + x-default
 // cover all three locales. Chinese is listed under both the BCP-47 script
 // subtag zh-Hans and the region tag zh-CN (Baidu and Google both read it).
+// German is also listed as de-AT and de-CH: Austria and Switzerland share
+// the single /de version for now.
 export function hreflangAlternates(
   locale: string,
   path = ""
@@ -38,6 +41,8 @@ export function hreflangAlternates(
     languages: {
       en: localePath("en", path),
       de: localePath("de", path),
+      "de-AT": localePath("de", path),
+      "de-CH": localePath("de", path),
       "zh-Hans": localePath("zh", path),
       "zh-CN": localePath("zh", path),
       "x-default": localePath("en", path),
@@ -81,6 +86,12 @@ export async function buildMetadata({
   const t = await getTranslations({ locale, namespace: "meta" });
   const title = t(`${metaKey}.title`);
   const description = t(`${metaKey}.description`);
+
+  // German pages carry a full "Keyword | GlobalAnnotate" title (no layout
+  // template) and the DACH hreflang set.
+  if (locale === "de") {
+    return deMetadata({ path, title, description });
+  }
 
   // Chinese pages carry a full "关键词 | GlobalAnnotate" title plus a Baidu
   // keyword list, so they skip the layout's "· GlobalAnnotate" template.
