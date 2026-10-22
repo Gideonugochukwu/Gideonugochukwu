@@ -1,4 +1,5 @@
 import type { Review } from "./reviews";
+import { reviewsDe } from "./reviews.de";
 
 // Simplified Chinese copy of each review, keyed by the reviewer's name.
 // Quotes are translated (site copy on /zh); people's names and company names
@@ -51,6 +52,10 @@ export const reviewsZh: Record<string, ZhReviewFields> = {
 };
 
 export function localizeReview(r: Review, locale: string): Review {
+  if (locale === "de") {
+    const de = reviewsDe[r.name];
+    return de ? { ...r, ...de } : r;
+  }
   if (locale !== "zh") return r;
   const zh = reviewsZh[r.name];
   return zh ? { ...r, ...zh } : r;

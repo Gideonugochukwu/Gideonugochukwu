@@ -6,6 +6,8 @@
 import { img } from "@/lib/images";
 import { zhAlt } from "@/lib/images.zh";
 import { postsZh, zhOnlyPosts } from "./blog.zh";
+import { deAlt } from "@/lib/images.de";
+import { postsDe, deOnlyPosts } from "./blog.de";
 
 export type BlogPost = {
   slug: string;
@@ -519,9 +521,29 @@ export function allSlugs(): string[] {
 // chips; `tags` stay English because they drive the related-service lookup.
 export type LocalizedPost = BlogPost & { displayTags: string[]; metaTitle?: string };
 
-// Every post visible in `locale`: English/German get the English posts; the
-// Chinese locale gets the full translations plus the zh-only articles.
+// Every post visible in `locale`: English gets the English posts; the
+// German and Chinese locales get full translations plus their locale-only
+// articles.
 export function localizedPosts(locale: string): LocalizedPost[] {
+  if (locale === "de") {
+    const translatedDe = posts.map((p) => {
+      const de = postsDe[p.slug];
+      if (!de) return { ...p, displayTags: p.tags };
+      return {
+        ...p,
+        title: de.title,
+        metaTitle: de.metaTitle,
+        description: de.description,
+        body: de.body,
+        faq: de.faq,
+        readMinutes: de.readMinutes ?? p.readMinutes,
+        heroImage: { ...p.heroImage, alt: deAlt(p.heroImage.id) },
+        displayTags: de.tags,
+      };
+    });
+    const extraDe = deOnlyPosts.map(({ deTags, ...p }) => ({ ...p, displayTags: deTags }));
+    return [...extraDe, ...translatedDe];
+  }
   if (locale !== "zh") return posts.map((p) => ({ ...p, displayTags: p.tags }));
   const translated = posts.map((p) => {
     const zh = postsZh[p.slug];
@@ -546,8 +568,8 @@ export function getLocalizedPost(slug: string, locale: string): LocalizedPost | 
   return localizedPosts(locale).find((p) => p.slug === slug);
 }
 
-// Slugs to prerender: every English post plus the zh-only posts (those 404
-// outside /zh — see getLocalizedPost).
+// Slugs to prerender: every English post plus the zh-only and de-only posts
+// (those 404 outside their locale — see getLocalizedPost).
 export function allSlugsAnyLocale(): string[] {
-  return [...allSlugs(), ...zhOnlyPosts.map((p) => p.slug)];
+  return [...allSlugs(), ...zhOnlyPosts.map((p) => p.slug), ...deOnlyPosts.map((p) => p.slug)];
 }

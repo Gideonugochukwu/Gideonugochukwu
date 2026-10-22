@@ -11,7 +11,11 @@ export default function Footer() {
   const ts = useTranslations("services");
   const tr = useTranslations();
   // Chinese drops the Latin full stops around the brand/founder names.
-  const isZh = useLocale() === "zh";
+  const locale = useLocale();
+  const isZh = locale === "zh";
+  // German law requires an Impressum on commercial sites; /de links it next
+  // to the privacy policy (Datenschutz).
+  const isDe = locale === "de";
   const year = new Date().getFullYear();
   const socials = activeSocialLinks();
 
@@ -90,6 +94,9 @@ export default function Footer() {
           </ul>
           <h4 className="mt-6 text-sm font-semibold text-ink-900">{t("legalHeading")}</h4>
           <ul className="mt-4 space-y-2.5">
+            {isDe && (
+              <li><Link href="/impressum" className="text-sm text-ink-600 hover:text-brand-700 transition">{t("impressum")}</Link></li>
+            )}
             <li><Link href="/privacy" className="text-sm text-ink-600 hover:text-brand-700 transition">{t("privacy")}</Link></li>
             <li><Link href="/terms" className="text-sm text-ink-600 hover:text-brand-700 transition">{t("terms")}</Link></li>
             <li><Link href="/security" className="text-sm text-ink-600 hover:text-brand-700 transition">{t("security")}</Link></li>

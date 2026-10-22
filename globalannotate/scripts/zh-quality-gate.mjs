@@ -90,6 +90,17 @@ const decode = (s) =>
     .replace(/&#(\d+);/g, (_, d) => String.fromCodePoint(Number(d)))
     .replace(/&([a-z]+);/gi, (m, n) => ENTITIES[n.toLowerCase()] ?? m);
 
+// Prerendered 404 (a route that only exists in another locale).
+function is404(file) {
+  const meta = file.replace(/\.html$/, ".meta");
+  if (!existsSync(meta)) return false;
+  try {
+    return JSON.parse(readFileSync(meta, "utf8")).status === 404;
+  } catch {
+    return false;
+  }
+}
+
 function walk(dir) {
   const out = [];
   for (const name of readdirSync(dir)) {
@@ -215,7 +226,10 @@ if (!existsSync(APP)) {
   console.error("[zh-gate] .next/server/app not found — run `next build` first.");
   process.exit(1);
 }
-const zhFiles = [join(APP, "zh.html"), ...(existsSync(join(APP, "zh")) ? walk(join(APP, "zh")) : [])].filter(existsSync);
+const zhFiles = [join(APP, "zh.html"), ...(existsSync(join(APP, "zh")) ? walk(join(APP, "zh")) : [])].filter(existsSync)
+  // Locale-only routes (e.g. /zh/impressum for the German Impressum) are
+  // prerendered as 404s in the other locales; they are not pages to check.
+  .filter((f) => !is404(f));
 const pages = new Map(zhFiles.map((f) => [routeOf(f), readFileSync(f, "utf8")]));
 
 const sitemapPath = join(root, "public/sitemap-zh.xml");

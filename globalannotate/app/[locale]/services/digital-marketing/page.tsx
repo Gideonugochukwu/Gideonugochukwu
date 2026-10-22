@@ -4,6 +4,9 @@ import ServicePage from "@/components/ServicePage";
 import ZhServicePage from "@/components/zh/ZhServicePage";
 import { digitalMarketingZh } from "@/content/zh/services/digital-marketing";
 import { zhMetadata } from "@/lib/zh";
+import { deMetadata } from "@/lib/de";
+import DeServicePage from "@/components/de/DeServicePage";
+import { digitalMarketingDe } from "@/content/de/services/digital-marketing";
 import JsonLd from "@/components/JsonLd";
 import { img } from "@/lib/images";
 import { site } from "@/lib/site";
@@ -41,6 +44,9 @@ export async function generateMetadata({
   const { locale } = await params;
   if (locale === "zh") {
     return zhMetadata({ path: "/services/digital-marketing", ...digitalMarketingZh.meta });
+  }
+  if (locale === "de") {
+    return deMetadata({ path: "/services/digital-marketing", ...digitalMarketingDe.meta });
   }
   return withHreflang(EN_METADATA, "/services/digital-marketing");
 }
@@ -101,6 +107,9 @@ export default async function Page({
 }) {
   const { locale } = await params;
   setRequestLocale(locale);
+  if (locale === "de") {
+    return <DeServicePage slug="digital-marketing" heroSlideId={img.services.digitalMarketing.id} content={digitalMarketingDe} />;
+  }
   if (locale === "zh") {
     return (
       <ZhServicePage

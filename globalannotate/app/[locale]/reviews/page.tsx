@@ -14,6 +14,8 @@ import PageHero from "@/components/PageHero";
 import { portfolioHeroSlides } from "@/lib/images";
 import { setRequestLocale } from "next-intl/server";
 import ReviewsZh, { ZH_META } from "@/components/zh/ReviewsZh";
+import ReviewsDe, { DE_META } from "@/components/de/ReviewsDe";
+import { deMetadata } from "@/lib/de";
 import { zhMetadata } from "@/lib/zh";
 
 const TITLE = "Client Reviews";
@@ -46,6 +48,7 @@ export async function generateMetadata({
 }): Promise<Metadata> {
   const { locale } = await params;
   if (locale === "zh") return zhMetadata({ path: "/reviews", ...ZH_META });
+  if (locale === "de") return deMetadata({ path: "/reviews", ...DE_META });
   return withHreflang(EN_METADATA, "/reviews");
 }
 
@@ -62,6 +65,7 @@ export default async function ReviewsPage({
   const { locale } = await params;
   setRequestLocale(locale);
   if (locale === "zh") return <ReviewsZh />;
+  if (locale === "de") return <ReviewsDe />;
   const avg = average(reviews);
 
   return (

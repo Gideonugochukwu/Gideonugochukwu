@@ -13,6 +13,7 @@ import { site, founder } from "@/lib/site";
 import { breadcrumbSchema, personSchema } from "@/lib/schema";
 import { setRequestLocale } from "next-intl/server";
 import AboutZh from "@/components/zh/AboutZh";
+import AboutDe from "@/components/de/AboutDe";
 
 
 export async function generateMetadata({
@@ -55,6 +56,7 @@ export default async function AboutPage({
   const { locale } = await params;
   setRequestLocale(locale);
   if (locale === "zh") return <AboutZh />;
+  if (locale === "de") return <AboutDe />;
   return (
     <>
       <JsonLd

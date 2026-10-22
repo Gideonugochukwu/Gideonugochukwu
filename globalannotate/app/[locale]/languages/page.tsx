@@ -22,6 +22,8 @@ import {
 import { ArrowRight, Check, Globe, MapPin, Users, Type } from "lucide-react";
 import { setRequestLocale } from "next-intl/server";
 import LanguagesZh, { ZH_META } from "@/components/zh/LanguagesZh";
+import LanguagesDe, { DE_META } from "@/components/de/LanguagesDe";
+import { deMetadata } from "@/lib/de";
 import { zhMetadata } from "@/lib/zh";
 
 const TITLE =
@@ -57,6 +59,7 @@ export async function generateMetadata({
 }): Promise<Metadata> {
   const { locale } = await params;
   if (locale === "zh") return zhMetadata({ path: "/languages", ...ZH_META });
+  if (locale === "de") return deMetadata({ path: "/languages", ...DE_META });
   return withHreflang(EN_METADATA, "/languages");
 }
 
@@ -99,6 +102,7 @@ export default async function LanguagesPage({
   const { locale } = await params;
   setRequestLocale(locale);
   if (locale === "zh") return <LanguagesZh />;
+  if (locale === "de") return <LanguagesDe />;
   return (
     <>
       <JsonLd

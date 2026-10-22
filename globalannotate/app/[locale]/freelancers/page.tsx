@@ -12,6 +12,7 @@ import { aboutHeroSlides } from "@/lib/images";
 import { Briefcase, BadgeDollarSign, Globe2, HeartHandshake } from "lucide-react";
 import { setRequestLocale } from "next-intl/server";
 import FreelancersZh from "@/components/zh/FreelancersZh";
+import FreelancersDe from "@/components/de/FreelancersDe";
 
 
 export async function generateMetadata({
@@ -54,6 +55,7 @@ export default async function FreelancersPage({
   const { locale } = await params;
   setRequestLocale(locale);
   if (locale === "zh") return <FreelancersZh />;
+  if (locale === "de") return <FreelancersDe />;
   return (
     <>
       {/* Warm up the connection to Airtable so the embedded form loads faster. */}

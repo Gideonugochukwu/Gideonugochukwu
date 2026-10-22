@@ -15,6 +15,8 @@ import { breadcrumbSchema } from "@/lib/schema";
 import { ArrowLeft, ArrowRight, ArrowUpRight, Check } from "lucide-react";
 import { setRequestLocale } from "next-intl/server";
 import CaseStudyZh from "@/components/zh/CaseStudyZh";
+import CaseStudyDe from "@/components/de/CaseStudyDe";
+import { deMetadata, deTitle, deDescription } from "@/lib/de";
 import { localizeCase } from "@/data/portfolio";
 import { zhMetadata } from "@/lib/zh";
 import { hreflangAlternates } from "@/lib/i18n-meta";
@@ -31,6 +33,20 @@ export async function generateMetadata({
   const { locale, slug } = await params;
   const c = getCase(slug);
   if (!c) return { title: locale === "zh" ? "未找到该案例" : "Case study not found" };
+  if (locale === "de") {
+    const de = localizeCase(c, "de");
+    return deMetadata({
+      path: `/portfolio/${c.slug}`,
+      title: deTitle(de.title),
+      description: deDescription(
+        de.summary,
+        "Lesen Sie die vollständige Fallstudie von GlobalAnnotate."
+      ),
+      type: "article",
+      image: unsplash(c.image.id, 1600),
+      imageAlt: de.image.alt,
+    });
+  }
   if (locale === "zh") {
     const zh = localizeCase(c, "zh");
     return zhMetadata({
@@ -84,6 +100,7 @@ export default async function CaseStudyPage({
   const c = getCase(slug);
   if (!c) notFound();
   if (locale === "zh") return <CaseStudyZh caseStudy={c} />;
+  if (locale === "de") return <CaseStudyDe caseStudy={c} />;
 
   const url = `${site.url}/portfolio/${c.slug}`;
   const heroSlides = [

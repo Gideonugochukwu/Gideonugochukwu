@@ -4,6 +4,9 @@ import ServicePage from "@/components/ServicePage";
 import ZhServicePage from "@/components/zh/ZhServicePage";
 import { gameLocalizationZh } from "@/content/zh/services/game-localization";
 import { zhMetadata } from "@/lib/zh";
+import { deMetadata } from "@/lib/de";
+import DeServicePage from "@/components/de/DeServicePage";
+import { gameLocalizationDe } from "@/content/de/services/game-localization";
 import JsonLd from "@/components/JsonLd";
 import { img } from "@/lib/images";
 import { site } from "@/lib/site";
@@ -41,6 +44,9 @@ export async function generateMetadata({
   const { locale } = await params;
   if (locale === "zh") {
     return zhMetadata({ path: "/services/game-localization", ...gameLocalizationZh.meta });
+  }
+  if (locale === "de") {
+    return deMetadata({ path: "/services/game-localization", ...gameLocalizationDe.meta });
   }
   return withHreflang(EN_METADATA, "/services/game-localization");
 }
@@ -198,6 +204,9 @@ export default async function Page({
 }) {
   const { locale } = await params;
   setRequestLocale(locale);
+  if (locale === "de") {
+    return <DeServicePage slug="game-localization" heroSlideId={img.services.gameLocalization.id} content={gameLocalizationDe} />;
+  }
   if (locale === "zh") {
     return (
       <ZhServicePage

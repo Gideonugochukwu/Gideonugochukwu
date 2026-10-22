@@ -28,6 +28,8 @@ export function zhAlternates(
       : {
           en: localePath("en", path),
           de: localePath("de", path),
+          "de-AT": localePath("de", path),
+          "de-CH": localePath("de", path),
           "zh-Hans": zh,
           "zh-CN": zh,
           "x-default": localePath("en", path),

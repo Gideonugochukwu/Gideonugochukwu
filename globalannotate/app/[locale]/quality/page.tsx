@@ -12,6 +12,8 @@ import { breadcrumbSchema, webPageSchema } from "@/lib/schema";
 import { ArrowRight, Check } from "lucide-react";
 import { setRequestLocale } from "next-intl/server";
 import QualityZh, { ZH_META } from "@/components/zh/QualityZh";
+import QualityDe, { DE_META } from "@/components/de/QualityDe";
+import { deMetadata } from "@/lib/de";
 import { zhMetadata } from "@/lib/zh";
 
 const TITLE =
@@ -47,6 +49,7 @@ export async function generateMetadata({
 }): Promise<Metadata> {
   const { locale } = await params;
   if (locale === "zh") return zhMetadata({ path: "/quality", ...ZH_META });
+  if (locale === "de") return deMetadata({ path: "/quality", ...DE_META });
   return withHreflang(EN_METADATA, "/quality");
 }
 
@@ -103,6 +106,7 @@ export default async function QualityPage({
   const { locale } = await params;
   setRequestLocale(locale);
   if (locale === "zh") return <QualityZh />;
+  if (locale === "de") return <QualityDe />;
   return (
     <>
       <JsonLd

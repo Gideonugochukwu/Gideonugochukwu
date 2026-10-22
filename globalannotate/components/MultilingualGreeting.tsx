@@ -24,6 +24,26 @@ const ZH_LANG_NAMES: Record<string, string> = {
   Zulu: "祖鲁语",
 };
 
+// German names for the greeting languages, used in the de aria-label.
+const DE_LANG_NAMES: Record<string, string> = {
+  English: "Englisch",
+  French: "Französisch",
+  Spanish: "Spanisch",
+  Portuguese: "Portugiesisch",
+  Italian: "Italienisch",
+  German: "Deutsch",
+  Mandarin: "Mandarin",
+  Japanese: "Japanisch",
+  Korean: "Koreanisch",
+  Arabic: "Arabisch",
+  Hindi: "Hindi",
+  Russian: "Russisch",
+  Turkish: "Türkisch",
+  Swahili: "Swahili",
+  Hausa: "Hausa",
+  Zulu: "Zulu",
+};
+
 const GREETINGS = [
   { word: "Hello", lang: "English" },
   { word: "Bonjour", lang: "French" },
@@ -51,10 +71,15 @@ export default function MultilingualGreeting() {
   const reduce = useReducedMotion();
   const locale = useLocale();
   const t = useTranslations("a11y");
-  // The Chinese locale opens on 你好 so the server-rendered greeting matches
-  // the page language; the cycle then continues through every language.
+  // The Chinese and German locales open on 你好 / Hallo so the
+  // server-rendered greeting matches the page language; the cycle then
+  // continues through every language.
   const [i, setI] = useState(() =>
-    locale === "zh" ? GREETINGS.findIndex((g) => g.lang === "Mandarin") : 0
+    locale === "zh"
+      ? GREETINGS.findIndex((g) => g.lang === "Mandarin")
+      : locale === "de"
+        ? GREETINGS.findIndex((g) => g.lang === "German")
+        : 0
   );
 
   useEffect(() => {
@@ -73,7 +98,12 @@ export default function MultilingualGreeting() {
       aria-live="polite"
       aria-atomic="true"
       aria-label={t("greeting", {
-        lang: locale === "zh" ? ZH_LANG_NAMES[current.lang] ?? current.lang : current.lang,
+        lang:
+          locale === "zh"
+            ? ZH_LANG_NAMES[current.lang] ?? current.lang
+            : locale === "de"
+              ? DE_LANG_NAMES[current.lang] ?? current.lang
+              : current.lang,
         word: current.word,
       })}
     >

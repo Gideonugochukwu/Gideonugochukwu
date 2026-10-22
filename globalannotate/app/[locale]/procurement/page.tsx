@@ -12,6 +12,8 @@ import { breadcrumbSchema, webPageSchema } from "@/lib/schema";
 import { ArrowRight, Download, FileText } from "lucide-react";
 import { setRequestLocale } from "next-intl/server";
 import ProcurementZh, { ZH_META } from "@/components/zh/ProcurementZh";
+import ProcurementDe, { DE_META } from "@/components/de/ProcurementDe";
+import { deMetadata } from "@/lib/de";
 import { zhMetadata } from "@/lib/zh";
 
 const TITLE =
@@ -47,6 +49,7 @@ export async function generateMetadata({
 }): Promise<Metadata> {
   const { locale } = await params;
   if (locale === "zh") return zhMetadata({ path: "/procurement", ...ZH_META });
+  if (locale === "de") return deMetadata({ path: "/procurement", ...DE_META });
   return withHreflang(EN_METADATA, "/procurement");
 }
 
@@ -103,6 +106,7 @@ export default async function ProcurementPage({
   const { locale } = await params;
   setRequestLocale(locale);
   if (locale === "zh") return <ProcurementZh />;
+  if (locale === "de") return <ProcurementDe />;
   return (
     <>
       <JsonLd

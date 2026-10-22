@@ -14,6 +14,7 @@ import { site } from "@/lib/site";
 import { breadcrumbSchema } from "@/lib/schema";
 import { ArrowUpRight } from "lucide-react";
 import BlogIndexZh from "@/components/zh/BlogIndexZh";
+import BlogIndexDe from "@/components/de/BlogIndexDe";
 
 
 export async function generateMetadata({
@@ -49,6 +50,7 @@ export default async function BlogIndex({
   const { locale } = await params;
   setRequestLocale(locale);
   if (locale === "zh") return <BlogIndexZh />;
+  if (locale === "de") return <BlogIndexDe />;
   const t = await getTranslations("blog");
   const sorted = [...posts].sort((a, b) => (a.date < b.date ? 1 : -1));
   return (

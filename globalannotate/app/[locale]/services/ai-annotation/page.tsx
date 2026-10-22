@@ -4,6 +4,9 @@ import ServicePage from "@/components/ServicePage";
 import ZhServicePage from "@/components/zh/ZhServicePage";
 import { aiAnnotationZh } from "@/content/zh/services/ai-annotation";
 import { zhMetadata } from "@/lib/zh";
+import { deMetadata } from "@/lib/de";
+import DeServicePage from "@/components/de/DeServicePage";
+import { aiAnnotationDe } from "@/content/de/services/ai-annotation";
 import JsonLd from "@/components/JsonLd";
 import { img } from "@/lib/images";
 import { site } from "@/lib/site";
@@ -41,6 +44,9 @@ export async function generateMetadata({
   const { locale } = await params;
   if (locale === "zh") {
     return zhMetadata({ path: "/services/ai-annotation", ...aiAnnotationZh.meta });
+  }
+  if (locale === "de") {
+    return deMetadata({ path: "/services/ai-annotation", ...aiAnnotationDe.meta });
   }
   return withHreflang(EN_METADATA, "/services/ai-annotation");
 }
@@ -101,6 +107,9 @@ export default async function Page({
 }) {
   const { locale } = await params;
   setRequestLocale(locale);
+  if (locale === "de") {
+    return <DeServicePage slug="ai-annotation" heroSlideId={img.services.aiAnnotation.id} content={aiAnnotationDe} />;
+  }
   if (locale === "zh") {
     return (
       <ZhServicePage

@@ -5,431 +5,432 @@
     "languages": "Sprachen",
     "marketready": "MarketReady™",
     "portfolio": "Referenzen",
-    "blog": "Blog",
+    "blog": "Fachbeiträge",
     "about": "Über uns",
     "network": "Netzwerk beitreten",
     "contact": "Kontakt"
   },
   "common": {
-    "talkToExpert": "Experten kontaktieren",
+    "talkToExpert": "Beratung anfragen",
     "learnMore": "Mehr erfahren",
     "seeAllServices": "Alle Leistungen ansehen",
-    "exploreService": "Leistung entdecken",
+    "exploreService": "Leistung ansehen",
     "readMore": "Weiterlesen",
-    "getStarted": "Loslegen"
+    "getStarted": "Jetzt starten"
   },
   "hero": {
-    "line1": "Präzision in jeder Sprache.",
-    "line2": "Intelligenz in jedem Datensatz.",
+    "line1": "Übersetzung afrikanischer Sprachen – präzise.",
+    "line2": "KI-Datenannotation – verlässlich.",
     "line3": "Wachstum in jedem Markt.",
-    "subhead": "Ein Partner für Lokalisierung, KI-Trainingsdaten, mehrsprachiges SEO und Wachstumsmarketing — in über 100 Sprachen.",
-    "credential": "Muttersprachliche Fachleute · 100+ Sprachen · 30+ Länder"
+    "subhead": "Ein Partner für Übersetzung, Lokalisierung, KI-Trainingsdaten, mehrsprachige Suchmaschinenoptimierung und Wachstumsmarketing – in über 100 Sprachen.",
+    "credential": "Muttersprachliche Fachleute · über 100 Sprachen · über 30 Länder"
   },
   "services": {
     "translation-localization": {
       "title": "Übersetzung und Lokalisierung",
       "short": "Übersetzung und Lokalisierung",
-      "summary": "Übersetzungen in menschlicher Qualität und kulturell präzise Lokalisierung in über 100 Sprachen — für Websites, Apps, Dokumente und Multimedia-Inhalte."
+      "summary": "Hochwertige Übersetzung durch Muttersprachler und kulturell stimmige Lokalisierung in über 100 Sprachen – für Websites, Apps, Dokumente und Multimedia-Inhalte."
     },
     "ai-annotation": {
-      "title": "KI-Annotation und Datenlabeling",
-      "short": "KI-Annotation",
-      "summary": "Hochpräzise Trainingsdaten für Computer-Vision-, NLP- und LLM-Teams — Bounding Boxes, semantische Segmentierung, Audio und Text, jeweils qualitätsgeprüft."
+      "title": "KI-Datenannotation",
+      "short": "KI-Datenannotation",
+      "summary": "Präzise Trainingsdaten für Teams in den Bereichen Bildverarbeitung, Sprachverarbeitung und große Sprachmodelle – Begrenzungsrahmen, semantische Segmentierung, Audio und Text, durchgehend qualitätsgesichert."
     },
     "seo": {
-      "title": "SEO und Suchmaschinenoptimierung",
-      "short": "SEO und Suchmaschinenoptimierung",
-      "summary": "Sichtbar überall dort, wo Sie verkaufen — in jeder Sprache. Mehrsprachiges und internationales SEO, technische Audits, Content und nachhaltiger Linkaufbau."
+      "title": "Suchmaschinenoptimierung und Sichtbarkeit",
+      "short": "Suchmaschinenoptimierung",
+      "summary": "Gute Platzierungen in jedem Markt und jeder Sprache: mehrsprachige und internationale Suchmaschinenoptimierung (SEO), technische Prüfungen, Inhalte und Linkaufbau mit nachhaltiger Wirkung."
     },
     "digital-marketing": {
       "title": "Digitales Marketing",
       "short": "Digitales Marketing",
-      "summary": "Leistungsorientierte Facebook- und Instagram-Anzeigen, Social-Media-Management und Content-Strategie, die aus Zielgruppen Kunden machen."
+      "summary": "Erfolgsorientierte Werbung auf Facebook und Instagram, Betreuung sozialer Medien und Inhaltsstrategien, die aus Zielgruppen Kunden machen."
     },
     "game-localization": {
       "title": "Spielelokalisierung und Übersetzung",
       "short": "Spielelokalisierung",
-      "summary": "Bringen Sie Ihr Spiel zu Spielern weltweit — Benutzeroberfläche, Dialoge, Untertitel, Sprecherskripte, Store-Einträge und LQA-Tests in über 100 Sprachen."
+      "summary": "Bringen Sie Ihr Spiel zu Spielerinnen und Spielern weltweit – Benutzeroberfläche, Dialoge, Untertitel, Sprechertexte, Shop-Einträge und linguistische Qualitätssicherung (LQA) in über 100 Sprachen."
     },
     "marketready": {
-      "title": "MarketReady™ Kulturelle Validierung",
+      "title": "MarketReady™ kulturelle Validierung",
       "short": "MarketReady™",
-      "summary": "Tests vor dem Launch mit echten muttersprachlichen Nutzern. Der einzige Übersetzungsdienst, der garantiert, dass Ihre Inhalte im Zielmarkt funktionieren."
+      "summary": "Tests mit echten muttersprachlichen Nutzern vor der Markteinführung. Der einzige Übersetzungsdienst, der garantiert, dass Ihre Inhalte im Zielmarkt wirken."
     }
   },
   "homeServices": {
     "eyebrow": "Unsere Leistungen",
     "heading1": "Fünf Leistungen.",
     "heading2": "Ein verantwortliches Team.",
-    "subhead": "Übersetzung, KI-Trainingsdaten, mehrsprachiges SEO, Marketing und Spielelokalisierung — in über 100 Sprachen."
+    "subhead": "Übersetzung, KI-Trainingsdaten, mehrsprachige Suchmaschinenoptimierung, Marketing und Spielelokalisierung – in über 100 Sprachen."
   },
   "stats": {
     "languages": "Unterstützte Sprachen",
     "dataPoints": "Annotierte Datenpunkte",
-    "countries": "Bediente Länder",
+    "countries": "Betreute Länder",
     "satisfaction": "Kundenzufriedenheit",
     "eyebrow": "In Zahlen",
-    "note": "Ein Einblick in die Arbeit unserer muttersprachlichen Fachleute in über 30 Ländern."
+    "note": "Ein Ausschnitt dessen, was unsere muttersprachlichen Fachleute in über 30 Ländern leisten."
   },
   "industries": {
-    "eyebrow": "Branchen, die wir bedienen",
-    "heading": "Entwickelt für internationale Teams in jeder Branche.",
+    "eyebrow": "Branchen",
+    "heading": "Für international tätige Teams jeder Branche.",
     "cta": "Ihre Branche fehlt? Sprechen Sie uns an",
     "items": {
       "technology": {
-        "name": "Technologie und SaaS",
-        "line": "Bringen Sie Produkte und Dokumentation in jeden Markt — ohne die Entwicklung auszubremsen."
+        "name": "Technologie und Software",
+        "line": "Produkte und Dokumentation in jedem Markt veröffentlichen – ohne die Entwicklung auszubremsen."
       },
       "ecommerce": {
-        "name": "E-Commerce",
-        "line": "Lokalisierte Produkt-, Anzeigen- und Checkout-Erlebnisse, die konvertieren."
+        "name": "Onlinehandel",
+        "line": "Lokalisierte Produktseiten, Anzeigen und Bestellprozesse, die verkaufen."
       },
       "healthcare": {
-        "name": "Gesundheitswesen und Life Sciences",
-        "line": "Zertifizierte, auditsichere Übersetzungen und patientensichere Inhalte."
+        "name": "Gesundheitswesen und Biowissenschaften",
+        "line": "Beglaubigte, prüffähige Übersetzungen und patientensichere Inhalte."
       },
       "ai": {
         "name": "KI und maschinelles Lernen",
-        "line": "Produktionsreife Trainingsdaten, auf die sich Ihre Modelle verlassen können."
+        "line": "Trainingsdaten in Produktionsqualität, auf die sich Ihre Modelle verlassen können."
       },
       "gaming": {
-        "name": "Gaming und Interactive",
-        "line": "UI, Dialoge, Sprecherskripte und LQA — für Studios, die international wachsen."
+        "name": "Spiele und interaktive Medien",
+        "line": "Benutzeroberfläche, Dialoge, Sprechertexte und LQA – für Studios auf dem Weg in neue Märkte."
       },
       "media": {
         "name": "Medien und Unterhaltung",
-        "line": "Untertitelung, Synchronisation und Metadaten im Streaming-Maßstab."
+        "line": "Untertitelung, Synchronisation und Metadaten im Umfang großer Streamingdienste."
       }
     }
   },
   "marketready": {
-    "badge": "MarketReady™ · Proprietär",
-    "heading": "Die einzige Übersetzungsagentur, die garantiert, dass Ihre Inhalte im Zielmarkt funktionieren.",
-    "description": "Jede andere Agentur prüft nur, ob die Worte korrekt sind. MarketReady™ prüft, ob Ihre Inhalte tatsächlich funktionieren — validiert von echten muttersprachlichen Nutzern in Ihrem Zielmarkt, noch vor dem Launch.",
+    "badge": "MarketReady™ · Eigenes Verfahren",
+    "heading": "Die einzige Übersetzungsagentur, die die Marktreife Ihrer Inhalte garantiert.",
+    "description": "Andere Agenturen prüfen, ob die Wörter stimmen. Die MarketReady™ kulturelle Validierung prüft, ob Ihre Inhalte tatsächlich wirken – bestätigt von echten muttersprachlichen Nutzern in Ihrem Zielmarkt, noch vor der Markteinführung.",
     "learnMore": "Mehr über MarketReady™ erfahren",
     "bullet1Strong": "Echte muttersprachliche Nutzer",
-    "bullet1": " — keine Übersetzer — prüfen Ihre Inhalte im Blindtest.",
+    "bullet1": " – keine Übersetzer – prüfen Ihre Inhalte im Blindtest.",
     "bullet2Strong": "Ein unterzeichneter Bericht",
-    "bullet2": ", der bestätigt, dass Ihre Inhalte startbereit sind."
+    "bullet2": " bestätigt, dass Ihre Inhalte bereit für die Markteinführung sind."
   },
   "method": {
     "eyebrow": "Die GlobalAnnotate-Methode",
-    "heading1": "Qualität, die Sie überprüfen können.",
-    "heading2": "Geschwindigkeit, auf die Sie sich verlassen können.",
-    "intro": "Muttersprachliche Linguisten, spezialisierte Annotatoren, SEO-Strategen und Wachstumsmarketer — unter einem Qualitätssystem, mit einer erfahrenen Projektleitung.",
+    "heading1": "Prüfbare Qualität.",
+    "heading2": "Verlässliche Termine.",
+    "intro": "Muttersprachliche Sprachexperten, spezialisierte Annotatoren, Fachleute für Suchmaschinenoptimierung und Wachstumsmarketing – in einem Qualitätssystem, unter einer erfahrenen Projektleitung.",
     "promises": {
       "quality": {
-        "title": "Qualität, die Sie überprüfen können",
-        "body": "Jedes Projekt wird mit einem QA-Bericht und einem Korrekturzeitraum geliefert."
+        "title": "Prüfbare Qualität",
+        "body": "Jedes Projekt wird mit einem Qualitätsbericht und einer Korrekturphase geliefert."
       },
       "global": {
-        "title": "Wirklich globale Abdeckung",
-        "body": "Muttersprachliche Spezialisten in über 100 Sprachen und 30+ Märkten."
+        "title": "Wirklich weltweit",
+        "body": "Muttersprachliche Fachleute in über 100 Sprachen und mehr als 30 Märkten."
       },
       "ailed": {
-        "title": "KI-gestützt, von Menschen geführt",
-        "body": "Intelligente Automatisierung, fachliche Kontrolle. Tempo ohne Kompromisse."
+        "title": "KI-gestützt, vom Menschen geführt",
+        "body": "Intelligente Automatisierung unter fachkundiger Aufsicht. Tempo ohne Qualitätsverlust."
       },
       "senior": {
-        "title": "Erfahrung statt reinem Vertrieb",
+        "title": "Erfahrene Ansprechpartner statt Vertrieb",
         "body": "Eine erfahrene Projektleitung ab dem ersten Tag. Keine Übergaben."
       }
     },
-    "howEyebrow": "So funktioniert es",
-    "howHeading": "Von der ersten Anfrage bis zur finalen Lieferung.",
+    "howEyebrow": "Ablauf",
+    "howHeading": "Von der ersten Nachricht bis zur Lieferung.",
     "steps": {
       "discovery": {
         "title": "Erstgespräch",
-        "body": "Wir lernen Ihre Ziele, Ihre Zielgruppe und Ihre Rahmenbedingungen kennen."
+        "body": "Wir klären Ihre Ziele, Ihre Zielgruppe und Ihre Rahmenbedingungen."
       },
       "proposal": {
         "title": "Maßgeschneidertes Angebot",
-        "body": "Klarer Umfang, Zeitplan und Preise innerhalb von 24–48 Stunden."
+        "body": "Klarer Leistungsumfang, Zeitplan und Preis innerhalb von 24–48 Stunden."
       },
       "production": {
-        "title": "Produktion und Qualitätssicherung",
-        "body": "Spezialisten setzen um. Unser Qualitätsteam prüft jedes Ergebnis."
+        "title": "Umsetzung und Qualitätssicherung",
+        "body": "Fachleute setzen um, unser Qualitätsteam prüft jedes Ergebnis."
       },
       "delivery": {
         "title": "Lieferung und Wachstum",
-        "body": "Ausgereifte Ergebnisse, mit Iteration im Zuge Ihres Wachstums."
+        "body": "Ausgereifte Ergebnisse – und Weiterentwicklung, wenn Sie wachsen."
       }
     }
   },
   "testimonials": {
-    "eyebrow": "Was unsere Kunden sagen",
+    "eyebrow": "Kundenstimmen",
     "heading1": "Geschätzt von Teams,",
-    "heading2": "die international wachsen.",
+    "heading2": "die über Grenzen hinweg arbeiten.",
     "readAll": "Alle Bewertungen lesen"
   },
   "faq": {
     "eyebrow": "Häufige Fragen",
     "heading": "Häufig gestellte Fragen.",
-    "subhead": "Die Fragen, die Teams uns stellen, bevor sie starten.",
+    "subhead": "Was Teams uns vor Projektbeginn am häufigsten fragen.",
     "items": [
       {
         "q": "Welche Leistungen bietet GlobalAnnotate an?",
-        "a": "Fünf integrierte Leistungen: Übersetzung und Lokalisierung in über 100 Sprachen, KI-Annotation und Datenlabeling, mehrsprachiges SEO und Suchmaschinenoptimierung, leistungsorientiertes digitales Marketing sowie Spielelokalisierung und Übersetzung für Studios, die international wachsen."
+        "a": "Fünf aufeinander abgestimmte Leistungen: Übersetzung und Lokalisierung in über 100 Sprachen, KI-Datenannotation, mehrsprachige Suchmaschinenoptimierung (SEO), erfolgsorientiertes digitales Marketing sowie Spielelokalisierung für Studios, die international veröffentlichen."
       },
       {
         "q": "Wie viele Sprachen unterstützen Sie?",
-        "a": "Über 100 Sprachen mit muttersprachlichen Spezialisten in mehr als 30 Ländern — einschließlich aller wichtigen europäischen, asiatischen, afrikanischen und nahöstlichen Sprachen."
+        "a": "Über 100 Sprachen mit muttersprachlichen Fachleuten in mehr als 30 Ländern – darunter alle wichtigen europäischen, asiatischen, afrikanischen und nahöstlichen Sprachen. Ein Schwerpunkt ist die Übersetzung afrikanischer Sprachen wie Hausa, Yoruba, Igbo und Swahili."
       },
       {
         "q": "Kann ich mehrere Leistungen kombinieren?",
-        "a": "Ja — die meisten unserer Kunden kombinieren zwei oder mehr. Lokalisierung plus internationales SEO oder KI-Annotation plus mehrsprachige Datensätze sind gängige Kombinationen, die von einer erfahrenen Projektleitung betreut werden."
+        "a": "Ja – die meisten Kunden kombinieren zwei oder mehr. Lokalisierung mit internationaler Suchmaschinenoptimierung oder KI-Datenannotation mit mehrsprachigen Datensätzen sind gängige Kombinationen, die eine erfahrene Projektleitung koordiniert."
       },
       {
-        "q": "Wie lang sind Ihre üblichen Bearbeitungszeiten?",
-        "a": "Wir beantworten jede Anfrage innerhalb eines Werktages, legen innerhalb von 24–48 Stunden ein umrissenes Angebot vor, und die meisten Projekte liefern das erste Ergebnis innerhalb von zwei Wochen."
+        "q": "Wie schnell liefern Sie in der Regel?",
+        "a": "Wir beantworten jede Anfrage innerhalb eines Werktags, legen innerhalb von 24–48 Stunden ein konkretes Angebot vor, und die meisten Projekte liefern ein erstes Ergebnis innerhalb von zwei Wochen."
       },
       {
         "q": "Wie stellen Sie die Qualität sicher?",
-        "a": "Jedes Projekt durchläuft einen dokumentierten QA-Prozess: muttersprachliche Prüfung bei Spracharbeit, Gold-Set-Kalibrierung und Inter-Annotator-Übereinstimmung bei KI-Daten sowie transparentes Reporting bei SEO und Marketing."
+        "a": "Jedes Projekt durchläuft einen dokumentierten Prozess der Qualitätssicherung: Prüfung durch Muttersprachler bei Sprachprojekten, Kalibrierung anhand von Goldstandard-Datensätzen und Messung der Übereinstimmung zwischen Annotatoren bei KI-Daten sowie klare Berichte bei Suchmaschinenoptimierung und Marketing."
       },
       {
-        "q": "Wo sind Sie ansässig und welche Zeitzonen decken Sie ab?",
-        "a": "Wir arbeiten als verteiltes Team in über 30 Ländern, mit muttersprachlichen Spezialisten, die auf Ihre Geschäftszeiten abgestimmt sind."
+        "q": "Wo sitzen Sie, und welche Zeitzonen decken Sie ab?",
+        "a": "Wir arbeiten als verteiltes Team in über 30 Ländern; unsere muttersprachlichen Fachleute richten sich nach Ihren Geschäftszeiten – auch in Deutschland, Österreich und der Schweiz."
       }
     ]
   },
   "cta": {
     "heading": "Bereit für internationales Wachstum?",
-    "subhead": "Erzählen Sie uns von Ihrem Projekt — wir melden uns innerhalb eines Werktages bei Ihnen.",
-    "talkToExpert": "Experten kontaktieren"
+    "subhead": "Schildern Sie uns Ihr Projekt – wir melden uns innerhalb eines Werktags.",
+    "talkToExpert": "Beratung anfragen"
   },
   "footer": {
     "servicesHeading": "Leistungen",
     "companyHeading": "Unternehmen",
-    "followHeading": "Folgen",
-    "legalHeading": "Recht & Vertrauen",
+    "followHeading": "Folgen Sie uns",
+    "legalHeading": "Rechtliches und Vertrauen",
     "about": "Über uns",
     "portfolio": "Referenzen",
     "reviews": "Kundenbewertungen",
-    "blog": "Blog",
+    "blog": "Fachbeiträge",
     "network": "Netzwerk beitreten",
     "contact": "Kontakt",
-    "privacy": "Datenschutzerklärung",
+    "privacy": "Datenschutz",
     "terms": "Nutzungsbedingungen",
     "foundedBy": "Gegründet von",
     "rights": "Alle Rechte vorbehalten.",
     "industries": "Branchen",
     "procurement": "Zusammenarbeit",
-    "security": "Sicherheit & Vertraulichkeit",
+    "security": "Sicherheit und Vertraulichkeit",
     "quality": "Qualität",
-    "cookies": "Cookie-Einstellungen"
+    "cookies": "Cookie-Einstellungen",
+    "impressum": "Impressum"
   },
   "contact": {
-    "eyebrow": "Kontakt aufnehmen",
-    "heading": "Sprechen Sie mit uns.",
-    "subhead": "Erzählen Sie uns von Ihrem Projekt — wir melden uns innerhalb eines Werktages bei Ihnen.",
+    "eyebrow": "Kontakt",
+    "heading": "Übersetzungsagentur für Afrika und weltweit – sprechen Sie uns an.",
+    "subhead": "Schildern Sie uns Ihr Projekt – wir melden uns innerhalb eines Werktags.",
     "emailUsHeading": "Schreiben Sie uns direkt",
-    "emailUsBody": "Allgemeine Fragen, Partnerschaften oder Karriere.",
-    "responseHeading": "Reaktionszeit",
-    "responseBody": "Innerhalb eines Werktages. Die meisten Antworten erfolgen noch am selben Tag.",
-    "whereHeading": "Wo wir arbeiten",
-    "whereBody": "Muttersprachliche Spezialisten in über 30 Ländern. Abgestimmt auf Ihre Zeitzone.",
-    "formHeading": "Erzählen Sie uns von Ihrem Projekt",
-    "formIntro": "Je mehr Kontext Sie teilen, desto präziser wird unser Angebot. Eine erfahrene Projektleitung antwortet innerhalb eines Werktages. Sie wissen nicht, wo Sie anfangen sollen? Werfen Sie zunächst einen Blick auf unsere <services>Leistungen</services> oder aktuelle <cases>Fallstudien</cases>.",
+    "emailUsBody": "Allgemeine Fragen, Partnerschaften oder Bewerbungen.",
+    "responseHeading": "Antwortzeit",
+    "responseBody": "Innerhalb eines Werktags, meist noch am selben Tag.",
+    "whereHeading": "Unser Einsatzgebiet",
+    "whereBody": "Muttersprachliche Fachleute in über 30 Ländern, abgestimmt auf Ihre Zeitzone.",
+    "formHeading": "Beschreiben Sie Ihr Projekt",
+    "formIntro": "Je mehr Hintergrund Sie uns geben, desto genauer wird unser Angebot. Eine erfahrene Projektleitung antwortet innerhalb eines Werktags. Sie wissen noch nicht, wo Sie anfangen sollen? Sehen Sie sich zuerst unsere <services>Leistungen</services> oder aktuelle <cases>Referenzprojekte</cases> an.",
     "form": {
       "fullName": "Vollständiger Name",
-      "fullNamePlaceholder": "Godsportion",
+      "fullNamePlaceholder": "Erika Mustermann",
       "businessEmail": "Geschäftliche E-Mail-Adresse",
-      "businessEmailPlaceholder": "jane@unternehmen.de",
+      "businessEmailPlaceholder": "erika.mustermann@firma.de",
       "company": "Unternehmen (optional)",
-      "companyPlaceholder": "Acme GmbH",
+      "companyPlaceholder": "Muster GmbH",
       "service": "Leistung",
       "selectService": "Leistung auswählen …",
       "fullPackage": "Komplettpaket",
-      "projectDetails": "Projektdetails",
-      "projectPlaceholder": "Erzählen Sie uns von Ihrem Projekt — Ziele, Formate, Sprachen, Umfang, Zielgruppe …",
+      "projectDetails": "Projektbeschreibung",
+      "projectPlaceholder": "Beschreiben Sie Ihr Projekt – Ziele, Formate, Sprachen, Umfang, Zielgruppe …",
       "budget": "Budget (optional)",
-      "budgetPlaceholder": "z. B. 2.000 – 5.000 USD",
+      "budgetPlaceholder": "z. B. 2.000–5.000 USD",
       "timeline": "Zeitrahmen (optional)",
       "timelinePlaceholder": "z. B. Start in 2 Wochen, Lieferung in 30 Tagen",
-      "consent": "Mit dem Absenden erklären Sie sich damit einverstanden, zu Ihrer Anfrage kontaktiert zu werden.",
-      "send": "Nachricht senden",
+      "consent": "Mit dem Absenden erklären Sie sich einverstanden, dass wir Sie zu Ihrer Anfrage kontaktieren.",
+      "send": "Anfrage senden",
       "sending": "Wird gesendet …",
       "successHeading": "Anfrage erhalten",
-      "successBody": "Ein Mitglied unseres Teams meldet sich innerhalb eines Werktages bei Ihnen mit den nächsten Schritten und einem maßgeschneiderten Angebot.",
+      "successBody": "Ein Mitglied unseres Teams meldet sich innerhalb eines Werktags mit den nächsten Schritten und einem maßgeschneiderten Angebot.",
       "sendAnother": "Weitere Anfrage senden",
-      "errFullName": "Bitte geben Sie Ihren vollständigen Namen ein",
-      "errEmail": "Bitte geben Sie eine gültige geschäftliche E-Mail-Adresse ein",
-      "errService": "Bitte wählen Sie eine Leistung aus",
-      "errDetails": "Bitte erzählen Sie uns etwas mehr — mindestens 20 Zeichen",
-      "errNoEndpoint": "Formular-Endpunkt noch nicht konfiguriert. Fügen Sie NEXT_PUBLIC_FORMSPREE_QUOTE_ENDPOINT in .env.local hinzu.",
-      "toastSuccess": "Vielen Dank — Ihre Anfrage wurde gesendet. Wir antworten innerhalb eines Werktages.",
-      "toastError": "Etwas ist schiefgelaufen. Bitte versuchen Sie es erneut oder schreiben Sie uns direkt.",
-      "consentAgree": "Ich stimme der <link>Datenschutzerklärung</link> zu und bin damit einverstanden, dass GlobalAnnotate mich zu dieser Anfrage kontaktiert.",
-      "confidential": "Ihre Projektdaten werden vertraulich behandelt und nur mit dem Team geteilt, das an Ihrer Anfrage arbeitet.",
-      "errConsent": "Bitte akzeptieren Sie die Datenschutzerklärung, um fortzufahren."
+      "errFullName": "Bitte geben Sie Ihren vollständigen Namen ein.",
+      "errEmail": "Bitte geben Sie eine gültige geschäftliche E-Mail-Adresse ein.",
+      "errService": "Bitte wählen Sie eine Leistung aus.",
+      "errDetails": "Bitte beschreiben Sie Ihr Projekt etwas ausführlicher (mindestens 20 Zeichen).",
+      "errNoEndpoint": "Das Anfrageformular ist noch nicht eingerichtet. Bitte schreiben Sie uns direkt eine E-Mail.",
+      "toastSuccess": "Vielen Dank – Ihre Anfrage wurde gesendet. Wir antworten innerhalb eines Werktags.",
+      "toastError": "Leider ist ein Fehler aufgetreten. Bitte versuchen Sie es erneut oder schreiben Sie uns direkt eine E-Mail.",
+      "consentAgree": "Ich habe die <link>Datenschutzerklärung</link> gelesen und bin einverstanden, dass GlobalAnnotate mich zu dieser Anfrage kontaktiert.",
+      "confidential": "Ihre Projektangaben werden vertraulich behandelt und nur mit dem Team geteilt, das Ihre Anfrage bearbeitet.",
+      "errConsent": "Bitte stimmen Sie der Datenschutzerklärung zu, um fortzufahren."
     }
   },
   "blog": {
     "keepReading": "Weiterlesen",
-    "readArticle": "Artikel lesen",
-    "allArticles": "Alle Artikel",
+    "readArticle": "Beitrag lesen",
+    "allArticles": "Alle Beiträge",
     "minRead": "Min. Lesezeit",
     "by": "Von",
-    "authorRole": "Gründer und leitender Linguist bei GlobalAnnotate",
-    "calloutHeading": "Garantieren Sie, dass Ihre Inhalte vor dem Launch funktionieren",
-    "calloutBody": "Jedes GlobalAnnotate-Projekt umfasst MarketReady™ — kulturelle Validierung vor dem Launch mit echten muttersprachlichen Nutzern in Ihrem Zielmarkt. Sie erhalten einen unterzeichneten Bericht, der bestätigt, dass Ihre Inhalte marktreif und nicht nur sprachlich korrekt sind.",
+    "authorRole": "Gründer und leitender Sprachexperte bei GlobalAnnotate",
+    "calloutHeading": "Stellen Sie vor der Markteinführung sicher, dass Ihre Inhalte wirken",
+    "calloutBody": "Jedes GlobalAnnotate-Projekt umfasst die MarketReady™ kulturelle Validierung: Prüfung vor der Markteinführung durch echte muttersprachliche Nutzer in Ihrem Zielmarkt. Sie erhalten einen unterzeichneten Bericht, der bestätigt, dass Ihre Inhalte nicht nur sprachlich korrekt, sondern marktreif sind.",
     "calloutLink": "Mehr über MarketReady™ erfahren"
   },
-  "legalNote": "Dieses Dokument liegt in englischer Sprache vor. Für eine übersetzte Version kontaktieren Sie uns bitte.",
+  "legalNote": "",
   "meta": {
     "home": {
-      "title": "GlobalAnnotate — Übersetzung, KI-Annotation, SEO und digitales Marketing in über 100 Sprachen",
-      "description": "Übersetzungs- und Lokalisierungsdienstleistungen mit kultureller Validierung durch MarketReady™. Spezialist für afrikanische Sprachen. Über 100 Sprachen, ein verantwortliches Team."
+      "title": "Übersetzung afrikanischer Sprachen | GlobalAnnotate",
+      "description": "Übersetzungsagentur für afrikanische Sprachen: Hausa, Yoruba, Swahili und über 100 weitere Sprachen, dazu Lokalisierung und KI-Datenannotation."
     },
     "services": {
-      "title": "Leistungen — Übersetzung, Lokalisierung, KI-Annotation, Spielelokalisierung",
-      "description": "Integrierte Leistungen für Ihr internationales Wachstum: Übersetzung, KI-Annotation, mehrsprachiges SEO, digitales Marketing, Spielelokalisierung und MarketReady™-Validierung."
+      "title": "Übersetzungsagentur und Lokalisierung | GlobalAnnotate",
+      "description": "Übersetzung afrikanischer Sprachen, Lokalisierung, KI-Datenannotation, mehrsprachige SEO, Spielelokalisierung und MarketReady™ aus einer Hand."
     },
     "marketready": {
-      "title": "MarketReady™ — Kulturelle Validierung vor dem Launch",
-      "description": "Der einzige Übersetzungsdienst, der Ihre Inhalte vor dem Launch mit echten muttersprachlichen Nutzern validiert. Vermeiden Sie kostspielige kulturelle Fehltritte."
+      "title": "Kulturelle Validierung von Übersetzungen | GlobalAnnotate",
+      "description": "MarketReady™: kulturelle Validierung Ihrer Übersetzung vor der Markteinführung durch echte Muttersprachler im Zielmarkt – mit unterzeichnetem Bericht."
     },
     "about": {
-      "title": "Über GlobalAnnotate — Gegründet von Gideon Ugochukwu",
-      "description": "Lernen Sie Gideon Ugochukwu kennen, den Gründer von GlobalAnnotate — Übersetzung, KI-Annotation, SEO und Marketing in über 100 Sprachen."
+      "title": "Über uns: Übersetzungsagentur aus Nigeria | GlobalAnnotate",
+      "description": "GlobalAnnotate ist ein Übersetzungsdienstleister aus Nigeria, gegründet von Gideon Ugochukwu: Übersetzung, KI-Datenannotation und SEO in 100+ Sprachen."
     },
     "contact": {
-      "title": "Kontakt — Experten kontaktieren",
-      "description": "Erzählen Sie uns von Ihrem Projekt — wir melden uns innerhalb eines Werktages mit einem maßgeschneiderten Angebot bei Ihnen."
+      "title": "Kontakt: Übersetzungsagentur Afrika | GlobalAnnotate",
+      "description": "Nennen Sie uns Sprachpaar, Inhalt und Umfang: Unsere Übersetzungsagentur für Afrika antwortet innerhalb eines Werktags mit einem passenden Angebot."
     },
     "blog": {
-      "title": "Blog — Artikel über Übersetzung, Lokalisierung und KI",
-      "description": "Praxisnahe Leitfäden des GlobalAnnotate-Teams zu Lokalisierung, KI-Daten und internationalem SEO."
+      "title": "Fachbeiträge zu Übersetzung | GlobalAnnotate",
+      "description": "Praxisleitfäden zur Übersetzung afrikanischer Sprachen, zu Übersetzungskosten, kultureller Validierung, KI-Datenannotation und Spielelokalisierung."
     },
     "portfolio": {
-      "title": "Referenzen — Fallstudien",
-      "description": "Echte Ergebnisse aus Lokalisierung, KI-Annotation, SEO und Marketing für Teams, die über Märkte hinweg wachsen."
+      "title": "Referenzen Übersetzung und Lokalisierung | GlobalAnnotate",
+      "description": "Referenzprojekte von GlobalAnnotate: Lokalisierung, mehrsprachige KI-Datenannotation, internationale SEO und Marketing mit messbaren Ergebnissen."
     },
     "freelancers": {
-      "title": "Werden Sie Teil unseres Linguisten-Netzwerks",
-      "description": "Werden Sie Teil des GlobalAnnotate-Netzwerks aus Übersetzern, Lokalisierern, Annotatoren und Sprechertalenten."
+      "title": "Sprachexperten für Afrika gesucht | GlobalAnnotate",
+      "description": "Werden Sie Teil unseres Netzwerks: Übersetzer, Lokalisierungsfachleute, Annotatoren und Sprecher, vor allem Muttersprachler afrikanischer Sprachen."
     }
   },
   "trust": {
     "eyebrow": "So sichern wir Qualität",
-    "nativeTitle": "Muttersprachliche Prüfung",
+    "nativeTitle": "Prüfung durch Muttersprachler",
     "nativeBody": "Jedes Sprachergebnis wird vor der Lieferung von einer muttersprachlichen Fachkraft geprüft.",
     "aiTitle": "Kalibrierte KI-Daten",
-    "aiBody": "Gold-Set-Kalibrierung und Inter-Annotator-Übereinstimmung in jedem Annotationsprojekt.",
-    "replyTitle": "Antwort in einem Werktag",
-    "replyBody": "Jede Anfrage wird innerhalb eines Werktags beantwortet, mit einem Angebot in 24–48 Stunden."
+    "aiBody": "Kalibrierung anhand von Goldstandard-Datensätzen und Übereinstimmung zwischen Annotatoren in jedem Annotationsprojekt.",
+    "replyTitle": "Antwort innerhalb eines Werktags",
+    "replyBody": "Jede Anfrage wird innerhalb eines Werktags beantwortet, mit einem konkreten Angebot in 24–48 Stunden."
   },
   "a11y": {
-    "breadcrumb": "Breadcrumb",
-    "primaryNav": "Primary",
-    "openMenu": "Open menu",
-    "closeMenu": "Close menu",
-    "toggleTheme": "Toggle dark mode",
-    "changeLanguage": "Change language",
-    "languageGroup": "Language",
-    "logoHome": "GlobalAnnotate home",
-    "logoAlt": "GlobalAnnotate logo",
-    "dismissNotification": "Dismiss notification",
-    "clearSelection": "Clear selection",
-    "stars": "{value} out of 5 stars",
-    "greeting": "Hello in {lang}: {word}"
+    "breadcrumb": "Brotkrümelnavigation",
+    "primaryNav": "Hauptnavigation",
+    "openMenu": "Menü öffnen",
+    "closeMenu": "Menü schließen",
+    "toggleTheme": "Dunkelmodus umschalten",
+    "changeLanguage": "Sprache wechseln",
+    "languageGroup": "Sprache",
+    "logoHome": "GlobalAnnotate – Startseite",
+    "logoAlt": "Logo von GlobalAnnotate",
+    "dismissNotification": "Hinweis schließen",
+    "clearSelection": "Auswahl löschen",
+    "stars": "{value} von 5 Sternen",
+    "greeting": "„Hallo“ auf {lang}: {word}"
   },
   "languageNames": {
-    "en": "English",
+    "en": "Englisch",
     "de": "Deutsch",
-    "zh": "简体中文"
+    "zh": "Chinesisch (vereinfacht)"
   },
-  "siteTagline": "Precision Across Languages. Intelligence Across Data. Growth Across Markets.",
+  "siteTagline": "Präzision über Sprachgrenzen. Intelligenz in Daten. Wachstum in neuen Märkten.",
   "cookie": {
-    "dialogLabel": "Cookie consent",
-    "title": "We value your privacy",
-    "body": "We use strictly necessary cookies to run this site. With your consent, we may also use analytics cookies to understand how the site is used. See our <link>Privacy Policy</link>.",
-    "accept": "Accept all",
-    "reject": "Reject non-essential",
-    "dismiss": "Dismiss (reject non-essential cookies)"
+    "dialogLabel": "Einwilligung in Cookies",
+    "title": "Ihre Privatsphäre ist uns wichtig",
+    "body": "Wir verwenden technisch notwendige Cookies, um diese Website zu betreiben. Mit Ihrer Einwilligung setzen wir zusätzlich Analyse-Cookies ein, um zu verstehen, wie die Website genutzt wird. Ihre Einwilligung ist freiwillig und kann jederzeit über „Cookie-Einstellungen“ im Fußbereich widerrufen werden. Weitere Informationen finden Sie in unserer <link>Datenschutzerklärung</link>.",
+    "accept": "Alle akzeptieren",
+    "reject": "Nur notwendige Cookies",
+    "dismiss": "Schließen (nur notwendige Cookies)"
   },
   "globe": {
-    "mapAlt": "World map showing GlobalAnnotate's global reach",
-    "northAmerica": "North America",
-    "southAmerica": "South America",
-    "europe": "Europe",
-    "africa": "Africa",
-    "asia": "Asia",
-    "australia": "Australia"
+    "mapAlt": "Weltkarte mit der weltweiten Präsenz von GlobalAnnotate",
+    "northAmerica": "Nordamerika",
+    "southAmerica": "Südamerika",
+    "europe": "Europa",
+    "africa": "Afrika",
+    "asia": "Asien",
+    "australia": "Australien"
   },
   "notFound": {
-    "title": "Lost in translation.",
-    "body": "That page doesn't exist — or has been moved. Let's get you back to somewhere useful.",
-    "back": "Back to home",
-    "explore": "Explore services"
+    "title": "Bei der Übersetzung verloren gegangen.",
+    "body": "Diese Seite existiert nicht oder wurde verschoben. Wir bringen Sie zurück zu einer hilfreichen Seite.",
+    "back": "Zur Startseite",
+    "explore": "Leistungen ansehen"
   },
   "errorPage": {
-    "title": "Something went wrong.",
-    "body": "An unexpected error stopped this page from loading. Please try again, or head back to the homepage.",
-    "retry": "Try again",
-    "back": "Back to home"
+    "title": "Es ist ein Fehler aufgetreten.",
+    "body": "Ein unerwarteter Fehler hat das Laden dieser Seite verhindert. Bitte versuchen Sie es erneut oder kehren Sie zur Startseite zurück.",
+    "retry": "Erneut versuchen",
+    "back": "Zur Startseite"
   },
   "servicePage": {
-    "home": "Home",
-    "services": "Services",
-    "talkToExpert": "Talk to an expert",
-    "allServices": "All services",
-    "includedEyebrow": "What's included",
-    "includedHeading1": "Everything you need,",
-    "includedHeading2": "end to end.",
-    "useCasesEyebrow": "Use cases",
-    "useCasesHeading": "Built for the work you actually do.",
-    "pricingEyebrow": "Pricing",
-    "pricingHeading": "Simple tiers. Tailored proposals.",
-    "pricingSub": "Pricing depends on scope, volume, and language pairs.",
-    "mostPopular": "Most popular",
-    "faqEyebrow": "FAQ",
-    "faqHeading": "Questions, answered.",
-    "relatedEyebrow": "Related work",
-    "relatedHeading": "Recent case studies in this service.",
-    "seeAllCases": "See all case studies",
-    "readCase": "Read case study",
-    "mrHeading": "Add MarketReady™ to this project",
-    "mrBody": "Validate your content with real native users in the target market before launch — and get a signed report that certifies it's ready.",
-    "learnMore": "Learn more"
+    "home": "Startseite",
+    "services": "Leistungen",
+    "talkToExpert": "Beratung anfragen",
+    "allServices": "Alle Leistungen",
+    "includedEyebrow": "Leistungsumfang",
+    "includedHeading1": "Alles, was Sie brauchen –",
+    "includedHeading2": "aus einer Hand.",
+    "useCasesEyebrow": "Einsatzbereiche",
+    "useCasesHeading": "Für die Aufgaben, die Sie tatsächlich haben.",
+    "pricingEyebrow": "Preise",
+    "pricingHeading": "Klare Pakete. Individuelle Angebote.",
+    "pricingSub": "Der Preis richtet sich nach Umfang, Volumen und Sprachpaaren.",
+    "mostPopular": "Am beliebtesten",
+    "faqEyebrow": "Häufige Fragen",
+    "faqHeading": "Ihre Fragen, beantwortet.",
+    "relatedEyebrow": "Referenzen",
+    "relatedHeading": "Aktuelle Referenzprojekte zu dieser Leistung.",
+    "seeAllCases": "Alle Referenzen ansehen",
+    "readCase": "Referenz lesen",
+    "mrHeading": "Ergänzen Sie dieses Projekt um MarketReady™",
+    "mrBody": "Lassen Sie Ihre Inhalte vor der Markteinführung von echten muttersprachlichen Nutzern im Zielmarkt prüfen – und erhalten Sie einen unterzeichneten Bericht, der die Marktreife bestätigt.",
+    "learnMore": "Mehr erfahren"
   },
   "reviewAuthor": {
-    "verified": "Verified client",
-    "verifiedTitle": "Verified client — engagement confirmed by GlobalAnnotate."
+    "verified": "Verifizierter Kunde",
+    "verifiedTitle": "Verifizierter Kunde – die Zusammenarbeit wurde von GlobalAnnotate bestätigt."
   },
   "reviewForm": {
-    "modeNamed": "Full name + company",
-    "modeInitial": "First name + last initial + role",
-    "modeRole": "Role only — no name",
-    "modeVerified": "Anonymous (Verified client)",
-    "errName": "Please enter your name",
-    "errRating": "Please choose a rating",
-    "errComment": "Please share at least a sentence about your experience",
-    "errNoEndpoint": "Form endpoint not configured yet. Add NEXT_PUBLIC_FORMSPREE_REVIEW_ENDPOINT to .env.local.",
-    "toastSuccess": "Thank you — your review has been received for moderation.",
-    "toastError": "Something went wrong. Please try again.",
-    "thanksHeading": "Thank you!",
-    "thanksBody": "Your review will appear on this page after our team approves it. We're grateful for the feedback.",
-    "submitAnother": "Submit another review",
-    "name": "Your name",
-    "namePlaceholder": "Jane Doe",
-    "role": "Role (optional)",
-    "rolePlaceholder": "Head of Localization",
-    "company": "Company (optional)",
-    "companyPlaceholder": "Acme Inc.",
-    "creditHeading": "How should we credit you?",
-    "creditHelp": "You stay in control. Pick the option that feels right — we'll display the review that way once it's moderated.",
-    "rating": "Rating",
-    "starLabel": "{n} star",
-    "starsLabel": "{n} stars",
-    "review": "Your review",
-    "reviewPlaceholder": "Share what working with GlobalAnnotate was like…",
-    "moderated": "Reviews are moderated before being published.",
-    "submitting": "Submitting…",
-    "submit": "Submit review"
+    "modeNamed": "Vollständiger Name und Unternehmen",
+    "modeInitial": "Vorname, Initiale des Nachnamens und Funktion",
+    "modeRole": "Nur Funktion, kein Name",
+    "modeVerified": "Anonym (verifizierter Kunde)",
+    "errName": "Bitte geben Sie Ihren Namen ein.",
+    "errRating": "Bitte wählen Sie eine Bewertung.",
+    "errComment": "Bitte beschreiben Sie Ihre Erfahrung in mindestens einem Satz.",
+    "errNoEndpoint": "Das Bewertungsformular ist noch nicht eingerichtet. Bitte schreiben Sie uns eine E-Mail.",
+    "toastSuccess": "Vielen Dank – Ihre Bewertung ist eingegangen und wird geprüft.",
+    "toastError": "Leider ist ein Fehler aufgetreten. Bitte versuchen Sie es erneut.",
+    "thanksHeading": "Vielen Dank!",
+    "thanksBody": "Ihre Bewertung erscheint auf dieser Seite, sobald unser Team sie freigegeben hat. Wir danken Ihnen für Ihre Rückmeldung.",
+    "submitAnother": "Weitere Bewertung abgeben",
+    "name": "Ihr Name",
+    "namePlaceholder": "Erika Mustermann",
+    "role": "Funktion (optional)",
+    "rolePlaceholder": "Leitung Lokalisierung",
+    "company": "Unternehmen (optional)",
+    "companyPlaceholder": "Muster GmbH",
+    "creditHeading": "Wie sollen wir Sie nennen?",
+    "creditHelp": "Sie entscheiden. Wählen Sie die passende Option – nach der Prüfung zeigen wir Ihre Bewertung genau so an.",
+    "rating": "Bewertung",
+    "starLabel": "{n} Stern",
+    "starsLabel": "{n} Sterne",
+    "review": "Ihre Bewertung",
+    "reviewPlaceholder": "Wie war die Zusammenarbeit mit GlobalAnnotate?",
+    "moderated": "Bewertungen werden vor der Veröffentlichung geprüft.",
+    "submitting": "Wird gesendet …",
+    "submit": "Bewertung absenden"
   },
   "airtable": {
-    "iframeTitle": "GlobalAnnotate freelancer application form"
+    "iframeTitle": "Bewerbungsformular für freiberufliche Sprachexperten bei GlobalAnnotate"
   }
 }
