@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { getTranslations } from "next-intl/server";
+import { zhMetadata } from "./zh";
 
 // Canonical + hreflang helpers so every page can emit correct alternate
 // links across en / de / zh. English lives at the root; de/zh are prefixed.
@@ -26,7 +27,8 @@ export function localePath(locale: string, path = ""): string {
 
 // alternates block for a page at `path` (no leading slash needed), viewed in
 // `locale`. canonical points at the current locale; languages + x-default
-// cover all three locales. Chinese uses the BCP-47 script subtag zh-Hans.
+// cover all three locales. Chinese is listed under both the BCP-47 script
+// subtag zh-Hans and the region tag zh-CN (Baidu and Google both read it).
 export function hreflangAlternates(
   locale: string,
   path = ""
@@ -37,6 +39,7 @@ export function hreflangAlternates(
       en: localePath("en", path),
       de: localePath("de", path),
       "zh-Hans": localePath("zh", path),
+      "zh-CN": localePath("zh", path),
       "x-default": localePath("en", path),
     },
   };
@@ -79,6 +82,17 @@ export async function buildMetadata({
   const title = t(`${metaKey}.title`);
   const description = t(`${metaKey}.description`);
 
+  // Chinese pages carry a full "关键词 | GlobalAnnotate" title plus a Baidu
+  // keyword list, so they skip the layout's "· GlobalAnnotate" template.
+  if (locale === "zh") {
+    return zhMetadata({
+      path,
+      title,
+      description,
+      keywords: t.raw(`${metaKey}.keywords`) as string[],
+    });
+  }
+
   return {
     title,
     description,
@@ -98,6 +112,19 @@ export async function buildMetadata({
       title,
       description,
       images: [OG_IMAGE_URL],
+    },
+  };
+}
+
+// Adds the en/de/zh-Hans/zh-CN/x-default hreflang set to a page's existing
+// Metadata while keeping its canonical exactly as it was. Used by pages that
+// define static English metadata, so their /zh twins are linked reciprocally.
+export function withHreflang(meta: Metadata, path: string): Metadata {
+  return {
+    ...meta,
+    alternates: {
+      ...meta.alternates,
+      languages: hreflangAlternates("en", path).languages,
     },
   };
 }

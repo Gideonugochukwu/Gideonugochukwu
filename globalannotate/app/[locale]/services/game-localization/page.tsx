@@ -1,16 +1,20 @@
 import type { Metadata } from "next";
+import { setRequestLocale } from "next-intl/server";
 import ServicePage from "@/components/ServicePage";
+import ZhServicePage from "@/components/zh/ZhServicePage";
+import { gameLocalizationZh } from "@/content/zh/services/game-localization";
+import { zhMetadata } from "@/lib/zh";
 import JsonLd from "@/components/JsonLd";
 import { img } from "@/lib/images";
 import { site } from "@/lib/site";
-import { ogImages, OG_IMAGE_URL } from "@/lib/i18n-meta";
+import { ogImages, OG_IMAGE_URL, withHreflang } from "@/lib/i18n-meta";
 import { breadcrumbSchema, faqSchema, serviceSchema } from "@/lib/schema";
 
 const TITLE = "Game Localization & Translation Services | GlobalAnnotate";
 const DESCRIPTION =
   "End-to-end game localization in 100+ languages — UI, narrative and dialogue, subtitles, voiceover scripts, store listings, culturalization, and LQA testing for studios going global.";
 
-export const metadata: Metadata = {
+const EN_METADATA: Metadata = {
   title: TITLE,
   description: DESCRIPTION,
   alternates: { canonical: `${site.url}/services/game-localization` },
@@ -28,6 +32,18 @@ export const metadata: Metadata = {
     images: [OG_IMAGE_URL],
   },
 };
+
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ locale: string }>;
+}): Promise<Metadata> {
+  const { locale } = await params;
+  if (locale === "zh") {
+    return zhMetadata({ path: "/services/game-localization", ...gameLocalizationZh.meta });
+  }
+  return withHreflang(EN_METADATA, "/services/game-localization");
+}
 
 const FAQ = [
   {
@@ -175,7 +191,22 @@ const SCHEMA_FAQ = [
   },
 ];
 
-export default function Page() {
+export default async function Page({
+  params,
+}: {
+  params: Promise<{ locale: string }>;
+}) {
+  const { locale } = await params;
+  setRequestLocale(locale);
+  if (locale === "zh") {
+    return (
+      <ZhServicePage
+        slug="game-localization"
+        heroSlideId={img.services.gameLocalization.id}
+        content={gameLocalizationZh}
+      />
+    );
+  }
   const url = `${site.url}/services/game-localization`;
   return (
     <>

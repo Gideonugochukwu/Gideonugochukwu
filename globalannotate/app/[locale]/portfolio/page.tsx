@@ -12,6 +12,8 @@ import { site } from "@/lib/site";
 import { breadcrumbSchema } from "@/lib/schema";
 import { cases } from "@/data/portfolio";
 import { ArrowUpRight, ArrowRight } from "lucide-react";
+import { setRequestLocale } from "next-intl/server";
+import PortfolioZh from "@/components/zh/PortfolioZh";
 
 
 export async function generateMetadata({
@@ -23,7 +25,14 @@ export async function generateMetadata({
   return buildMetadata({ locale, path: "/portfolio", metaKey: "portfolio" });
 }
 
-export default function PortfolioPage() {
+export default async function PortfolioPage({
+  params,
+}: {
+  params: Promise<{ locale: string }>;
+}) {
+  const { locale } = await params;
+  setRequestLocale(locale);
+  if (locale === "zh") return <PortfolioZh />;
   return (
     <>
       <JsonLd

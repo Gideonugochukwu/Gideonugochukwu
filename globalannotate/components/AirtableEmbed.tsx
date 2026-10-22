@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import { useTranslations } from "next-intl";
 
 // Embedded Airtable freelancer application form.
 //
@@ -12,13 +13,14 @@ import { useState } from "react";
 //   form loads. `loading="eager"` asks the browser to prioritise it.
 // - Rounded corners + emerald glow shadow styling are kept on the container.
 export default function AirtableEmbed() {
+  const t = useTranslations("airtable");
   const [loaded, setLoaded] = useState(false);
 
   return (
     <div className="relative overflow-hidden rounded-2xl border border-ink-200 bg-white shadow-[0_20px_60px_-20px_rgba(16,185,129,0.35)] ring-1 ring-brand-100 h-[1660px] sm:h-[1500px] md:h-[1200px]">
       {!loaded && <FormSkeleton />}
       <iframe
-        title="GlobalAnnotate freelancer application form"
+        title={t("iframeTitle")}
         src="https://airtable.com/embed/apph9BiJQVio8ZIrJ/pagLATGP3cXeCVrts/form"
         loading="eager"
         onLoad={() => setLoaded(true)}

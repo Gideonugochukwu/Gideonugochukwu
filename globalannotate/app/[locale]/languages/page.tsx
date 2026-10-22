@@ -6,7 +6,7 @@ import PageHero from "@/components/PageHero";
 import CTABand from "@/components/CTABand";
 import JsonLd from "@/components/JsonLd";
 import { site } from "@/lib/site";
-import { ogImages, OG_IMAGE_URL } from "@/lib/i18n-meta";
+import { ogImages, OG_IMAGE_URL, withHreflang } from "@/lib/i18n-meta";
 import { servicesHeroSlides } from "@/lib/images";
 import {
   breadcrumbSchema,
@@ -20,6 +20,9 @@ import {
   servicesEveryLanguage,
 } from "@/lib/language-coverage";
 import { ArrowRight, Check, Globe, MapPin, Users, Type } from "lucide-react";
+import { setRequestLocale } from "next-intl/server";
+import LanguagesZh, { ZH_META } from "@/components/zh/LanguagesZh";
+import { zhMetadata } from "@/lib/zh";
 
 const TITLE =
   "Languages We Cover — 100+ Languages for Translation, Localization & AI Data";
@@ -28,7 +31,7 @@ const DESCRIPTION =
 
 const URL = `${site.url}/languages`;
 
-export const metadata: Metadata = {
+const EN_METADATA: Metadata = {
   title: TITLE,
   description: DESCRIPTION,
   alternates: { canonical: URL },
@@ -46,6 +49,16 @@ export const metadata: Metadata = {
     images: [OG_IMAGE_URL],
   },
 };
+
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ locale: string }>;
+}): Promise<Metadata> {
+  const { locale } = await params;
+  if (locale === "zh") return zhMetadata({ path: "/languages", ...ZH_META });
+  return withHreflang(EN_METADATA, "/languages");
+}
 
 const FAQ = [
   {
@@ -78,7 +91,14 @@ function Chip({ children }: { children: React.ReactNode }) {
   );
 }
 
-export default function LanguagesPage() {
+export default async function LanguagesPage({
+  params,
+}: {
+  params: Promise<{ locale: string }>;
+}) {
+  const { locale } = await params;
+  setRequestLocale(locale);
+  if (locale === "zh") return <LanguagesZh />;
   return (
     <>
       <JsonLd

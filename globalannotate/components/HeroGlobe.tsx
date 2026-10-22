@@ -2,6 +2,7 @@
 
 import Image from "next/image";
 import { useEffect, useRef, useState } from "react";
+import { useTranslations } from "next-intl";
 import type * as ThreeNS from "three";
 
 // Brand palette
@@ -39,21 +40,22 @@ const ARCS: [number, number][] = [
 ];
 
 // Continent name labels, pinned to each landmass centroid (lat, lon).
-const CONTINENTS: { name: string; lat: number; lon: number }[] = [
-  { name: "North America", lat: 46, lon: -100 },
-  { name: "South America", lat: -12, lon: -58 },
-  { name: "Europe", lat: 52, lon: 15 },
-  { name: "Africa", lat: 2, lon: 22 },
-  { name: "Asia", lat: 44, lon: 90 },
-  { name: "Australia", lat: -25, lon: 134 },
+// `key` is the label's message key under the `globe` namespace.
+const CONTINENTS: { key: string; lat: number; lon: number }[] = [
+  { key: "northAmerica", lat: 46, lon: -100 },
+  { key: "southAmerica", lat: -12, lon: -58 },
+  { key: "europe", lat: 52, lon: 15 },
+  { key: "africa", lat: 2, lon: 22 },
+  { key: "asia", lat: 44, lon: 90 },
+  { key: "australia", lat: -25, lon: 134 },
 ];
 
 // Mobile static globe shows the Africa/Europe/Asia hemisphere. Label the two
 // landmasses that sit clear of the (large) hero heading — Europe would fall
 // behind the text, so it's omitted to keep things clean.
-const MOBILE_LABELS: { name: string; top: string; left: string }[] = [
-  { name: "Asia", top: "40%", left: "72%" },
-  { name: "Africa", top: "56%", left: "58%" },
+const MOBILE_LABELS: { key: string; top: string; left: string }[] = [
+  { key: "asia", top: "40%", left: "72%" },
+  { key: "africa", top: "56%", left: "58%" },
 ];
 
 /**
@@ -84,6 +86,7 @@ export default function HeroGlobe({
   textureSrc?: string;
   mobileSrc?: string;
 }) {
+  const t = useTranslations("globe");
   const [isDesktop, setIsDesktop] = useState(false);
   const [reduced, setReduced] = useState(false);
   const mountRef = useRef<HTMLDivElement>(null);
@@ -142,7 +145,7 @@ export default function HeroGlobe({
           <div className="relative aspect-square w-[112%] max-w-none translate-y-[1%] overflow-hidden rounded-full ring-1 ring-brand-500/20">
             <Image
               src={mobileSrc}
-              alt="World map showing GlobalAnnotate's global reach"
+              alt={t("mapAlt")}
               fill
               priority={false}
               sizes="140vw"
@@ -162,11 +165,11 @@ export default function HeroGlobe({
             {/* A few clean labels over the visible landmasses. */}
             {MOBILE_LABELS.map((l) => (
               <span
-                key={l.name}
+                key={l.key}
                 className="globe-label absolute -translate-x-1/2 -translate-y-1/2"
                 style={{ top: l.top, left: l.left }}
               >
-                {l.name}
+                {t(l.key)}
               </span>
             ))}
           </div>
@@ -184,14 +187,14 @@ export default function HeroGlobe({
           <div className="pointer-events-none absolute inset-0 translate-x-[12%] lg:translate-x-[16%]">
             {CONTINENTS.map((c, i) => (
               <span
-                key={c.name}
+                key={c.key}
                 ref={(el) => {
                   labelEls.current[i] = el;
                 }}
                 className="globe-label absolute left-0 top-0"
                 style={{ opacity: 0, willChange: "transform, opacity" }}
               >
-                {c.name}
+                {t(c.key)}
               </span>
             ))}
           </div>

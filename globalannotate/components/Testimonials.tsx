@@ -1,10 +1,11 @@
 import { ArrowUpRight } from "lucide-react";
-import { useTranslations } from "next-intl";
+import { useLocale, useTranslations } from "next-intl";
 import { Link } from "@/i18n/navigation";
 import Stars from "./Stars";
 import Reveal from "./Reveal";
 import ReviewAuthor from "./ReviewAuthor";
 import { reviews } from "@/data/reviews";
+import { localizeReview } from "@/data/reviews.zh";
 
 // Picks three reviews for the homepage: highest-rated first, then verified
 // reviews. Keeps the homepage and /reviews page driven by the same source
@@ -22,7 +23,8 @@ function featuredReviews() {
 }
 
 export default function Testimonials() {
-  const featured = featuredReviews();
+  const locale = useLocale();
+  const featured = featuredReviews().map((r) => localizeReview(r, locale));
   const t = useTranslations("testimonials");
   return (
     <div className="container-wide">

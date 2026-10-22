@@ -6,10 +6,13 @@ import PageHero from "@/components/PageHero";
 import CTABand from "@/components/CTABand";
 import JsonLd from "@/components/JsonLd";
 import { site } from "@/lib/site";
-import { ogImages, OG_IMAGE_URL } from "@/lib/i18n-meta";
+import { ogImages, OG_IMAGE_URL, withHreflang } from "@/lib/i18n-meta";
 import { servicesHeroSlides } from "@/lib/images";
 import { breadcrumbSchema, webPageSchema } from "@/lib/schema";
 import { ArrowRight, HeartPulse, Factory, Scale, Landmark, Cpu } from "lucide-react";
+import { setRequestLocale } from "next-intl/server";
+import IndustriesZh, { ZH_META } from "@/components/zh/IndustriesZh";
+import { zhMetadata } from "@/lib/zh";
 
 const TITLE =
   "Industries — GlobalAnnotate | Medical, Manufacturing, Legal, Public Sector & AI";
@@ -18,7 +21,7 @@ const DESCRIPTION =
 
 const URL = `${site.url}/industries`;
 
-export const metadata: Metadata = {
+const EN_METADATA: Metadata = {
   title: TITLE,
   description: DESCRIPTION,
   alternates: { canonical: URL },
@@ -36,6 +39,16 @@ export const metadata: Metadata = {
     images: [OG_IMAGE_URL],
   },
 };
+
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ locale: string }>;
+}): Promise<Metadata> {
+  const { locale } = await params;
+  if (locale === "zh") return zhMetadata({ path: "/industries", ...ZH_META });
+  return withHreflang(EN_METADATA, "/industries");
+}
 
 const INDUSTRIES = [
   {
@@ -100,7 +113,14 @@ const INDUSTRIES = [
   },
 ];
 
-export default function IndustriesPage() {
+export default async function IndustriesPage({
+  params,
+}: {
+  params: Promise<{ locale: string }>;
+}) {
+  const { locale } = await params;
+  setRequestLocale(locale);
+  if (locale === "zh") return <IndustriesZh />;
   return (
     <>
       <JsonLd

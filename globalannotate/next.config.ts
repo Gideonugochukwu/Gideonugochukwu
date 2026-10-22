@@ -3,6 +3,8 @@ import createNextIntlPlugin from "next-intl/plugin";
 
 const nextConfig: NextConfig = {
   images: {
+    // Serve AVIF first, then WebP, from the built-in optimizer.
+    formats: ["image/avif", "image/webp"],
     remotePatterns: [
       {
         protocol: "https",

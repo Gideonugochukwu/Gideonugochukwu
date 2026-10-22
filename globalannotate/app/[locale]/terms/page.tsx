@@ -13,6 +13,8 @@ import JsonLd from "@/components/JsonLd";
 import Breadcrumbs from "@/components/Breadcrumbs";
 import { site } from "@/lib/site";
 import { breadcrumbSchema, webPageSchema } from "@/lib/schema";
+import TermsZh, { ZH_META } from "@/components/zh/TermsZh";
+import { zhMetadata } from "@/lib/zh";
 
 const TITLE = "Terms of Service";
 const DESCRIPTION =
@@ -26,6 +28,7 @@ export async function generateMetadata({
   params: Promise<{ locale: string }>;
 }): Promise<Metadata> {
   const { locale } = await params;
+  if (locale === "zh") return zhMetadata({ path: "/terms", ...ZH_META });
   return {
     title: TITLE,
     description: DESCRIPTION,
@@ -53,6 +56,7 @@ export default async function TermsPage({
 }) {
   const { locale } = await params;
   setRequestLocale(locale);
+  if (locale === "zh") return <TermsZh />;
   const note = (await getTranslations())("legalNote");
   return (
     <>

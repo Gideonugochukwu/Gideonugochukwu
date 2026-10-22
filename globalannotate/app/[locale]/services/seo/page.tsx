@@ -1,16 +1,20 @@
 import type { Metadata } from "next";
+import { setRequestLocale } from "next-intl/server";
 import ServicePage from "@/components/ServicePage";
+import ZhServicePage from "@/components/zh/ZhServicePage";
+import { seoZh } from "@/content/zh/services/seo";
+import { zhMetadata } from "@/lib/zh";
 import JsonLd from "@/components/JsonLd";
 import { img } from "@/lib/images";
 import { site } from "@/lib/site";
-import { ogImages, OG_IMAGE_URL } from "@/lib/i18n-meta";
+import { ogImages, OG_IMAGE_URL, withHreflang } from "@/lib/i18n-meta";
 import { serviceSchema, faqSchema, breadcrumbSchema } from "@/lib/schema";
 
 const TITLE = "SEO & Search Visibility — Multilingual & International SEO";
 const DESCRIPTION =
   "Rank everywhere you sell — in every language. Multilingual & international SEO, technical audits, content, on-page optimization, link building, and local SEO that compound.";
 
-export const metadata: Metadata = {
+const EN_METADATA: Metadata = {
   title: TITLE,
   description: DESCRIPTION,
   alternates: { canonical: `${site.url}/services/seo` },
@@ -28,6 +32,18 @@ export const metadata: Metadata = {
     images: [OG_IMAGE_URL],
   },
 };
+
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ locale: string }>;
+}): Promise<Metadata> {
+  const { locale } = await params;
+  if (locale === "zh") {
+    return zhMetadata({ path: "/services/seo", ...seoZh.meta });
+  }
+  return withHreflang(EN_METADATA, "/services/seo");
+}
 
 const FAQ = [
   {
@@ -177,7 +193,22 @@ const SCHEMA_FAQ = [
   },
 ];
 
-export default function Page() {
+export default async function Page({
+  params,
+}: {
+  params: Promise<{ locale: string }>;
+}) {
+  const { locale } = await params;
+  setRequestLocale(locale);
+  if (locale === "zh") {
+    return (
+      <ZhServicePage
+        slug="seo"
+        heroSlideId={img.services.seo.id}
+        content={seoZh}
+      />
+    );
+  }
   const url = `${site.url}/services/seo`;
   return (
     <>

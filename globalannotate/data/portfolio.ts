@@ -1,4 +1,6 @@
 import { img } from "@/lib/images";
+import { casesZh } from "./portfolio.zh";
+import { zhAlt } from "@/lib/images.zh";
 
 // One typed source of truth for case studies. Powers both the /portfolio
 // index (concise image-led cards) and the /portfolio/[slug] detail page
@@ -501,4 +503,14 @@ export function relatedCasesForService(
     return lowerKeywords.some((k) => haystack.includes(k));
   });
   return [...direct, ...indirect].slice(0, limit);
+}
+
+// Returns the case study in the requested locale. Chinese overlays the
+// translated copy from data/portfolio.zh.ts and the Chinese image alt text;
+// every other locale gets the English record unchanged.
+export function localizeCase(c: CaseStudy, locale: string): CaseStudy {
+  if (locale !== "zh") return c;
+  const zh = casesZh[c.slug];
+  if (!zh) return c;
+  return { ...c, ...zh, image: { ...c.image, alt: zhAlt(c.image.id) } };
 }

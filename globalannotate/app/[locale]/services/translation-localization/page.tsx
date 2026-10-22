@@ -1,16 +1,20 @@
 import type { Metadata } from "next";
+import { setRequestLocale } from "next-intl/server";
 import ServicePage from "@/components/ServicePage";
+import ZhServicePage from "@/components/zh/ZhServicePage";
+import { translationLocalizationZh } from "@/content/zh/services/translation-localization";
+import { zhMetadata } from "@/lib/zh";
 import JsonLd from "@/components/JsonLd";
 import { img } from "@/lib/images";
 import { site } from "@/lib/site";
-import { ogImages, OG_IMAGE_URL } from "@/lib/i18n-meta";
+import { ogImages, OG_IMAGE_URL, withHreflang } from "@/lib/i18n-meta";
 import { breadcrumbSchema, faqSchema, serviceSchema } from "@/lib/schema";
 
 const TITLE = "Translation & Localization in 100+ Languages";
 const DESCRIPTION =
   "Human-quality translation and culturally accurate localization across 100+ languages — websites, apps, documents, and multimedia.";
 
-export const metadata: Metadata = {
+const EN_METADATA: Metadata = {
   title: TITLE,
   description: DESCRIPTION,
   alternates: { canonical: `${site.url}/services/translation-localization` },
@@ -28,6 +32,18 @@ export const metadata: Metadata = {
     images: [OG_IMAGE_URL],
   },
 };
+
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ locale: string }>;
+}): Promise<Metadata> {
+  const { locale } = await params;
+  if (locale === "zh") {
+    return zhMetadata({ path: "/services/translation-localization", ...translationLocalizationZh.meta });
+  }
+  return withHreflang(EN_METADATA, "/services/translation-localization");
+}
 
 const FAQ = [
   {
@@ -78,7 +94,22 @@ const SCHEMA_FAQ = [
   },
 ];
 
-export default function Page() {
+export default async function Page({
+  params,
+}: {
+  params: Promise<{ locale: string }>;
+}) {
+  const { locale } = await params;
+  setRequestLocale(locale);
+  if (locale === "zh") {
+    return (
+      <ZhServicePage
+        slug="translation-localization"
+        heroSlideId={img.services.translation.id}
+        content={translationLocalizationZh}
+      />
+    );
+  }
   const url = `${site.url}/services/translation-localization`;
   return (
     <>

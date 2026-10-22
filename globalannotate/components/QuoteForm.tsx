@@ -5,10 +5,11 @@ import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
 import { Loader2, Send, CheckCircle2 } from "lucide-react";
-import { useTranslations } from "next-intl";
+import { useLocale, useTranslations } from "next-intl";
 import { Link } from "@/i18n/navigation";
 import { useToast } from "./Toast";
 import { services } from "@/lib/site";
+import { submitForm } from "@/lib/form-submit";
 
 type FormData = {
   fullName: string;
@@ -36,6 +37,7 @@ const SERVICE_EN_LABEL: Record<string, string> = {
 export default function QuoteForm() {
   const t = useTranslations("contact.form");
   const ts = useTranslations("services");
+  const locale = useLocale();
   const { toast } = useToast();
   const [submitted, setSubmitted] = useState(false);
 
@@ -71,15 +73,16 @@ export default function QuoteForm() {
       // Submit the readable English service name (not the slug the <select>
       // carries) so the enquiry email stays consistent across all locales.
       const serviceName = SERVICE_EN_LABEL[data.service] ?? data.service;
-      const res = await fetch(endpoint, {
-        method: "POST",
-        headers: { "Content-Type": "application/json", Accept: "application/json" },
-        body: JSON.stringify({
+      const res = await submitForm(
+        "quote",
+        endpoint,
+        {
           _subject: `New quote request — ${serviceName}`,
           ...data,
           service: serviceName,
-        }),
-      });
+        },
+        locale
+      );
       if (!res.ok) throw new Error("Network response not ok");
       toast(t("toastSuccess"));
       setSubmitted(true);

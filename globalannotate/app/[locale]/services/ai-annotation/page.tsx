@@ -1,16 +1,20 @@
 import type { Metadata } from "next";
+import { setRequestLocale } from "next-intl/server";
 import ServicePage from "@/components/ServicePage";
+import ZhServicePage from "@/components/zh/ZhServicePage";
+import { aiAnnotationZh } from "@/content/zh/services/ai-annotation";
+import { zhMetadata } from "@/lib/zh";
 import JsonLd from "@/components/JsonLd";
 import { img } from "@/lib/images";
 import { site } from "@/lib/site";
-import { ogImages, OG_IMAGE_URL } from "@/lib/i18n-meta";
+import { ogImages, OG_IMAGE_URL, withHreflang } from "@/lib/i18n-meta";
 import { breadcrumbSchema, faqSchema, serviceSchema } from "@/lib/schema";
 
 const TITLE = "AI Annotation & Data Labeling for ML Teams";
 const DESCRIPTION =
   "High-precision training data for computer vision, NLP, and LLM teams — bounding boxes, semantic segmentation, audio, and text annotation with rigorous QA.";
 
-export const metadata: Metadata = {
+const EN_METADATA: Metadata = {
   title: TITLE,
   description: DESCRIPTION,
   alternates: { canonical: `${site.url}/services/ai-annotation` },
@@ -28,6 +32,18 @@ export const metadata: Metadata = {
     images: [OG_IMAGE_URL],
   },
 };
+
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ locale: string }>;
+}): Promise<Metadata> {
+  const { locale } = await params;
+  if (locale === "zh") {
+    return zhMetadata({ path: "/services/ai-annotation", ...aiAnnotationZh.meta });
+  }
+  return withHreflang(EN_METADATA, "/services/ai-annotation");
+}
 
 const FAQ = [
   {
@@ -78,7 +94,22 @@ const SCHEMA_FAQ = [
   },
 ];
 
-export default function Page() {
+export default async function Page({
+  params,
+}: {
+  params: Promise<{ locale: string }>;
+}) {
+  const { locale } = await params;
+  setRequestLocale(locale);
+  if (locale === "zh") {
+    return (
+      <ZhServicePage
+        slug="ai-annotation"
+        heroSlideId={img.services.aiAnnotation.id}
+        content={aiAnnotationZh}
+      />
+    );
+  }
   const url = `${site.url}/services/ai-annotation`;
   return (
     <>

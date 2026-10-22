@@ -7,7 +7,9 @@ import PageHero from "./PageHero";
 import Reveal from "./Reveal";
 import { ArrowRight, ArrowUpRight, Check, ShieldCheck } from "lucide-react";
 import { servicesHeroSlides, imageBg, unsplash } from "@/lib/images";
-import { relatedCasesForService } from "@/data/portfolio";
+import { zhSlides } from "@/lib/images.zh";
+import { useLocale, useTranslations } from "next-intl";
+import { relatedCasesForService, localizeCase } from "@/data/portfolio";
 
 export type Tier = {
   name: string;
@@ -46,11 +48,17 @@ export default function ServicePage({
   tiers: Tier[];
   faq: FAQItem[];
 }) {
+  const t = useTranslations("servicePage");
+  const locale = useLocale();
   const slides = [
     { id: heroSlideId, alt: heroSlideAlt },
-    ...servicesHeroSlides.filter((s) => s.id !== heroSlideId),
+    ...(locale === "zh" ? zhSlides(servicesHeroSlides) : servicesHeroSlides).filter(
+      (s) => s.id !== heroSlideId
+    ),
   ];
-  const relatedCases = relatedCasesForService(serviceSlug, 3);
+  const relatedCases = relatedCasesForService(serviceSlug, 3).map((c) =>
+    localizeCase(c, locale)
+  );
 
   return (
     <>
@@ -59,13 +67,13 @@ export default function ServicePage({
         title={title}
         subtitle={intro}
         breadcrumbs={[
-          { name: "Home", href: "/" },
-          { name: "Services", href: "/services" },
+          { name: t("home"), href: "/" },
+          { name: t("services"), href: "/services" },
           { name: eyebrow, href: `/services/${serviceSlug}` },
         ]}
         ctas={[
-          { label: "Talk to an expert", href: "/contact" },
-          { label: "All services", href: "/services", variant: "ghost" },
+          { label: t("talkToExpert"), href: "/contact" },
+          { label: t("allServices"), href: "/services", variant: "ghost" },
         ]}
         slides={slides}
       />
@@ -75,12 +83,12 @@ export default function ServicePage({
         <div className="grid lg:grid-cols-[1fr_2fr] gap-12 lg:gap-20">
           <div>
             <p className="text-xs font-medium uppercase tracking-[0.20em] text-brand-700">
-              What&apos;s included
+              {t("includedEyebrow")}
             </p>
             <h2 className="section-h2 mt-4 text-ink-900">
-              Everything you need,
+              {t("includedHeading1")}
               <br />
-              end to end.
+              {t("includedHeading2")}
             </h2>
           </div>
           <ul className="grid gap-x-10 gap-y-8 sm:grid-cols-2">
@@ -112,10 +120,10 @@ export default function ServicePage({
       <Section className="bg-card">
         <div className="max-w-3xl">
           <p className="text-xs font-medium uppercase tracking-[0.20em] text-brand-700">
-            Use cases
+            {t("useCasesEyebrow")}
           </p>
           <h2 className="section-h2 mt-4 text-ink-900">
-            Built for the work you actually do.
+            {t("useCasesHeading")}
           </h2>
         </div>
         <div className="mt-12 grid gap-8 md:gap-10 md:grid-cols-2">
@@ -136,13 +144,13 @@ export default function ServicePage({
       <Section>
         <div className="max-w-3xl">
           <p className="text-xs font-medium uppercase tracking-[0.20em] text-brand-700">
-            Pricing
+            {t("pricingEyebrow")}
           </p>
           <h2 className="section-h2 mt-4 text-ink-900">
-            Simple tiers. Tailored proposals.
+            {t("pricingHeading")}
           </h2>
           <p className="mt-4 text-ink-600 text-lg leading-relaxed">
-            Pricing depends on scope, volume, and language pairs.
+            {t("pricingSub")}
           </p>
         </div>
         <div className="mt-12 grid gap-6 md:grid-cols-3">
@@ -158,7 +166,7 @@ export default function ServicePage({
               >
                 {tier.highlighted && (
                   <span className="self-start inline-flex items-center rounded-full bg-brand-50 px-2.5 py-0.5 text-xs font-medium text-brand-700 mb-4">
-                    Most popular
+                    {t("mostPopular")}
                   </span>
                 )}
                 <h3 className="text-lg font-semibold tracking-tight text-ink-900">
@@ -192,7 +200,7 @@ export default function ServicePage({
                     "mt-6 " + (tier.highlighted ? "btn-primary" : "btn-secondary")
                   }
                 >
-                  Talk to an expert <ArrowRight className="h-4 w-4" />
+                  {t("talkToExpert")} <ArrowRight className="h-4 w-4" />
                 </Link>
               </div>
             </Reveal>
@@ -204,10 +212,10 @@ export default function ServicePage({
       <Section className="bg-card">
         <div className="max-w-3xl">
           <p className="text-xs font-medium uppercase tracking-[0.20em] text-brand-700">
-            FAQ
+            {t("faqEyebrow")}
           </p>
           <h2 className="section-h2 mt-4 text-ink-900">
-            Questions, answered.
+            {t("faqHeading")}
           </h2>
         </div>
         <div className="mt-12 max-w-3xl">
@@ -223,17 +231,17 @@ export default function ServicePage({
           <div className="flex flex-wrap items-end justify-between gap-6">
             <div className="max-w-xl">
               <p className="text-xs font-medium uppercase tracking-[0.20em] text-brand-700">
-                Related work
+                {t("relatedEyebrow")}
               </p>
               <h2 className="section-h2 mt-4 text-ink-900">
-                Recent case studies in this service.
+                {t("relatedHeading")}
               </h2>
             </div>
             <Link
               href="/portfolio"
               className="inline-flex items-center gap-1.5 text-sm font-semibold text-ink-900 hover:text-brand-700 transition"
             >
-              See all case studies <ArrowRight className="h-4 w-4" />
+              {t("seeAllCases")} <ArrowRight className="h-4 w-4" />
             </Link>
           </div>
           <div className="mt-10 grid gap-x-8 gap-y-10 md:grid-cols-3">
@@ -264,7 +272,7 @@ export default function ServicePage({
                     {c.summary}
                   </p>
                   <span className="mt-3 inline-flex items-center gap-1.5 text-sm font-semibold text-brand-700 group-hover:gap-2.5 transition-all">
-                    Read case study <ArrowUpRight className="h-4 w-4" />
+                    {t("readCase")} <ArrowUpRight className="h-4 w-4" />
                   </span>
                 </Link>
               </Reveal>
@@ -283,19 +291,17 @@ export default function ServicePage({
                 <ShieldCheck className="h-3.5 w-3.5" /> MarketReady™
               </p>
               <h2 className="section-h3 mt-4 text-ink-900">
-                Add MarketReady™ to this project
+                {t("mrHeading")}
               </h2>
               <p className="mt-2 text-ink-600 leading-relaxed">
-                Validate your content with real native users in the target
-                market before launch — and get a signed report that certifies
-                it&apos;s ready.
+                {t("mrBody")}
               </p>
             </div>
             <Link
               href="/services/marketready"
               className="btn-primary text-sm"
             >
-              Learn more <ArrowRight className="h-4 w-4" />
+              {t("learnMore")} <ArrowRight className="h-4 w-4" />
             </Link>
           </div>
         </div>

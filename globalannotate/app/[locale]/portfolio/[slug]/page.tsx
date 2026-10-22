@@ -13,6 +13,11 @@ import HeroSlideshow from "@/components/HeroSlideshow";
 import { site } from "@/lib/site";
 import { breadcrumbSchema } from "@/lib/schema";
 import { ArrowLeft, ArrowRight, ArrowUpRight, Check } from "lucide-react";
+import { setRequestLocale } from "next-intl/server";
+import CaseStudyZh from "@/components/zh/CaseStudyZh";
+import { localizeCase } from "@/data/portfolio";
+import { zhMetadata } from "@/lib/zh";
+import { hreflangAlternates } from "@/lib/i18n-meta";
 
 export function generateStaticParams() {
   return allCaseSlugs().map((slug) => ({ slug }));
@@ -21,17 +26,38 @@ export function generateStaticParams() {
 export async function generateMetadata({
   params,
 }: {
-  params: Promise<{ slug: string }>;
+  params: Promise<{ locale: string; slug: string }>;
 }): Promise<Metadata> {
-  const { slug } = await params;
+  const { locale, slug } = await params;
   const c = getCase(slug);
-  if (!c) return { title: "Case study not found" };
+  if (!c) return { title: locale === "zh" ? "未找到该案例" : "Case study not found" };
+  if (locale === "zh") {
+    const zh = localizeCase(c, "zh");
+    return zhMetadata({
+      path: `/portfolio/${c.slug}`,
+      title: `${zh.title.length > 22 ? zh.title.slice(0, 22) + "…" : zh.title} | GlobalAnnotate`,
+      // Baidu: 60–100 characters.
+      description:
+        zh.summary.length > 100
+          ? zh.summary.slice(0, 99) + "…"
+          : zh.summary.length < 60
+            ? `${zh.summary}查看 GlobalAnnotate 客户案例详情。`
+            : zh.summary,
+      keywords: [zh.service, zh.industry, "客户案例", "翻译与本地化", "GlobalAnnotate 翻译"],
+      type: "article",
+      image: unsplash(c.image.id, 1600),
+      imageAlt: zh.image.alt,
+    });
+  }
   const url = `${site.url}/portfolio/${c.slug}`;
   const image = unsplash(c.image.id, 1600);
   return {
     title: `${c.title} — Case Study`,
     description: c.summary,
-    alternates: { canonical: url },
+    alternates: {
+      canonical: url,
+      languages: hreflangAlternates("en", `/portfolio/${c.slug}`).languages,
+    },
     openGraph: {
       title: c.title,
       description: c.summary,
@@ -51,11 +77,13 @@ export async function generateMetadata({
 export default async function CaseStudyPage({
   params,
 }: {
-  params: Promise<{ slug: string }>;
+  params: Promise<{ locale: string; slug: string }>;
 }) {
-  const { slug } = await params;
+  const { locale, slug } = await params;
+  setRequestLocale(locale);
   const c = getCase(slug);
   if (!c) notFound();
+  if (locale === "zh") return <CaseStudyZh caseStudy={c} />;
 
   const url = `${site.url}/portfolio/${c.slug}`;
   const heroSlides = [

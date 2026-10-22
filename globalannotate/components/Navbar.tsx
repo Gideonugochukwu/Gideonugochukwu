@@ -71,7 +71,7 @@ export default function Navbar() {
             the hamburger takes over. */}
         <nav
           className={cn("items-center gap-0.5 xl:gap-1", barShow)}
-          aria-label="Primary"
+          aria-label={t("a11y.primaryNav")}
         >
           {nav.map((item) => {
             const active =
@@ -118,7 +118,7 @@ export default function Navbar() {
           <button
             className="inline-flex items-center justify-center h-10 w-10 rounded-lg border border-ink-200 text-ink-700"
             onClick={() => setOpen((v) => !v)}
-            aria-label={open ? "Close menu" : "Open menu"}
+            aria-label={open ? t("a11y.closeMenu") : t("a11y.openMenu")}
             aria-expanded={open}
           >
             {open ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}

@@ -1,5 +1,6 @@
 import { Link } from "@/i18n/navigation";
 import Image from "next/image";
+import { useTranslations } from "next-intl";
 
 type LogoVariant = "light" | "dark";
 
@@ -12,16 +13,17 @@ export default function Logo({
   // "dark"  → the white-lettering mark for dark backgrounds (e.g. a dark footer)
   variant?: LogoVariant;
 }) {
+  const t = useTranslations("a11y");
   return (
     <Link
       href="/"
       className="inline-flex shrink-0 items-center gap-2.5 group"
-      aria-label="GlobalAnnotate home"
+      aria-label={t("logoHome")}
     >
       {variant === "dark" ? (
         <Image
           src="/globalannotate-logo-dark.png"
-          alt="GlobalAnnotate logo"
+          alt={t("logoAlt")}
           width={40}
           height={40}
           priority
@@ -34,7 +36,7 @@ export default function Logo({
               SSR and client render identically. */}
           <Image
             src="/globalannotate-logo.png"
-            alt="GlobalAnnotate logo"
+            alt={t("logoAlt")}
             width={40}
             height={40}
             priority
@@ -42,7 +44,7 @@ export default function Logo({
           />
           <Image
             src="/globalannotate-logo-dark.png"
-            alt="GlobalAnnotate logo"
+            alt={t("logoAlt")}
             width={40}
             height={40}
             className="hidden h-9 w-9 object-contain transition-transform group-hover:scale-[1.03] dark:block"

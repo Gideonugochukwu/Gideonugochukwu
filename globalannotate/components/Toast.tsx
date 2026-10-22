@@ -9,6 +9,7 @@ import {
 } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import { CheckCircle2, AlertCircle, X } from "lucide-react";
+import { useTranslations } from "next-intl";
 
 type ToastVariant = "success" | "error";
 type Toast = { id: number; message: string; variant: ToastVariant };
@@ -52,6 +53,7 @@ function ToastItem({
   toast: Toast;
   onDismiss: (id: number) => void;
 }) {
+  const t = useTranslations("a11y");
   useEffect(() => {
     const t = setTimeout(() => onDismiss(toast.id), 5000);
     return () => clearTimeout(t);
@@ -80,7 +82,7 @@ function ToastItem({
       <button
         onClick={() => onDismiss(toast.id)}
         className="text-ink-400 hover:text-ink-700 transition"
-        aria-label="Dismiss notification"
+        aria-label={t("dismissNotification")}
       >
         <X className="h-4 w-4" />
       </button>

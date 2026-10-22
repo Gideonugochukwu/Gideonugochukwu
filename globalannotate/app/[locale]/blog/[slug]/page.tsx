@@ -7,7 +7,9 @@ import Section from "@/components/Section";
 import CTABand from "@/components/CTABand";
 import JsonLd from "@/components/JsonLd";
 import Breadcrumbs from "@/components/Breadcrumbs";
-import { posts, getPost, allSlugs } from "@/data/blog";
+import { posts, getPost, getLocalizedPost, allSlugsAnyLocale } from "@/data/blog";
+import BlogPostZh from "@/components/zh/BlogPostZh";
+import { zhMetadata } from "@/lib/zh";
 import { relatedCasesForService } from "@/data/portfolio";
 import { imageBg, unsplash } from "@/lib/images";
 import { site } from "@/lib/site";
@@ -48,7 +50,8 @@ const TAG_TO_SERVICE: Record<string, { slug: string; label: string }> = {
 };
 
 export function generateStaticParams() {
-  return allSlugs().map((slug) => ({ slug }));
+  // Includes the zh-only articles; they 404 outside /zh (see below).
+  return allSlugsAnyLocale().map((slug) => ({ slug }));
 }
 
 export async function generateMetadata({
@@ -57,6 +60,22 @@ export async function generateMetadata({
   params: Promise<{ locale: string; slug: string }>;
 }): Promise<Metadata> {
   const { locale, slug } = await params;
+  if (locale === "zh") {
+    const zh = getLocalizedPost(slug, "zh");
+    if (!zh) return { title: "未找到该文章" };
+    const zhOnly = !getPost(slug);
+    return zhMetadata({
+      path: `/blog/${zh.slug}`,
+      title: `${zh.metaTitle ?? zh.title} | GlobalAnnotate`,
+      description: zh.description,
+      keywords: [...zh.displayTags, "非洲语言翻译", "GlobalAnnotate 翻译"],
+      type: "article",
+      image: unsplash(zh.heroImage.id, 1600),
+      imageAlt: zh.heroImage.alt,
+      publishedTime: zh.date,
+      zhOnly,
+    });
+  }
   const post = getPost(slug);
   if (!post) return { title: "Article not found" };
   const url = `${site.url}/blog/${post.slug}`;
@@ -100,6 +119,11 @@ export default async function BlogPostPage({
 }) {
   const { locale, slug } = await params;
   setRequestLocale(locale);
+  if (locale === "zh") {
+    const zh = getLocalizedPost(slug, "zh");
+    if (!zh) notFound();
+    return <BlogPostZh post={zh} />;
+  }
   const t = await getTranslations("blog");
   const post = getPost(slug);
   if (!post) notFound();

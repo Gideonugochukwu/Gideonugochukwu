@@ -11,6 +11,8 @@ import JsonLd from "@/components/JsonLd";
 import PageHero from "@/components/PageHero";
 import { site, founder } from "@/lib/site";
 import { breadcrumbSchema, personSchema } from "@/lib/schema";
+import { setRequestLocale } from "next-intl/server";
+import AboutZh from "@/components/zh/AboutZh";
 
 
 export async function generateMetadata({
@@ -45,7 +47,14 @@ const values = [
   },
 ];
 
-export default function AboutPage() {
+export default async function AboutPage({
+  params,
+}: {
+  params: Promise<{ locale: string }>;
+}) {
+  const { locale } = await params;
+  setRequestLocale(locale);
+  if (locale === "zh") return <AboutZh />;
   return (
     <>
       <JsonLd

@@ -8,16 +8,19 @@ import JsonLd from "@/components/JsonLd";
 import ReviewAuthor from "@/components/ReviewAuthor";
 import { reviews } from "@/data/reviews";
 import { site } from "@/lib/site";
-import { ogImages, OG_IMAGE_URL } from "@/lib/i18n-meta";
+import { ogImages, OG_IMAGE_URL, withHreflang } from "@/lib/i18n-meta";
 import { breadcrumbSchema } from "@/lib/schema";
 import PageHero from "@/components/PageHero";
 import { portfolioHeroSlides } from "@/lib/images";
+import { setRequestLocale } from "next-intl/server";
+import ReviewsZh, { ZH_META } from "@/components/zh/ReviewsZh";
+import { zhMetadata } from "@/lib/zh";
 
 const TITLE = "Client Reviews";
 const DESCRIPTION =
   "Hear from teams who partner with GlobalAnnotate for translation, AI annotation, multilingual SEO, and digital marketing.";
 
-export const metadata: Metadata = {
+const EN_METADATA: Metadata = {
   title: TITLE,
   description: DESCRIPTION,
   alternates: { canonical: `${site.url}/reviews` },
@@ -36,12 +39,29 @@ export const metadata: Metadata = {
   },
 };
 
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ locale: string }>;
+}): Promise<Metadata> {
+  const { locale } = await params;
+  if (locale === "zh") return zhMetadata({ path: "/reviews", ...ZH_META });
+  return withHreflang(EN_METADATA, "/reviews");
+}
+
 function average(arr: { rating: number }[]) {
   if (!arr.length) return 0;
   return arr.reduce((sum, r) => sum + r.rating, 0) / arr.length;
 }
 
-export default function ReviewsPage() {
+export default async function ReviewsPage({
+  params,
+}: {
+  params: Promise<{ locale: string }>;
+}) {
+  const { locale } = await params;
+  setRequestLocale(locale);
+  if (locale === "zh") return <ReviewsZh />;
   const avg = average(reviews);
 
   return (

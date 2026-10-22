@@ -130,7 +130,14 @@ export type AuthorDisplay = {
   schemaAuthor: string;
 };
 
-export function authorDisplay(r: Review): AuthorDisplay {
+// `locale` + `verifiedLabel` let the Chinese locale use full-width
+// punctuation and its own "Verified client" label.
+export function authorDisplay(
+  r: Review,
+  locale = "en",
+  verifiedLabel = "Verified client"
+): AuthorDisplay {
+  const comma = locale === "zh" ? "，" : ", ";
   switch (r.displayMode) {
     case "named":
       return {
@@ -148,15 +155,15 @@ export function authorDisplay(r: Review): AuthorDisplay {
     }
     case "role":
       return {
-        primary: `${r.role}, ${r.industry}`,
+        primary: `${r.role}${comma}${r.industry}`,
         secondary: r.country,
         schemaAuthor: `${r.role}, ${r.industry}`,
       };
     case "verified":
       return {
-        primary: "Verified client",
+        primary: verifiedLabel,
         secondary: `${r.industry} · ${r.country}`,
-        schemaAuthor: "Verified client",
+        schemaAuthor: verifiedLabel,
       };
   }
 }
