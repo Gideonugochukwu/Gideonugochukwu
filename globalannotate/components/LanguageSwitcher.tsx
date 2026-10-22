@@ -1,23 +1,23 @@
 "use client";
 
 import { useEffect, useRef, useState, useTransition } from "react";
-import { useLocale } from "next-intl";
+import { useLocale, useTranslations } from "next-intl";
 import { Check, ChevronDown, Globe } from "lucide-react";
 import { usePathname, useRouter } from "@/i18n/navigation";
 import { routing } from "@/i18n/routing";
 import { cn } from "@/lib/utils";
 
 // The three locales, in switcher order. `code` is the compact label shown in
-// the trigger (EN / DE / 中文); `name` is the native full name in the menu.
+// the trigger (EN / DE / 中文). The full name in the menu comes from the
+// `languageNames` messages, so the Chinese UI reads 英文 / 德文 / 简体中文.
 const LOCALES: {
   locale: (typeof routing.locales)[number];
   flag: string;
   code: string;
-  name: string;
 }[] = [
-  { locale: "en", flag: "🇬🇧", code: "EN", name: "English" },
-  { locale: "de", flag: "🇩🇪", code: "DE", name: "Deutsch" },
-  { locale: "zh", flag: "🇨🇳", code: "中文", name: "简体中文" },
+  { locale: "en", flag: "🇬🇧", code: "EN" },
+  { locale: "de", flag: "🇩🇪", code: "DE" },
+  { locale: "zh", flag: "🇨🇳", code: "中文" },
 ];
 
 // Language picker for the navbar. Navigates to the same page in the chosen
@@ -29,6 +29,8 @@ export default function LanguageSwitcher({
   variant?: "desktop" | "mobile";
 }) {
   const activeLocale = useLocale();
+  const t = useTranslations("a11y");
+  const tn = useTranslations("languageNames");
   const router = useRouter();
   const pathname = usePathname();
   const [isPending, startTransition] = useTransition();
@@ -70,7 +72,7 @@ export default function LanguageSwitcher({
       <div
         className="mt-2 flex items-center gap-2 border-t border-ink-200 pt-3"
         role="group"
-        aria-label="Language"
+        aria-label={t("languageGroup")}
       >
         {LOCALES.map((l) => {
           const active = l.locale === activeLocale;
@@ -89,7 +91,7 @@ export default function LanguageSwitcher({
               )}
             >
               <span aria-hidden>{l.flag}</span>
-              {l.name}
+              {tn(l.locale)}
             </button>
           );
         })}
@@ -107,7 +109,7 @@ export default function LanguageSwitcher({
         disabled={isPending}
         aria-haspopup="menu"
         aria-expanded={open}
-        aria-label="Change language"
+        aria-label={t("changeLanguage")}
         className={cn(
           "inline-flex items-center gap-1.5 rounded-lg border border-ink-200 px-2.5 py-2 text-sm font-medium text-ink-700 transition hover:text-ink-900 hover:border-ink-300",
           open && "border-ink-300 text-ink-900"
@@ -143,7 +145,7 @@ export default function LanguageSwitcher({
               >
                 <span className="inline-flex items-center gap-2">
                   <span aria-hidden>{l.flag}</span>
-                  {l.name}
+                  {tn(l.locale)}
                 </span>
                 {active && <Check className="h-4 w-4 text-brand-600" aria-hidden />}
               </button>

@@ -11,6 +11,8 @@ import { services, marketReady, site } from "@/lib/site";
 import { img, imageBg, unsplash, servicesHeroSlides } from "@/lib/images";
 import { breadcrumbSchema } from "@/lib/schema";
 import { ArrowRight, Brain, Gamepad2, Languages, Megaphone, Search, ShieldCheck } from "lucide-react";
+import { setRequestLocale } from "next-intl/server";
+import ServicesZh from "@/components/zh/ServicesZh";
 
 
 // MarketReady is a distinct, proprietary service — surfaced here as a sixth
@@ -38,7 +40,14 @@ const SERVICE_IMAGES = {
 
 const ICONS = { Brain, Gamepad2, Languages, Megaphone, Search, ShieldCheck } as const;
 
-export default function ServicesPage() {
+export default async function ServicesPage({
+  params,
+}: {
+  params: Promise<{ locale: string }>;
+}) {
+  const { locale } = await params;
+  setRequestLocale(locale);
+  if (locale === "zh") return <ServicesZh />;
   return (
     <>
       <JsonLd

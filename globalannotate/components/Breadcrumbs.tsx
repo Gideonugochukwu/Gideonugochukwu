@@ -1,5 +1,6 @@
 import { Link } from "@/i18n/navigation";
 import { ChevronRight } from "lucide-react";
+import { useTranslations } from "next-intl";
 import { cn } from "@/lib/utils";
 
 export type Crumb = { name: string; href: string };
@@ -20,6 +21,7 @@ export default function Breadcrumbs({
   tone?: "light" | "dark";
   className?: string;
 }) {
+  const t = useTranslations("a11y");
   const linkCls =
     tone === "dark"
       ? "text-brand-300 hover:text-brand-200"
@@ -28,7 +30,7 @@ export default function Breadcrumbs({
   const currentCls = tone === "dark" ? "text-white/70" : "text-ink-500";
 
   return (
-    <nav aria-label="Breadcrumb" className={cn("text-sm", className)}>
+    <nav aria-label={t("breadcrumb")} className={cn("text-sm", className)}>
       <ol className="flex flex-wrap items-center gap-x-1.5 gap-y-1">
         {items.map((item, i) => {
           const isLast = i === items.length - 1;

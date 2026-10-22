@@ -1,4 +1,5 @@
 import { Star } from "lucide-react";
+import { useTranslations } from "next-intl";
 import { cn } from "@/lib/utils";
 
 export default function Stars({
@@ -10,11 +11,12 @@ export default function Stars({
   size?: number;
   className?: string;
 }) {
+  const t = useTranslations("a11y");
   return (
     <div
       className={cn("inline-flex items-center gap-0.5", className)}
       role="img"
-      aria-label={`${value} out of 5 stars`}
+      aria-label={t("stars", { value: String(value) })}
     >
       {Array.from({ length: 5 }).map((_, i) => {
         const filled = i < Math.round(value);

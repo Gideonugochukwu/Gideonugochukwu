@@ -4,12 +4,15 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
+    "prebuild": "node scripts/generate-sitemap-zh.mjs",
     "build": "next build",
-    "postbuild": "node scripts/indexnow-ping.mjs",
+    "postbuild": "node scripts/zh-quality-gate.mjs && node scripts/indexnow-ping.mjs",
     "indexnow": "node scripts/indexnow-ping.mjs",
     "og-image": "node scripts/generate-og-image.mjs",
     "start": "next start",
-    "lint": "eslint"
+    "lint": "eslint",
+    "sitemap:zh": "node scripts/generate-sitemap-zh.mjs",
+    "check:zh": "node scripts/zh-quality-gate.mjs"
   },
   "dependencies": {
     "@hookform/resolvers": "^5.4.0",

@@ -21,6 +21,8 @@ import {
   ArrowRight,
   CheckCircle2,
 } from "lucide-react";
+import { setRequestLocale } from "next-intl/server";
+import MarketReadyZh from "@/components/zh/MarketReadyZh";
 
 
 export async function generateMetadata({
@@ -172,7 +174,14 @@ const SCHEMA_FAQ = [
   },
 ];
 
-export default function MarketReadyPage() {
+export default async function MarketReadyPage({
+  params,
+}: {
+  params: Promise<{ locale: string }>;
+}) {
+  const { locale } = await params;
+  setRequestLocale(locale);
+  if (locale === "zh") return <MarketReadyZh />;
   const url = `${site.url}/services/marketready`;
   const heroSlides = [
     {

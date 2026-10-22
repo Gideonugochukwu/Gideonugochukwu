@@ -1,20 +1,22 @@
 import { ShieldCheck } from "lucide-react";
+import { useLocale, useTranslations } from "next-intl";
 import type { Review } from "@/data/reviews";
 import { authorDisplay } from "@/data/reviews";
 
 // Small emerald trust mark. Used inline next to author lines. Subtle on
 // purpose — it should read as a quiet verification stamp, not a sticker.
 export function VerifiedBadge({ className = "" }: { className?: string }) {
+  const t = useTranslations("reviewAuthor");
   return (
     <span
       className={
         "inline-flex items-center gap-1 rounded-full border border-brand-200 bg-brand-50 px-2 py-0.5 text-[11px] font-medium leading-none text-brand-700 " +
         className
       }
-      title="Verified client — engagement confirmed by GlobalAnnotate."
+      title={t("verifiedTitle")}
     >
       <ShieldCheck className="h-3 w-3" aria-hidden />
-      Verified client
+      {t("verified")}
     </span>
   );
 }
@@ -29,7 +31,8 @@ export default function ReviewAuthor({
   review: Review;
   size?: "sm" | "md";
 }) {
-  const a = authorDisplay(review);
+  const t = useTranslations("reviewAuthor");
+  const a = authorDisplay(review, useLocale(), t("verified"));
   const primarySize = size === "sm" ? "text-sm" : "text-[15px]";
   const secondarySize = size === "sm" ? "text-xs" : "text-sm";
   return (

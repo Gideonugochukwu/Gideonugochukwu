@@ -4,6 +4,8 @@
 // Use <h2>/<h3>, <p>, <ul>/<li>, <a>, <strong>, <em>, <blockquote>, <code>.
 
 import { img } from "@/lib/images";
+import { zhAlt } from "@/lib/images.zh";
+import { postsZh, zhOnlyPosts } from "./blog.zh";
 
 export type BlogPost = {
   slug: string;
@@ -510,4 +512,42 @@ export function getPost(slug: string): BlogPost | undefined {
 
 export function allSlugs(): string[] {
   return posts.map((p) => p.slug);
+}
+
+// ── Localization ────────────────────────────────────────────────────────────
+// A post as rendered in a given locale. `displayTags` are the visible tag
+// chips; `tags` stay English because they drive the related-service lookup.
+export type LocalizedPost = BlogPost & { displayTags: string[]; metaTitle?: string };
+
+// Every post visible in `locale`: English/German get the English posts; the
+// Chinese locale gets the full translations plus the zh-only articles.
+export function localizedPosts(locale: string): LocalizedPost[] {
+  if (locale !== "zh") return posts.map((p) => ({ ...p, displayTags: p.tags }));
+  const translated = posts.map((p) => {
+    const zh = postsZh[p.slug];
+    if (!zh) return { ...p, displayTags: p.tags };
+    return {
+      ...p,
+      title: zh.title,
+      metaTitle: zh.metaTitle,
+      description: zh.description,
+      body: zh.body,
+      faq: zh.faq,
+      readMinutes: zh.readMinutes ?? p.readMinutes,
+      heroImage: { ...p.heroImage, alt: zhAlt(p.heroImage.id) },
+      displayTags: zh.tags,
+    };
+  });
+  const extra = zhOnlyPosts.map(({ zhTags, ...p }) => ({ ...p, displayTags: zhTags }));
+  return [...extra, ...translated];
+}
+
+export function getLocalizedPost(slug: string, locale: string): LocalizedPost | undefined {
+  return localizedPosts(locale).find((p) => p.slug === slug);
+}
+
+// Slugs to prerender: every English post plus the zh-only posts (those 404
+// outside /zh — see getLocalizedPost).
+export function allSlugsAnyLocale(): string[] {
+  return [...allSlugs(), ...zhOnlyPosts.map((p) => p.slug)];
 }

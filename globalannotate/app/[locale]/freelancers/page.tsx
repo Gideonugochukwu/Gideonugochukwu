@@ -10,6 +10,8 @@ import { site } from "@/lib/site";
 import { breadcrumbSchema } from "@/lib/schema";
 import { aboutHeroSlides } from "@/lib/images";
 import { Briefcase, BadgeDollarSign, Globe2, HeartHandshake } from "lucide-react";
+import { setRequestLocale } from "next-intl/server";
+import FreelancersZh from "@/components/zh/FreelancersZh";
 
 
 export async function generateMetadata({
@@ -44,7 +46,14 @@ const WHY = [
   },
 ];
 
-export default function FreelancersPage() {
+export default async function FreelancersPage({
+  params,
+}: {
+  params: Promise<{ locale: string }>;
+}) {
+  const { locale } = await params;
+  setRequestLocale(locale);
+  if (locale === "zh") return <FreelancersZh />;
   return (
     <>
       {/* Warm up the connection to Airtable so the embedded form loads faster. */}

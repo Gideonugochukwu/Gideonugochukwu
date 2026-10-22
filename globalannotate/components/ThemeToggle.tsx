@@ -1,6 +1,7 @@
 "use client";
 
 import { Moon, Sun } from "lucide-react";
+import { useTranslations } from "next-intl";
 
 // Light/dark toggle for the navbar. The current theme lives as a `dark`
 // class on <html>, applied before first paint by the inline THEME_INIT
@@ -8,6 +9,7 @@ import { Moon, Sun } from "lucide-react";
 // swap is pure CSS (dark:hidden / dark:block), so the button renders
 // identically on server and client — no hydration mismatch, no flash.
 export default function ThemeToggle({ className = "" }: { className?: string }) {
+  const t = useTranslations("a11y");
   function toggle() {
     const next = !document.documentElement.classList.contains("dark");
     document.documentElement.classList.toggle("dark", next);
@@ -23,7 +25,7 @@ export default function ThemeToggle({ className = "" }: { className?: string }) 
     <button
       type="button"
       onClick={toggle}
-      aria-label="Toggle dark mode"
+      aria-label={t("toggleTheme")}
       className={
         "inline-flex h-9 w-9 items-center justify-center rounded-lg border border-ink-200 text-ink-600 hover:text-brand-600 hover:border-brand-400 transition " +
         className

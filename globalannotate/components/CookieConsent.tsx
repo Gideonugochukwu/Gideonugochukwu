@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import { useTranslations } from "next-intl";
 import { Link } from "@/i18n/navigation";
 import { Cookie, X } from "lucide-react";
 
@@ -14,6 +15,9 @@ import { Cookie, X } from "lucide-react";
 
 const STORAGE_KEY = "ga-cookie-consent"; // "accepted" | "rejected"
 export const OPEN_EVENT = "ga:open-cookie-settings";
+// Fired after the visitor makes a choice, so analytics loaders (e.g. the
+// /zh Baidu Analytics snippet) can start without a page reload.
+export const CONSENT_EVENT = "ga:cookie-consent-changed";
 
 export function hasAnalyticsConsent(): boolean {
   try {
@@ -24,6 +28,7 @@ export function hasAnalyticsConsent(): boolean {
 }
 
 export default function CookieConsent() {
+  const t = useTranslations("cookie");
   const [visible, setVisible] = useState(false);
 
   useEffect(() => {
@@ -52,6 +57,7 @@ export default function CookieConsent() {
     } catch {
       // Ignore storage failures (private mode, blocked cookies).
     }
+    window.dispatchEvent(new Event(CONSENT_EVENT));
     setVisible(false);
   };
 
@@ -61,7 +67,7 @@ export default function CookieConsent() {
     <div
       role="dialog"
       aria-live="polite"
-      aria-label="Cookie consent"
+      aria-label={t("dialogLabel")}
       className="fixed inset-x-0 bottom-0 z-[60] px-4 pb-4 sm:px-6 sm:pb-6"
     >
       <div className="container-wide">
@@ -75,19 +81,19 @@ export default function CookieConsent() {
             </span>
             <div className="min-w-0">
               <p className="text-sm font-semibold text-ink-900">
-                We value your privacy
+                {t("title")}
               </p>
               <p className="mt-1 text-sm text-ink-600 leading-relaxed">
-                We use strictly necessary cookies to run this site. With your
-                consent, we may also use analytics cookies to understand how the
-                site is used. See our{" "}
-                <Link
-                  href="/privacy"
-                  className="font-semibold text-brand-700 hover:text-brand-900 underline-offset-4 hover:underline"
-                >
-                  Privacy Policy
-                </Link>
-                .
+                {t.rich("body", {
+                  link: (chunks) => (
+                    <Link
+                      href="/privacy"
+                      className="font-semibold text-brand-700 hover:text-brand-900 underline-offset-4 hover:underline"
+                    >
+                      {chunks}
+                    </Link>
+                  ),
+                })}
               </p>
               <div className="mt-4 flex flex-col gap-2.5 sm:flex-row">
                 <button
@@ -95,21 +101,21 @@ export default function CookieConsent() {
                   onClick={() => choose("accepted")}
                   className="btn-primary text-sm"
                 >
-                  Accept all
+                  {t("accept")}
                 </button>
                 <button
                   type="button"
                   onClick={() => choose("rejected")}
                   className="btn-secondary text-sm"
                 >
-                  Reject non-essential
+                  {t("reject")}
                 </button>
               </div>
             </div>
             <button
               type="button"
               onClick={() => choose("rejected")}
-              aria-label="Dismiss (reject non-essential cookies)"
+              aria-label={t("dismiss")}
               className="ml-auto inline-flex h-8 w-8 shrink-0 items-center justify-center rounded-lg text-ink-500 hover:bg-ink-50 hover:text-ink-900 transition"
             >
               <X className="h-4 w-4" />

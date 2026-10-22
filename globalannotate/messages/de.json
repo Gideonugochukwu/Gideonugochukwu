@@ -319,5 +319,117 @@
     "aiBody": "Gold-Set-Kalibrierung und Inter-Annotator-Übereinstimmung in jedem Annotationsprojekt.",
     "replyTitle": "Antwort in einem Werktag",
     "replyBody": "Jede Anfrage wird innerhalb eines Werktags beantwortet, mit einem Angebot in 24–48 Stunden."
+  },
+  "a11y": {
+    "breadcrumb": "Breadcrumb",
+    "primaryNav": "Primary",
+    "openMenu": "Open menu",
+    "closeMenu": "Close menu",
+    "toggleTheme": "Toggle dark mode",
+    "changeLanguage": "Change language",
+    "languageGroup": "Language",
+    "logoHome": "GlobalAnnotate home",
+    "logoAlt": "GlobalAnnotate logo",
+    "dismissNotification": "Dismiss notification",
+    "clearSelection": "Clear selection",
+    "stars": "{value} out of 5 stars",
+    "greeting": "Hello in {lang}: {word}"
+  },
+  "languageNames": {
+    "en": "English",
+    "de": "Deutsch",
+    "zh": "简体中文"
+  },
+  "siteTagline": "Precision Across Languages. Intelligence Across Data. Growth Across Markets.",
+  "cookie": {
+    "dialogLabel": "Cookie consent",
+    "title": "We value your privacy",
+    "body": "We use strictly necessary cookies to run this site. With your consent, we may also use analytics cookies to understand how the site is used. See our <link>Privacy Policy</link>.",
+    "accept": "Accept all",
+    "reject": "Reject non-essential",
+    "dismiss": "Dismiss (reject non-essential cookies)"
+  },
+  "globe": {
+    "mapAlt": "World map showing GlobalAnnotate's global reach",
+    "northAmerica": "North America",
+    "southAmerica": "South America",
+    "europe": "Europe",
+    "africa": "Africa",
+    "asia": "Asia",
+    "australia": "Australia"
+  },
+  "notFound": {
+    "title": "Lost in translation.",
+    "body": "That page doesn't exist — or has been moved. Let's get you back to somewhere useful.",
+    "back": "Back to home",
+    "explore": "Explore services"
+  },
+  "errorPage": {
+    "title": "Something went wrong.",
+    "body": "An unexpected error stopped this page from loading. Please try again, or head back to the homepage.",
+    "retry": "Try again",
+    "back": "Back to home"
+  },
+  "servicePage": {
+    "home": "Home",
+    "services": "Services",
+    "talkToExpert": "Talk to an expert",
+    "allServices": "All services",
+    "includedEyebrow": "What's included",
+    "includedHeading1": "Everything you need,",
+    "includedHeading2": "end to end.",
+    "useCasesEyebrow": "Use cases",
+    "useCasesHeading": "Built for the work you actually do.",
+    "pricingEyebrow": "Pricing",
+    "pricingHeading": "Simple tiers. Tailored proposals.",
+    "pricingSub": "Pricing depends on scope, volume, and language pairs.",
+    "mostPopular": "Most popular",
+    "faqEyebrow": "FAQ",
+    "faqHeading": "Questions, answered.",
+    "relatedEyebrow": "Related work",
+    "relatedHeading": "Recent case studies in this service.",
+    "seeAllCases": "See all case studies",
+    "readCase": "Read case study",
+    "mrHeading": "Add MarketReady™ to this project",
+    "mrBody": "Validate your content with real native users in the target market before launch — and get a signed report that certifies it's ready.",
+    "learnMore": "Learn more"
+  },
+  "reviewAuthor": {
+    "verified": "Verified client",
+    "verifiedTitle": "Verified client — engagement confirmed by GlobalAnnotate."
+  },
+  "reviewForm": {
+    "modeNamed": "Full name + company",
+    "modeInitial": "First name + last initial + role",
+    "modeRole": "Role only — no name",
+    "modeVerified": "Anonymous (Verified client)",
+    "errName": "Please enter your name",
+    "errRating": "Please choose a rating",
+    "errComment": "Please share at least a sentence about your experience",
+    "errNoEndpoint": "Form endpoint not configured yet. Add NEXT_PUBLIC_FORMSPREE_REVIEW_ENDPOINT to .env.local.",
+    "toastSuccess": "Thank you — your review has been received for moderation.",
+    "toastError": "Something went wrong. Please try again.",
+    "thanksHeading": "Thank you!",
+    "thanksBody": "Your review will appear on this page after our team approves it. We're grateful for the feedback.",
+    "submitAnother": "Submit another review",
+    "name": "Your name",
+    "namePlaceholder": "Jane Doe",
+    "role": "Role (optional)",
+    "rolePlaceholder": "Head of Localization",
+    "company": "Company (optional)",
+    "companyPlaceholder": "Acme Inc.",
+    "creditHeading": "How should we credit you?",
+    "creditHelp": "You stay in control. Pick the option that feels right — we'll display the review that way once it's moderated.",
+    "rating": "Rating",
+    "starLabel": "{n} star",
+    "starsLabel": "{n} stars",
+    "review": "Your review",
+    "reviewPlaceholder": "Share what working with GlobalAnnotate was like…",
+    "moderated": "Reviews are moderated before being published.",
+    "submitting": "Submitting…",
+    "submit": "Submit review"
+  },
+  "airtable": {
+    "iframeTitle": "GlobalAnnotate freelancer application form"
   }
 }

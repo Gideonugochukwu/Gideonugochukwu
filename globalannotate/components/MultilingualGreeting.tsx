@@ -2,6 +2,27 @@
 
 import { useEffect, useState } from "react";
 import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
+import { useLocale, useTranslations } from "next-intl";
+
+// Chinese names for the greeting languages, used in the zh aria-label.
+const ZH_LANG_NAMES: Record<string, string> = {
+  English: "英语",
+  French: "法语",
+  Spanish: "西班牙语",
+  Portuguese: "葡萄牙语",
+  Italian: "意大利语",
+  German: "德语",
+  Mandarin: "普通话",
+  Japanese: "日语",
+  Korean: "韩语",
+  Arabic: "阿拉伯语",
+  Hindi: "印地语",
+  Russian: "俄语",
+  Turkish: "土耳其语",
+  Swahili: "斯瓦希里语",
+  Hausa: "豪萨语",
+  Zulu: "祖鲁语",
+};
 
 const GREETINGS = [
   { word: "Hello", lang: "English" },
@@ -28,7 +49,13 @@ const GREETINGS = [
 // so the inner span can stay aria-hidden without losing accessibility.
 export default function MultilingualGreeting() {
   const reduce = useReducedMotion();
-  const [i, setI] = useState(0);
+  const locale = useLocale();
+  const t = useTranslations("a11y");
+  // The Chinese locale opens on 你好 so the server-rendered greeting matches
+  // the page language; the cycle then continues through every language.
+  const [i, setI] = useState(() =>
+    locale === "zh" ? GREETINGS.findIndex((g) => g.lang === "Mandarin") : 0
+  );
 
   useEffect(() => {
     if (reduce) return;
@@ -45,7 +72,10 @@ export default function MultilingualGreeting() {
       className="inline-block relative align-baseline"
       aria-live="polite"
       aria-atomic="true"
-      aria-label={`Hello in ${current.lang}: ${current.word}`}
+      aria-label={t("greeting", {
+        lang: locale === "zh" ? ZH_LANG_NAMES[current.lang] ?? current.lang : current.lang,
+        word: current.word,
+      })}
     >
       <span aria-hidden className="relative inline-block min-w-[6ch]">
         <AnimatePresence mode="wait" initial={false}>

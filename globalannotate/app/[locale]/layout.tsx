@@ -7,10 +7,12 @@ import "../globals.css";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import CookieConsent from "@/components/CookieConsent";
+import BaiduAnalytics from "@/components/BaiduAnalytics";
 import { ToastProvider } from "@/components/Toast";
 import JsonLd from "@/components/JsonLd";
 import { site } from "@/lib/site";
 import { organizationSchema, websiteSchema } from "@/lib/schema";
+import { siteSchemasZh } from "@/lib/schema.zh";
 import { routing } from "@/i18n/routing";
 import { hreflangAlternates, OG_LOCALE, ogAlternateLocales, HTML_LANG, ogImages, OG_IMAGE_URL } from "@/lib/i18n-meta";
 
@@ -53,6 +55,25 @@ export function generateStaticParams() {
   return routing.locales.map((locale) => ({ locale }));
 }
 
+// Baidu webmaster-tools verification code (百度搜索资源平台). Baidu checks the
+// site root, so the tag is emitted on every locale once the env var is set.
+const BAIDU_VERIFY = process.env.NEXT_PUBLIC_BAIDU_VERIFY;
+// Optional Baidu Analytics site ID — loaded on /zh only, after consent.
+const BAIDU_ANALYTICS_ID = process.env.NEXT_PUBLIC_BAIDU_ANALYTICS_ID;
+
+// Baidu still reads <meta name="keywords">; these are the site-wide Chinese
+// targets (pages add their own, more specific lists).
+const ZH_KEYWORDS = [
+  "非洲语言翻译",
+  "非洲语言本地化",
+  "豪萨语翻译",
+  "斯瓦希里语翻译",
+  "多语言 AI 数据标注",
+  "翻译文化验证",
+  "尼日利亚翻译公司",
+  "GlobalAnnotate 翻译",
+];
+
 export async function generateMetadata({
   params,
 }: {
@@ -69,7 +90,7 @@ export async function generateMetadata({
     },
     description: t("home.description"),
     alternates: hreflangAlternates(locale, ""),
-    keywords: [
+    keywords: locale === "zh" ? ZH_KEYWORDS : [
       "AI annotation",
       "data labeling",
       "translation",
@@ -100,7 +121,10 @@ export async function generateMetadata({
       apple: "/apple-touch-icon.png",
     },
     robots: { index: true, follow: true },
-    verification: { google: "google6092810f1a80faed" },
+    verification: {
+      google: "google6092810f1a80faed",
+      ...(BAIDU_VERIFY ? { other: { "baidu-site-verification": BAIDU_VERIFY } } : {}),
+    },
   };
 }
 
@@ -144,7 +168,10 @@ export default async function LocaleLayout({
       </head>
       <body className="min-h-screen flex flex-col text-ink-900">
         <NextIntlClientProvider messages={messages}>
-          <JsonLd data={[organizationSchema(), websiteSchema()]} />
+          <JsonLd
+            data={isZh ? siteSchemasZh() : [organizationSchema(), websiteSchema()]}
+          />
+          {isZh && BAIDU_ANALYTICS_ID && <BaiduAnalytics id={BAIDU_ANALYTICS_ID} />}
           <ToastProvider>
             <Navbar />
             <main className="flex-1">{children}</main>

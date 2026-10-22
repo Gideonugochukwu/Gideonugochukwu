@@ -6,7 +6,7 @@ import PageHero from "@/components/PageHero";
 import CTABand from "@/components/CTABand";
 import JsonLd from "@/components/JsonLd";
 import { site } from "@/lib/site";
-import { ogImages, OG_IMAGE_URL } from "@/lib/i18n-meta";
+import { ogImages, OG_IMAGE_URL, withHreflang } from "@/lib/i18n-meta";
 import { servicesHeroSlides } from "@/lib/images";
 import {
   breadcrumbSchema,
@@ -14,6 +14,9 @@ import {
   serviceSchema,
 } from "@/lib/schema";
 import { ArrowRight, Check, ShieldCheck } from "lucide-react";
+import { setRequestLocale } from "next-intl/server";
+import AfricaZh, { ZH_META } from "@/components/zh/AfricaZh";
+import { zhMetadata } from "@/lib/zh";
 
 const TITLE =
   "African Language Translation Services — GlobalAnnotate | The Continent's Specialist";
@@ -22,7 +25,7 @@ const DESCRIPTION =
 
 const URL = `${site.url}/translation-services-africa`;
 
-export const metadata: Metadata = {
+const EN_METADATA: Metadata = {
   title: TITLE,
   description: DESCRIPTION,
   alternates: { canonical: URL },
@@ -40,6 +43,16 @@ export const metadata: Metadata = {
     images: [OG_IMAGE_URL],
   },
 };
+
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ locale: string }>;
+}): Promise<Metadata> {
+  const { locale } = await params;
+  if (locale === "zh") return zhMetadata({ path: "/translation-services-africa", ...ZH_META });
+  return withHreflang(EN_METADATA, "/translation-services-africa");
+}
 
 const GAP = [
   {
@@ -107,7 +120,14 @@ const MARKETREADY = [
   },
 ];
 
-export default function AfricaPage() {
+export default async function AfricaPage({
+  params,
+}: {
+  params: Promise<{ locale: string }>;
+}) {
+  const { locale } = await params;
+  setRequestLocale(locale);
+  if (locale === "zh") return <AfricaZh />;
   return (
     <>
       <JsonLd

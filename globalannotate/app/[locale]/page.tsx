@@ -1,4 +1,6 @@
 import { useTranslations } from "next-intl";
+import { setRequestLocale } from "next-intl/server";
+import { use } from "react";
 import Hero from "@/components/Hero";
 import StatStrip from "@/components/StatStrip";
 import Testimonials from "@/components/Testimonials";
@@ -11,6 +13,8 @@ import HomeMethod from "@/components/home/HomeMethod";
 import HomeTrust from "@/components/home/HomeTrust";
 import HomeFAQ from "@/components/home/HomeFAQ";
 import { faqSchema } from "@/lib/schema";
+import { zhLd } from "@/lib/zh";
+import type { FAQItem } from "@/components/FAQ";
 
 const HOME_FAQ = [
   {
@@ -39,13 +43,26 @@ const HOME_FAQ = [
   },
 ];
 
-export default function HomePage() {
+export default function HomePage({
+  params,
+}: {
+  params: Promise<{ locale: string }>;
+}) {
+  const { locale } = use(params);
+  // Lets the homepage prerender statically for every locale.
+  setRequestLocale(locale);
   const t = useTranslations("faq");
   return (
     <>
-      {/* JSON-LD stays English by design (canonical schema); the visible FAQ
-          below renders the translated items from the `faq` namespace. */}
-      <JsonLd data={faqSchema(HOME_FAQ)} />
+      {/* JSON-LD stays English for en/de (canonical schema); the Chinese
+          homepage emits the translated FAQ with inLanguage zh-CN. */}
+      <JsonLd
+        data={
+          locale === "zh"
+            ? zhLd(faqSchema(t.raw("items") as FAQItem[]))
+            : faqSchema(HOME_FAQ)
+        }
+      />
       <Hero />
 
       {/* Services — flat, calm surface with generous breathing room */}

@@ -1,5 +1,5 @@
 import { Mail } from "lucide-react";
-import { useTranslations } from "next-intl";
+import { useLocale, useTranslations } from "next-intl";
 import { Link } from "@/i18n/navigation";
 import Logo from "./Logo";
 import CookieSettingsButton from "./CookieSettingsButton";
@@ -9,6 +9,9 @@ import { SOCIAL_META } from "./SocialIcons";
 export default function Footer() {
   const t = useTranslations("footer");
   const ts = useTranslations("services");
+  const tr = useTranslations();
+  // Chinese drops the Latin full stops around the brand/founder names.
+  const isZh = useLocale() === "zh";
   const year = new Date().getFullYear();
   const socials = activeSocialLinks();
 
@@ -18,7 +21,7 @@ export default function Footer() {
         <div className="md:col-span-4">
           <Logo />
           <p className="mt-4 text-sm text-ink-600 max-w-sm leading-relaxed">
-            {site.tagline}
+            {tr("siteTagline")}
           </p>
           <div className="mt-5 flex flex-col gap-2">
             <a
@@ -100,7 +103,11 @@ export default function Footer() {
 
       <div className="border-t border-ink-200">
         <div className="container-wide py-5 flex flex-col md:flex-row items-center justify-between gap-3 text-xs text-ink-500">
-          <p>© {year} {site.name}. {t("rights")}</p>
+          <p>
+            {isZh
+              ? `© ${year} ${site.name} ${t("rights")}`
+              : `© ${year} ${site.name}. ${t("rights")}`}
+          </p>
           <p>
             {t("foundedBy")}{" "}
             <Link
@@ -109,9 +116,9 @@ export default function Footer() {
             >
               {founder.name}
             </Link>
-            .
+            {isZh ? "" : "."}
           </p>
-          <p>Precision Across Languages. Intelligence Across Data. Growth Across Markets.</p>
+          <p>{tr("siteTagline")}</p>
         </div>
       </div>
     </footer>

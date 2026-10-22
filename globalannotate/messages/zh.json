@@ -7,7 +7,7 @@
     "portfolio": "案例",
     "blog": "博客",
     "about": "关于我们",
-    "network": "加入我们的网络",
+    "network": "加入译者网络",
     "contact": "联系我们"
   },
   "common": {
@@ -19,182 +19,182 @@
     "getStarted": "立即开始"
   },
   "hero": {
-    "line1": "精准覆盖每一种语言。",
-    "line2": "智能赋能每一项数据。",
-    "line3": "增长触达每一个市场。",
-    "subhead": "一站式本地化、AI训练数据、多语言SEO和增长营销合作伙伴——支持100+种语言。",
+    "line1": "非洲语言翻译，精准到每个字。",
+    "line2": "AI 数据标注，智能而可靠。",
+    "line3": "全球市场增长，由此开始。",
+    "subhead": "非洲语言翻译、本地化、AI 训练数据、多语言 SEO 与增长营销，一个合作伙伴全部搞定。",
     "credential": "母语专家 · 100+ 种语言 · 30+ 个国家和地区"
   },
   "services": {
     "translation-localization": {
       "title": "翻译与本地化",
       "short": "翻译与本地化",
-      "summary": "为网站、应用、文档和多媒体内容提供媲美人工的高质量翻译，以及贴合文化语境的精准本地化，支持100+种语言。"
+      "summary": "由母语者完成的高质量翻译与贴合文化的本地化，覆盖 100+ 种语言，适用于网站、应用、文档与多媒体内容。"
     },
     "ai-annotation": {
-      "title": "AI数据标注与标记",
-      "short": "AI数据标注",
-      "summary": "为计算机视觉、NLP和LLM团队提供高精度训练数据——包括边界框、语义分割、音频和文本，全程经过质量审核。"
+      "title": "AI 数据标注",
+      "short": "AI 数据标注",
+      "summary": "为计算机视觉、自然语言处理和大语言模型团队提供高精度训练数据：边界框、语义分割、音频与文本标注，全部经过质量保证。"
     },
     "seo": {
-      "title": "SEO与搜索可见性",
-      "short": "SEO与搜索可见性",
-      "summary": "在您销售的每一个地区、每一种语言中脱颖而出。多语言与国际SEO、技术审计、内容建设和可持续积累的外链建设。"
+      "title": "SEO 与搜索可见度",
+      "short": "SEO 与搜索可见度",
+      "summary": "在您销售的每个市场、每种语言中获得排名。多语言 SEO、国际 SEO、技术审计、内容建设与外链建设，效果持续累积。"
     },
     "digital-marketing": {
       "title": "数字营销",
       "short": "数字营销",
-      "summary": "以效果为导向的Facebook和Instagram广告、社交媒体运营和内容策略，将受众转化为客户。"
+      "summary": "以效果为导向的 Facebook 与 Instagram 广告、社交媒体运营和内容策略，把受众转化为客户。"
     },
     "game-localization": {
       "title": "游戏本地化与翻译",
       "short": "游戏本地化",
-      "summary": "让您的游戏触达全球玩家——界面、对白、字幕、配音脚本、商店页面和LQA测试，支持100+种语言。"
+      "summary": "让您的游戏走向全球玩家：界面、对白、字幕、配音脚本、商店页面与语言质量保证（LQA）测试，支持 100+ 种语言。"
     },
     "marketready": {
-      "title": "MarketReady™文化验证",
+      "title": "MarketReady™ 文化验证",
       "short": "MarketReady™",
-      "summary": "在发布前由真实母语用户进行测试。唯一一家保证您的内容在目标市场真正有效的翻译服务。"
+      "summary": "发布前由真实母语用户进行测试。唯一一项保证您的内容在目标市场真正有效的翻译服务。"
     }
   },
   "homeServices": {
     "eyebrow": "我们的服务",
     "heading1": "五大服务，",
-    "heading2": "一个负责的团队。",
-    "subhead": "翻译、AI训练数据、多语言SEO、营销和游戏本地化——支持100+种语言。"
+    "heading2": "一个负责到底的团队。",
+    "subhead": "翻译、AI 训练数据、多语言 SEO、营销与游戏本地化，覆盖 100+ 种语言。"
   },
   "stats": {
     "languages": "支持语言",
     "dataPoints": "已标注数据点",
-    "countries": "服务国家",
+    "countries": "服务国家和地区",
     "satisfaction": "客户满意度",
     "eyebrow": "数据一览",
-    "note": "我们的母语专家在 30 多个国家和地区交付工作的概览。"
+    "note": "我们的母语专家在 30+ 个国家和地区交付成果的缩影。"
   },
   "industries": {
-    "eyebrow": "我们服务的行业",
-    "heading": "为各行各业的全球化团队而打造。",
-    "cta": "没有找到您的行业？欢迎咨询我们",
+    "eyebrow": "服务行业",
+    "heading": "为各行各业的全球化团队打造。",
+    "cta": "没有看到您的行业？欢迎咨询",
     "items": {
       "technology": {
-        "name": "科技与SaaS",
-        "line": "在每一个市场发布产品与文档——同时不拖慢研发进度。"
+        "name": "科技与 SaaS",
+        "line": "在每个市场同步发布产品与文档，不拖慢研发节奏。"
       },
       "ecommerce": {
         "name": "电商",
-        "line": "本地化的产品、广告和结算体验，切实提升转化。"
+        "line": "本地化的商品页、广告与结账流程，真正带来转化。"
       },
       "healthcare": {
         "name": "医疗健康与生命科学",
-        "line": "经过认证、可供审计的翻译，以及保障患者安全的内容。"
+        "line": "经认证、可审计的翻译，以及保障患者安全的内容。"
       },
       "ai": {
-        "name": "AI与机器学习",
-        "line": "生产级训练数据，让您的模型值得信赖。"
+        "name": "AI 与机器学习",
+        "line": "生产级训练数据，让模型值得信赖。"
       },
       "gaming": {
         "name": "游戏与互动娱乐",
-        "line": "界面、对白、配音脚本和LQA——助力工作室走向全球。"
+        "line": "界面、对白、配音脚本与 LQA 测试，助力工作室走向全球。"
       },
       "media": {
         "name": "媒体与娱乐",
-        "line": "流媒体规模的字幕、配音和元数据处理。"
+        "line": "以流媒体规模完成字幕制作、配音与元数据本地化。"
       }
     }
   },
   "marketready": {
-    "badge": "MarketReady™ · 独家专有",
-    "heading": "唯一一家保证您的内容在目标市场真正有效的翻译公司。",
-    "description": "其他公司只检查文字是否正确，而MarketReady™检验您的内容是否真正有效——在发布前，由目标市场的真实母语用户进行验证。",
-    "learnMore": "了解更多关于MarketReady™",
+    "badge": "MarketReady™ · 独家服务",
+    "heading": "唯一保证内容“落地有效”的翻译服务。",
+    "description": "其他机构只检查文字是否正确；MarketReady™ 文化验证检查您的内容是否真正有效——在发布前由目标市场的真实母语用户进行验证。",
+    "learnMore": "了解 MarketReady™ 文化验证",
     "bullet1Strong": "真实的母语用户",
-    "bullet1": "——而非译者——以盲测方式审阅您的内容。",
+    "bullet1": "（而非译员）以盲审方式评估您的内容。",
     "bullet2Strong": "一份签署的报告",
-    "bullet2": "，证明您的内容已达到发布标准。"
+    "bullet2": "，证明您的内容已可在目标市场发布。"
   },
   "method": {
-    "eyebrow": "GlobalAnnotate方法论",
-    "heading1": "可审核的质量。",
-    "heading2": "可预期的速度。",
-    "intro": "母语语言专家、专业标注员、SEO策略师和增长营销专家——在统一的质量体系下，由一位资深负责人统筹。",
+    "eyebrow": "GlobalAnnotate 工作方法",
+    "heading1": "质量可审计，",
+    "heading2": "进度可预期。",
+    "intro": "母语语言专家、专业标注员、SEO 策略师与增长营销人员，在同一套质量体系下，由一位资深负责人统筹。",
     "promises": {
       "quality": {
-        "title": "可审核的质量",
-        "body": "每个项目都附带质量审核报告和修订周期。"
+        "title": "质量可审计",
+        "body": "每个项目都附带质量保证报告和修订期。"
       },
       "global": {
         "title": "真正的全球覆盖",
-        "body": "覆盖100+种语言、30+个市场的母语专家。"
+        "body": "母语专家覆盖 100+ 种语言、30+ 个市场。"
       },
       "ailed": {
-        "title": "AI辅助，人工主导",
-        "body": "智能自动化，专家把关。在提速的同时绝不牺牲质量。"
+        "title": "善用 AI，由人主导",
+        "body": "智能自动化加专家把关，提速而不牺牲质量。"
       },
       "senior": {
-        "title": "资深团队，而非单纯销售",
-        "body": "从第一天起即由资深项目负责人对接，绝无中途交接。"
+        "title": "资深专家全程负责",
+        "body": "从第一天起由资深项目负责人对接，没有层层转手。"
       }
     },
     "howEyebrow": "合作流程",
-    "howHeading": "从首次沟通到最终交付。",
+    "howHeading": "从第一条消息到最终交付。",
     "steps": {
       "discovery": {
         "title": "需求沟通",
-        "body": "我们深入了解您的目标、受众和各项要求。"
+        "body": "了解您的目标、受众与限制条件。"
       },
       "proposal": {
         "title": "定制方案",
-        "body": "在24–48小时内提供清晰的范围、时间表和报价。"
+        "body": "24–48 小时内给出清晰的范围、时间表与报价。"
       },
       "production": {
-        "title": "生产与质量控制",
-        "body": "专家团队执行，质量团队审核每一项交付成果。"
+        "title": "执行与质量保证",
+        "body": "专家执行，质量团队审核每一项交付。"
       },
       "delivery": {
         "title": "交付与增长",
-        "body": "交付精良成果，并随您的业务扩展持续优化。"
+        "body": "交付精良成果，并随业务扩张持续迭代。"
       }
     }
   },
   "testimonials": {
     "eyebrow": "客户评价",
-    "heading1": "深受全球化团队",
-    "heading2": "的信赖。",
-    "readAll": "查看所有评价"
+    "heading1": "深受跨境团队",
+    "heading2": "信赖与好评。",
+    "readAll": "查看全部评价"
   },
   "faq": {
     "eyebrow": "常见问题",
     "heading": "常见问题解答。",
-    "subhead": "团队在合作前经常会问的问题。",
+    "subhead": "团队在开始合作前最常问的问题。",
     "items": [
       {
-        "q": "GlobalAnnotate提供哪些服务？",
-        "a": "五项一体化服务：支持100+种语言的翻译与本地化、AI数据标注与标记、多语言SEO与搜索可见性、以效果为导向的数字营销，以及面向出海工作室的游戏本地化与翻译。"
+        "q": "GlobalAnnotate 提供哪些服务？",
+        "a": "五项一体化服务：覆盖 100+ 种语言的翻译与本地化、AI 数据标注、多语言 SEO 与搜索可见度、效果型数字营销，以及面向出海工作室的游戏本地化与翻译。"
       },
       {
         "q": "你们支持多少种语言？",
-        "a": "支持100+种语言，母语专家遍布30多个国家——涵盖所有主要的欧洲、亚洲、非洲和中东语言。"
+        "a": "100+ 种语言，母语专家分布在 30+ 个国家和地区，涵盖所有主要的欧洲、亚洲、非洲和中东语言，尤其擅长豪萨语、约鲁巴语、伊博语、斯瓦希里语等非洲语言翻译。"
       },
       {
-        "q": "我可以组合多项服务吗？",
-        "a": "当然可以——我们大多数客户都会组合两项或更多服务。本地化搭配国际SEO，或AI标注搭配多语言数据集，都是常见的组合，均由一位资深项目负责人统筹。"
+        "q": "可以组合多项服务吗？",
+        "a": "可以。大多数客户会组合两项或以上服务，例如本地化加国际 SEO，或 AI 数据标注加多语言数据集，均由同一位资深项目负责人统筹。"
       },
       {
         "q": "通常的交付周期是多久？",
-        "a": "我们在一个工作日内回复每一份咨询，在24–48小时内提供明确的项目方案，大多数项目会在两周内交付首批成果。"
+        "a": "每一份咨询都会在一个工作日内得到回复，24–48 小时内提供明确范围的方案，大多数项目在两周内交付首批成果。"
       },
       {
         "q": "你们如何保证质量？",
-        "a": "每个项目都遵循标准化的质量审核流程：语言类工作由母语专家审校，AI数据采用黄金标准集校准和标注员一致性评估，SEO和营销则提供清晰的数据报告。"
+        "a": "每个项目都遵循成文的质量保证流程：语言类工作由母语者审校，AI 数据采用黄金标准集校准并跟踪标注者间一致性，SEO 与营销则提供清晰的数据报告。"
       },
       {
-        "q": "你们位于哪里？覆盖哪些时区？",
-        "a": "我们是一支分布于30多个国家的远程团队，母语专家的工作时间与您的营业时间保持一致。"
+        "q": "你们在哪里办公？覆盖哪些时区？",
+        "a": "我们是分布在 30+ 个国家和地区的远程团队，母语专家可配合您的工作时间。"
       }
     ]
   },
   "cta": {
-    "heading": "准备好拓展全球市场了吗？",
+    "heading": "准备好走向全球了吗？",
     "subhead": "告诉我们您的项目需求，我们将在一个工作日内回复。",
     "talkToExpert": "咨询专家"
   },
@@ -207,48 +207,48 @@
     "portfolio": "案例",
     "reviews": "客户评价",
     "blog": "博客",
-    "network": "加入我们的网络",
+    "network": "加入译者网络",
     "contact": "联系我们",
     "privacy": "隐私政策",
     "terms": "服务条款",
-    "foundedBy": "创始人：",
-    "rights": "版权所有。",
+    "foundedBy": "创始人",
+    "rights": "保留所有权利。",
     "industries": "行业",
-    "procurement": "与我们合作",
+    "procurement": "合作与采购",
     "security": "安全与保密",
     "quality": "质量",
     "cookies": "Cookie 设置"
   },
   "contact": {
-    "eyebrow": "与我们联系",
-    "heading": "与我们联系。",
+    "eyebrow": "联系我们",
+    "heading": "联系我们，获取非洲语言翻译报价。",
     "subhead": "告诉我们您的项目需求，我们将在一个工作日内回复。",
     "emailUsHeading": "直接给我们发邮件",
-    "emailUsBody": "一般咨询、合作或招聘事宜。",
+    "emailUsBody": "一般咨询、商务合作或求职。",
     "responseHeading": "响应时间",
-    "responseBody": "一个工作日内回复，多数咨询当天即可得到答复。",
-    "whereHeading": "我们的工作方式",
-    "whereBody": "母语专家遍布30多个国家，与您的时区保持一致。",
+    "responseBody": "一个工作日内回复，多数当天即可答复。",
+    "whereHeading": "服务范围",
+    "whereBody": "母语专家遍布 30+ 个国家和地区，配合您的时区工作。",
     "formHeading": "请描述您的项目",
-    "formIntro": "您提供的背景信息越多，我们的方案就越精准。资深项目负责人将在一个工作日内回复。不知从何开始？欢迎先浏览我们的<services>服务</services>或近期<cases>案例</cases>。",
+    "formIntro": "您提供的背景越详细，我们的方案就越精准。资深项目负责人将在一个工作日内回复。还不确定从哪里开始？可以先看看我们的<services>服务</services>或近期<cases>客户案例</cases>。",
     "form": {
       "fullName": "姓名",
-      "fullNamePlaceholder": "Godsportion",
+      "fullNamePlaceholder": "张伟",
       "businessEmail": "企业邮箱",
-      "businessEmailPlaceholder": "jane@company.com",
+      "businessEmailPlaceholder": "zhangwei@company.cn",
       "company": "公司名称（选填）",
-      "companyPlaceholder": "Acme Inc.",
+      "companyPlaceholder": "某某科技有限公司",
       "service": "服务类型",
       "selectService": "请选择服务……",
       "fullPackage": "全套服务",
       "projectDetails": "项目详情",
       "projectPlaceholder": "请描述您的项目——目标、格式、语言、数量、目标受众……",
       "budget": "预算（选填）",
-      "budgetPlaceholder": "例如：2,000 – 5,000美元",
+      "budgetPlaceholder": "例如：2,000–5,000美元",
       "timeline": "时间要求（选填）",
-      "timelinePlaceholder": "例如：两周后启动，30天内交付",
+      "timelinePlaceholder": "例如：两周后启动，30 天内交付",
       "consent": "提交即表示您同意就本次咨询接受我们的联系。",
-      "send": "发送消息",
+      "send": "提交需求",
       "sending": "发送中……",
       "successHeading": "已收到您的请求",
       "successBody": "我们的团队成员将在一个工作日内与您联系，提供后续步骤和量身定制的方案。",
@@ -256,68 +256,246 @@
       "errFullName": "请输入您的姓名",
       "errEmail": "请输入有效的企业邮箱",
       "errService": "请选择一项服务",
-      "errDetails": "请再多描述一些——至少20个字符",
-      "errNoEndpoint": "表单端点尚未配置。请在.env.local中添加NEXT_PUBLIC_FORMSPREE_QUOTE_ENDPOINT。",
-      "toastSuccess": "感谢您——您的请求已发送，我们将在一个工作日内回复。",
-      "toastError": "出现问题，请重试或直接给我们发送邮件。",
+      "errDetails": "请再多描述一些（至少 20 个字符）",
+      "errNoEndpoint": "报价表单的提交地址尚未配置，请直接发送邮件联系我们。",
+      "toastSuccess": "感谢您，需求已发送，我们将在一个工作日内回复。",
+      "toastError": "发送失败，请重试或直接发送邮件给我们。",
       "consentAgree": "我同意<link>隐私政策</link>，并同意 GlobalAnnotate 就此咨询与我联系。",
       "confidential": "您的项目信息将被保密处理，仅与处理您请求的团队共享。",
       "errConsent": "请接受隐私政策以继续。"
     }
   },
   "blog": {
-    "keepReading": "继续阅读",
-    "readArticle": "阅读文章",
-    "allArticles": "所有文章",
+    "keepReading": "延伸阅读",
+    "readArticle": "阅读全文",
+    "allArticles": "全部文章",
     "minRead": "分钟阅读",
     "by": "作者：",
-    "authorRole": "GlobalAnnotate创始人兼首席语言专家",
-    "calloutHeading": "确保您的内容在发布前已验证有效",
-    "calloutBody": "每个GlobalAnnotate项目都包含MarketReady™——在发布前，由目标市场的真实母语用户进行文化验证。您将获得一份签署的报告，证明您的内容不仅在语言上准确，更已达到市场就绪标准。",
-    "calloutLink": "了解更多关于MarketReady™"
+    "authorRole": "GlobalAnnotate 创始人兼首席语言专家",
+    "calloutHeading": "在发布前确认您的内容真正有效",
+    "calloutBody": "每个 GlobalAnnotate 项目都包含 MarketReady™ 文化验证：发布前由目标市场的真实母语用户进行文化验证。您将获得一份签署的报告，证明内容不仅语言准确，而且已可在市场发布。",
+    "calloutLink": "了解 MarketReady™ 文化验证"
   },
-  "legalNote": "本文件以英文提供。如需翻译版本，请联系我们。",
+  "legalNote": "",
   "meta": {
     "home": {
-      "title": "GlobalAnnotate — 翻译、AI标注、SEO与数字营销 | 100+种语言",
-      "description": "翻译与本地化服务，配备MarketReady™文化验证。非洲语言专家。100+种语言，一个负责的团队。"
+      "title": "非洲语言翻译与本地化服务 | GlobalAnnotate",
+      "description": "GlobalAnnotate 专注非洲语言翻译，提供豪萨语、约鲁巴语、斯瓦希里语等 100+ 种语言的翻译、本地化与多语言 AI 数据标注，并以 MarketReady™ 文化验证确保内容有效。",
+      "keywords": [
+        "非洲语言翻译",
+        "非洲语言本地化",
+        "豪萨语翻译",
+        "约鲁巴语翻译",
+        "斯瓦希里语翻译",
+        "多语言 AI 数据标注",
+        "翻译文化验证",
+        "GlobalAnnotate 翻译"
+      ]
     },
     "services": {
-      "title": "服务 — 翻译、本地化、AI标注、游戏本地化",
-      "description": "助力全球化发展的一体化服务：翻译、AI标注、多语言SEO、数字营销、游戏本地化以及MarketReady™验证。"
+      "title": "翻译、本地化与 AI 数据标注服务 | GlobalAnnotate",
+      "description": "一站式出海服务：非洲语言翻译与本地化、多语言 AI 数据标注、多语言 SEO、数字营销、游戏本地化，以及发布前文化验证 MarketReady™。",
+      "keywords": [
+        "非洲语言翻译",
+        "非洲语言本地化",
+        "多语言 AI 数据标注",
+        "游戏本地化 非洲市场",
+        "多语言 SEO",
+        "发布前文化验证",
+        "GlobalAnnotate 翻译"
+      ]
     },
     "marketready": {
-      "title": "MarketReady™ — 发布前文化验证",
-      "description": "唯一在发布前由真实母语用户验证您内容的翻译服务，帮助您避免代价高昂的文化失误。"
+      "title": "MarketReady 文化验证：发布前文化验证 | GlobalAnnotate",
+      "description": "MarketReady™ 文化验证在发布前由目标市场 3–5 名真实母语用户盲审您的翻译内容，并出具签署报告，帮您避免代价高昂的文化失误。",
+      "keywords": [
+        "MarketReady 文化验证",
+        "翻译文化验证",
+        "发布前文化验证",
+        "本地化质量",
+        "非洲语言翻译",
+        "母语者审校"
+      ]
     },
     "about": {
-      "title": "关于GlobalAnnotate — 创始人Gideon Ugochukwu",
-      "description": "认识GlobalAnnotate创始人Gideon Ugochukwu——提供100+种语言的翻译、AI标注、SEO和营销服务。"
+      "title": "关于我们：尼日利亚翻译公司 | GlobalAnnotate",
+      "description": "了解 GlobalAnnotate 与创始人兼首席语言专家 Gideon Ugochukwu：一家来自尼日利亚的翻译公司，提供 100+ 种语言的翻译、AI 数据标注、SEO 与营销服务。",
+      "keywords": [
+        "尼日利亚翻译公司",
+        "GlobalAnnotate 翻译",
+        "非洲语言翻译",
+        "Gideon Ugochukwu",
+        "翻译与本地化",
+        "AI 数据标注"
+      ]
     },
     "contact": {
-      "title": "联系GlobalAnnotate — 咨询专家",
-      "description": "告诉我们您的项目需求，我们将在一个工作日内回复，并为您提供量身定制的方案。"
+      "title": "联系我们：获取非洲语言翻译报价 | GlobalAnnotate",
+      "description": "告诉我们您的语言对、内容类型和工作量，GlobalAnnotate 将在一个工作日内回复，并为非洲语言翻译与本地化项目提供量身定制的方案。",
+      "keywords": [
+        "非洲语言翻译报价",
+        "翻译服务咨询",
+        "GlobalAnnotate 翻译",
+        "尼日利亚翻译公司",
+        "本地化报价"
+      ]
     },
     "blog": {
-      "title": "博客 — 翻译、本地化与AI相关文章",
-      "description": "GlobalAnnotate团队关于本地化、AI数据和国际SEO的实用指南。"
+      "title": "翻译与本地化博客：非洲语言指南 | GlobalAnnotate",
+      "description": "GlobalAnnotate 团队撰写的实用指南，涵盖非洲语言翻译、翻译费用、MarketReady 文化验证、多语言 AI 数据标注、游戏本地化与国际 SEO。",
+      "keywords": [
+        "非洲语言翻译",
+        "翻译费用",
+        "MarketReady 文化验证",
+        "多语言 AI 数据标注",
+        "游戏本地化",
+        "国际 SEO"
+      ]
     },
     "portfolio": {
-      "title": "案例 — 项目案例",
-      "description": "为跨市场增长的团队带来真实的本地化、AI标注、SEO和营销成果。"
+      "title": "客户案例：翻译与本地化成果 | GlobalAnnotate",
+      "description": "查看 GlobalAnnotate 的真实客户案例：多语言本地化、AI 数据标注、国际 SEO 与数字营销项目，以及可量化的业务成果。",
+      "keywords": [
+        "翻译案例",
+        "本地化案例",
+        "多语言 AI 数据标注",
+        "游戏本地化",
+        "国际 SEO 案例",
+        "GlobalAnnotate 翻译"
+      ]
     },
     "freelancers": {
-      "title": "加入我们的语言专家网络",
-      "description": "加入GlobalAnnotate的译员、本地化专家、标注员和配音人才网络。"
+      "title": "加入译者网络：招募非洲语言译员 | GlobalAnnotate",
+      "description": "诚邀译员、本地化专家、AI 数据标注员与配音人才加入 GlobalAnnotate 网络，尤其欢迎豪萨语、约鲁巴语、斯瓦希里语等非洲语言母语者。",
+      "keywords": [
+        "译员招聘",
+        "非洲语言译员",
+        "豪萨语翻译",
+        "约鲁巴语翻译",
+        "AI 数据标注员",
+        "自由译者"
+      ]
     }
   },
   "trust": {
     "eyebrow": "我们如何保障质量",
-    "nativeTitle": "母语审校",
-    "nativeBody": "每一项语言交付在交付前都经母语专家审校。",
-    "aiTitle": "校准的 AI 数据",
-    "aiBody": "每个标注项目均采用黄金标准校准与标注者间一致性。",
+    "nativeTitle": "母语者审校",
+    "nativeBody": "每一项语言交付在发出前都经过母语专家审校。",
+    "aiTitle": "经过校准的 AI 数据",
+    "aiBody": "每个标注项目都执行黄金标准集校准，并跟踪标注者间一致性。",
     "replyTitle": "一个工作日内回复",
-    "replyBody": "每一项咨询都会在一个工作日内得到回复，并在 24–48 小时内提供方案。"
+    "replyBody": "每一份咨询都会在一个工作日内得到回复，24–48 小时内提供明确范围的方案。"
+  },
+  "a11y": {
+    "breadcrumb": "面包屑导航",
+    "primaryNav": "主导航",
+    "openMenu": "打开菜单",
+    "closeMenu": "关闭菜单",
+    "toggleTheme": "切换深色模式",
+    "changeLanguage": "切换语言",
+    "languageGroup": "语言",
+    "logoHome": "GlobalAnnotate 首页",
+    "logoAlt": "GlobalAnnotate 标志",
+    "dismissNotification": "关闭通知",
+    "clearSelection": "清除选择",
+    "stars": "{value} 星（满分 5 星）",
+    "greeting": "用{lang}问好：{word}"
+  },
+  "languageNames": {
+    "en": "英文",
+    "de": "德文",
+    "zh": "简体中文"
+  },
+  "siteTagline": "精准跨越语言，智能驱动数据，增长遍及市场。",
+  "cookie": {
+    "dialogLabel": "Cookie 使用许可",
+    "title": "我们重视您的隐私",
+    "body": "我们仅使用维持网站运行所必需的 Cookie。经您同意后，我们也可能使用分析类 Cookie 来了解网站的使用情况。详情请参阅我们的<link>隐私政策</link>。",
+    "accept": "全部接受",
+    "reject": "拒绝非必要 Cookie",
+    "dismiss": "关闭（拒绝非必要 Cookie）"
+  },
+  "globe": {
+    "mapAlt": "展示 GlobalAnnotate 全球业务覆盖范围的世界地图",
+    "northAmerica": "北美洲",
+    "southAmerica": "南美洲",
+    "europe": "欧洲",
+    "africa": "非洲",
+    "asia": "亚洲",
+    "australia": "大洋洲"
+  },
+  "notFound": {
+    "title": "页面“迷失在翻译中”。",
+    "body": "您访问的页面不存在，或已被移动。我们带您回到有用的地方。",
+    "back": "返回首页",
+    "explore": "浏览服务"
+  },
+  "errorPage": {
+    "title": "页面加载出错。",
+    "body": "发生意外错误，导致本页面无法加载。请重试，或返回首页。",
+    "retry": "重试",
+    "back": "返回首页"
+  },
+  "servicePage": {
+    "home": "首页",
+    "services": "服务",
+    "talkToExpert": "咨询专家",
+    "allServices": "全部服务",
+    "includedEyebrow": "服务内容",
+    "includedHeading1": "您需要的一切，",
+    "includedHeading2": "端到端交付。",
+    "useCasesEyebrow": "应用场景",
+    "useCasesHeading": "为您真实的业务场景而设计。",
+    "pricingEyebrow": "价格",
+    "pricingHeading": "方案简单清晰，报价量身定制。",
+    "pricingSub": "价格取决于项目范围、工作量和语言对。",
+    "mostPopular": "最受欢迎",
+    "faqEyebrow": "常见问题",
+    "faqHeading": "问题解答。",
+    "relatedEyebrow": "相关案例",
+    "relatedHeading": "该服务的近期客户案例。",
+    "seeAllCases": "查看全部案例",
+    "readCase": "阅读案例",
+    "mrHeading": "为本项目加入 MarketReady™ 文化验证",
+    "mrBody": "在发布前由目标市场的真实母语用户验证您的内容，并获得一份经签署、证明内容已可发布的报告。",
+    "learnMore": "了解更多"
+  },
+  "reviewAuthor": {
+    "verified": "已验证客户",
+    "verifiedTitle": "已验证客户——合作关系已由 GlobalAnnotate 确认。"
+  },
+  "reviewForm": {
+    "modeNamed": "全名 + 公司",
+    "modeInitial": "名字 + 姓氏首字母 + 职位",
+    "modeRole": "仅显示职位（不显示姓名）",
+    "modeVerified": "匿名（已验证客户）",
+    "errName": "请输入您的姓名",
+    "errRating": "请选择评分",
+    "errComment": "请至少用一句话分享您的合作体验",
+    "errNoEndpoint": "评价表单的提交地址尚未配置，请联系网站管理员。",
+    "toastSuccess": "感谢您！我们已收到您的评价，审核后将予以展示。",
+    "toastError": "提交失败，请稍后重试。",
+    "thanksHeading": "感谢您！",
+    "thanksBody": "您的评价经团队审核通过后将显示在本页面。非常感谢您的反馈。",
+    "submitAnother": "再提交一条评价",
+    "name": "您的姓名",
+    "namePlaceholder": "张伟",
+    "role": "职位（选填）",
+    "rolePlaceholder": "本地化负责人",
+    "company": "公司（选填）",
+    "companyPlaceholder": "某某科技有限公司",
+    "creditHeading": "您希望以什么方式署名？",
+    "creditHelp": "署名方式由您决定。选择您认为合适的选项，评价审核通过后将按此方式展示。",
+    "rating": "评分",
+    "starLabel": "{n} 星",
+    "starsLabel": "{n} 星",
+    "review": "您的评价",
+    "reviewPlaceholder": "分享您与 GlobalAnnotate 合作的体验……",
+    "moderated": "所有评价均经审核后发布。",
+    "submitting": "提交中……",
+    "submit": "提交评价"
+  },
+  "airtable": {
+    "iframeTitle": "GlobalAnnotate 自由译者申请表"
   }
 }

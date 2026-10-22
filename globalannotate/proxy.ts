@@ -11,7 +11,7 @@ const intlMiddleware = createMiddleware(routing);
 // origin, preserving path + query. Runs before the i18n middleware.
 const CANONICAL_ORIGIN = "https://globalannotate.com";
 
-export function middleware(request: NextRequest) {
+export function proxy(request: NextRequest) {
   const host = request.headers.get("host") ?? "";
   if (host.includes("vercel.app")) {
     const { pathname, search } = request.nextUrl;
@@ -23,7 +23,7 @@ export function middleware(request: NextRequest) {
   return intlMiddleware(request);
 }
 
-// Run on everything except Next internals, the image optimizer, and any path
+// Next 16 "proxy" (formerly middleware). Runs on everything except Next internals, the image optimizer, and any path
 // with a file extension (sitemap.xml, robots.txt, *.png, the Google
 // verification .html file, favicon, etc.), plus API/health routes.
 export const config = {
